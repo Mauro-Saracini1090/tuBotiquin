@@ -17,7 +17,7 @@
                 <th scope="row">{{ $rol->id_rol }}</th>
                 <td>{{ $rol->nombre_rol }}</td>
                 <td>
-                    <a href="{{ route('roles.show', [$rol->id_rol]) }}">Ver</a>
+                    <a href="{{ route('roles.show', [$rol->id_rol]) }}">Ver / Actualizar Permisos</a>
                     <a href="{{ route('roles.edit', [$rol->id_rol]) }}">Editar</a>
                     <a href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $rol->id_rol }}">
                         Borrar

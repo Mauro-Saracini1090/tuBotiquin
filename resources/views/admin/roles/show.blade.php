@@ -43,7 +43,7 @@
             <li class="list-group-item">No hay Permisos Registrados</li>
         @endforelse
     </ul>
-    <button type="submit" class="btn btn-primary">Añadir Permisos</button>
+    <button type="submit" class="btn btn-primary">Actualizar Permisos</button>
 </form>
 <a href="{{ route('roles.index') }}" class="btn btn-primary">Volver Atras</a>
 @endsection
