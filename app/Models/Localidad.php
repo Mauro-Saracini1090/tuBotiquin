@@ -9,6 +9,7 @@ class Localidad extends Model
 {
     use HasFactory;
 
+    protected $table = 'localidad';
     /**
      * Get the Usuario para una Localidad.
      */

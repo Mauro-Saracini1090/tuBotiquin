@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use App\Http\Controllers\Controller;
+use App\Models\Localidad;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -28,6 +29,8 @@ class UsuarioController extends Controller
     public function create()
     {
         //
+        $localidades = Localidad::all();
+        return view('admin.usuario.crearUsuario',compact('localidades'));
     }
 
     /**
@@ -39,6 +42,27 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
+        if ($request->habilitado == 'si') {
+            $habilitado = true;
+        } else {
+            $habilitado = false;
+        }
+        
+        $usuario = new Usuario();
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->nombre_usuario = $request->nombreUsuario;
+        $usuario->email = $request->email;
+        $usuario->password = $request->password;
+        $usuario->cod_postal = $request->localidad;
+        $usuario->cuil = $request->cuil;
+        $usuario->cuit = $request->cuit;
+        $usuario->dni = $request->dni;
+        $usuario->numero_matricula = $request->matricula;
+        $usuario->habilitado = $habilitado;
+        $usuario->save();
+
+        return redirect(route('usuario.index'));
     }
 
     /**
@@ -50,6 +74,7 @@ class UsuarioController extends Controller
     public function show(Usuario $usuario)
     {
         //
+        return view('admin.usuario.verUsuario',compact('usuario'));
     }
 
     /**
@@ -61,6 +86,8 @@ class UsuarioController extends Controller
     public function edit(Usuario $usuario)
     {
         //
+        $localidades = Localidad::all();
+        return view('admin.usuario.editarUsuario',compact('usuario','localidades'));
     }
 
     /**
@@ -84,5 +111,7 @@ class UsuarioController extends Controller
     public function destroy(Usuario $usuario)
     {
         //
+        $usuario->delete();
+        return redirect(route('usuario.index'));
     }
 }
