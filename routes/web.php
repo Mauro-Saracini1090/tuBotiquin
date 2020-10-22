@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\PermisosController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UsuarioController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auth\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +22,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('register/farmaceutico', [RegisterController::class,'showRegisFarmaceuticoForm'])->name('farmaceutico');
+Route::post('register/farmaceutico', [RegisterController::class,'registroFarmaceutico'])->name('registroFarmaceutico');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::resource('usuario', UsuarioController::class);
+Route::resource('roles', RolesController::class);
+Route::resource('permisos', PermisosController::class);

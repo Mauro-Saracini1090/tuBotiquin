@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 trait RegistersUsers
 {
@@ -17,8 +18,12 @@ trait RegistersUsers
      * @return \Illuminate\View\View
      */
     public function showRegistrationForm()
-    {
-        return view('auth.register');
+    {   $localidades= DB::table('localidad')->get();
+        return view('auth.register',compact('localidades'));
+    }
+    public function showRegisFarmaceuticoForm()
+    {   $localidades= DB::table('localidad')->get();
+        return view('auth.registerFarma',compact('localidades'));
     }
 
     /**
@@ -34,6 +39,23 @@ trait RegistersUsers
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+                    ? new JsonResponse([], 201)
+                    : redirect($this->redirectPath());
+    }
+
+    public function registroFarmaceutico(Request $request)
+    {
+        $this->validatorFarma($request->all())->validate();
+
+        event(new Registered($user = $this->createFarm($request->all())));
+
+
 
         if ($response = $this->registered($request, $user)) {
             return $response;

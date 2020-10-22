@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Registrado;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\Models\Usuario;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = "/";
 
     /**
      * Create a new controller instance.
@@ -50,9 +51,32 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+
+            'nombre' => ['required', 'string', 'max:255'],
+            'apellido' => ['required', 'string', 'max:255'],
+            'localidad' => ['required'],
+            'nombreUsuario' => ['required'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:usuario'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+
+        ]);
+    }
+
+    protected function validatorFarma(array $data)
+    {
+        return Validator::make($data, [
+
+            'nombre' => ['required', 'string', 'max:255'],
+            'apellido' => ['required', 'string', 'max:255'],
+            'localidad' => ['required'],
+            'nombreUsuario' => ['required'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:usuario'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'cuil' => ['required', 'string', 'min:8'],
+            'cuit' => ['required', 'string', 'min:8'],
+            'matricula' => ['required', 'string', 'min:8'],
+            'dni' => ['required', 'string', 'min:8'],
+
         ]);
     }
 
@@ -60,14 +84,41 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\User
+     * @return \App\Models\Usuario
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        return Usuario::create([
+            'nombre' => $data['nombre'],
+            'apellido' => $data['apellido'],
+            'nombre_usuario' => $data['nombreUsuario'],
+            'cod_postal' => $data['localidad'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'cuil' => null,
+            'cuit' => null,
+            'dni' => null,
+            'numero_matricula' => null,
+            'habilitado' => true,
+
+        ]);
+    }
+    protected function createFarm(array $data)
+    {
+
+        return Usuario::create([
+            'nombre' => $data['nombre'],
+            'apellido' => $data['apellido'],
+            'nombre_usuario' => $data['nombreUsuario'],
+            'cod_postal' => $data['localidad'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'cuil' => $data['cuil'],
+            'cuit' => $data['cuit'],
+            'dni' => $data['dni'],
+            'numero_matricula' => $data['matricula'],
+            'habilitado' => false,
+
         ]);
     }
 }
