@@ -400,29 +400,26 @@
 <body class="container bg-gray-100 dark:bg-gray-900">
     <div class="relative flex items-top justify-center bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
         @if(Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                <a href="{{ url('/') }}" class="text-sm text-gray-700 underline">Home</a>
-                <a href="{{ route('permisos.index') }}"
-                    class="text-sm text-gray-700 underline">Permisos</a>
-                <a href="{{ route('roles.index') }}" class="text-sm text-gray-700 underline">Roles</a>
-                <a href="{{ route('usuario.index') }}"
-                    class="text-sm text-gray-700 underline">Usuarios</a>
+            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block ">
+                <a href="{{ url('/') }}" class="btn btn-success">Home</a>
+                <a href="{{ route('permisos.index') }}" class="btn btn-success">Permisos</a>
+                <a href="{{ route('roles.index') }}" class="btn btn-success">Roles</a>
+                <a href="{{ route('usuario.index') }}" class="btn btn-success">Usuarios</a>
                 @auth
 
-                    <a class="text-sm text-gray-700 underline" href="#"
+                    <a class="btn btn-success" href="#"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Cerrar Sesion
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                        class="d-none">
+                        class="d-none btn btn-success">
                         @csrf
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                    <a href="{{ route('login') }}"class="btn btn-success">Login</a>
 
                     @if(Route::has('register'))
-                        <a href="{{ route('register') }}"
-                            class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        <a href="{{ route('register') }}" class="btn btn-success">Register</a>
                     @endif
                 @endif
             </div>
