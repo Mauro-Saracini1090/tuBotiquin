@@ -10,6 +10,8 @@ class Localidad extends Model
     use HasFactory;
 
     protected $table = 'localidad';
+    protected $primaryKey = 'codigo_postal';
+
     /**
      * Get the Usuario para una Localidad.
      */
