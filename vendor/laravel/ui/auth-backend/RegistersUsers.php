@@ -4,6 +4,7 @@ namespace Illuminate\Foundation\Auth;
 
 use App\Models\Role;
 use App\Models\Usuario;
+use App\Traits\RegistroFarmaceutico;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 trait RegistersUsers
 {
-    use RedirectsUsers;
+    use RedirectsUsers,RegistroFarmaceutico;
 
     /**
      * Show the application registration form.
@@ -23,11 +24,6 @@ trait RegistersUsers
     {
         $localidades = DB::table('localidad')->get();
         return view('auth.register', compact('localidades'));
-    }
-    public function showRegisFarmaceuticoForm()
-    {
-        $localidades = DB::table('localidad')->get();
-        return view('auth.registerFarma', compact('localidades'));
     }
 
     /**
@@ -50,32 +46,12 @@ trait RegistersUsers
         if ($response = $this->registered($request, $user)) {
             return $response;
         }
-
         return $request->wantsJson()
             ? new JsonResponse([], 201)
             : redirect($this->redirectPath());
     }
 
-    public function registroFarmaceutico(Request $request)
-    {
-        $this->validatorFarma($request->all())->validate();
-
-        event(new Registered($user = $this->createFarm($request->all())));
-        
-        $rolFarma = Role::where('id_rol', 2)->first();
-        
-        $user->getRoles()->attach($rolFarma);
-        
-
-
-        if ($response = $this->registered($request, $user)) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 201)
-            : redirect($this->redirectPath());
-    }
+    
 
     /**
      * Get the guard to be used during registration.

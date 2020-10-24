@@ -2,6 +2,7 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Traits\UsuarioHabilitado;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 trait AuthenticatesUsers
 {
-    use RedirectsUsers, ThrottlesLogins;
+    use RedirectsUsers, ThrottlesLogins,UsuarioHabilitado;
 
     /**
      * Show the application's login form.
@@ -127,19 +128,7 @@ trait AuthenticatesUsers
     protected function authenticated(Request $request, $user)
     {
         //
-        if (auth()->user()->habilitado == 0) {
-
-            // usuario con sesión iniciada pero inactivo
         
-            // cerramos su sesión
-            $this->guard()->logout();
-        
-            // invalidamos su sesión
-            $request->session()->invalidate();
-        
-            // redireccionamos a donde queremos
-            return redirect('/')->with('estado','Disculpe las Molestias pero su usuario aun se encuentra DESHABILITADO y en proceso de evaluacion. Saludos El Admin');
-        }
     }
 
     /**
@@ -162,14 +151,11 @@ trait AuthenticatesUsers
      *
      * @return string
      */
-    public function username()
-    {
-        return 'email';
-    }
-    public function habilitado()
-    {
-        return 'habilitado';
-    }
+    // public function username()
+    // {
+    //     //return 'email';
+        
+    // }
 
     /**
      * Log the user out of the application.
