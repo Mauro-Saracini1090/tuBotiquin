@@ -28,7 +28,7 @@ Route::get('register/farmaceutico', [RegisterController::class,'showRegisFarmace
 Route::post('register/farmaceutico', [RegisterController::class,'registroFarmaceutico'])->name('registroFarmaceutico');
 
 
-//Al usar el middleware RolMiddleware debemos cambiar ('roles:esAdmin') o por (roles:slug_rol) siendo slug_rol el valor del atributo de la Base de Datos 
+//Al usar el middleware RolMiddleware podemos enviar mas de un rol, pero debemos cambiar ('roles:esAdmin') o por (roles:slug_rol) siendo slug_rol el valor del atributo de la Base de Datos 
 // porque antes estabamos usando gates , pero a las gates no le podemos pasar mas de un ROL al mismo tiempo en las rutas
 // Esto es solo para las rutas, en las vistas seguimos usando gates y para definir varias gates en la vista
 // hacemos @canany(['nombreGate1','nombreGate2']) .... @endcanany

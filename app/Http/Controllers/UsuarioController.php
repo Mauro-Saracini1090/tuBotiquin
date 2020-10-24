@@ -81,6 +81,7 @@ class UsuarioController extends Controller
     {
         //
         $this->authorize('view', $usuario);
+        
         return view('admin.usuario.verUsuario', compact('usuario'));
     }
 

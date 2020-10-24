@@ -2,12 +2,14 @@
 
 namespace App\Http\Middleware;
 
+use App\Traits\RolesPermisos;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RolMiddleware
 {
+    use RolesPermisos;
     /**
      * Handle an incoming request.
      *

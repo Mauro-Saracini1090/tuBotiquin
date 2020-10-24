@@ -36,7 +36,7 @@ class UsuariosPolicy
         }elseif($usu->getRoles->contains('slug_permiso','ver-usuario')){
             return true;
         }
-
+        
         return false;
     }
 

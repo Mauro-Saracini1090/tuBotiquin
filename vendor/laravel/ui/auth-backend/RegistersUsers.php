@@ -41,6 +41,7 @@ trait RegistersUsers
         $rolFarma = Role::where('id_rol', 3)->first();
         
         $user->getRoles()->attach($rolFarma);
+        
         $this->guard()->login($user);
 
         if ($response = $this->registered($request, $user)) {

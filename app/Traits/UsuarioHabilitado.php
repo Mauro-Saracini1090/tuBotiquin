@@ -83,6 +83,7 @@ trait UsuarioHabilitado
                     ? new JsonResponse([], 204)
                     : redirect()->intended($this->redirectPath());
     }
+    
     public function username()
     {
         //return 'email';
