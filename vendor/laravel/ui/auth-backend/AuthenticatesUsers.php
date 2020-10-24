@@ -17,7 +17,7 @@ trait AuthenticatesUsers
      * @return \Illuminate\View\View
      */
     public function showLoginForm()
-    {
+    {   
         return view('auth.login');
     }
 
@@ -33,13 +33,14 @@ trait AuthenticatesUsers
     {
         $this->validateLogin($request);
 
+        
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
+        
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
             $this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
-
             return $this->sendLockoutResponse($request);
         }
 
@@ -78,7 +79,7 @@ trait AuthenticatesUsers
      * @return bool
      */
     protected function attemptLogin(Request $request)
-    {
+    {   
         return $this->guard()->attempt(
             $this->credentials($request), $request->filled('remember')
         );
@@ -126,6 +127,19 @@ trait AuthenticatesUsers
     protected function authenticated(Request $request, $user)
     {
         //
+        if (auth()->user()->habilitado == 0) {
+
+            // usuario con sesión iniciada pero inactivo
+        
+            // cerramos su sesión
+            $this->guard()->logout();
+        
+            // invalidamos su sesión
+            $request->session()->invalidate();
+        
+            // redireccionamos a donde queremos
+            return redirect('/')->with('estado','Disculpe las Molestias pero su usuario aun se encuentra DESHABILITADO y en proceso de evaluacion. Saludos El Admin');
+        }
     }
 
     /**
@@ -151,6 +165,10 @@ trait AuthenticatesUsers
     public function username()
     {
         return 'email';
+    }
+    public function habilitado()
+    {
+        return 'habilitado';
     }
 
     /**

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Laravel</title>
 
     <!-- Fonts -->
@@ -398,14 +398,17 @@
 </head>
 
 <body class="container bg-gray-100 dark:bg-gray-900">
-    <div class="relative flex items-top justify-center bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+
+    <div class="relative  items-top justify-center bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
         @if(Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block ">
                 <a href="{{ url('/') }}" class="btn btn-success">Home</a>
-                <a href="{{ route('permisos.index') }}" class="btn btn-success">Permisos</a>
-                <a href="{{ route('roles.index') }}" class="btn btn-success">Roles</a>
-                <a href="{{ route('usuario.index') }}" class="btn btn-success">Usuarios</a>
                 @auth
+                    @can('esAdmin')
+                        <a href="{{ route('permisos.index') }}" class="btn btn-success">Permisos</a>
+                        <a href="{{ route('roles.index') }}" class="btn btn-success">Roles</a>
+                        <a href="{{ route('usuario.index') }}" class="btn btn-success">Usuarios</a>
+                    @endcan
 
                     <a class="btn btn-success" href="#"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -415,8 +418,12 @@
                         class="d-none btn btn-success">
                         @csrf
                     </form>
+                    <div class="badge badge-primary text-wrap">
+                        {{ Auth::user()->nombre_usuario }}
+                        {{ Auth::user()->getRoles->isNotEmpty() ? Auth::user()->getRoles->first()->nombre_rol : "" }}
+                    </div>
                 @else
-                    <a href="{{ route('login') }}"class="btn btn-success">Login</a>
+                    <a href="{{ route('login') }}" class="btn btn-success">Login</a>
 
                     @if(Route::has('register'))
                         <a href="{{ route('register') }}" class="btn btn-success">Register</a>
@@ -437,6 +444,14 @@
             </div>
         </div>
     </div>
+    @if(session()->has('estado'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ session()->get('estado') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
     <div class="bg-gray-100 dark:bg-gray-900">
         @section('datos')
         <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
@@ -572,9 +587,9 @@
     @show
 
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>

@@ -14,6 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Usuario' => 'App\Policies\UsuariosPolicy',
     ];
 
     /**
@@ -26,5 +27,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
+        Gate::define('esAdmin', function ($user) {
+            return $user->getRoles->first()->slug_rol == 'es-administrador';
+        });
     }
 }

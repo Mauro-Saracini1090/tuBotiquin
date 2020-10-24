@@ -6,10 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Traits\RolesPermisos;
 
 class Usuario extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable,RolesPermisos;
 
     protected $table ="usuario";
     protected $primaryKey = 'id_usuario';
@@ -58,9 +59,5 @@ class Usuario extends Authenticatable
     }
 
 
-    //ESTO EL CHABON DE TUTORIAL NO LO HACE POSIBLEMENTE TENGA QUE BORRAR
-    public function getPermisosUsuario()
-    {
-        return $this->belongsToMany(Permiso::class,'usuario_permisos');
-    }
+    
 }

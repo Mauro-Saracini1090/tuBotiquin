@@ -61,6 +61,29 @@
             <th scope="col">Ultima Modificacion</th>
             <td>{{ $usuario->updated_at }}</td>
         </tr>
+        <tr>
+            <th scope="col">Roles:</th>
+            <td>
+                @if ($usuario->getRoles->isNotEmpty())
+                @foreach ($usuario->getRoles as $rol)
+                    {{$rol->nombre_rol}}
+                @endforeach
+                    
+                @endif
+            </td>
+            </td>
+        </tr>
+        <tr>
+            <th scope="col">Permisos</th>
+            <td>
+                @if ($usuario->getPermisos->isNotEmpty())
+                @foreach ($usuario->getPermisos as $permiso)
+                    {{$rol->nombre_permiso}}
+                @endforeach
+                    
+                @endif
+            </td>
+        </tr>
 
     </tbody>
 </table>

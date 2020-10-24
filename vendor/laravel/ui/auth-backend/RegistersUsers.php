@@ -2,6 +2,8 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Models\Role;
+use App\Models\Usuario;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -18,12 +20,14 @@ trait RegistersUsers
      * @return \Illuminate\View\View
      */
     public function showRegistrationForm()
-    {   $localidades= DB::table('localidad')->get();
-        return view('auth.register',compact('localidades'));
+    {
+        $localidades = DB::table('localidad')->get();
+        return view('auth.register', compact('localidades'));
     }
     public function showRegisFarmaceuticoForm()
-    {   $localidades= DB::table('localidad')->get();
-        return view('auth.registerFarma',compact('localidades'));
+    {
+        $localidades = DB::table('localidad')->get();
+        return view('auth.registerFarma', compact('localidades'));
     }
 
     /**
@@ -37,7 +41,10 @@ trait RegistersUsers
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-
+        
+        $rolFarma = Role::where('id_rol', 3)->first();
+        
+        $user->getRoles()->attach($rolFarma);
         $this->guard()->login($user);
 
         if ($response = $this->registered($request, $user)) {
@@ -45,8 +52,8 @@ trait RegistersUsers
         }
 
         return $request->wantsJson()
-                    ? new JsonResponse([], 201)
-                    : redirect($this->redirectPath());
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
     }
 
     public function registroFarmaceutico(Request $request)
@@ -54,7 +61,11 @@ trait RegistersUsers
         $this->validatorFarma($request->all())->validate();
 
         event(new Registered($user = $this->createFarm($request->all())));
-
+        
+        $rolFarma = Role::where('id_rol', 2)->first();
+        
+        $user->getRoles()->attach($rolFarma);
+        
 
 
         if ($response = $this->registered($request, $user)) {
@@ -62,8 +73,8 @@ trait RegistersUsers
         }
 
         return $request->wantsJson()
-                    ? new JsonResponse([], 201)
-                    : redirect($this->redirectPath());
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
     }
 
     /**

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Http\Controllers\Controller;
 use App\Models\Localidad;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UsuarioController extends Controller
 {
@@ -17,8 +19,11 @@ class UsuarioController extends Controller
     public function index()
     {
         //
+        // if (Gate::denies('esAdmin')) {
+        //     abort(403);
+        // }
         $usuarios = Usuario::all();
-        return view('admin.usuario.listaUsuarios',compact('usuarios'));
+        return view('admin.usuario.listaUsuarios', compact('usuarios'));
     }
 
     /**
@@ -26,11 +31,12 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+
         $localidades = Localidad::all();
-        return view('admin.usuario.crearUsuario',compact('localidades'));
+        return view('admin.usuario.crearUsuario', compact('localidades'));
     }
 
     /**
@@ -47,7 +53,7 @@ class UsuarioController extends Controller
         } else {
             $habilitado = false;
         }
-        
+
         $usuario = new Usuario();
         $usuario->nombre = $request->nombre;
         $usuario->apellido = $request->apellido;
@@ -74,7 +80,8 @@ class UsuarioController extends Controller
     public function show(Usuario $usuario)
     {
         //
-        return view('admin.usuario.verUsuario',compact('usuario'));
+        $this->authorize('view', $usuario);
+        return view('admin.usuario.verUsuario', compact('usuario'));
     }
 
     /**
@@ -87,7 +94,7 @@ class UsuarioController extends Controller
     {
         //
         $localidades = Localidad::all();
-        return view('admin.usuario.editarUsuario',compact('usuario','localidades'));
+        return view('admin.usuario.editarUsuario', compact('usuario', 'localidades'));
     }
 
     /**
@@ -111,7 +118,69 @@ class UsuarioController extends Controller
     public function destroy(Usuario $usuario)
     {
         //
+        $usuario->getRoles()->detach();
+        $usuario->getPermisos()->detach();
         $usuario->delete();
         return redirect(route('usuario.index'));
+    }
+
+    public function usuarioRolesyPermisos(Usuario $usuario, Request $request)
+    {
+
+        if ($request->ajax()) {
+            $rol = Role::where('id_rol', $request->rol_id)->first();
+            $permisos = $rol->getPermisos;
+            $permisos[0]['check'] =  " ";
+            foreach ($permisos as $permRol) {
+                foreach ($usuario->getPermisos as $valor) {
+                    if ($valor->id_permiso == $permRol->id_permiso) {
+                        $check = "checked";
+                        $permisos[0]['check'] =  $check;
+                    }
+                }
+            }
+            return $permisos;
+        }
+
+        $roles = Role::all();
+
+        if (isset($usuario->getRoles)) {
+            $rolesUsuario = $usuario->getRoles()->first();
+            //dd($roles);
+            if (isset($rolesUsuario->getPermisos) && isset($usuario->getPermisos)) {
+                $permisosRol = $rolesUsuario->getPermisos;
+                $permisosUsuario = $usuario->getPermisos;
+
+
+                return view('admin.usuario.asignarRolesyPermisos', compact('usuario', 'roles', 'rolesUsuario', 'permisosRol', 'permisosUsuario'));
+            }
+
+            return view('admin.usuario.asignarRolesyPermisos', compact('usuario', 'roles', 'rolesUsuario'));
+        }
+        return view('admin.usuario.asignarRolesyPermisos', compact('usuario', 'roles'));
+    }
+
+
+    public function almacenarRolesyPermisos(Request $request)
+    {
+        //dd($request);
+        $usuario = Usuario::where('id_usuario', $request->usuario)->first();
+
+        $usuario->getRoles()->detach();
+        $usuario->getPermisos()->detach();
+
+        if ($request->rol != null) {
+            $usuario->getRoles()->attach($request->rol);
+            $usuario->save();
+        }
+
+        if ($request->listadoPermisos != null) {
+            foreach ($request->listadoPermisos as $permiso) {
+                $usuario->getPermisos()->attach($permiso);
+                $usuario->save();
+            }
+        }
+
+        return redirect(route('usuario.rolpermisos', [$usuario->id_usuario]));
     }
 }

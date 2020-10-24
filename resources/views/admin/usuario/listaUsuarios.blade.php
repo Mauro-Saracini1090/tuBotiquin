@@ -28,6 +28,7 @@
                     <a href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $usuario->id_usuario }}">
                         Borrar
                     </a>
+                    <a class="btn btn-primary" href="{{ route('usuario.rolpermisos', [ $usuario->id_usuario]) }}">Asignar Rol y Permisos</a>
                 </td>
             </tr>
         @endforeach
