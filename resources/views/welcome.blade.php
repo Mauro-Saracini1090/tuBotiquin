@@ -408,6 +408,7 @@
                         <a href="{{ route('permisos.index') }}" class="btn btn-success">Permisos</a>
                         <a href="{{ route('roles.index') }}" class="btn btn-success">Roles</a>
                         <a href="{{ route('usuario.index') }}" class="btn btn-success">Usuarios</a>
+                        <a href="{{ route('localidad.index') }}" class="btn btn-success">Localidades</a>
                     @endcan
 
                     <a class="btn btn-success" href="#"
