@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Localidad;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class LocalidadController extends Controller
@@ -14,7 +15,9 @@ class LocalidadController extends Controller
      */
     public function index()
     {
-        //
+        //Obtengo todas las localidades cargadas en la DB
+        $localidades = Localidad::orderBy('nombre_localidad', 'asc')->get();
+        return view('admin.localidad.indexLocalidad', ['localidades' => $localidades]);
     }
 
     /**
@@ -24,7 +27,8 @@ class LocalidadController extends Controller
      */
     public function create()
     {
-        //
+        // Retorna a la vista para crear una nueva localidad
+        return view('admin.localidad.crearLocalidad');
     }
 
     /**
@@ -35,7 +39,18 @@ class LocalidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Request()->validate(([
+            'codigo_postal' => 'required|numeric',
+            'nombre_localidad' => 'required',
+
+        ]));
+        // Crear una nueva instacia de localidad y la guarda en la DB
+        $localidad = new Localidad();
+        $localidad->codigo_postal = $request->codigo_postal;
+        $localidad->nombre_localidad = $request->nombre_localidad;
+        $localidad->save();
+
+        return redirect(route('localidad.index'));
     }
 
     /**
@@ -57,7 +72,8 @@ class LocalidadController extends Controller
      */
     public function edit(Localidad $localidad)
     {
-        //
+        //Recibe una instancia de localidad y envia a vista 
+        return view('admin.localidad.editarLocalidad', ['localidad' => $localidad]);
     }
 
     /**
@@ -69,7 +85,20 @@ class LocalidadController extends Controller
      */
     public function update(Request $request, Localidad $localidad)
     {
-        //
+        //Comprueba que el codigo postal (id de la tabla) no pertenesca a otra localidad
+        //FALTA COMPROBAR //
+
+        Request()->validate(([
+            'codigo_postal' => 'required|numeric',
+            'nombre_localidad' => 'required',
+
+        ]));
+            // Recibe una instanacia $localidad y procede a guardar los valores
+            $localidad->nombre_localidad = $request->nombre_localidad;
+            $localidad->codigo_postal = $request->codigo_postal;
+            $localidad->save();
+            return redirect(route('localidad.index'));
+        
     }
 
     /**
@@ -80,6 +109,8 @@ class LocalidadController extends Controller
      */
     public function destroy(Localidad $localidad)
     {
-        //
+        //Recibe una instancia de localida y procede a eliminarla de la DB
+        $localidad->delete();
+        return redirect(route('localidad.index'));
     }
 }
