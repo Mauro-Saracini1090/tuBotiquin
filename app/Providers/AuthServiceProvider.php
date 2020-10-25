@@ -26,9 +26,19 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // ADMIN    
         Gate::define('esAdmin', function ($user) {
             return $user->getRoles->first()->slug_rol == 'es-administrador';
         });
+        // FARMACEUTICO
+        Gate::define('esFarmaceutico', function ($user) {
+            return $user->getRoles->first()->slug_rol == 'es-farmaceutico';
+        });
+        // REGISTRADO
+        Gate::define('esRegistrado', function ($user) {
+            return $user->getRoles->first()->slug_rol == 'es-registrado';
+        });
+
+      
     }
 }
