@@ -37,4 +37,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function redirectPath()
+    {
+        if (auth()->user()->getRoles->contains('slug_rol','es-administrador')) {
+            return '/administrador';
+        }
+
+        return '/';
+    }
 }

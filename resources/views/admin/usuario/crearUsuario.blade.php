@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('admin.administrador')
 @section('datos')
 <div class="row justify-content-center">
     <div class="col-md-8">
@@ -204,6 +204,7 @@
                         </div>
                     </div>
                 </form>
+                <a href="{{ route('usuario.index') }}" class="btn btn-primary">Volver Atras</a>
             </div>
         </div>
     </div>

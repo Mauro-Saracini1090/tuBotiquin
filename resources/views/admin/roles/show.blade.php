@@ -1,6 +1,6 @@
-@extends('welcome')
+@extends('admin.administrador')
 @section('datos')
-<h3 style="color: white">Informacion de Rol {{ $role->nombre_rol }}</h3>
+<h3>Informacion de Rol {{ $role->nombre_rol }}</h3>
 <table class="table table-dark">
     <thead>
         <tr>

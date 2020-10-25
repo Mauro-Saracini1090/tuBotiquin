@@ -1,6 +1,6 @@
-@extends('welcome')
+@extends('admin.administrador')
 @section('datos')
-<h3 style="color: white">Lista de Usuarios</h3>
+<h3 >Lista de Usuarios</h3>
 <a href="{{ route('usuario.create') }}" class="btn btn-primary float-right my-2">Crear Nuevo Usuario</a>
 <table class="table table-dark">
     <thead>

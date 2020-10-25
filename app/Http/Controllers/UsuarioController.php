@@ -8,6 +8,7 @@ use App\Models\Localidad;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -59,7 +60,7 @@ class UsuarioController extends Controller
         $usuario->apellido = $request->apellido;
         $usuario->nombre_usuario = $request->nombreUsuario;
         $usuario->email = $request->email;
-        $usuario->password = $request->password;
+        $usuario->password = Hash::make($request->password);
         $usuario->cod_postal = $request->localidad;
         $usuario->cuil = $request->cuil;
         $usuario->cuit = $request->cuit;
@@ -108,6 +109,28 @@ class UsuarioController extends Controller
     public function update(Request $request, Usuario $usuario)
     {
         //
+        //dd($request);
+        if ($request->habilitado == 'si') {
+            $habilitado = true;
+        } else {
+            $habilitado = false;
+        }
+        
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->nombre_usuario = $request->nombreUsuario;
+        $usuario->email = $request->email;
+        $usuario->password = $usuario->password;
+        $usuario->cod_postal = $request->localidad;
+        $usuario->cuil = $request->cuil;
+        $usuario->cuit = $request->cuit;
+        $usuario->dni = $request->dni;
+        $usuario->numero_matricula = $request->matricula;
+        $usuario->habilitado = $habilitado;
+        $usuario->save();
+
+        return redirect(route('usuario.index'));
+        
     }
 
     /**

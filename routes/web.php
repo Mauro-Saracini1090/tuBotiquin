@@ -7,6 +7,8 @@ use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\LocalidadController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +23,9 @@ use App\Http\Controllers\Auth\RegisterController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/administrador', function () {
+    return view('admin.administrador');
+})->name('homeAdministrador')->middleware('roles:es-administrador');
 
 Auth::routes();
 Route::post('login',  [LoginController::class,'loginPersonalizado']);
@@ -37,3 +42,4 @@ Route::get('usuario/{usuario}/rolypermisos',[UsuarioController::class,'usuarioRo
 Route::post('usuario/rolypermisos',[UsuarioController::class,'almacenarRolesyPermisos'])->name('usuario.almacenarrolpermisos')->middleware('roles:es-administrador');
 Route::resource('roles', RolesController::class)->middleware('roles:es-administrador');
 Route::resource('permisos', PermisosController::class)->middleware('roles:es-administrador');
+Route::resource('localidad', LocalidadController::class)->middleware('roles:es-administrador');

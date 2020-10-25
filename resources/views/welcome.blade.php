@@ -398,7 +398,7 @@
 </head>
 
 <body class="container bg-gray-100 dark:bg-gray-900">
-
+    
     <div class="relative  items-top justify-center bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
         @if(Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block ">
@@ -446,12 +446,12 @@
         </div>
     </div>
     @if(session()->has('estado'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>{{ session()->get('estado') }}</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ session()->get('estado') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     @endif
     <div class="bg-gray-100 dark:bg-gray-900">
         @section('datos')
@@ -597,7 +597,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
     </script>
+    <script>
+        $.ajax({
+            url: base_url + "clientes/Clientes_controller/contrato_view",
+            type: "POST",
+            dataType: "html",
+            data: {
+                id: valor_IDcontrato
+            },
+        }).done(function (data) {
+            $("#modal_contrato .modal-body").html(data);
+        });
 
+    </script>
     @yield('zona_js')
 </body>
 

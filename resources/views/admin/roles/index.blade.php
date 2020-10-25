@@ -1,6 +1,6 @@
-@extends('welcome')
+@extends('admin.administrador')
 @section('datos')
-<h3 style="color: white">Lista de Roles</h3>
+<h3>Lista de Roles</h3>
 <a href="{{ route('roles.create') }}" class="btn btn-primary float-right my-2">Crear Nuevo ROL</a>
 <table class="table table-dark">
     <thead>
@@ -18,7 +18,7 @@
                 <td>{{ $rol->nombre_rol }}</td>
                 <td>
                     <a href="{{ route('roles.show', [$rol->id_rol]) }}">Ver / Actualizar Permisos</a>
-                    <a href="{{ route('roles.edit', [$rol->id_rol]) }}">Editar</a>
+                    {{-- <a href="{{ route('roles.edit', [$rol->id_rol]) }}">Editar</a> --}}
                     <a href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $rol->id_rol }}">
                         Borrar
                     </a>

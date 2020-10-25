@@ -1,7 +1,7 @@
-@extends('welcome')
+@extends('admin.administrador')
 
 @section('datos')
-<h3 style="color: white">Editar Localidad {{ $localidad->nombre_localidad }}</h3>
+<h3>Editar Localidad {{ $localidad->nombre_localidad }}</h3>
 @if($errors->any())
     <div class="alert alert-danger">
         <p>Por favor corrija los siguientes errores de abajo: </p>
@@ -35,4 +35,4 @@
         <a href="{{ url()->previous() }}" class="btn btn-primary mx-1">Volver Atras</a>
     </form>
 
-@endsection;
+@endsection
