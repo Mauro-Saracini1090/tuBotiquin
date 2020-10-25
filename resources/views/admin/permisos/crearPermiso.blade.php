@@ -1,6 +1,6 @@
-@extends('welcome')
+@extends('admin.administrador')
 @section('datos')
-<h3 style="color: white">Crear Rol</h3>
+<h3>Crear Rol</h3>
 
 @if($errors->any())
     <div class="alert alert-danger">

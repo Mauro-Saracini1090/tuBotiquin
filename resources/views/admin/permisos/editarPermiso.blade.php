@@ -1,6 +1,6 @@
-@extends('welcome')
+@extends('admin.administrador')
 @section('datos')
-<h3 style="color: white">Editar Permiso {{ $permiso->nombre_permiso }}</h3>
+<h3>Editar Permiso {{ $permiso->nombre_permiso }}</h3>
 
 @if($errors->any())
     <div class="alert alert-danger">

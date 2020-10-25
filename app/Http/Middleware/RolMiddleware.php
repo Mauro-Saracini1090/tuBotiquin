@@ -5,11 +5,11 @@ namespace App\Http\Middleware;
 use App\Traits\RolesPermisos;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 
 class RolMiddleware
 {
-    use RolesPermisos;
+
     /**
      * Handle an incoming request.
      *
@@ -23,17 +23,19 @@ class RolMiddleware
      * Otra forma es usar splat operator que se usa para desempaquetar a listas de argumentos 
      * al invocar a funciones, el operador "..." A esto también se le conoce como el operador 'splat' 
      */
-    public function handle(Request $request, Closure $next, ...$roles)  
+    public function handle(Request $request, Closure $next, ...$roles)
     {
         // se usa array_slice para quitar o no tomar del arreglo los dos primeros elementos
         //$roles = array_slice(func_get_args(),2);
 
-        foreach ($roles as $rol){
-            if (Auth()->user()->tieneRol($rol)) {
-                return $next($request);
+        foreach ($roles as $rol) {
+            if (!(auth()->user() == null)) {
+                if (auth()->user()->tieneRol($rol)) {
+                    return $next($request);
+                }
             }
         }
 
-       abort(404);
+        abort(404);
     }
 }

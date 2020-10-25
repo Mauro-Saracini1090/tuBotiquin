@@ -1,7 +1,7 @@
-@extends('welcome')
+@extends('admin.administrador')
 
 @section('datos')
-<h3 style="color: white">Cargar Localidad</h3>
+<h3>Cargar Localidad</h3>
 @if($errors->any())
     <div class="alert alert-danger">
         <p>Por favor corrija los siguientes errores de abajo: </p>

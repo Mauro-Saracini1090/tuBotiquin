@@ -1,6 +1,6 @@
-@extends('welcome')
+@extends('admin.administrador')
 @section('datos')
-<h3 style="color: white">Crear Rol</h3>
+<h3>Crear Rol</h3>
 
 @if($errors->any())
     <div class="alert alert-danger">
@@ -43,9 +43,9 @@
     $(document).ready(function () {
         $('#nombre_rol').keyup(function (e) {
             var str = $('#nombre_rol').val();
-            str = str.replace(/\W+(?!$)/g, '-').toLowerCase();
+            str = 'es-'+ str.replace(/\W+(?!$)/g, '-').toLowerCase();
             $('#slug_rol').val(str);
-            $('#slug_rol').attr('placeholder', str);
+            // $('#slug_rol').attr('placeholder', str);
         });
     });
 

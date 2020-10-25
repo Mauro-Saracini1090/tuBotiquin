@@ -69,11 +69,11 @@ class RolesController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
-    {
-        //
-        return view('admin.roles.editar', compact('role'));
-    }
+    // public function edit(Role $role)
+    // {
+    //     //
+    //     return view('admin.roles.editar', compact('role'));
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -84,7 +84,7 @@ class RolesController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        // 
+        
        
         if (!$request->nombre_rol) {
             $role->getPermisos()->detach();

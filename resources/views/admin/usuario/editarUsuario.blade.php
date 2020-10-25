@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('admin.administrador')
 @section('datos')
 <div class="row justify-content-center">
     <div class="col-md-8">
@@ -6,9 +6,9 @@
             <div class="card-header">{{ __('Crear Usuario') }}</div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('usuario.store') }}">
+                <form method="POST" action="{{ route('usuario.update',[$usuario]) }}">
                     @csrf
-
+                    @method('PATCH')
                     <div class="form-group row">
                         <label for="nombre"
                             class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
@@ -16,7 +16,7 @@
                         <div class="col-md-6">
                             <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror"
                                 name="nombre" value="{{ $usuario->nombre , old('nombre') }}"
-                                required autocomplete="nombre" autofocus>
+                                 autocomplete="nombre" autofocus>
 
                             @error('nombre')
                                 <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
                         <div class="col-md-6">
                             <input id="apellido" type="text"
                                 class="form-control @error('apellido') is-invalid @enderror" name="apellido"
-                                value="{{ $usuario->apellido ,old('apellido') }}" required
+                                value="{{ $usuario->apellido ,old('apellido') }}" 
                                 autocomplete="apellido" autofocus>
 
                             @error('apellido')
@@ -45,15 +45,9 @@
                     <div class="form-group row">
                         <label for="localidad"
                             class="col-md-4 col-form-label text-md-right">{{ __('Localidad') }}</label>
-                        <div class="col-md-6">
-
-                            <select id="localidad" class="form-control @error('localidad') is-invalid @enderror"
-                                name="localidad"
-                                value="{{ $usuario->codigo_postal ,old('localidad') }}"
-                                required>
+                        <div class="col-md-6">                            <select id="localidad" class="form-control @error('localidad') is-invalid @enderror" name="localidad">
                                 @foreach($localidades as $localidad)
-                                    <option value="{{ $localidad->codigo_postal }}">
-                                        {{ $localidad->nombre_localidad }}</option>
+                                    <option value="{{ $localidad->codigo_postal }}" @if($usuario->cod_postal == $localidad->codigo_postal) selected @endif> {{ $localidad->nombre_localidad }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -67,7 +61,7 @@
                             <input id="nombreUsuario" type="text"
                                 class="form-control @error('nombreUsuario') is-invalid @enderror" name="nombreUsuario"
                                 value="{{ $usuario->nombre_usuario , old('nombreUsuario') }}"
-                                required autocomplete="nombreUsuario" autofocus>
+                                 autocomplete="nombreUsuario" autofocus>
 
                             @error('nombreUsuario')
                                 <span class="invalid-feedback" role="alert">
@@ -84,40 +78,13 @@
                         <div class="col-md-6">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                 name="email" value="{{ $usuario->email , old('email') }}"
-                                required autocomplete="email">
+                                 autocomplete="email">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password"
-                            class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="new-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password-confirm"
-                            class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="password-confirm" type="password" class="form-control"
-                                name="password_confirmation" required autocomplete="new-password">
                         </div>
                     </div>
 
@@ -196,7 +163,7 @@
                         <div class="col-md-6">
 
                             <select id="habilitado" class="form-control @error('habilitado') is-invalid @enderror"
-                                name="habilitado" value="{{ old('habilitado') }}" required>
+                                name="habilitado" value="{{ old('habilitado') }}" >
                                 @if($usuario->habilitado == 1)
                                     <option value="si">SI</option>
                                     <option value="no">NO</option>
@@ -213,11 +180,12 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Register') }}
+                                {{ __('Editar Usuario') }}
                             </button>
                         </div>
                     </div>
                 </form>
+                <a href="{{ route('usuario.index') }}" class="btn btn-primary">Volver Atras</a>
             </div>
         </div>
     </div>

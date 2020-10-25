@@ -22,7 +22,7 @@ trait RolesPermisos
 
     public function tieneRol($rol){
 
-        if ($this->getRoles->contains('slug_rol',$rol)) {
+        if ($this->getRoles->contains('slug_rol',$rol)){
             return true;
         }
         return false;

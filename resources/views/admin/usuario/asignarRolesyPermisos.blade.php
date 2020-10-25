@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('admin.administrador')
 @section('datos')
 <div class="card" style="width: 100%;">
     <div class="card-body">
