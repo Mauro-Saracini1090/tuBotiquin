@@ -50,7 +50,7 @@ trait RegistroFarmaceutico
             'nombre' => ['required', 'string', 'max:255'],
             'apellido' => ['required', 'string', 'max:255'],
             'localidad' => ['required'],
-            'nombreUsuario' => ['required','unique:usuario'],
+            'nombre_usuario' => ['required','unique:usuario'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:usuario'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'cuil' => ['required', 'string', 'min:8'],
