@@ -1,7 +1,11 @@
 @extends('admin.administrador')
 @section('datos')
 <h3>Informacion de Usuario {{ $usuario->nombre }} {{ $usuario->apellido }}</h3>
-
+<h5>El Usuario se encuentra: @if ($usuario->habilitado == 1)
+    Habilitado
+@else
+    Deshabilitado
+@endif </h5>
 <table class="table table-dark">
     <tbody>
         <tr>

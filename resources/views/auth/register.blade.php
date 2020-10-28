@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('welcome')
+@section('iconPestaña')
+@section('titulo',' Registrarse')
+@section('contenido')
 
-@section('content')
-<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Registro de Usuario') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -15,7 +16,7 @@
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
+                                <input id="nombre" type="text" class="form-control focus @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
 
                                 @error('nombre')
                                     <span class="invalid-feedback" role="alert">
@@ -50,12 +51,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="nombreUsuario" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Usuario') }}</label>
+                            <label for="nombre_usuario" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Usuario') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nombreUsuario" type="text" class="form-control @error('nombreUsuario') is-invalid @enderror" name="nombreUsuario" value="{{ old('nombreUsuario') }}" required autocomplete="nombreUsuario" autofocus>
+                                <input id="nombre_usuario" type="text" class="form-control @error('nombre_usuario') is-invalid @enderror" name="nombre_usuario" value="{{ old('nombre_usuario') }}" required autocomplete="nombre_usuario" autofocus>
 
-                                @error('nombreUsuario')
+                                @error('nombre_usuario')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -98,11 +99,11 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-                    <a href="{{route('farmaceutico')}}">Registro para un Usuario Farmaceutico</a>
-                        <div class="form-group row mb-0">
+                    <a href="{{route('farmaceutico')}}" class="p-5">Registro para un Usuario Farmaceutico</a>
+                        <div class="form-group row mt-1 mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Registrarse') }}
                                 </button>
                             </div>
                         </div>
@@ -111,5 +112,5 @@
             </div>
         </div>
     </div>
-</div>
+
 @endsection

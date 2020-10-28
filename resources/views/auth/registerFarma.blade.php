@@ -1,7 +1,6 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
+@extends('welcome')
+@section('titulo',' Registro Farmaceutico')
+@section('contenido')
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -15,7 +14,7 @@
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}"  autocomplete="nombre" autofocus>
+                                <input id="nombre" type="text" class="form-control focus @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}"  autocomplete="nombre" autofocus>
 
                                 @error('nombre')
                                     <span class="invalid-feedback" role="alert">
@@ -50,12 +49,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="nombreUsuario" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Usuario') }}</label>
+                            <label for="nombre_usuario" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Usuario') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nombreUsuario" type="text" class="form-control @error('nombreUsuario') is-invalid @enderror" name="nombreUsuario" value="{{ old('nombreUsuario') }}"  autocomplete="nombreUsuario" autofocus>
+                                <input id="nombre_usuario" type="text" class="form-control @error('nombre_usuario') is-invalid @enderror" name="nombre_usuario" value="{{ old('nombre_usuario') }}"  autocomplete="nombre_usuario" autofocus>
 
-                                @error('nombreUsuario')
+                                @error('nombre_usuario')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -167,5 +166,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

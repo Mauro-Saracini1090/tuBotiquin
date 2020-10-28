@@ -10903,3 +10903,7 @@ a.text-dark:focus {
   }
 }
 
+.h-screen {
+  height: 100vh;
+}
+
