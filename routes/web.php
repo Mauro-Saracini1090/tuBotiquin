@@ -22,7 +22,8 @@ use App\Http\Controllers\LocalidadController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
 Route::get('/administrador', function () {
     return view('admin.administrador');
 })->name('homeAdministrador')->middleware('roles:es-administrador');

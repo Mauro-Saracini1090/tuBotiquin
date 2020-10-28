@@ -66,7 +66,7 @@ trait RegistroFarmaceutico
         return Usuario::create([
             'nombre' => $data['nombre'],
             'apellido' => $data['apellido'],
-            'nombre_usuario' => $data['nombreUsuario'],
+            'nombre_usuario' => $data['nombre_usuario'],
             'cod_postal' => $data['localidad'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
