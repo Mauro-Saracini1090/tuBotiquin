@@ -101,7 +101,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-                    <a href="{{route('farmaceutico')}}" class="p-5">Registro para un Usuario Farmaceutico</a>
+                       
                         <div class="form-group row mt-1 mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -109,6 +109,10 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="form-group">
+                         <hr>
+                            <a href="{{route('farmaceutico')}}" class="p-5">¿Sos farmaceutico?</a>
+                        </div>    
                     </form>
                 </div>
             </div>
