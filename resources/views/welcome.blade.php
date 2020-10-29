@@ -97,7 +97,7 @@
             @section('contenido')
 
 
-            <div class="py-0">
+      
         <div class="container">
             @section('contenido')
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">De turno hoy</h2>
@@ -106,7 +106,7 @@
                 <div class="col-md-6"> 
                     <div class="shadow p-3 mb-5 bg-white rounded"> 
                         <div class="col-md-12 mb-3">
-                            <div class="card card border-light"> <img class="card-img-top" src="https://static.pingendo.com/cover-moon.svg" alt="Card image cap" width="600" height="250">
+                            <div class="card card border-light"> <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap" width="600" height="250">
                             <div class="card-body mb-2">
                                 <h4 class="card-title">Farmacia&nbsp;</h4>
                                 <p class="card-text">Breve descripción farmacia de turno hoy<br>Horarios y dirección</p> 
@@ -120,7 +120,7 @@
                 <div class="col-md-6">
                     <div class="shadow p-3 mb-5 bg-white rounded">
                         <div class="col-md-12 mb-3">
-                            <div class="card card border-light"> <img class="card-img-top" src="https://static.pingendo.com/cover-moon.svg" alt="Card image cap" width="600" height="250">
+                            <div class="card card border-light"> <img class="card-img-top" src="../public/assets/img/health_2.svg" alt="Card image cap" width="600" height="250">
                             <div class="card-body mb-2">
                                 <h4 class="card-title">Farmacia&nbsp;</h4>
                                 <p class="card-text">Breve descripción farmacia de turno hoy<br>Horarios y dirección</p> 
@@ -134,11 +134,11 @@
             </div>
         </div>  
 
-        <div class="py-0">
+        <hr>
         <div class="container">
-        <hr>   
+           
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 mt-3">
                       <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Próximas de turno</h2>
                       <p class="lead text-center">Farmacias que se encontrarán de turnos los próximos días  <button type="button" class="btn btn-link">[ Ver más ]</button></p>
                      
@@ -151,7 +151,7 @@
                   <div class="row">
                     <div class="col-md-4">
                         <div class="shadow p-3 mb-5 bg-white rounded">
-                            <div class="card border-light"> <img class="card-img-top" src="https://static.pingendo.com/cover-moon.svg" alt="Card image cap">
+                            <div class="card border-light"> <img class="card-img-top" src="../public/assets/img/health_3.svg" alt="Card image cap">
                                 <div class="card-body">
                                 <h4 class="card-title">Farmacia de turno siguiente 1</h4>
                                 <p class="card-text">Breve descripción farmacia siguiente 1</p> 
@@ -163,7 +163,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="shadow p-3 mb-5 bg-white rounded">
-                            <div class="card border-light"> <img class="card-img-top" src="https://static.pingendo.com/cover-moon.svg" alt="Card image cap">
+                            <div class="card border-light"> <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap">
                                 <div class="card-body">
                                 <h4 class="card-title">Farmacia de turno siguiente 2</h4>
                                 <p class="card-text">Breve descripción farmacia siguiente 2</p> 
@@ -175,7 +175,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="shadow p-3 mb-5 bg-white rounded">
-                            <div class="card border-light"> <img class="card-img-top" src="https://static.pingendo.com/cover-moon.svg" alt="Card image cap" style="">
+                            <div class="card border-light"> <img class="card-img-top" src="../public/assets/img/health_.svg" alt="Card image cap" style="">
                                 <div class="card-body">
                                 <h4 class="card-title">Farmacia de turno siguiente 3</h4>
                                 <p class="card-text">Breve descripción farmacia siguiente 3</p>
@@ -189,7 +189,7 @@
                   <hr>
                 </div>
              </div>
-             </div> 
+            
             </section>
         </div>
             @show
