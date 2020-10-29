@@ -5,10 +5,12 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Registro de Usuario') }}</div>
-
-                <div class="card-body">
+             <div class="shadow p-3 mb-5 bg-white rounded"> 
+                    <div class="card-body mb-2">
+                    <!-- Masthead Subheading-->
+                        <h3 class="masthead-subheading  mb-0 text-center">Registrarse</h3>
+                        <hr>
+                
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
