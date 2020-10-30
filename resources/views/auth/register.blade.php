@@ -5,10 +5,12 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Registro de Usuario') }}</div>
-
-                <div class="card-body">
+             <div class="shadow p-3 mb-5 bg-white rounded"> 
+                    <div class="card-body mb-2">
+                    <!-- Masthead Subheading-->
+                        <h3 class="masthead-subheading  mb-0 text-center">Registrarse</h3>
+                        <hr>
+                
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -99,7 +101,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-                    <a href="{{route('farmaceutico')}}" class="p-5">Registro para un Usuario Farmaceutico</a>
+                       
                         <div class="form-group row mt-1 mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -107,6 +109,10 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="form-group">
+                         <hr>
+                            <a href="{{route('farmaceutico')}}" class="p-5">¿Sos farmaceutico?</a>
+                        </div>    
                     </form>
                 </div>
             </div>

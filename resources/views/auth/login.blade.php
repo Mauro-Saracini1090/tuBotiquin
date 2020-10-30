@@ -3,11 +3,14 @@
 @section('iconPestaña') 
 @section('contenido')
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Iniciar Sesion') }}</div>
-
-                <div class="card-body">
+        <div class="col-md-9">
+            
+               
+                <div class="shadow p-3 mb-5 bg-white rounded"> 
+                    <div class="card-body mb-2">
+                               <!-- Masthead Subheading-->
+                                 <h3 class="masthead-subheading  mb-0 text-center">Inicar Sesión</h3>
+                                 <hr>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -65,7 +68,10 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Iniciar Sesion') }}
                                 </button>
-
+                             </div>
+                        </div>        
+                        <div class="form-group row mb-0">
+                            <div class=" offset-md-4 col-md-8 ">    
                                 @if(Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Olvido su contraseña?') }}
@@ -74,9 +80,9 @@
                             </div>
                         </div>
                     </form>
+                    </div>
                 </div>
-            </div>
-        </div>
+          
     </div>
     
 @endsection
