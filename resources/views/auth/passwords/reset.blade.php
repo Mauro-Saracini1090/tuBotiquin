@@ -1,12 +1,13 @@
 @extends('welcome')
-
+@section('titulo','Reetablecer Contraseña')
 @section('contenido')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
+<div class="row justify-content-center">
+        <div class="col-md-8">
+             <div class="shadow p-1 mb-5 bg-white rounded"> 
+                   <h3 class="masthead-subheading text-center my-4">{{ __('Restablecer Contraseña') }}</h3>
+                   <p>Por favor, ingrese su cuenta de correo</p>
+                <hr>
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf

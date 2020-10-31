@@ -8,7 +8,8 @@
              <div class="shadow p-3 mb-5 bg-white rounded"> 
                     <div class="card-body mb-2">
                     <!-- Masthead Subheading-->
-                        <h3 class="masthead-subheading  mb-0 text-center">Registrarse</h3>
+                        <h3 class="masthead-subheading  my-4 text-center">Registrarse</h3>
+                        <p class="lead text-center">Complete los siguientes campos</p>
                         <hr>
                 
                     <form method="POST" action="{{ route('register') }}">
@@ -111,7 +112,7 @@
                         </div>
                         <div class="form-group">
                          <hr>
-                            <a href="{{route('farmaceutico')}}" class="p-5">¿Sos farmaceutico?</a>
+                            <a href="{{route('farmaceutico')}}" class="p-5 t">¿Sos farmaceutico?</a>
                         </div>    
                     </form>
                 </div>

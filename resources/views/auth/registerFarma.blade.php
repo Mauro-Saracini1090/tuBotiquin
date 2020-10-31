@@ -1,11 +1,13 @@
 @extends('welcome')
-@section('titulo',' Registro Farmaceutico')
+@section('titulo',' Registrarse Farmaceutico')
 @section('contenido')
+
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Registro de Director Farmaceutico') }}</div>
-
+             <div class="shadow p-1 mb-5 bg-white rounded"> 
+                   <h3 class="masthead-subheading text-center my-4">{{ __('Registro de Director Farmaceutico') }}</h3>
+                   <p class="lead text-center">Complete los siguientes campos</p>
+                <hr>
                 <div class="card-body">
                     <form method="POST" action="{{ route('registroFarmaceutico') }}">
                         @csrf

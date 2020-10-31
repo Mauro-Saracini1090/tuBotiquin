@@ -9,14 +9,16 @@
                 <div class="shadow p-3 mb-5 bg-white rounded"> 
                     <div class="card-body mb-2">
                                <!-- Masthead Subheading-->
-                                 <h3 class="masthead-subheading  mb-0 text-center">Inicar Sesión</h3>
+                                 <h3 class="masthead-subheading  mb-0 text-center">Ingresar</h3>
+                                 <p class="lead text-center">Complete los siguientes campos</p>
                                  <hr>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
                             <label for="login"
-                                class="col-md-4 col-form-label text-md-right">{{ __('E-Mail / Nombre de Usuario') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ __('E-mail / Nombre de Usuario') }}
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="login" type="text"
