@@ -15,7 +15,8 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../public/css/styles.css" rel="stylesheet" />
+        <!--<link href="app/public/css/styles.css" rel="stylesheet" />-->
+         <link href="../public/css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
        
@@ -42,7 +43,7 @@
      </header>   
 
     <!-- Navigation-->
-     <nav class="navbar navbar-expand-lg  bg-primary text-uppercase " id="mainNav">
+     <nav class="navbar navbar-expand-lg  bg-primary text-uppercase shadow" id="mainNav">
 
         <div class="container">
             <a class="navbar-brand js-scroll-trigger pl-0" id="page-top"
@@ -199,7 +200,7 @@
    
    <!-- Footer-->
         <footer class="footer text-center">
-            <div class="container">
+            <div class="container ">
                 <div class="row">
                     <!-- Footer Location-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
@@ -237,7 +238,7 @@
         </footer>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>TuBotiquín 2020</small></div>
+            <div class="container">TuBotiquín 2020</div>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
