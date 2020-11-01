@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Farmacia;
+use APP\Models\Sucursal;
 use Illuminate\Http\Request;
 
 class FarmaciaController extends Controller
@@ -14,7 +15,10 @@ class FarmaciaController extends Controller
      */
     public function index()
     {
-        //
+        //Obtengo todas las farmacias cargadas en la DB
+        //$farmacias = Farmacia::orderBy('id_farmacia')->get();
+        $farmacias = Farmacia::simplePaginate(6);
+        return view('farmacia.farmacias', ['arrayFarmacias' => $farmacias]);
     }
 
     /**
@@ -24,7 +28,9 @@ class FarmaciaController extends Controller
      */
     public function create()
     {
-        //
+        // Retorna a la vista para cargar una nueva Farmacia a traves de  un formulario
+       return view('farmaceutico.cargarFarmacia');
+   
     }
 
     /**
@@ -35,8 +41,26 @@ class FarmaciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Valida los campos 
+        Request()->validate(([
+            
+        'nombre_farmacia' => 'required',
+        'cuit' => 'required',
+        ]));
+
+        // Crear una nueva instacia de Farmacia y la guarda en la DB
+        $habilitada = 0; // FLAG 
+        $id_usuario = auth()->user()->id_usuario;
+        $farmacia = new Farmacia();
+        $farmacia->id_usuario = $id_usuario;
+        $farmacia->nombre_farmacia = $request->nombre_farmacia;
+        $farmacia->cuit = $request->cuit;
+        $farmacia->habilitada = $habilitada;
+        $farmacia->save();
+
+        return redirect(route('farmacia.index'));
     }
+    
 
     /**
      * Display the specified resource.
