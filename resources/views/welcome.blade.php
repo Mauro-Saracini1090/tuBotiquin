@@ -64,7 +64,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto" style="font-size: 1.0rem">
 
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="">Farmacias</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('farmacias') }}">Farmacias</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="">Contacto</a></li>
                 
                     @auth
@@ -107,13 +107,13 @@
                 <div class="col-md-6"> 
                     <div class="shadow p-3 mb-5 bg-white rounded"> 
                         <div class="col-md-12 mb-3">
-                            <div class="card card border-light"> <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap" width="600" height="250">
+                            <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap" width="600" height="250">
                             <div class="card-body mb-2">
                                 <h4 class="card-title">Farmacia&nbsp;</h4>
                                 <p class="card-text">Breve descripción farmacia de turno hoy<br>Horarios y dirección</p> 
                                 <hr>
                                 <a href="#" class="btn btn-primary btn-sm">Mas información</a>
-                            </div>
+                            
                             </div>
                         </div>
                     </div>    
@@ -121,13 +121,13 @@
                 <div class="col-md-6">
                     <div class="shadow p-3 mb-5 bg-white rounded">
                         <div class="col-md-12 mb-3">
-                            <div class="card card border-light"> <img class="card-img-top" src="../public/assets/img/health_2.svg" alt="Card image cap" width="600" height="250">
+                             <img class="card-img-top" src="../public/assets/img/health_2.svg" alt="Card image cap" width="600" height="250">
                             <div class="card-body mb-2">
                                 <h4 class="card-title">Farmacia&nbsp;</h4>
                                 <p class="card-text">Breve descripción farmacia de turno hoy<br>Horarios y dirección</p> 
                                 <hr>
                                 <a href="#" class="btn btn-primary btn-sm">Mas información</a>
-                            </div>
+                            
                             </div>
                         </div>
                     </div>    
@@ -152,38 +152,38 @@
                   <div class="row">
                     <div class="col-md-4">
                         <div class="shadow p-3 mb-5 bg-white rounded">
-                            <div class="card border-light"> <img class="card-img-top" src="../public/assets/img/health_3.svg" alt="Card image cap">
+                            <img class="card-img-top" src="../public/assets/img/health_3.svg" alt="Card image cap">
                                 <div class="card-body">
                                 <h4 class="card-title">Farmacia de turno siguiente 1</h4>
                                 <p class="card-text">Breve descripción farmacia siguiente 1</p> 
                                 <hr>
                                 <a href="#" class="btn btn-primary btn-sm">Mas Información</a>
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="shadow p-3 mb-5 bg-white rounded">
-                            <div class="card border-light"> <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap">
+                            <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap">
                                 <div class="card-body">
                                 <h4 class="card-title">Farmacia de turno siguiente 2</h4>
                                 <p class="card-text">Breve descripción farmacia siguiente 2</p> 
                                 <hr>
                                 <a href="#" class="btn btn-primary btn-sm">Mas Información</a>
                                 </div>
-                            </div>
+                            
                         </div>   
                     </div>
                     <div class="col-md-4">
                         <div class="shadow p-3 mb-5 bg-white rounded">
-                            <div class="card border-light"> <img class="card-img-top" src="../public/assets/img/health_.svg" alt="Card image cap" style="">
+                            <img class="card-img-top" src="../public/assets/img/health_.svg" alt="Card image cap" style="">
                                 <div class="card-body">
                                 <h4 class="card-title">Farmacia de turno siguiente 3</h4>
                                 <p class="card-text">Breve descripción farmacia siguiente 3</p>
                                 <hr>
                                 <a href="#" class="btn btn-primary btn-sm">Mas Información</a>
                                 </div>
-                            </div>
+                            
                         </div>    
                     </div>
                   </div>
