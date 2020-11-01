@@ -211,8 +211,27 @@
                                 <li> <a href="#" class="text-white">HOME</a> </li>
                                 <li> <a href="#" class="text-white">FARMACIAS</a> </li>
                                 <li><a href="#" class="text-white">CONTACTO</a> </li>
-                                <li><a href="#" class="text-white">REGISTRARSE</a></li>
-                                <li><a href="#" class="text-white">INGRESAR</a></li>
+                                
+                                
+                                @auth
+                                    <li class="text-white">
+                                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                CERRAR SESIÓN
+                                        </a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none btn btn-success">
+                                            @csrf
+                                    </form>
+                                @else
+                                    @if(Route::has('register'))
+                                        <li class="text-white">
+                                            <a href="{{ route('register') }}">REGISTRARSE</a></li>
+                                    @endif
+
+                                    <li class="text-white">
+                                        <a href="{{ route('login') }}">INGRESAR</a></li>
+                                @endif
                             </ul>
                         </p>
                     </div>
