@@ -17,6 +17,7 @@ class CreateFarmaciaTable extends Migration
             $table->id('id_farmacia');
             $table->bigInteger('id_usuario')->unsigned();
             $table->string('nombre_farmacia');
+            $table->string('descripcion_farmacia', 250);
             $table->bigInteger('cuit')->unique();
             $table->boolean('habilitada');  
 
