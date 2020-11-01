@@ -209,13 +209,13 @@
                         <p class="lead mb-0">
                            <ul class="list-unstyled">
                                 <li> <a href="#" class="text-white">HOME</a> </li>
-                                <li> <a href="#" class="text-white">FARMACIAS</a> </li>
+                                <li> <a href="{{ route('farmacias')}}" class="text-white">FARMACIAS</a> </li>
                                 <li><a href="#" class="text-white">CONTACTO</a> </li>
                                 
                                 
                                 @auth
-                                    <li class="text-white">
-                                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <li>
+                                        <a href="#" class="text-white" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 CERRAR SESIÓN
                                         </a>
                                     </li>
@@ -225,12 +225,14 @@
                                     </form>
                                 @else
                                     @if(Route::has('register'))
-                                        <li class="text-white">
-                                            <a href="{{ route('register') }}">REGISTRARSE</a></li>
+                                        <li>
+                                            <a href="{{ route('register') }}" class="text-white">REGISTRARSE</a>
+                                        </li>
                                     @endif
 
-                                    <li class="text-white">
-                                        <a href="{{ route('login') }}">INGRESAR</a></li>
+                                    <li>
+                                        <a href="{{ route('login') }}"  class="text-white">INGRESAR</a>
+                                    </li>
                                 @endif
                             </ul>
                         </p>
