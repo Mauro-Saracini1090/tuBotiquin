@@ -47,7 +47,7 @@
                             <label for="cuit" class="col-md-4 col-form-label text-md-right">{{ __('CUIT') }}</label>
 
                             <div class="col-md-6">
-                                <input id="cuit" type="text" class="form-control @error('cuit') is-invalid @enderror" name="cuit" value="{{ old('cuit') }}"  autocomplete="cuil" autofocus>
+                                <input id="cuit" type="text" class="form-control @error('cuit') is-invalid @enderror" name="cuit" value="{{ old('cuit') }}" required autocomplete="cuil" autofocus> 
 
                                 @error('cuit')
                                     <span class="invalid-feedback" role="alert">
