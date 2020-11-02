@@ -18,10 +18,25 @@
 
                             <div class="col-md-6">
                                 <input id="nombre_farmacia" type="text" class="form-control @error('nombre_farmacia') is-invalid @enderror"
-                                    name="nombre_farmacia" value="{{ old('nombre') }}" required
+                                    name="nombre_farmacia" value="{{ old('nombre_farmacia') }}" required
                                     autocomplete="nombre_farmacia" autofocus>
 
                                 @error('nombre_farmacia')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                          <div class="form-group row">
+                            <label for="descripcion_farmacia" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="descripcion_farmacia" type="textarea" maxlength ="30"  class="form-control @error('descripcion_farmacia') is-invalid @enderror"
+                                    name="nombre_farmacia" value="{{ old('descripcion_farmacia') }}"
+                                    autocomplete="descripcion_farmacia" autofocus>
+
+                                @error('descripcion_farmacia')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
