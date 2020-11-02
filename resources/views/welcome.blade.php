@@ -15,8 +15,8 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <!--<link href="app/public/css/styles.css" rel="stylesheet" />-->
-         <link href="../public/css/styles.css" rel="stylesheet" />
+        <link href="../../resources/css/styles.css" rel="stylesheet" />
+         <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
     </head>
     <body id="page-top">
        
@@ -66,7 +66,19 @@
 
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('farmacias') }}">Farmacias</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="">Contacto</a></li>
-                
+
+                    @can('esFarmaceutico')   
+                        <li class="dropdown nav-item mx-0 mx-lg-1">
+                            <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded js-scroll-trigger" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Farmacias</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ route('farmacia.create') }}">CARGAR FARMACIA</a>
+                                    <a class="dropdown-item" href="}">CARGAR SUCURSAL</a>
+                                    <a class="dropdown-item" href="#">EDITAR</a>       
+                                </div>
+                        </li>
+                    @endcan
+
+
                     @auth
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded " href="#"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -211,8 +223,6 @@
                                 <li> <a href="#" class="text-white">HOME</a> </li>
                                 <li> <a href="{{ route('farmacias')}}" class="text-white">FARMACIAS</a> </li>
                                 <li><a href="#" class="text-white">CONTACTO</a> </li>
-                                
-                                
                                 @auth
                                     <li>
                                         <a href="#" class="text-white" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
