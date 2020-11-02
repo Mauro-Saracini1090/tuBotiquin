@@ -49,11 +49,13 @@ class FarmaciaController extends Controller
         ]));
 
         // Crear una nueva instacia de Farmacia y la guarda en la DB
-        $habilitada = 0; // FLAG 
+        $habilitada = 0; // FLAG deshabilitada por defecto
         $id_usuario = auth()->user()->id_usuario;
+        
         $farmacia = new Farmacia();
         $farmacia->id_usuario = $id_usuario;
         $farmacia->nombre_farmacia = $request->nombre_farmacia;
+        $farmacia->descripcion_farmacia = $request->descripcion_farmacia;
         $farmacia->cuit = $request->cuit;
         $farmacia->habilitada = $habilitada;
         $farmacia->save();

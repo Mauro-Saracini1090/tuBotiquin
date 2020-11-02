@@ -14,6 +14,7 @@ class Farmacia extends Model
     protected $fillable = [
         'id_usuario',
         'nombre_farmacia',
+        'descripcion_farmacia',
         'cuit',
         'habilidata',
     ];
