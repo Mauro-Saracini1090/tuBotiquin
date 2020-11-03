@@ -72,7 +72,7 @@
                                 @enderror
                             </div>
 
-
+                            <!-- PASSWORD -->
                             <div class="form-group">
                                 <strong><label for="password">{{ __('Contraseña') }}</label><Strong>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" 
