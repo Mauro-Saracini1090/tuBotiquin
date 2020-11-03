@@ -4,15 +4,48 @@
 @section('contenido')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-10 col-12">
                 <div class="shadow p-3 mb-5 bg-white rounded"> 
-                    <div class="card-body mb-2">
+                    
                         <!-- Masthead Subheading-->
-                        <h3 class="masthead-subheading  my-4 text-center">Cargar Farmacia</h3>
+                        <h3 class="masthead-subheading  my-3 text-center">Cargar Farmacia</h3>
                         <p class="lead text-center">Complete los siguientes campos</p>
-                        <hr>
+                        
                         <form method="POST" action="{{ route('farmacia.store') }}">
                         @csrf
+                        <form>
+                        <div class="form-group">
+                           
+                            <label  for="exampleInputEmail1">{{ __('Nombre Farmacia') }}</label></p>
+                            <input type="text" value="{{ old('nombre_farmacia') }}" @error('nombre_farmacia') is-invalid @enderror required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                             @error('nombre_farmacia')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">{{ __('Descripción') }}</label>
+                            <textarea class="form-control" type="textarea" id="exampleFormControlTextarea1"  @error('descripcion_farmacia') is-invalid @enderror"
+                                    name="nombre_farmacia" value="{{ old('descripcion_farmacia') }}"rows="3"></textarea>
+
+                                @error('descripcion_farmacia')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">{{ __('CUIT') }}</label>
+                            <input type="text" value="{{ old('cuit') }}" @error('cuit') is-invalid @enderror required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                             @error('nombre_farmacia')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+                       <!--
+
                         <div class="form-group row">
                             <label for="nombre_farmacia" class="col-md-4 col-form-label text-md-right">{{ __('Nombre Farmacia') }}</label>
 
@@ -56,9 +89,9 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            -->
+                         <div class="form-group">
+                            <div class="">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Registrar') }}
                                 </button>
@@ -67,7 +100,7 @@
                         </div>
                         </form>   
                     </div>
-                </div>
+                
             </div>   
         </div>                
     </div>

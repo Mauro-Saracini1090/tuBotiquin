@@ -7,7 +7,7 @@
              <div class="shadow p-3 mb-5 bg-white rounded"> 
                 <div class="card-body mb-2"> 
                     <!-- Masthead Subheading-->
-                    <h3 class="masthead-subheading  my-4 text-center">Registrarse</h3>
+                    <h3 class="masthead-subheading mb-0  text-center">Registrarse</h3>
                     <p class="text-muted text-center">Complete los siguientes campos</p>
     
                         <form method="POST" action="{{ route('register') }}">

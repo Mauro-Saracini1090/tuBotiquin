@@ -6,7 +6,7 @@
     <div class="col-md-8 col-12">
         <div class="shadow p-1 mb-5 bg-white rounded"> 
             <div class="card-body mb-2">
-                   <h3 class="masthead-subheading text-center my-4">{{ __('Restablecer Contraseña') }}</h3>
+                    <h3 class="masthead-subheading text-center">{{ __('Restablecer Contraseña') }}</h3>
                     <p class="lead text-center">Ingrese su correo electronico</p>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
