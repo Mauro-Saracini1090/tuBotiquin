@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LocalidadController;
+use App\Http\Controllers\FarmaciaController;
+use App\Http\Controllers\SucursalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,7 @@ Route::post('login',  [LoginController::class,'loginPersonalizado']);
 Route::get('register/farmaceutico', [RegisterController::class,'showRegisFarmaceuticoForm'])->name('farmaceutico');
 Route::post('register/farmaceutico', [RegisterController::class,'registroFarmaceutico'])->name('registroFarmaceutico');
 
+Route::get('farmacias', [FarmaciaController::class,'index'])->name('farmacias');
 
 //Al usar el middleware RolMiddleware podemos enviar mas de un rol, pero debemos cambiar ('roles:esAdmin') o por (roles:slug_rol) siendo slug_rol el valor del atributo de la Base de Datos 
 // porque antes estabamos usando gates , pero a las gates no le podemos pasar mas de un ROL al mismo tiempo en las rutas
@@ -44,3 +47,6 @@ Route::post('usuario/rolypermisos',[UsuarioController::class,'almacenarRolesyPer
 Route::resource('roles', RolesController::class)->middleware('roles:es-administrador');
 Route::resource('permisos', PermisosController::class)->middleware('roles:es-administrador');
 Route::resource('localidad', LocalidadController::class)->middleware('roles:es-administrador');
+
+Route::resource('farmacia', FarmaciaController::class)->middleware('roles:es-farmaceutico');
+Route::resource('sucursal', SucursalController::class)->middleware('roles:es-farmaceutico');
