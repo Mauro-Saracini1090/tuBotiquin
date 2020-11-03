@@ -3,23 +3,21 @@
 @section('titulo',' Registrarse')
 @section('contenido')
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+ <div class="row justify-content-center">
+        <div class="col-md-8 col-12">
              <div class="shadow p-3 mb-5 bg-white rounded"> 
-                    <div class="card-body mb-2">
+                <div class="card-body mb-2"> 
                     <!-- Masthead Subheading-->
-                        <h3 class="masthead-subheading  my-4 text-center">Registrarse</h3>
-                        <p class="lead text-center">Complete los siguientes campos</p>
-                        <hr>
-                
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="nombre" type="text" class="form-control focus @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
+                    <h3 class="masthead-subheading  my-4 text-center">Registrarse</h3>
+                    <p class="text-muted text-center">Complete los siguientes campos</p>
+    
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <!-- NOMBRE -->
+                            <div class="form-group">
+                                <strong><label for="nombre">{{ __('Nombre') }}</label></strong>
+                                <input id="nombre" type="text" class="form-control focus @error('nombre') is-invalid @enderror" 
+                                        name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus placeholder="Ingrese su Nombre">
 
                                 @error('nombre')
                                     <span class="invalid-feedback" role="alert">
@@ -27,12 +25,11 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="apellido" class="col-md-4 col-form-label text-md-right">{{ __('Apellido') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="apellido" type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{ old('apellido') }}" required autocomplete="apellido" autofocus>
+                            <!-- APELLIDO -->
+                            <div class="form-group">
+                                <strong><label for="apellido">{{ __('Apellido') }}</label></strong>
+                                <input id="apellido" type="text" class="form-control @error('apellido') is-invalid @enderror" 
+                                        name="apellido" value="{{ old('apellido') }}" required autocomplete="apellido" autofocus placeholder="Ingrese su Apellido">
 
                                 @error('apellido')
                                     <span class="invalid-feedback" role="alert">
@@ -40,24 +37,20 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="localidad" class="col-md-4 col-form-label text-md-right">{{ __('Localidad') }}</label>
-                            <div class="col-md-6">
-                                
-                                <select id="localidad" class="form-control @error('localidad') is-invalid @enderror" name="localidad" value="{{ old('localidad') }}" required>
-                                    @foreach ($localidades as $localidad)
-                                    <option value="{{$localidad->codigo_postal}}">{{$localidad->nombre_localidad}}</option>        
-                                    @endforeach 
-                                </select>
+                            <!-- LOCALIDAD -->
+                            <div class="form-group">
+                                <strong><label for="localidad">{{ __('Localidad') }}</label></strong>
+                                    <select id="localidad" class="form-control @error('localidad') is-invalid @enderror" name="localidad" value="{{ old('localidad') }}" required>
+                                        @foreach ($localidades as $localidad)
+                                            <option value="{{$localidad->codigo_postal}}">{{$localidad->nombre_localidad}}</option>        
+                                        @endforeach 
+                                    </select>
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="nombre_usuario" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Usuario') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="nombre_usuario" type="text" class="form-control @error('nombre_usuario') is-invalid @enderror" name="nombre_usuario" value="{{ old('nombre_usuario') }}" required autocomplete="nombre_usuario" autofocus>
+                            <!-- NOMBRE DE USUARIO-->
+                            <div class="form-group">
+                                <strong><label for="nombre_usuario">{{ __('Nombre de Usuario') }}</label></strong>
+                                <input id="nombre_usuario" type="text" class="form-control @error('nombre_usuario') is-invalid @enderror" 
+                                        name="nombre_usuario" value="{{ old('nombre_usuario') }}" required autocomplete="nombre_usuario" autofocus placeholder="Ingrese un nombre de usuario">
 
                                 @error('nombre_usuario')
                                     <span class="invalid-feedback" role="alert">
@@ -65,13 +58,12 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Direccion de E-Mail') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            
+                            <!-- EMAIL -->
+                            <div class="form-group">    
+                                <strong><label for="email">{{ __('Direccion de E-Mail') }}</label></strong>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" 
+                                    required autocomplete="email" placeholder="micorreo@email.com">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -79,43 +71,37 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                            <div class="form-group">
+                                <strong><label for="password">{{ __('Contraseña') }}</label><Strong>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" 
+                                        name="password" required autocomplete="new-password" placeholder="**************************************">
+                                <small  class="form-text text-muted">Su contraseña debe tener entre 8 y 20 caracteres, contener letras y números, y no debe contener espacios, caracteres especiales</small>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
+                        <div class="form-group">
+                            <strong><label for="password-confirm">{{ __('Confirmar Contraseña') }}</label><strong>
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="**************************************">
                         </div>
-                       
-                        <div class="form-group row mt-1 mb-0">
-                            <div class="col-md-6 offset-md-4">
+                        
+                         <div class="form-group">
+                            <div class="d-flex d-flex justify-content-center">  
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Registrarse') }}
                                 </button>
+                                <a class="btn btn-link" href="{{route('farmaceutico')}}" >¿Sos farmaceutico?</a>
                             </div>
                         </div>
-                        <div class="form-group">
-                         <hr>
-                            <a href="{{route('farmaceutico')}}" class="p-5 t">¿Sos farmaceutico?</a>
-                        </div>    
+                        
                     </form>
-                </div>
+
+                 </div>   
             </div>
         </div>
     </div>
