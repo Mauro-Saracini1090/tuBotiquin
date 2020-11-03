@@ -541,8 +541,8 @@ pre code {
 
 .container {
   width: 100%;
-  padding-right: 0.9rem;
-  padding-left: 0.9rem;
+  padding-right: 0.7rem;
+  padding-left: 0.7rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -569,7 +569,7 @@ pre code {
 
 .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
   width: 100%;
-  padding-right: 1.0rem;
+  padding-right: 1 .0rem;
   padding-left: 1.0rem;
   margin-right: auto;
   margin-left: auto;
