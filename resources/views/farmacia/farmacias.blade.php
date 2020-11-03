@@ -10,7 +10,7 @@
         <br>                       
         <form method="POST" action="{{ route('login') }}">
         @csrf
-            <div class="form-group row">
+            <div class="form-group">
                 <div class="col-md-12">
                     <div class="input-group mb-0 p-0">
                         <input id="busqueda" type="text"
@@ -34,9 +34,9 @@
             @foreach ($arrayFarmacias as  $farmacia)
                 @if ($farmacia->habilitada == 1)
                     <div class="col-md-4">
-                        <div class="shadow p-3 mb-4 bg-white rounded">          
+                        <div class="shadow p-2 mb-4 bg-white rounded">          
                             <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap" width="600" height="250">
-                                <div class="card-body mb-1">
+                                <div class="card-body">
                                     <h4 class="card-title"> {{ $farmacia->nombre_farmacia}}</h4>
                                     <p class="card-text">Breve descripción farmacia de turno hoy<br>Horarios y dirección</p> 
                                     <hr>
@@ -47,8 +47,11 @@
                  @endif             
             @endforeach
          </div>
+
          <!-- Pagiantion for 6 elements -->
-         {{ $arrayFarmacias->links() }}
+         <div class="d-flex d-flex justify-content-center mt-4"> 
+                 {{ $arrayFarmacias->links() }}
+         </div>
     </div>           
 @endsection
 
