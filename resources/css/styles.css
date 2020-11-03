@@ -541,8 +541,8 @@ pre code {
 
 .container {
   width: 100%;
-  padding-right: 0.7rem;
-  padding-left: 0.7rem;
+  padding-right: 0.9rem;
+  padding-left: 0.9rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -569,8 +569,8 @@ pre code {
 
 .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
   width: 100%;
-  padding-right: 1 .0rem;
-  padding-left: 1.0rem;
+  padding-right: 0.7rem;
+  padding-left: 0.7rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -10266,6 +10266,6 @@ form .row:first-child .floating-label-form-group {
   background-color: #343a40;
   background: url("../assets/img/encabezado-Tubotiquin2.jpeg") no-repeat center center;
   background-size: cover;
-  padding-top: 11rem;
-  padding-bottom: 11rem;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
 }

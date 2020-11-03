@@ -15,7 +15,8 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../public/css/styles.css" rel="stylesheet" />
+        <link href="../../resources/css/styles.css" rel="stylesheet" />
+         <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
     </head>
     <body id="page-top">
        
@@ -42,7 +43,7 @@
      </header>   
 
     <!-- Navigation-->
-     <nav class="navbar navbar-expand-lg  bg-primary text-uppercase " id="mainNav">
+     <nav class="navbar navbar-expand-lg  bg-primary text-uppercase shadow" id="mainNav">
 
         <div class="container">
             <a class="navbar-brand js-scroll-trigger pl-0" id="page-top"
@@ -63,9 +64,21 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto" style="font-size: 1.0rem">
 
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="">Farmacias</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('farmacias') }}">Farmacias</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="">Contacto</a></li>
-                
+
+                    @can('esFarmaceutico')   
+                        <li class="dropdown nav-item mx-0 mx-lg-1">
+                            <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded js-scroll-trigger" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Farmacias</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ route('farmacia.create') }}">CARGAR FARMACIA</a>
+                                    <a class="dropdown-item" href="}">CARGAR SUCURSAL</a>
+                                    <a class="dropdown-item" href="#">EDITAR</a>       
+                                </div>
+                        </li>
+                    @endcan
+
+
                     @auth
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded " href="#"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -106,13 +119,13 @@
                 <div class="col-md-6"> 
                     <div class="shadow p-3 mb-5 bg-white rounded"> 
                         <div class="col-md-12 mb-3">
-                            <div class="card card border-light"> <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap" width="600" height="250">
+                            <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap" width="600" height="250">
                             <div class="card-body mb-2">
                                 <h4 class="card-title">Farmacia&nbsp;</h4>
                                 <p class="card-text">Breve descripción farmacia de turno hoy<br>Horarios y dirección</p> 
                                 <hr>
                                 <a href="#" class="btn btn-primary btn-sm">Mas información</a>
-                            </div>
+                            
                             </div>
                         </div>
                     </div>    
@@ -120,13 +133,13 @@
                 <div class="col-md-6">
                     <div class="shadow p-3 mb-5 bg-white rounded">
                         <div class="col-md-12 mb-3">
-                            <div class="card card border-light"> <img class="card-img-top" src="../public/assets/img/health_2.svg" alt="Card image cap" width="600" height="250">
+                             <img class="card-img-top" src="../public/assets/img/health_2.svg" alt="Card image cap" width="600" height="250">
                             <div class="card-body mb-2">
                                 <h4 class="card-title">Farmacia&nbsp;</h4>
                                 <p class="card-text">Breve descripción farmacia de turno hoy<br>Horarios y dirección</p> 
                                 <hr>
                                 <a href="#" class="btn btn-primary btn-sm">Mas información</a>
-                            </div>
+                            
                             </div>
                         </div>
                     </div>    
@@ -151,38 +164,38 @@
                   <div class="row">
                     <div class="col-md-4">
                         <div class="shadow p-3 mb-5 bg-white rounded">
-                            <div class="card border-light"> <img class="card-img-top" src="../public/assets/img/health_3.svg" alt="Card image cap">
+                            <img class="card-img-top" src="../public/assets/img/health_3.svg" alt="Card image cap">
                                 <div class="card-body">
                                 <h4 class="card-title">Farmacia de turno siguiente 1</h4>
                                 <p class="card-text">Breve descripción farmacia siguiente 1</p> 
                                 <hr>
                                 <a href="#" class="btn btn-primary btn-sm">Mas Información</a>
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="shadow p-3 mb-5 bg-white rounded">
-                            <div class="card border-light"> <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap">
+                            <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap">
                                 <div class="card-body">
                                 <h4 class="card-title">Farmacia de turno siguiente 2</h4>
                                 <p class="card-text">Breve descripción farmacia siguiente 2</p> 
                                 <hr>
                                 <a href="#" class="btn btn-primary btn-sm">Mas Información</a>
                                 </div>
-                            </div>
+                            
                         </div>   
                     </div>
                     <div class="col-md-4">
                         <div class="shadow p-3 mb-5 bg-white rounded">
-                            <div class="card border-light"> <img class="card-img-top" src="../public/assets/img/health_.svg" alt="Card image cap" style="">
+                            <img class="card-img-top" src="../public/assets/img/health_.svg" alt="Card image cap" style="">
                                 <div class="card-body">
                                 <h4 class="card-title">Farmacia de turno siguiente 3</h4>
                                 <p class="card-text">Breve descripción farmacia siguiente 3</p>
                                 <hr>
                                 <a href="#" class="btn btn-primary btn-sm">Mas Información</a>
                                 </div>
-                            </div>
+                            
                         </div>    
                     </div>
                   </div>
@@ -199,7 +212,7 @@
    
    <!-- Footer-->
         <footer class="footer text-center">
-            <div class="container">
+            <div class="container ">
                 <div class="row">
                     <!-- Footer Location-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
@@ -208,10 +221,29 @@
                         <p class="lead mb-0">
                            <ul class="list-unstyled">
                                 <li> <a href="#" class="text-white">HOME</a> </li>
-                                <li> <a href="#" class="text-white">FARMACIAS</a> </li>
+                                <li> <a href="{{ route('farmacias')}}" class="text-white">FARMACIAS</a> </li>
                                 <li><a href="#" class="text-white">CONTACTO</a> </li>
-                                <li><a href="#" class="text-white">REGISTRARSE</a></li>
-                                <li><a href="#" class="text-white">INGRESAR</a></li>
+                                @auth
+                                    <li>
+                                        <a href="#" class="text-white" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                CERRAR SESIÓN
+                                        </a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none btn btn-success">
+                                            @csrf
+                                    </form>
+                                @else
+                                    @if(Route::has('register'))
+                                        <li>
+                                            <a href="{{ route('register') }}" class="text-white">REGISTRARSE</a>
+                                        </li>
+                                    @endif
+
+                                    <li>
+                                        <a href="{{ route('login') }}"  class="text-white">INGRESAR</a>
+                                    </li>
+                                @endif
                             </ul>
                         </p>
                     </div>
@@ -237,7 +269,7 @@
         </footer>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>TuBotiquín 2020</small></div>
+            <div class="container">TuBotiquín 2020</div>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">

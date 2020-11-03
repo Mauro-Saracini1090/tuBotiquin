@@ -3,86 +3,67 @@
 @section('iconPestaña') 
 @section('contenido')
     <div class="row justify-content-center">
-        <div class="col-md-9">
-            
-               
+        <div class="col-md-8 col-12">
                 <div class="shadow p-3 mb-5 bg-white rounded"> 
                     <div class="card-body mb-2">
-                               <!-- Masthead Subheading-->
-                                 <h3 class="masthead-subheading  mb-0 text-center">Inicar Sesión</h3>
-                                 <hr>
+                        <!-- Masthead Subheading-->
+                        <h3 class="masthead-subheading  mb-0 text-center">Ingresar</h3>
+                        <p class="text-muted text-center">Complete los siguientes campos</p>
+   
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="login"
-                                class="col-md-4 col-form-label text-md-right">{{ __('E-Mail / Nombre de Usuario') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="login" type="text"
-                                    class="form-control @if ($errors->has('login') || $errors->has('email')) is-invalid @endif"
-                                    name="login"
+                        <div class="form-group">
+                            <strong><label for="login">E-mail - Nombre de Usuario</label></strong>
+                            <input type="text"  @if ($errors->has('login') || $errors->has('email')) is-invalid @endif class="form-control"
+                             id="exampleInputEmail1" aria-describedby="emailHelp"  name="login" placeholder="Ingrese su nombre de usuario o correo "
                                     value="{{ old('login') ?: old('email') }}"
-                                    required autocomplete="email" autofocus>
+                                    required autocomplete="email">
 
-                                    @if ($errors->has('login') || $errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
+                             @if ($errors->has('login') || $errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('login') ?: $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                            </div>
+                                    </span>
+                             @endif    
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                        <div class="form-group">
+                            <strong><label for="password">{{ __('Contraseña') }}</label></strong>
+                            <input type="password" class="form-control" id="inputPassword2" placeholder="Ingrese su contraseña" class="form-control @error('password') is-invalid @enderror" name="password"
                                     required autocomplete="current-password">
-
-                                @error('password')
+                             <small class="form-text text-muted">Nunca revele su contraseña</small>       
+                            @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                            </div>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
+                        <div class="form-group">
+                            <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                         {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Recordar Inicio de Sesion') }}
+                                        {{ __('Recordar Inicio de Sesión') }}
                                     </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Iniciar Sesion') }}
-                                </button>
                              </div>
-                        </div>        
-                        <div class="form-group row mb-0">
-                            <div class=" offset-md-4 col-md-8 ">    
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="d-flex d-flex justify-content-center">  
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Iniciar Sesión') }}
+                                </button>
                                 @if(Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Olvido su contraseña?') }}
+                                        {{ __('¿Olvido su contraseña?') }}
                                     </a>
                                 @endif
-                            </div>
-                        </div>
-                    </form>
+                            </div>    
+                        </div>  
                     </div>
-                </div>
-          
+                </form>
+             </div>
+        </div>
     </div>
-    
+
 @endsection
