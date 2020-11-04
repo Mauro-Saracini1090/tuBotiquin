@@ -9,8 +9,8 @@
                     <div class="col-md-4  col-12">
                         <div class="shadow p-3 mb-5 bg-white rounded">
                             <img class="card-img-top"  width="150" height="150" src="../public/assets/img/imgFarmaceutico/cargar.svg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Farmacia</h5>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title ">Farmacia</h5>
                                     <p class="card-text"></p> 
                                     <hr>
                                     <a href="{{ route('farmacia.create') }}" class="btn btn-primary btn-sm">Cargar</a>
@@ -21,7 +21,7 @@
                     <div class="col-md-4   col-12">
                         <div class="shadow p-3 mb-5 bg-white rounded">
                             <img class="card-img-top" width="150" height="150" src="../public/assets/img/imgFarmaceutico/sucursales.svg" alt="Card image cap">
-                                <div class="card-body">
+                                <div class="card-body text-center">
                                     <h5 class="card-title">Sucursal</h5>
                                     <p class="card-text"></p> 
                                     <hr>
@@ -33,7 +33,7 @@
                     <div class="col-md-4   col-12">
                         <div class="shadow p-3 mb-5 bg-white rounded">
                             <img class="card-img-top" width="150" height="150" src="../public/assets/img/imgFarmaceutico/reserva.svg"  alt="Card image cap" style="">
-                                <div class="card-body">
+                                <div class="card-body text-center">
                                     <h5 class="card-title">Pedidos</h5>
                                     <p class="card-text"></p>
                                     <hr>
@@ -47,7 +47,7 @@
                     <div class="col-md-4   col-12">
                         <div class="shadow p-3 mb-5 bg-white rounded">
                             <img class="card-img-top" width="150" height="150" src="../public/assets/img/imgFarmaceutico/reserva.svg"  alt="Card image cap">
-                                <div class="card-body">
+                                <div class="card-body text-center">
                                     <h5 class="card-title">Reservas</h5>
                                     <p class="card-text"></p> 
                                     <hr>
@@ -58,22 +58,23 @@
                     <div class="col-md-4   col-12">
                         <div class="shadow p-3 mb-5 bg-white rounded">
                             <img class="card-img-top" width="150" height="150" src="../public/assets/img/imgFarmaceutico/stock.svg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title"> Stock</h5>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Stock de Medicamentos</h5>
                                     <p class="card-text"></p> 
                                     <hr>
-                                    <a href="#" class="btn btn-primary btn-sm">cargar</a>
+                                    <a href="#" class="btn btn-primary btn-sm">Carga manual</a>
+                                    <a href="#" class="btn btn-primary btn-sm">Carga masiva</a>
                                 </div>
                         </div>   
                     </div>
                     <div class="col-md-4   col-12">
                         <div class="shadow p-3 mb-5 bg-white rounded">
                             <img class="card-img-top" width="150" height="150" src="../public/assets/img/imgFarmaceutico/contactar.svg" alt="Card image cap" style="">
-                                <div class="card-body">
+                                <div class="card-body text-center">
                                     <h5 class="card-title">Contactar al Administardor</h5>
                                     <p class="card-text"></p>
                                     <hr>
-                                    <a href="#" class="btn btn-primary btn-sm">Ir</a>
+                                    <a href="#" class="btn btn-primary btn-sm">Escribir</a>
                                 </div>          
                         </div>    
                     </div>
