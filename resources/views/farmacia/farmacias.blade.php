@@ -38,9 +38,9 @@
                             <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap" width="600" height="250">
                                 <div class="card-body">
                                     <h4 class="card-title"> {{ $farmacia->nombre_farmacia}}</h4>
-                                    <p class="card-text">Breve descripción farmacia de turno hoy<br>Horarios y dirección</p> 
+                                    <p class="card-text">Breve descripción farmacia</p> 
                                     <hr>
-                                    <a href="#" class="btn btn-primary btn-sm">Ver sucursales</a>
+                                    <a href="{{ route ('sucursal.farmaciaSucursal') }}" class="btn btn-primary btn-sm">Ver sucursales</a>
                                 </div>
                         </div>
                     </div> 
