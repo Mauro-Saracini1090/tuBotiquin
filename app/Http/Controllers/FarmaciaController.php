@@ -15,12 +15,17 @@ class FarmaciaController extends Controller
      */
     public function index()
     {
+        return view('farmaceutico.indexFarmaceutico');
+    }
+
+    public function listarFarmacias()
+    {
         //Obtengo todas las farmacias cargadas en la DB
         //$farmacias = Farmacia::orderBy('id_farmacia')->get();
         $farmacias = Farmacia::simplePaginate(6);
         return view('farmacia.farmacias', ['arrayFarmacias' => $farmacias]);
-    }
 
+    }    
     /**
      * Show the form for creating a new resource.
      *
@@ -29,8 +34,8 @@ class FarmaciaController extends Controller
     public function create()
     {
         // Retorna a la vista para cargar una nueva Farmacia a traves de  un formulario
-       return view('farmaceutico.cargarFarmacia');
-   
+       //return view('farmaceutico.cargarFarmacia');
+       return view('farmaceutico.cargarFarmacia'); 
     }
 
     /**
