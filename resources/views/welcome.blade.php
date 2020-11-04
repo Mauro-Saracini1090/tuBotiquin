@@ -15,8 +15,8 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../../resources/css/styles.css" rel="stylesheet" />
-         <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
+        <!-- link href="../../resources/css/styles.css" rel="stylesheet" /-->
+        <link href="/tubotiquin/tuBotiquin/public/css/styles.css" rel="stylesheet">
     </head>
     <body id="page-top">
        
@@ -40,11 +40,12 @@
                 </button>
             </div>
             @endif
+            
      </header>   
 
     <!-- Navigation-->
      <nav class="navbar navbar-expand-lg  bg-primary text-uppercase shadow" id="mainNav">
-
+    
         <div class="container">
             <a class="navbar-brand js-scroll-trigger pl-0" id="page-top"
                 href="{{ route('home') }}">TuBotiquin</a>
@@ -69,11 +70,10 @@
 
                     @can('esFarmaceutico')   
                         <li class="dropdown nav-item mx-0 mx-lg-1">
-                            <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded js-scroll-trigger" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Farmacias</a>
+                            <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded js-scroll-trigger" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Farmaceutico</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ route('farmacia.create') }}">CARGAR FARMACIA</a>
-                                    <a class="dropdown-item" href="}">CARGAR SUCURSAL</a>
-                                    <a class="dropdown-item" href="#">EDITAR</a>       
+                                    <a class="dropdown-item" href="#">Mi Perfil</a>
+                                    <a class="dropdown-item" href="{{ route('farmacia.index') }}">Panel de opciones</a>       
                                 </div>
                         </li>
                     @endcan

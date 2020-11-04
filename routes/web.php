@@ -30,12 +30,16 @@ Route::get('/administrador', function () {
     return view('admin.administrador');
 })->name('homeAdministrador')->middleware('roles:es-administrador');
 
+//Route::get('/farmaceutico', function () {
+//    return view('farmaceutico.indexFarmaceutico');
+//})->name('homeFarmaceutico')->middleware('roles:es-farmaceutico');
+
 Auth::routes();
 Route::post('login',  [LoginController::class,'loginPersonalizado']);
 Route::get('register/farmaceutico', [RegisterController::class,'showRegisFarmaceuticoForm'])->name('farmaceutico');
 Route::post('register/farmaceutico', [RegisterController::class,'registroFarmaceutico'])->name('registroFarmaceutico');
 
-Route::get('farmacias', [FarmaciaController::class,'index'])->name('farmacias');
+Route::get('farmacias', [FarmaciaController::class,'listarFarmacias'])->name('farmacias');
 
 //Al usar el middleware RolMiddleware podemos enviar mas de un rol, pero debemos cambiar ('roles:esAdmin') o por (roles:slug_rol) siendo slug_rol el valor del atributo de la Base de Datos 
 // porque antes estabamos usando gates , pero a las gates no le podemos pasar mas de un ROL al mismo tiempo en las rutas
