@@ -27,6 +27,7 @@
                 </div>
             </div>
         </form>
+        
 
     </div>
     <div class="container">
@@ -40,7 +41,7 @@
                                     <h4 class="card-title"> {{ $farmacia->nombre_farmacia}}</h4>
                                     <p class="card-text">Breve descripción farmacia</p> 
                                     <hr>
-                                    <a href="{{ route ('sucursal.farmaciaSucursal') }}" class="btn btn-primary btn-sm">Ver sucursales</a>
+                                    <a href="{{ route ('farmaciaSucursal', ['farmacia' => $farmacia->id_farmacia ]) }}" class="btn btn-primary btn-sm">Ver sucursales</a>
                                 </div>
                         </div>
                     </div> 
