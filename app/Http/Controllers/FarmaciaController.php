@@ -23,8 +23,13 @@ class FarmaciaController extends Controller
     public function listarFarmacias()
     {
         //Obtengo todas las farmacias cargadas en la DB y habilidatas
-        $farmacias = Farmacia::where("habilitada", "=", 1)->simplePaginate(6);
-        return view('farmacia.farmacias', ['arrayFarmacias' => $farmacias]);
+        $farmaciasPaginate = Farmacia::where("habilitada", "=", 1)->simplePaginate(6);
+        $arrayFarmacias = Farmacia::where("habilitada", "=", 1)->get();
+
+        return view('farmacia.farmacias', [
+            'arrayFarmaciasPaginate' => $farmaciasPaginate,
+            'arrayFarmacias' => $arrayFarmacias,
+            ]);
 
     }    
     /**
@@ -76,6 +81,13 @@ class FarmaciaController extends Controller
         return redirect(route('farmacia.index'));
     }
     
+    //public function farmaciabuscar($nombreFarmacia)
+    //{
+
+    //    $farmaciaEncontrada = Farmacia::where("nombre", "=", $nombreFarmacia);
+    //    return view('farmacia.farmacias', ['farmaciaEncontradas' => $farmaciaEncontrada]);
+
+    //}
 
     /**
      * Display the specified resource.
