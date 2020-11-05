@@ -13,6 +13,7 @@ class Sucursal extends Model
     
     protected $fillable = [
         'id_farmacia',
+        'descripcion_sucursal',
         'cufe_sucursal',
         'email_sucursal',
         'telefono_sucural',

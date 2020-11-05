@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Sucursal;
+use App\Models\Farmacia;
 use Illuminate\Http\Request;
+
 
 class SucursalController extends Controller
 {
@@ -17,6 +18,17 @@ class SucursalController extends Controller
         //
     }
 
+
+    public function farmaciaSucursal($farmacia){
+
+        $farmacia = Farmacia::find($farmacia);
+        $arraySucursales = Sucursal::where("id_farmacia", "=" , $farmacia->id_farmacia)->get();
+
+        return view('farmacia.verFarmaciaySucursal' , [
+                 'arraySucursales' => $arraySucursales,
+                 'farmacia' => $farmacia,
+                 ]); 
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +36,12 @@ class SucursalController extends Controller
      */
     public function create()
     {
-        //
+        // VER SI SOLO RECUPERO LA FARMACIA DEL USUARIO QUE CARGO Y ES EL QUE ESTA LOGUEADO 
+        $arrayFarmacias = Farmacia::get();
+       //$id_usuario = auth()->user()->id_usuario;
+        //$arrayFarmacias = Farmacia::where('id_usuario', auth()->user()->id_usuario);
+    
+        return view('farmaceutico.cargarSucursal' , ['arrayFarmacias' => $arrayFarmacias ]); 
     }
 
     /**
@@ -36,6 +53,28 @@ class SucursalController extends Controller
     public function store(Request $request)
     {
         //
+        //Valida los campos 
+        Request()->validate(([
+            
+            'id_farmacia' => 'required',
+            'cufe_sucursal' => 'required',
+            'email_sucursal' => 'required | email',
+            'telefono_sucursal' => 'required',
+            ]));
+    
+            // Crear una nueva instacia de Farmacia y la guarda en la DB
+            $habilitada = 0; // FLAG deshabilitada por defecto
+            
+            $sucursal = new Sucursal();
+            $sucursal->id_farmacia = $request->id_farmacia;
+            $sucursal->descripcion_sucursal = $request->descripcion_sucursal;
+            $sucursal->cufe_sucursal = $request->cufe_sucursal;
+            $sucursal->email_sucursal = $request->email_sucursal;
+            $sucursal->telefono_sucursal  = $request->telefono_sucursal;
+            $sucursal->habilitado = $habilitada;
+            $sucursal->save();
+    
+            return redirect(route('farmacia.index'));
     }
 
     /**

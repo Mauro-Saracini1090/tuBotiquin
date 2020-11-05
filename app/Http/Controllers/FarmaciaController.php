@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Farmacia;
 use APP\Models\Sucursal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use League\CommonMark\Inline\Element\Strong;
 
 class FarmaciaController extends Controller
 {
@@ -15,12 +17,21 @@ class FarmaciaController extends Controller
      */
     public function index()
     {
-        //Obtengo todas las farmacias cargadas en la DB
-        //$farmacias = Farmacia::orderBy('id_farmacia')->get();
-        $farmacias = Farmacia::simplePaginate(6);
-        return view('farmacia.farmacias', ['arrayFarmacias' => $farmacias]);
+        return view('farmaceutico.indexFarmaceutico');
     }
 
+    public function listarFarmacias()
+    {
+        //Obtengo todas las farmacias cargadas en la DB y habilidatas
+        $farmaciasPaginate = Farmacia::where("habilitada", "=", 1)->simplePaginate(6);
+        $arrayFarmacias = Farmacia::where("habilitada", "=", 1)->get();
+
+        return view('farmacia.farmacias', [
+            'arrayFarmaciasPaginate' => $farmaciasPaginate,
+            'arrayFarmacias' => $arrayFarmacias,
+            ]);
+
+    }    
     /**
      * Show the form for creating a new resource.
      *
@@ -29,8 +40,8 @@ class FarmaciaController extends Controller
     public function create()
     {
         // Retorna a la vista para cargar una nueva Farmacia a traves de  un formulario
-       return view('farmaceutico.cargarFarmacia');
-   
+       //return view('farmaceutico.cargarFarmacia');
+       return view('farmaceutico.cargarFarmacia'); 
     }
 
     /**
@@ -45,6 +56,7 @@ class FarmaciaController extends Controller
         Request()->validate(([
             
         'nombre_farmacia' => 'required',
+        'img_farmacia' => 'required|image|max:4096',
         'cuit' => 'required',
         ]));
 
@@ -55,14 +67,27 @@ class FarmaciaController extends Controller
         $farmacia = new Farmacia();
         $farmacia->id_usuario = $id_usuario;
         $farmacia->nombre_farmacia = $request->nombre_farmacia;
+
+        $img_logo = $request->file('img_farmacia')->store('public/img_farmacias');  
+        $img_farmacia = Storage::url($img_logo);
+
+        $farmacia->img_farmacia = $img_farmacia;
         $farmacia->descripcion_farmacia = $request->descripcion_farmacia;
         $farmacia->cuit = $request->cuit;
         $farmacia->habilitada = $habilitada;
         $farmacia->save();
 
+             
         return redirect(route('farmacia.index'));
     }
     
+    //public function farmaciabuscar($nombreFarmacia)
+    //{
+
+    //    $farmaciaEncontrada = Farmacia::where("nombre", "=", $nombreFarmacia);
+    //    return view('farmacia.farmacias', ['farmaciaEncontradas' => $farmaciaEncontrada]);
+
+    //}
 
     /**
      * Display the specified resource.

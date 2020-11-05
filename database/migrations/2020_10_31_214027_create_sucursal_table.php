@@ -20,7 +20,7 @@ class CreateSucursalTable extends Migration
             $table->string('Descripcion_sucursal', 250);
             $table->string('cufe_sucursal')->unique();
             $table->string('email_sucursal');
-            $table->integer('telefono_sucrusal');
+            $table->integer('telefono_sucursal');
             $table->boolean('habilitado');
             
             $table->timestamps();
