@@ -20,9 +20,8 @@ class FarmaciaController extends Controller
 
     public function listarFarmacias()
     {
-        //Obtengo todas las farmacias cargadas en la DB
-        //$farmacias = Farmacia::orderBy('id_farmacia')->get();
-        $farmacias = Farmacia::simplePaginate(6);
+        //Obtengo todas las farmacias cargadas en la DB y habilidatas
+        $farmacias = Farmacia::where("habilitada", "=", 1)->simplePaginate(6);
         return view('farmacia.farmacias', ['arrayFarmacias' => $farmacias]);
 
     }    
