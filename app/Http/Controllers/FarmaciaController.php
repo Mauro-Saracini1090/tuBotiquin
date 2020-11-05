@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Farmacia;
 use APP\Models\Sucursal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use League\CommonMark\Inline\Element\Strong;
 
 class FarmaciaController extends Controller
 {
@@ -49,6 +51,7 @@ class FarmaciaController extends Controller
         Request()->validate(([
             
         'nombre_farmacia' => 'required',
+        'img_farmacia' => 'required|image|max:4096',
         'cuit' => 'required',
         ]));
 
@@ -59,11 +62,17 @@ class FarmaciaController extends Controller
         $farmacia = new Farmacia();
         $farmacia->id_usuario = $id_usuario;
         $farmacia->nombre_farmacia = $request->nombre_farmacia;
+
+        $img_logo = $request->file('img_farmacia')->store('public/img_farmacias');  
+        $img_farmacia = Storage::url($img_logo);
+
+        $farmacia->img_farmacia = $img_farmacia;
         $farmacia->descripcion_farmacia = $request->descripcion_farmacia;
         $farmacia->cuit = $request->cuit;
         $farmacia->habilitada = $habilitada;
         $farmacia->save();
 
+             
         return redirect(route('farmacia.index'));
     }
     
