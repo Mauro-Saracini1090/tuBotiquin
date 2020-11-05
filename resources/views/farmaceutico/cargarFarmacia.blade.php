@@ -11,7 +11,7 @@
                         <h3 class="masthead-subheading text-center">Cargar Farmacia</h3>
                         <p class="lead text-center">Complete los siguientes campos</p>
                         
-                        <form method="POST" action="{{ route('farmacia.store') }}">
+                        <form method="POST" action="{{ route('farmacia.store')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
@@ -21,18 +21,29 @@
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <strong><label for="img_farmacia">{{ __('Suba una imagen con su logo') }}</label></strong>
+                            <input type="file" name="img_farmacia" @error('img_farmacia') accept="image/*" is-invalid @enderror required class="form-control" >
+                            <small  class="form-text text-muted">Tamaño máximo 4MB</small>
+
+                             @error('img_farmacia')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <strong><label for="descripcion_farmacia">{{ __('Descripción') }}</label></strong>
                             <textarea class="form-control" name="descripcion_farmacia" type="textarea" placeholder="¡Aqui puede colocar el eslogan de su Farmacia!" @error('descripcion_farmacia') is-invalid @enderror
                                     name="escripcion_farmacia" value="{{ old('descripcion_farmacia') }}"rows="3"></textarea>
 
-                                @error('descripcion_farmacia')
+                            @error('descripcion_farmacia')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                            @enderror
                         </div>
                         <div class="form-group">
                             <strong><label for="cuit">{{ __('CUIT') }}</label></strong>
@@ -42,7 +53,7 @@
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                            @enderror
                         </div>
                       
                          <div class="form-group">
