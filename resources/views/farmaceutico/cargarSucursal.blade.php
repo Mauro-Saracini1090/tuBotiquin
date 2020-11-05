@@ -80,7 +80,7 @@
                                 <button type="submit" class="btn btn-primary mr-1">
                                     {{ __('Registrar') }}
                                 </button>
-                                 <a href="" class="btn btn-primary">Cancelar</a>
+                                 <a href="{{ route('farmacia.index') }}" class="btn btn-primary">Cancelar</a>
                             </div>
                         </div>
                      </form>   
