@@ -18,6 +18,17 @@ class SucursalController extends Controller
         //
     }
 
+
+    public function farmaciaSucursal($farmacia){
+
+        $farmacia = Farmacia::find($farmacia);
+        $arraySucursales = Sucursal::where("id_farmacia", "=" , $farmacia->id_farmacia)->get();
+
+        return view('farmacia.verFarmaciaySucursal' , [
+                 'arraySucursales' => $arraySucursales,
+                 'farmacia' => $farmacia,
+                 ]); 
+    }
     /**
      * Show the form for creating a new resource.
      *
