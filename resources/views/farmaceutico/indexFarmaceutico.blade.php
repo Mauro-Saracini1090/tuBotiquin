@@ -70,7 +70,7 @@
                     <div class="col-md-4   col-12">
                         <div class="shadow p-3 mb-5 bg-white rounded">
                             <img class="card-img-top" width="150" height="150" src="../public/assets/img/imgFarmaceutico/contactar.svg" alt="Card image cap" style="">
-                                <div class="card-body text-center">
+                                <div class="card-body">
                                     <h5 class="card-title">Contactar al Administardor</h5>
                                     <p class="card-text"></p>
                                     <hr>
