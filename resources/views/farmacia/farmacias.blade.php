@@ -33,7 +33,7 @@
                 @if ($farmaciaPaginate->habilitada == 1)
                     <div class="col-md-4">
                         <div class="shadow p-2 mb-4 bg-white rounded">          
-                            <img class="card-img-top" src="{{ $farmaciaPaginate->url }}" alt="Logotipo" width="600" height="250">
+                            <img class="card-img-top" src="{{ asset($farmaciaPaginate->img_farmacia) }}" alt="Logotipo" width="600" height="250">
                                 <div class="card-body">
                                     <h4 class="card-title"> {{ $farmaciaPaginate->nombre_farmacia }}</h4>
                                     <p class="card-text">{{ $farmaciaPaginate->descripcion_farmacia }}</p> 
