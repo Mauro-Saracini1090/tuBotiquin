@@ -16,8 +16,6 @@
                         <figcaption class="figure-caption"></figcaption>
                     </figure>
                 </div>
-
-            <hr>
         </div>
          
         <div>
