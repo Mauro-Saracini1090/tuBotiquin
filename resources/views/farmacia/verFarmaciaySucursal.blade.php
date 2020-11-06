@@ -12,7 +12,7 @@
             <p class="text-center">{{ $farmacia->descripcion_farmacia }}<p>
              <div class="d-flex d-flex justify-content-center">
                     <figure class="figure">
-                        <img src="../{{ $farmacia->img_farmacia }}" width="200" class="figure-img img-fluid rounded" >
+                        <img src="..{{ $farmacia->img_farmacia }}" width="200" class="figure-img img-fluid rounded" >
                         <figcaption class="figure-caption"></figcaption>
                     </figure>
                 </div>
