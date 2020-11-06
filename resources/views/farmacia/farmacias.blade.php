@@ -10,9 +10,7 @@
              <form method="POST" action="{{ route('buscarFarmaciaSucursal')}}">
                  @csrf                     
                     <div class="form-group">
-                        <select id="id_farmacia" class="form-control  placeholder="Busque su farmacia aqui"
-                                    name="id_farmacia" value="{{ old('localidad') }}"> 
-                                    <option setect value="">Seleccione una Farmacia de esta lista</option>
+                        <select id="id_farmacia" class="form-control"  placeholder="Busque su farmacia aqui" name="id_farmacia"> 
                                     @foreach($arrayFarmacias as $farmacia)
                                         <option value="{{ $farmacia->id_farmacia }}"> {{ $farmacia->nombre_farmacia }}</option> 
                                     @endforeach   
@@ -35,7 +33,7 @@
                 @if ($farmaciaPaginate->habilitada == 1)
                     <div class="col-md-4">
                         <div class="shadow p-2 mb-4 bg-white rounded">          
-                            <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap" width="600" height="250">
+                            <img class="card-img-top" src="{{ $farmaciaPaginate->url }}" alt="Logotipo" width="600" height="250">
                                 <div class="card-body">
                                     <h4 class="card-title"> {{ $farmaciaPaginate->nombre_farmacia }}</h4>
                                     <p class="card-text">{{ $farmaciaPaginate->descripcion_farmacia }}</p> 
