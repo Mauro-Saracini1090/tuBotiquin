@@ -6,19 +6,26 @@
         <div class="card-body mb-2">
             <!-- Masthead Subheading-->
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Farmacias</h2>
-            <p class="lead text-center">Busque su farmacia</p>
-            <br>                       
-                <div class="form-group">
-                    <select id="localidad" class="form-control @error('localidad') is-invalid @enderror" placeholder="Busque su farmacia aqui"
-                                name="localidad" value="{{ old('localidad') }}"> 
-                                <option setect value="">Seleccione una Farmacia de esta lista</option>
-                                @foreach($arrayFarmacias as $farmacia)
-                                    <option value="{{ $farmacia->id_farmacia }}"> {{ $farmacia->nombre_farmacia }}</option> 
-                                @endforeach   
-                                 
-                    </select> 
-                             
-                </div>
+            <br>  
+             <form method="POST" action="{{ route('buscarFarmaciaSucursal')}}">
+                 @csrf                     
+                    <div class="form-group">
+                        <select id="id_farmacia" class="form-control  placeholder="Busque su farmacia aqui"
+                                    name="id_farmacia" value="{{ old('localidad') }}"> 
+                                    <option setect value="">Seleccione una Farmacia de esta lista</option>
+                                    @foreach($arrayFarmacias as $farmacia)
+                                        <option value="{{ $farmacia->id_farmacia }}"> {{ $farmacia->nombre_farmacia }}</option> 
+                                    @endforeach   
+                        </select> 
+                                
+                    </div>
+                    <div class="form-group">
+                        <div class="d-flex d-flex justify-content-center"> 
+                            <button type="submit" class="btn btn-primary mr-1">
+                                {{ __('Buscar') }}
+                            </button>
+                        </div>
+                    </div>
             </form>
         </div>
 
