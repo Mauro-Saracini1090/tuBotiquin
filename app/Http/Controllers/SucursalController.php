@@ -17,7 +17,18 @@ class SucursalController extends Controller
     {
         //
     }
+    public function buscarFarmaciaSucursal(Request $request ){
 
+        //$farmacia = Farmacia::where("id_farmacia", "=" , $request->id_farmacia)->get();
+        $farmacia = Farmacia::find($request->id_farmacia);
+        $arraySucursales = Sucursal::where("id_farmacia", "=" , $request->id_farmacia)->get();
+        return view('farmacia.verFarmaciaySucursal' , [
+                'arraySucursales' => $arraySucursales,
+                 'farmacia' => $farmacia,
+                 ]);
+        
+        
+    }
 
     public function farmaciaSucursal($farmacia){
 
