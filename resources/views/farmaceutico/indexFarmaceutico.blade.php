@@ -14,7 +14,7 @@
                                     <p class="card-text"></p> 
                                     <hr>
                                     <a href="{{ route('farmacia.create') }}" class="btn btn-primary btn-sm">Cargar</a>
-                                    <a href="" class="btn btn-primary btn-sm">Ver</a>
+                                    <a href="{{ route('verfarmacia') }}" class="btn btn-primary btn-sm">Ver</a>
                                 </div>
                         </div>
                     </div>

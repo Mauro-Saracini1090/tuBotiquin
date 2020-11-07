@@ -20,6 +20,20 @@ class FarmaciaController extends Controller
         return view('farmaceutico.indexFarmaceutico');
     }
 
+
+    public function verFarmacia()
+    {
+        $id_usuario = auth()->user()->id_usuario;
+        $arrayFarmacias = array();
+        $arrayFarmacias = Farmacia::where("id_usuario", "=", $id_usuario)->get();
+        //dd($arrayFarmacias);
+
+       if(!(count($arrayFarmacias) >= 0)){
+           $arrayFarmacias = null;
+        }
+        return view('farmaceutico.verFarmacia', [   'arrayFarmacias' => $arrayFarmacias  ]);
+    }
+
     public function listarFarmacias()
     {
         //Obtengo todas las farmacias cargadas en la DB y habilidatas

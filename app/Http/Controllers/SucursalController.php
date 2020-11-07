@@ -17,7 +17,18 @@ class SucursalController extends Controller
     {
         //
     }
+    public function buscarFarmaciaSucursal(Request $request ){
 
+        //$farmacia = Farmacia::where("id_farmacia", "=" , $request->id_farmacia)->get();
+        $farmacia = Farmacia::find($request->id_farmacia);
+        $arraySucursales = Sucursal::where("id_farmacia", "=" , $request->id_farmacia)->get();
+        return view('farmacia.verFarmaciaySucursal' , [
+                'arraySucursales' => $arraySucursales,
+                 'farmacia' => $farmacia,
+                 ]);
+        
+        
+    }
 
     public function farmaciaSucursal($farmacia){
 
@@ -37,7 +48,7 @@ class SucursalController extends Controller
     public function create()
     {
         // VER SI SOLO RECUPERO LA FARMACIA DEL USUARIO QUE CARGO Y ES EL QUE ESTA LOGUEADO 
-        $arrayFarmacias = Farmacia::get();
+        $arrayFarmacias = Farmacia::where("habilitada", "=", 1)->get();
        //$id_usuario = auth()->user()->id_usuario;
         //$arrayFarmacias = Farmacia::where('id_usuario', auth()->user()->id_usuario);
     
