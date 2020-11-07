@@ -32,8 +32,8 @@
                                     <div Class="col-md-4 col-12">
                                             <div class="d-flex justify-content-center m-3">
                                                     <figure class="figure">
-                                                        <img src="../{{ $farmacia->img_farmacia }}" width="200" class="figure-img img-fluid rounded" >
-                                                        <figcaption class="figure-caption">su logotipo</figcaption>
+                                                        <img src="{{ asset($farmacia->img_farmacia) }}" width="200">
+                                                        <figcaption class="figure-caption">Logotipo</figcaption>
                                                     </figure>
                                             </div>
                                      </div>
