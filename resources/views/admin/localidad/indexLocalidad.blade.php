@@ -1,7 +1,9 @@
 @extends('admin.administrador')
 
 @section('datos')
-<h3>Lista de Localidades</h3>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
+    <h1 class="h2">Lista de Localidades</h1>
+</div>
 <a href="{{ route('localidad.create') }}" class="btn btn-primary float-right my-2">Cargar nueva localidad</a>
 <table class="table table-dark">
     <thead>

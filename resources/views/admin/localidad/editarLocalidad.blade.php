@@ -1,7 +1,10 @@
 @extends('admin.administrador')
 
 @section('datos')
-<h3>Editar Localidad {{ $localidad->nombre_localidad }}</h3>
+@section('datos')
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
+    <h1 class="h2">Editar Localidad {{ $localidad->nombre_localidad }}</h1>
+</div>
 @if($errors->any())
     <div class="alert alert-danger">
         <p>Por favor corrija los siguientes errores de abajo: </p>

@@ -18,11 +18,15 @@
     <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+    {{-- <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json"> --}}
     <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
     <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
     <meta name="theme-color" content="#563d7c">
+
+    {{-- fullcalendar --}}
+    <link href='fullcalendar/main.css' rel='stylesheet' />
+    <script src='fullcalendar/main.js'></script>
 
 
     <style>
@@ -106,6 +110,10 @@
                                     <a href="{{ route('localidad.index') }}"
                                         class="nav-link btn btn-success">Localidades</a>
                                 </li>
+                                <li class="nav-item my-1">
+                                    <a href="{{ route('turno.index') }}"
+                                        class="nav-link btn btn-success">Asignar Turno</a>
+                                </li>
                         @endcan
                     @endauth
                     </ul>
@@ -113,16 +121,17 @@
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                @section('datos')
                 <div
-                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
                     <h1 class="h2">Home Administrador</h1>
 
                 </div>
                 <div class="container bg-light shadow-lg p-3 my-3  bg-white rounded">
-                    @section('datos')
-                    @show
+                   
+                    
                 </div>
-
+                @show
             </main>
 
 

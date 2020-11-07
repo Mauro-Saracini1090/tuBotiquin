@@ -7,7 +7,9 @@ use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\FarmaciaController;
 use App\Http\Controllers\LocalidadController;
+use App\Http\Controllers\TurnoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +46,6 @@ Route::post('usuario/rolypermisos',[UsuarioController::class,'almacenarRolesyPer
 Route::resource('roles', RolesController::class)->middleware('roles:es-administrador');
 Route::resource('permisos', PermisosController::class)->middleware('roles:es-administrador');
 Route::resource('localidad', LocalidadController::class)->middleware('roles:es-administrador');
+Route::get('farmacias', [FarmaciaController::class,'listarFarmacias'])->name('farmacias');
+Route::resource('farmacia', FarmaciaController::class)->middleware('roles:es-farmaceutico');
+Route::resource('turno', TurnoController::class)->middleware('roles:es-administrador');
