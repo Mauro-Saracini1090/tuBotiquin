@@ -14,6 +14,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
         <!-- link href="../../resources/css/styles.css" rel="stylesheet" /-->
         <link href="/tubotiquin/tuBotiquin/public/css/styles.css" rel="stylesheet">
@@ -26,10 +27,10 @@
                 <!-- Masthead Avatar Image-->
                 
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0 text-primary">TU BOTIQUÍN</h1>
+                <h1 class="masthead-heading text-uppercase mb-0  text-dark ">TU BOTIQUÍN</h1>
                
                 <!-- Masthead Subheading-->
-                <h3 class="masthead-subheading  mb-0 text-primary">Tu farmacia de turno</h3>
+                <h3 class="masthead-subheading  mb-0 text-dark ">Tu farmacia de turno</h3>
             </div>
             <!-- para determinar el estado de la sesion -->
             @if(session()->has('estado'))
