@@ -139,7 +139,7 @@
 
             <footer class="footer bg-dark mt-auto py-3 col-md-12">
                 <div class="container-fluid">
-                    <span class="text-muted">Place sticky footer content here.</span>
+                    <span class="text-muted">TuBotiquin - 2020</span>
                 </div>
             </footer>
         </div>

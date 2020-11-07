@@ -40,11 +40,12 @@
                 </button>
             </div>
             @endif
+            
      </header>   
 
     <!-- Navigation-->
      <nav class="navbar navbar-expand-lg  bg-primary text-uppercase shadow" id="mainNav">
-
+    
         <div class="container">
             <a class="navbar-brand js-scroll-trigger pl-0" id="page-top"
                 href="{{ route('home') }}">TuBotiquin</a>
@@ -69,11 +70,10 @@
 
                     @can('esFarmaceutico')   
                         <li class="dropdown nav-item mx-0 mx-lg-1">
-                            <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded js-scroll-trigger" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Farmacias</a>
+                            <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded js-scroll-trigger" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Farmaceutico</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ route('farmacia.create') }}">CARGAR FARMACIA</a>
-                                    <a class="dropdown-item" href="}">CARGAR SUCURSAL</a>
-                                    <a class="dropdown-item" href="#">EDITAR</a>       
+                                    <a class="dropdown-item" href="#">Mi Perfil</a>
+                                    <a class="dropdown-item" href="{{ route('farmacia.index') }}">Panel de opciones</a>       
                                 </div>
                         </li>
                     @endcan
@@ -147,7 +147,7 @@
             </div>
         </div>  
 
-        <hr>
+      
         <div class="container">
            
                   <div class="row">
@@ -199,7 +199,7 @@
                         </div>    
                     </div>
                   </div>
-                  <hr>
+            
                 </div>
              </div>
             
