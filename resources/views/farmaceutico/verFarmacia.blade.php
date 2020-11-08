@@ -38,9 +38,16 @@
                                      </div>
                                     <div class="col-12">
                                         <div class="d-flex justify-content-center">  
-                                                    <a href="" class="btn btn-primary btn-sm mr-1">Editar</a>
-                                                    <a href="" class="btn btn-primary btn-sm mr-1">Eliminar</a>
-                                                    <a href="{{ route('farmacia.index') }}" class="btn btn-primary btn-sm mr-1">Volver atrás</a>
+                                                <div class="p-2">   
+                                                    <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>
+                                                </div>   
+                                                <div class="p-2"> 
+                                                    <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Eliminar Farmacia">delete</i></a>
+                                                </div>
+                                                <div class="p-2">    
+                                                    <a href="{{ route('farmacia.index') }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Volver atrás">arrow_back</i></a>
+                                                </div>        
+
                                         </div>
                                     </div>             
                                 </div>
