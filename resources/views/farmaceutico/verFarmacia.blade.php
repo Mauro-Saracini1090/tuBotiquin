@@ -32,8 +32,7 @@
                                     <div Class="col-md-4 col-12">
                                             <div class="d-flex justify-content-center m-3">
                                                     <figure class="figure">
-                                                        <img src="{{ asset($farmacia->img_farmacia) }}" width="200">
-                                                        <figcaption class="figure-caption">Logotipo</figcaption>
+                                                        <img src="{{ asset($farmacia->img_farmacia) }}" width="200" alt="Imagen Logo">
                                                     </figure>
                                             </div>
                                      </div>
@@ -41,6 +40,7 @@
                                         <div class="d-flex justify-content-center">  
                                                     <a href="" class="btn btn-primary btn-sm mr-1">Editar</a>
                                                     <a href="" class="btn btn-primary btn-sm mr-1">Eliminar</a>
+                                                    <a href="{{ route('farmacia.index') }}" class="btn btn-primary btn-sm mr-1">Volver atrás</a>
                                         </div>
                                     </div>             
                                 </div>
