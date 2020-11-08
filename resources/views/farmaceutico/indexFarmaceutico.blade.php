@@ -6,82 +6,62 @@
        <div class="py-2 pb-5">
         <div class="container">
                   <div class="row">
-                    <div class="col-md-4  col-12">
-                        <div class="shadow p-3 mb-5 bg-white rounded">
-                            <img class="card-img-top"  width="150" height="150" src="../public/assets/img/imgFarmaceutico/cargar.svg" alt="Card image cap">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title ">Farmacia</h5>
-                                    <p class="card-text"></p> 
-                                    <hr>
-                                    <a href="{{ route('farmacia.create') }}" class="btn btn-primary btn-sm">Cargar</a>
-                                    <a href="{{ route('verfarmacia') }}" class="btn btn-primary btn-sm">Ver</a>
-                                </div>
+                    <div class="col-lg-4 col-12">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item "><h5 class="masthead-subheading">FARMACIA</h5>
+                            <div class="d-flex d-flex justify-content-center"> 
+                                <a href="{{ route('farmacia.create') }}"> <i class=" Medium material-icons " style="font-size: 40px">add</i></a>
+                                <a href="{{ route('verfarmacia') }}"><i class="material-icons" style="font-size: 40px">pageview</i></a>
+                                <a href=""><i class="material-icons" style="font-size: 40px">edit</i></a>
+                            <div>
+                        </li>
+                    <li class="list-group-item"><h5 class="masthead-subheading">SUCURSAL</h5>
+                        <div class="d-flex d-flex justify-content-center"> 
+                                <a href={{ route ('sucursal.create') }}><i class=" Medium material-icons " style="font-size: 40px">add</i></a> 
+                                <a href=""><i class="material-icons" style="font-size: 40px">pageview</i></a>
+                                <a href=""><i class="material-icons" style="font-size: 40px">edit</i></a>
+                        <div>        
+                    </li>
+                    <li class="list-group-item"><h5 class="masthead-subheading">PEDIDOS</h5>
+                        <div class="d-flex d-flex justify-content-center"> 
+                                <a href=""><i class="material-icons" style="font-size: 40px">pageview</i></a>
+                                <a href=""><i class="material-icons" style="font-size: 40px">assignment</i></a>
+                                
                         </div>
-                    </div>
-                    <div class="col-md-4   col-12">
-                        <div class="shadow p-3 mb-5 bg-white rounded">
-                            <img class="card-img-top" width="150" height="150" src="../public/assets/img/imgFarmaceutico/sucursales.svg" alt="Card image cap">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Sucursal</h5>
-                                    <p class="card-text"></p> 
-                                    <hr>
-                                    <a href={{ route ('sucursal.create') }} class="btn btn-primary btn-sm">cargar</a>
-                                    <a href="" class="btn btn-primary btn-sm">Ver</a>
-                                </div>
-                        </div>   
-                    </div>
-                    <div class="col-md-4   col-12">
-                        <div class="shadow p-3 mb-5 bg-white rounded">
-                            <img class="card-img-top" width="150" height="150" src="../public/assets/img/imgFarmaceutico/reserva.svg"  alt="Card image cap" style="">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Pedidos</h5>
-                                    <p class="card-text"></p>
-                                    <hr>
-                                    <a href="#" class="btn btn-primary btn-sm">Ir</a>
-                                </div>
-                        </div>    
-                    </div>
-                  </div>
-                 
-                  <div class="row">
-                    <div class="col-md-4   col-12">
-                        <div class="shadow p-3 mb-5 bg-white rounded">
-                            <img class="card-img-top" width="150" height="150" src="../public/assets/img/imgFarmaceutico/reserva.svg"  alt="Card image cap">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Reservas</h5>
-                                    <p class="card-text"></p> 
-                                    <hr>
-                                    <a href="#" class="btn btn-primary btn-sm">Ir</a>
-                                </div>
+                    
+                    </li>
+                    <li class="list-group-item"><h5 class="masthead-subheading">RESERVAS</h5>
+                        <div class="d-flex d-flex justify-content-center"> 
+                               <a href=""><i class="material-icons" style="font-size: 40px">pageview</i></a> 
+                               <a href=""><i class="material-icons" style="font-size: 40px">assignment</i></a>    
                         </div>
-                    </div>
-                    <div class="col-md-4   col-12">
-                        <div class="shadow p-3 mb-5 bg-white rounded">
-                            <img class="card-img-top" width="150" height="150" src="../public/assets/img/imgFarmaceutico/stock.svg" alt="Card image cap">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Stock de Medicamentos</h5>
-                                    <p class="card-text"></p> 
-                                    <hr>
-                                    <a href="#" class="btn btn-primary btn-sm">Carga manual</a>
-                                    <a href="#" class="btn btn-primary btn-sm">Carga masiva</a>
-                                </div>
-                        </div>   
-                    </div>
-                    <div class="col-md-4   col-12">
-                        <div class="shadow p-3 mb-5 bg-white rounded">
-                            <img class="card-img-top" width="150" height="150" src="../public/assets/img/imgFarmaceutico/contactar.svg" alt="Card image cap" style="">
-                                <div class="card-body">
-                                    <h5 class="card-title">Contactar al Administardor</h5>
-                                    <p class="card-text"></p>
-                                    <hr>
-                                    <a href="#" class="btn btn-primary btn-sm">Escribir</a>
-                                </div>          
-                        </div>    
-                    </div>
-                  </div> 
-        <!--</div> -->
-    </div>
+                    
+                    </li>
+                    <li class="list-group-item"><h5 class="masthead-subheading">MEDICAMENTOS</h5>
+                        <div class="d-flex d-flex justify-content-center"> 
+                                <a href=""><i class="material-icons" style="font-size: 40px">pageview</i></a>
+                                <a href=""><i class="material-icons" style="font-size: 40px">note_add</i></a> 
+                                
+                        </div>
+                    
+                    </li>
+                     <li class="list-group-item"><h5 class="masthead-subheading">CONTACTAR AL ADMINISTRADOR</h5>
+                        <div class="d-flex d-flex justify-content-center">
+                             <a href=""><i class="material-icons" style="font-size: 40px">mail_outline</i></a>
+                        </div>
+                     </li>
+                    
+                    </ul>
 
-@endsection
+                
+                 </div>
+                 <div class="col-lg-8 col-12">
+                        @yield('opcionesFarmaceutico')
+                 </div>
+        </div> 
+     @endsection             
+ 
+        <!--</div> -->
+       
 <!-- #5AB998
 
