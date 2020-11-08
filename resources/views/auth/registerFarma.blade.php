@@ -10,7 +10,7 @@
                     <h3 class="masthead-subheading mb-0  text-center">Registrarse</h3>
                     <p class="text-muted text-center">Complete los siguientes campos</p>
     
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('registroFarmaceutico') }}">
                             @csrf
                             <!-- NOMBRE -->
                             <div class="form-group">
