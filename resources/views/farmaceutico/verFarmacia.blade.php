@@ -36,20 +36,22 @@
                                                     </figure>
                                             </div>
                                      </div>
-                                    <div class="col-12">
-                                        <div class="d-flex justify-content-center">  
-                                                <div class="p-2">   
-                                                    <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>
-                                                </div>   
-                                                <div class="p-2"> 
-                                                    <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Eliminar Farmacia">delete</i></a>
-                                                </div>
-                                                <div class="p-2">    
-                                                    <a href="{{ route('farmacia.index') }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Volver atrás">arrow_back</i></a>
-                                                </div>        
+                                    @can('esFarmaceutico')
+                                        <div class="col-12">
+                                            <div class="d-flex justify-content-center">  
+                                                    <div class="p-2">   
+                                                        <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>
+                                                    </div>   
+                                                    <div class="p-2"> 
+                                                        <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Eliminar Farmacia">delete</i></a>
+                                                    </div>
+                                                    <div class="p-2">    
+                                                        <a href="{{ route('farmacia.index') }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Volver atrás">arrow_back</i></a>
+                                                    </div>        
 
-                                        </div>
-                                    </div>             
+                                            </div>
+                                        </div> 
+                                     @endcan               
                                 </div>
                              </div>    
                     @endforeach    
