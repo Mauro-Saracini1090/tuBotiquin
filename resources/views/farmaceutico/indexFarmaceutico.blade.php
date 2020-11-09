@@ -5,29 +5,31 @@
      <!--<div class="shadow p-3 mb-5 bg-white rounded">  -->
     <div class="py-2 pb-5">
         <div class="container">
+        
             <div class="row">
-                 <div class="col-lg-4 col-12">
+                <div class="col-12">
+                    <h4 class="masthead-subheading">Opciones</h4>
+                </div>
+                 <div class="col-lg-3 col-12">
                      @can('esFarmaceutico')
+                        
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item "><h5 class="masthead-subheading">FARMACIA</h5>
+                            <li class="list-group-item "><h6 class="masthead-subheading">FARMACIA</h6>
                                 <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
-
-                                        <a href="{{ route('farmacia.create') }}"> <i class=" Medium material-icons " style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Agregar nueva Farmacia">add</i></a>
-
-                                        <a href="{{ route('verfarmacia') }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Ver Farmacia">pageview</i></a>
-
-                                        <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>
+                                    <a href="{{ route('farmacia.create') }}"> <i class=" Medium material-icons " style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Agregar nueva Farmacia">add_box</i></a>
+                                    <a href="{{ route('verfarmacia') }}"><i class="material-icons" style="font-size: 42px" data-toggle="tooltip" data-placement="left" title="Ver Farmacia">pageview</i></a>
+                                    <!--<a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>-->
 
                                 <div>
                             </li>
-                        <li class="list-group-item"><h5 class="masthead-subheading">SUCURSAL</h5>
+                        <li class="list-group-item"><h6 class="masthead-subheading">SUCURSAL</h6>
                             <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
-                                    <a href={{ route ('sucursal.create') }}><i class=" Medium material-icons " style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Agregar nueva Sucursal">add</i></a> 
-                                    <a href=""><i class="material-icons" style="font-size: 40px">pageview</i></a>
-                                    <a href=""><i class="material-icons" style="font-size: 40px">edit</i></a>
+                                    <a href={{ route ('sucursal.create') }}><i class=" Medium material-icons " style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Agregar nueva Sucursal">add_box</i></a> 
+                                    <a href=""><i class="material-icons" style="font-size: 42px">pageview</i></a>
+                                    <!--<a href=""><i class="material-icons" style="font-size: 40px">edit</i></a>-->
                             <div>        
                         </li>
-                        <li class="list-group-item"><h5 class="masthead-subheading">PEDIDOS</h5>
+                        <li class="list-group-item"><h6 class="masthead-subheading">PEDIDOS</h6>
                             <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
                                     <a href=""><i class="material-icons" style="font-size: 40px">pageview</i></a>
                                     <a href=""><i class="material-icons" style="font-size: 40px">assignment</i></a>
@@ -35,22 +37,22 @@
                             </div>
                         
                         </li>
-                        <li class="list-group-item"><h5 class="masthead-subheading">RESERVAS</h5>
+                        <li class="list-group-item"><h6 class="masthead-subheading">RESERVAS</h6>
                             <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
                                 <a href=""><i class="material-icons" style="font-size: 40px">pageview</i></a> 
                                 <a href=""><i class="material-icons" style="font-size: 40px">assignment</i></a>    
                             </div>
                         
                         </li>
-                        <li class="list-group-item"><h5 class="masthead-subheading">MEDICAMENTOS</h5>
+                        <li class="list-group-item"><h6 class="masthead-subheading">MEDICAMENTOS</h6>
                             <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
                                     <a href=""><i class="material-icons" style="font-size: 40px">pageview</i></a>
-                                    <a href=""><i class="material-icons" style="font-size: 40px">note_add</i></a> 
+                                    <a href=""><i class="material-icons" style="font-size: 40px">add_box</i></a> 
                                     
                             </div>
                         
                         </li>
-                        <li class="list-group-item"><h5 class="masthead-subheading">CONTACTAR AL ADMINISTRADOR</h5>
+                        <li class="list-group-item"><h6 class="masthead-subheading">CONTACTAR AL ADMINISTRADOR</h6>
                             <div class="d-flex d-flex justify-content-left pb-2 ml-3">
                                 <a href=""><i class="material-icons" style="font-size: 40px">email</i></a>
                             </div>
