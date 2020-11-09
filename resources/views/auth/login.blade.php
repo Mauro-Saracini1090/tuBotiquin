@@ -46,6 +46,13 @@
                                         {{ __('Recordar Inicio de Sesión') }}
                                     </label>
                              </div>
+                              <div class="d-flex d-flex justify-content-left">   
+                                 @if(Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('¿Olvido su contraseña?') }}
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                         
                         <div class="form-group">
@@ -53,18 +60,8 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Iniciar Sesión') }}
                                 </button>
-                               
                             </div>    
-                        </div>
-                          <div class="form-group">
-                            <div class="d-flex d-flex justify-content-end">   
-                                 @if(Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('¿Olvido su contraseña?') }}
-                                    </a>
-                                @endif
-                            </div>
-                           </div>     
+                        </div> 
                     </div>
                 </form>
              </div>

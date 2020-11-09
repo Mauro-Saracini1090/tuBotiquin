@@ -14,7 +14,7 @@
                             @csrf
                             <!-- NOMBRE -->
                             <div class="form-group">
-                                <strong><label for="nombre">{{ __('Nombre') }}</label></strong>
+                                <strong><label for="nombre">{{ __('Nombre *') }}</label></strong>
                                 <input id="nombre" type="text" class="form-control focus @error('nombre') is-invalid @enderror" 
                                         name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus placeholder="Ingrese su Nombre">
 
@@ -26,7 +26,7 @@
                             </div>
                             <!-- APELLIDO -->
                             <div class="form-group">
-                                <strong><label for="apellido">{{ __('Apellido') }}</label></strong>
+                                <strong><label for="apellido">{{ __('Apellido *') }}</label></strong>
                                 <input id="apellido" type="text" class="form-control @error('apellido') is-invalid @enderror" 
                                         name="apellido" value="{{ old('apellido') }}" required autocomplete="apellido" autofocus placeholder="Ingrese su Apellido">
 
@@ -36,18 +36,10 @@
                                     </span>
                                 @enderror
                             </div>
-                            <!-- LOCALIDAD -->
-                            <div class="form-group">
-                                <strong><label for="localidad">{{ __('Localidad') }}</label></strong>
-                                    <select id="localidad" class="form-control @error('localidad') is-invalid @enderror" name="localidad" value="{{ old('localidad') }}" required>
-                                        @foreach ($localidades as $localidad)
-                                            <option value="{{$localidad->codigo_postal}}">{{$localidad->nombre_localidad}}</option>        
-                                        @endforeach 
-                                    </select>
-                            </div>
+                          
                             <!-- NOMBRE DE USUARIO-->
                             <div class="form-group">
-                                <strong><label for="nombre_usuario">{{ __('Nombre de Usuario') }}</label></strong>
+                                <strong><label for="nombre_usuario">{{ __('Nombre de Usuario *') }}</label></strong>
                                 <input id="nombre_usuario" type="text" class="form-control @error('nombre_usuario') is-invalid @enderror" 
                                         name="nombre_usuario" value="{{ old('nombre_usuario') }}" required autocomplete="nombre_usuario" autofocus placeholder="Ingrese un nombre de usuario">
 
@@ -60,7 +52,7 @@
                             
                             <!-- EMAIL -->
                             <div class="form-group">    
-                                <strong><label for="email">{{ __('Direccion de E-Mail') }}</label></strong>
+                                <strong><label for="email">{{ __('Direccion de E-Mail *') }}</label></strong>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" 
                                     required autocomplete="email" placeholder="micorreo@email.com">
 
@@ -70,7 +62,16 @@
                                     </span>
                                 @enderror
                             </div>
-
+                              <!-- LOCALIDAD -->
+                            <div class="form-group">
+                                <strong><label for="localidad">{{ __('Localidad *') }}</label></strong>
+                                    <select id="localidad" class="form-control @error('localidad') is-invalid @enderror" name="localidad" value="{{ old('localidad') }}" required>
+                                        @foreach ($localidades as $localidad)
+                                            <option value="{{$localidad->codigo_postal}}">{{$localidad->nombre_localidad}}</option>        
+                                        @endforeach 
+                                    </select>
+                                    <small class="form-text text-muted">Seleccione una localidad</small>
+                            </div>
                             <!-- PASSWORD -->
                             <div class="form-group">
                                 <strong><label for="password">{{ __('Contraseña') }}</label><Strong>
@@ -85,13 +86,13 @@
                             </div>
 
                             <div class="form-group">
-                                <strong><label for="password-confirm">{{ __('Confirmar Contraseña') }}</label><strong>
+                                <strong><label for="password-confirm">{{ __('Confirmar Contraseña *') }}</label><strong>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="**************************************">
                             </div>
 
                             <!-- CUIL -->
                             <div class="form-group">
-                                <strong><label for="cuil">{{ __('CUIL') }}</label></strong>
+                                <strong><label for="cuil">{{ __('CUIL *') }}</label></strong>
                                 <input id="cuil" type="text" class="form-control @error('cuil') is-invalid @enderror" name="cuil" value="{{ old('cuil') }}"  autocomplete="cuil" autofocus required >
                                 <small  class="form-text text-muted">Sin espacios ni guiones</small>    
                                 @error('cuil')
@@ -103,7 +104,7 @@
 
                             <!-- CUIT -->
                             <div class="form-group ">
-                                <strong><label for="cuit">{{ __('CUIT') }}</label></strong>
+                                <strong><label for="cuit">{{ __('CUIT *') }}</label></strong>
                                 <input id="cuit" type="text" class="form-control @error('cuit') is-invalid @enderror" name="cuit" value="{{ old('cuit') }}"  autocomplete="cuit" autofocus required >
                                 <small  class="form-text text-muted">Sin espacios ni guiones</small>
                                 @error('cuit')
@@ -115,7 +116,7 @@
 
                             <!-- DNI -->
                             <div class="form-group ">
-                                <strong><label for="dni">{{ __('DNI') }}</label></strong>
+                                <strong><label for="dni">{{ __('DNI *') }}</label></strong>
                                 <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni') }}"  autocomplete="dni" autofocus required >
                                 <small  class="form-text text-muted">Sin puntos</small>
 
@@ -128,7 +129,7 @@
 
                             <!-- matricula -->
                             <div class="form-group">
-                                <strong><label for="matricula">{{ __('Numero Matricula') }}</label></strong>       
+                                <strong><label for="matricula">{{ __('Número de Matricula *') }}</label></strong>       
                                 <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula" value="{{ old('matricula') }}"  autocomplete="matricula" autofocus required>
                                 <small  class="form-text text-muted">Sin espacios ni guiones</small>
 
