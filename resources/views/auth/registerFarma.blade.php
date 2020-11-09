@@ -3,7 +3,7 @@
 @section('contenido')
 
   <div class="row justify-content-center">
-        <div class="col-md-8 col-12">
+        <div class="col-md-6 col-12">
              <div class="shadow p-3 mb-5 bg-white rounded"> 
                 <div class="card-body mb-2"> 
                     <!-- Masthead Subheading-->
