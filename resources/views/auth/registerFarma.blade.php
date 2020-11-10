@@ -139,6 +139,11 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <div class="d-flex d-flex justify-content-left"> 
+                                    <small  class="form-text text-muted">Los campos marcados con (*) son obligatorios</small>
+                                </div>    
+                            </div>
 
                         <div class="form-group">
                             <div class="d-flex d-flex justify-content-center">  
