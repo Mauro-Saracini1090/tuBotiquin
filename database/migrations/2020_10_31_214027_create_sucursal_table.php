@@ -17,7 +17,7 @@ class CreateSucursalTable extends Migration
             $table->id('id_sucursal');
             //$table->bigInteger('id_usuario');
             $table->unsignedBigInteger('id_farmacia');
-            $table->string('Descripcion_sucursal', 250);
+            $table->string('descripcion_sucursal', 250);
             $table->string('cufe_sucursal')->unique();
             $table->string('email_sucursal');
             $table->integer('telefono_sucursal');

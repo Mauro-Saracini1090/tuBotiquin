@@ -36,7 +36,7 @@ Route::get('/administrador', function () {
 //})->name('homeFarmaceutico')->middleware('roles:es-farmaceutico');
 
 Auth::routes();
-Route::post('login',  [LoginController::class,'loginPersonalizado']);
+//Route::post('login',  [LoginController::class,'loginPersonalizado']);
 Route::get('register/farmaceutico', [RegisterController::class,'showRegisFarmaceuticoForm'])->name('farmaceutico');
 Route::post('register/farmaceutico', [RegisterController::class,'registroFarmaceutico'])->name('registroFarmaceutico');
 

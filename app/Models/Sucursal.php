@@ -30,7 +30,7 @@ class Sucursal extends Model
      */
     public function getTurnos()
     {
-        return $this->belongsToMany(Turno::class,'asigna','sucursal_id','turno_id');
+        return $this->belongsToMany(Turno::class,'turno_sucursal','sucursal_id','turno_id');
     }
 
  

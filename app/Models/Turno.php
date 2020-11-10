@@ -17,6 +17,6 @@ class Turno extends Model
      */
     public function getSucursales()
     {
-        return $this->belongsToMany(Sucursal::class,'asigna','turno_id','sucursal_id');
+        return $this->belongsToMany(Sucursal::class,'turno_sucursal','turno_id','sucursal_id');
     }
 }

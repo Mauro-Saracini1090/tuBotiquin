@@ -60,9 +60,7 @@
                 @endisset
             </div>
             <div class="modal-footer">
-                <button id="guardarTurno" type="button" class="btn btn-success">Agregar</button>
-                <button type="button" class="btn btn-primary">Modificar</button>
-                <button type="button" class="btn btn-danger">Eliminar</button>
+                <button id="guardarTurno" type="button" class="btn btn-success">Actualizar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
             </div>
@@ -90,7 +88,20 @@
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
+            themeSystem: 'bootstrap',
+            headerToolbar: {
+                left: 'today',
+                center: 'title',
+                right: 'prev,next',
+            },
+            views: {
+            dayGridMonth: { // name of view
+                titleFormat: { year: 'numeric', month: 'long' } 
+                // other view-specific options here
+                }
+            },
+
+            
             events: [
         @foreach ($sucursales as $sucursal)
             @if((!($sucursal->getTurnos->isEmpty())))
