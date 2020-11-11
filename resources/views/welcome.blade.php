@@ -115,7 +115,7 @@
         <div class="container">
             @section('contenido')
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">De turno hoy</h2>
-            <p class="lead text-center">Farmacias que se encuentran de turno el día de hoy</p>
+            <p class="lead text-center my-3">Farmacias que se encuentran de turno el día de hoy</p>
             <div class="row">
                 <div class="col-md-6"> 
                     <div class="shadow p-3 mb-5 bg-white rounded"> 
@@ -154,7 +154,7 @@
                   <div class="row">
                     <div class="col-md-12 mt-3">
                       <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Próximas de turno</h2>
-                      <p class="lead text-center">Farmacias que se encontrarán de turnos los próximos días  <button type="button" class="btn btn-link">[ Ver más ]</button></p>
+                      <p class="lead text-center my-3">Farmacias que se encontrarán de turnos los próximos días  <button type="button" class="btn btn-link">[ Ver más ]</button></p>
                      
                     </div>
                   </div>
@@ -270,7 +270,7 @@
         </footer>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
-            <div class="container">TuBotiquín 2020</div>
+            <div class="container">© TuBotiquín 2020</div>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
