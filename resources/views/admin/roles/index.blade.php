@@ -1,7 +1,7 @@
 @extends('admin.administrador')
 @section('datos')
 <h3>Lista de Roles</h3>
-<a href="{{ route('roles.create') }}" class="btn btn-primary float-right my-2">Crear Nuevo ROL</a>
+<a href="{{ route('roles.create') }}" class="btn btn-panel float-right my-2">Crear Nuevo ROL</a>
 <table class="table table-dark">
     <thead>
         <tr>
@@ -17,9 +17,9 @@
                 <th scope="row">{{ $rol->id_rol }}</th>
                 <td>{{ $rol->nombre_rol }}</td>
                 <td>
-                    <a href="{{ route('roles.show', [$rol->id_rol]) }}">Ver / Actualizar Permisos</a>
+                    <a class="btn btn-panel" href="{{ route('roles.show', [$rol->id_rol]) }}">Asignar Permisos</a>
                     {{-- <a href="{{ route('roles.edit', [$rol->id_rol]) }}">Editar</a> --}}
-                    <a href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $rol->id_rol }}">
+                    <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $rol->id_rol }}">
                         Borrar
                     </a>
                 </td>
@@ -44,7 +44,7 @@
                     @csrf
                     {{-- <input type="hidden" id="id_rol" name="id_rol" value=""> --}}
 
-                    <button type="submit" class="btn btn-primary">Si</button>
+                    <button type="submit" class="btn btn-panel">Si</button>
                 </form>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>

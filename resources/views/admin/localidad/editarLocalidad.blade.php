@@ -34,8 +34,8 @@
             @endif
 
         </div>
-        <button type="submit" class="btn btn-success mx-1">Editar Localidad</button>
-        <a href="{{ url()->previous() }}" class="btn btn-primary mx-1">Volver Atras</a>
+        <button type="submit" class="btn btn-panel mx-1">Editar Localidad</button>
+        <a href="{{ url()->previous() }}" class="btn btn-secondary mx-1">Volver Atras</a>
     </form>
 
 @endsection

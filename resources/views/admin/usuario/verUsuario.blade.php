@@ -104,5 +104,5 @@
     </tbody>
 </table>
 
-<a href="{{ route('usuario.index') }}" class="btn btn-primary">Volver Atras</a>
+<a href="{{ route('usuario.index') }}" class="btn btn-secondary">Volver Atras</a>
 @endsection

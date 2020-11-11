@@ -1,7 +1,7 @@
 @extends('admin.administrador')
 @section('datos')
 <h3>Lista de Permisos</h3>
-<a href="{{ route('permisos.create') }}" class="btn btn-primary float-right my-2">Crear Nuevo
+<a href="{{ route('permisos.create') }}" class="btn btn-panel float-right my-2">Crear Nuevo
     Permiso</a>
 <table class="table table-dark">
     <thead>
@@ -26,9 +26,8 @@
                 <td>
                     {{-- <a href="{{ route('permisos.show', [ $permiso->id_permiso]) }}">Ver</a> --}}
                     
-                    <a
-                        href="{{ route('permisos.edit', [ $permiso->id_permiso]) }}">Editar</a>
-                    <a href="#" data-toggle="modal" data-target="#deleteModal"
+                    <a class="btn btn-panel" href="{{ route('permisos.edit', [ $permiso->id_permiso]) }}">Editar</a>
+                    <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal"
                         data-roleid="{{ $permiso->id_permiso }}">
                         Borrar
                     </a>
@@ -54,7 +53,7 @@
                     @csrf
                     {{-- <input type="hidden" id="id_rol" name="id_rol" value=""> --}}
 
-                    <button type="submit" class="btn btn-primary">Si</button>
+                    <button type="submit" class="btn btn-panel">Si</button>
                 </form>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
