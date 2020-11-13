@@ -3,7 +3,7 @@
 @section('iconPestaña') 
 @section('contenido')
     <div class="row justify-content-center">
-        <div class="col-md-8 col-12">
+        <div class="col-md-6 col-12">
                 <div class="shadow p-3 mb-5 bg-white rounded"> 
                     <div class="card-body mb-2">
                         <!-- Masthead Subheading-->
@@ -46,6 +46,13 @@
                                         {{ __('Recordar Inicio de Sesión') }}
                                     </label>
                              </div>
+                              <div class="d-flex d-flex justify-content-left">   
+                                 @if(Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('¿Olvido su contraseña?') }}
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                         
                         <div class="form-group">
@@ -53,13 +60,8 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Iniciar Sesión') }}
                                 </button>
-                                @if(Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('¿Olvido su contraseña?') }}
-                                    </a>
-                                @endif
                             </div>    
-                        </div>  
+                        </div> 
                     </div>
                 </form>
              </div>

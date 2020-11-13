@@ -17,29 +17,7 @@ class SucursalController extends Controller
     {
         //
     }
-    public function buscarFarmaciaSucursal(Request $request ){
-
-        //$farmacia = Farmacia::where("id_farmacia", "=" , $request->id_farmacia)->get();
-        $farmacia = Farmacia::find($request->id_farmacia);
-        $arraySucursales = Sucursal::where("id_farmacia", "=" , $request->id_farmacia)->get();
-        return view('farmacia.verFarmaciaySucursal' , [
-                'arraySucursales' => $arraySucursales,
-                 'farmacia' => $farmacia,
-                 ]);
-        
-        
-    }
-
-    public function farmaciaSucursal($farmacia){
-
-        $farmacia = Farmacia::find($farmacia);
-        $arraySucursales = Sucursal::where("id_farmacia", "=" , $farmacia->id_farmacia)->get();
-
-        return view('farmacia.verFarmaciaySucursal' , [
-                 'arraySucursales' => $arraySucursales,
-                 'farmacia' => $farmacia,
-                 ]); 
-    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -131,5 +109,37 @@ class SucursalController extends Controller
     public function destroy(Sucursal $sucursal)
     {
         //
+    }
+
+    public function buscarFarmaciaSucursal(Request $request ){
+
+        //$farmacia = Farmacia::where("id_farmacia", "=" , $request->id_farmacia)->get();
+        $farmacia = Farmacia::find($request->id_farmacia);
+        $arraySucursales = Sucursal::where("id_farmacia", "=" , $request->id_farmacia)->get();
+        return view('farmacia.verFarmaciaySucursal' , [
+                'arraySucursales' => $arraySucursales,
+                 'farmacia' => $farmacia,
+                 ]);
+        
+        
+    }
+
+    public function farmaciaSucursal($farmacia){
+
+        $farmacia = Farmacia::find($farmacia);
+        $arraySucursales = Sucursal::where("id_farmacia", "=" , $farmacia->id_farmacia)->get();
+
+        return view('farmacia.verFarmaciaySucursal' , [
+                 'arraySucursales' => $arraySucursales,
+                 'farmacia' => $farmacia,
+                 ]); 
+    }
+
+
+    public function verFarmaciaYSucursalFarmaceutico(){
+
+       //$id_usuario = auth()->user()->id_usuario;
+       $farmacia = Farmacia::where("id_usuario", "=" , auth()->user()->id_usuario);
+       //$array = Sucursal::getSucursales()
     }
 }

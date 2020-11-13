@@ -14,6 +14,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/tuBotiquin/public/css/styles.css" rel="stylesheet" />
          <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
@@ -26,10 +27,10 @@
                 <!-- Masthead Avatar Image-->
                 
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0 text-primary">TU BOTIQUÍN</h1>
+                <h1 class="masthead-heading text-uppercase mb-0  text-dark ">TU BOTIQUÍN</h1>
                
                 <!-- Masthead Subheading-->
-                <h3 class="masthead-subheading  mb-0 text-primary">Tu farmacia de turno</h3>
+                <h3 class="masthead-subheading  mb-0 text-dark ">Tu farmacia de turno</h3>
             </div>
             <!-- para determinar el estado de la sesion -->
             @if(session()->has('estado'))
@@ -114,7 +115,7 @@
         <div class="container">
             @section('contenido')
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">De turno hoy</h2>
-            <p class="lead text-center">Farmacias que se encuentran de turno el día de hoy</p>
+            <p class="lead text-center my-3">Farmacias que se encuentran de turno el día de hoy</p>
             <div class="row">
                 <div class="col-md-6"> 
                     <div class="shadow p-3 mb-5 bg-white rounded"> 
@@ -153,7 +154,7 @@
                   <div class="row">
                     <div class="col-md-12 mt-3">
                       <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Próximas de turno</h2>
-                      <p class="lead text-center">Farmacias que se encontrarán de turnos los próximos días  <button type="button" class="btn btn-link">[ Ver más ]</button></p>
+                      <p class="lead text-center my-3">Farmacias que se encontrarán de turnos los próximos días  <button type="button" class="btn btn-link">[ Ver más ]</button></p>
                      
                     </div>
                   </div>
@@ -269,7 +270,7 @@
         </footer>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
-            <div class="container">TuBotiquín 2020</div>
+            <div class="container">© TuBotiquín 2020</div>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">

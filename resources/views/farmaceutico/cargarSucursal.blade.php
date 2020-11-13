@@ -1,10 +1,10 @@
-@extends('welcome')
+@extends('farmaceutico.indexFarmaceutico')
 @section('titulo','Cargar Sucursal')
 
-@section('contenido')
+@section('opcionesFarmaceutico')
         <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 col-12">
+            <div class=" col-12">
                 <div class="shadow p-3 mb-5 bg-white rounded"> 
                     
                         <!-- Masthead Subheading-->

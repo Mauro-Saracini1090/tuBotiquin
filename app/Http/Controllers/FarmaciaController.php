@@ -36,7 +36,8 @@ class FarmaciaController extends Controller
 
     public function listarFarmacias()
     {
-        //Obtengo todas las farmacias cargadas en la DB y habilidatas
+        //Se obtienen todas las farmacias en estado habilitado = 1
+        //Se paginan de a 6 elementos para ser mostrados en la vista
         $farmaciasPaginate = Farmacia::where("habilitada", "=", 1)->simplePaginate(6);
         $arrayFarmacias = Farmacia::where("habilitada", "=", 1)->get();
 
@@ -70,7 +71,7 @@ class FarmaciaController extends Controller
         Request()->validate(([
             
         'nombre_farmacia' => 'required',
-        'img_farmacia' => 'required|image|max:4096',
+        'img_farmacia' => 'required|image|mimes:jpeg,png|max:4096',
         'cuit' => 'required',
         ]));
 
@@ -122,7 +123,8 @@ class FarmaciaController extends Controller
      */
     public function edit(Farmacia $farmacia)
     {
-        //
+       return view('farmaceutico.editarFarmacia', ['farmacia' => $farmacia]);
+      
     }
 
     /**
@@ -134,7 +136,22 @@ class FarmaciaController extends Controller
      */
     public function update(Request $request, Farmacia $farmacia)
     {
-        //
+
+       
+        Request()->validate(([
+            'nombre_farmacia' => 'required',
+            'cuit' => 'required',
+
+        ]));
+        
+        if($request->descripcion_farmacia != null){
+            $farmacia->descripcion_farmacia = $request->descripcion_farmacia;
+        }
+        $farmacia->nombre_farmacia = $request->nombre_farmacia;
+        $farmacia->cuit = $request->cuit;
+        $farmacia->save();
+        return redirect(route('farmacia.index'));
+    
     }
 
     /**
