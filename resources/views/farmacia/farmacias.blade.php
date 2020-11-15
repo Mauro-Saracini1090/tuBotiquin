@@ -34,7 +34,7 @@
             @foreach ($arrayFarmaciasPaginate as $farmaciaPaginate)
                 @if ($farmaciaPaginate->habilitada == 1)
                     <div class="col-md-4">
-                        <div class="shadow p-2 mb-4 bg-white rounded">          
+                        <div class="shadow p-2 mb-4 backCard rounded">          
                             <img class="card-img-top" src="{{ asset($farmaciaPaginate->img_farmacia) }}" alt="Logotipo" width="300" height="250">
                                 <div class="card-body text-center">
                                     <h4 class="card-title"> {{ $farmaciaPaginate->nombre_farmacia }}</h4>
