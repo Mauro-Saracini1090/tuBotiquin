@@ -116,10 +116,10 @@
             @section('contenido')
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">De turno hoy</h2>
             <p class="lead text-center my-3">Farmacias que se encuentran de turno el día de hoy</p>
-            <div class="row">
-                <div class="col-md-6"> 
-                    <div class="shadow p-3 mb-5 bg-white rounded"> 
-                        <div class="col-md-12 mb-3">
+            <div class="row ">
+                <div class="col-md-6 "> 
+                    <div class="shadow bg-white rounded"> 
+                        <div class="col-md-12 p-3 mb-5 fondo ">
                             <img class="card-img-top" src="../public/assets/img/health_1.svg" alt="Card image cap" width="600" height="250">
                             <div class="card-body mb-2">
                                 <h4 class="card-title">Farmacia&nbsp;</h4>
@@ -132,8 +132,8 @@
                     </div>    
                 </div>
                 <div class="col-md-6">
-                    <div class="shadow p-3 mb-5 bg-white rounded">
-                        <div class="col-md-12 mb-3">
+                    <div class="shadow bg-white rounded">
+                        <div class="col-md-12 p-3 mb-5 fondo">
                              <img class="card-img-top" src="../public/assets/img/health_2.svg" alt="Card image cap" width="600" height="250">
                             <div class="card-body mb-2">
                                 <h4 class="card-title">Farmacia&nbsp;</h4>
