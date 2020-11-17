@@ -53,10 +53,13 @@ class SucursalController extends Controller
     
             // Crear una nueva instacia de Farmacia y la guarda en la DB
             $habilitada = 0; // FLAG deshabilitada por defecto
-            
             $sucursal = new Sucursal();
             $sucursal->id_farmacia = $request->id_farmacia;
-            $sucursal->descripcion_sucursal = $request->descripcion_sucursal;
+
+            if($request->descripcion_sucursal != NULL){
+                $sucursal->descripcion_sucursal = $request->descripcion_sucursal;
+            }
+           
             $sucursal->cufe_sucursal = $request->cufe_sucursal;
             $sucursal->email_sucursal = $request->email_sucursal;
             $sucursal->telefono_sucursal  = $request->telefono_sucursal;
@@ -136,10 +139,11 @@ class SucursalController extends Controller
     }
 
 
-    public function verFarmaciaYSucursalFarmaceutico(){
 
-       //$id_usuario = auth()->user()->id_usuario;
-       $farmacia = Farmacia::where("id_usuario", "=" , auth()->user()->id_usuario);
-       //$array = Sucursal::getSucursales()
-    }
+  public function listarFarmaciaSucursales()
+  {
+    $id_usuario = auth()->user()->id_usuario;
+    $arraySucursales = Farmacia::find($id_usuario)->getSucursales();
+  }
+
 }
