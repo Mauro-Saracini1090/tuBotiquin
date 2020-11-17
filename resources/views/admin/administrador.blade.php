@@ -62,6 +62,17 @@
         color: white;
         background-color: #2c3e50;
       }
+      .fc-today-button{
+          background-color: #1abc9c !important;
+          border-color: #1abc9c !important;
+      }
+      .fc-prev-button, .fc-next-button{
+          background-color: #1abc9c !important;
+          border-color: #1abc9c !important;
+      }
+      #sidebarMenu{
+          height: 108vh;
+      }
 
     
 
@@ -100,7 +111,7 @@
 
     <div class="container-fluid">
         <div class="row" style="height: 100vh">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse" style="height: 100vh">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
                 <div class="sidebar-sticky pt-3">
                   
                     @auth
