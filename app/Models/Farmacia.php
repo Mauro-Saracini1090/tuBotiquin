@@ -32,4 +32,12 @@ class Farmacia extends Model
         return $this->belongsT(Sucursal::class,'id_farmacia');
     }
 
+
+
+    public function obrasSociales()
+    {
+        return $this->belongsToMany(ObraSocial::class, 'obra_social_farmacia', 'obra_social_id', 'farmacia_id');
+    }
+    
+
 }
