@@ -1,12 +1,11 @@
-@extends('welcome')
+@extends('farmaceutico.indexFarmaceutico')
 @section('titulo','Editar Farmacia')
 
-@section('contenido')
+@section('opcionesFarmaceutico')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-12">
                 <div class="shadow p-3 mb-5 backCard rounded"> 
-                        <h3>{{ $farmacia->nombre_farmacia }}</h3>
                         <!-- Masthead Subheading-->
                         <h3 class="masthead-subheading text-center">Editar Farmacia</h3>
                         <p class="lead text-center">Edite los siguientes campos</p>
@@ -59,7 +58,7 @@
                          <div class="form-group">
                             <div class="d-flex d-flex justify-content-center"> 
                                   <button type="submit" class="btn btn-primary mx-1">Guardar cambios</button>
-                                  <a href="{{ url()->previous() }}" class="btn btn-primary mx-1">Volver Atras</a>
+                                  <a href="{{ url()->previous() }}" class="btn btn-primary mx-1">Volver Atrás</a>
                             </div>
                         </div>
                      </form>   
