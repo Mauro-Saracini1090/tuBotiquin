@@ -4,7 +4,7 @@
 @section('contenido')
     <div class="row justify-content-center">
         <div class="col-md-6 col-12">
-                <div class="shadow p-3 mb-5 bg-white rounded"> 
+                <div class="shadow p-3 mb-5 backCard rounded"> 
                     <div class="card-body mb-2">
                         <!-- Masthead Subheading-->
                         <h3 class="masthead-subheading  mb-0 text-center">Ingresar</h3>

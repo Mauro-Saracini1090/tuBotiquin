@@ -7,13 +7,13 @@
         <div class="row justify-content-left">
             <div class="col-12 ">
                 @if($arrayFarmacias == NULL)
-                        <div class="shadow p-3 mb-5 bg-white rounded"> 
+                        <div class="shadow p-3 mb-5 backCard rounded"> 
                             <h2 class="page-section-heading text-uppercase text-secondary mb-0">No posee Farmacias cargadas</h2>
                             <p class="text-center">Si cree que esto es un error, contacte al Administrador </p>
                         </div>    
                 @else          
                     @foreach ($arrayFarmacias as $farmacia)
-                        <div class="shadow p-3 mb-5 bg-white rounded">
+                        <div class="shadow p-3 mb-5 backCard rounded">
                             <div class="row" >
                                 <div Class="col-lg-8 col-12" >
                                         <h2 class="page-section-heading text-uppercase text-secondary  m-3">{{ $farmacia->nombre_farmacia }}</h2>

@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
@@ -11,7 +12,7 @@ use App\Http\Controllers\FarmaciaController;
 use App\Http\Controllers\LocalidadController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\SucursalController;
-
+//use App\Http\Controllers\ObraSocialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,5 +61,6 @@ Route::resource('farmacia', FarmaciaController::class)->middleware('roles:es-far
 Route::resource('turno', TurnoController::class)->middleware('roles:es-administrador');
 Route::resource('sucursal', SucursalController::class)->middleware('roles:es-farmaceutico');
 
-
-
+//Route::resource('obrasocial', ObraSocialController::class)->middleware('roles:es-farmaceutico');
+//Route::get('obrasocialfarmacia', [ObraSocialController::class, 'listarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('obrasocialfarmacia');
+//Route::post('obrasocialfarmacia', [ObraSocialController::class, 'agregarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('agregarobrasocialfarmacia');

@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
-                <div class="shadow p-3 mb-5 bg-white rounded"> 
+                <div class="shadow p-3 mb-5 backCard rounded"> 
                     
                         <!-- Masthead Subheading-->
                         <h3 class="masthead-subheading text-center">Cargar Farmacia</h3>
