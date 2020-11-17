@@ -23,7 +23,7 @@
                                             <p>CUIT: {{ $farmacia->cuit }}</p>
                                             <hr>
                                             @if($farmacia->habilitada == 1)
-                                                 <p class="text-left text-success">Estado: habilitada </p>   
+                                                 <span class="text-left text-success">Estado: habilitada </>   
                                             @else
                                                 <p class="text-left text-warning">Estado: Deshabilitada </p> 
                                             @endif
@@ -35,16 +35,19 @@
                                                         <img src="{{ asset($farmacia->img_farmacia) }}" width="200" alt="Imagen Logo">
                                                     </figure>
                                             </div>
-                                    </div>
+                                     </div>
                                     @can('esFarmaceutico')
                                         <div class="col-12">
                                             <div class="d-flex justify-content-center">  
                                                     <div class="p-2">    
-                                                        <a href="{{ route('farmacia.edit' , [$farmacia->id_farmacia]) }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>
+                                                        <a href="{{ route('farmacia.edit', [ $farmacia->id_farmacia]) }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>
                                                     </div>   
                                                     <div class="p-2"> 
-                                                         <a href="#" data-toggle="modal" data-target="#deleteModal" data-id_farma="{{ $farmacia->id_farmacia }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Eliminar Farmacia">delete</i></a>
+                                                        <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Eliminar Farmacia">delete</i></a>
                                                     </div>
+                                                    <div class="p-2">    
+                                                       <!-- <a href="{{ route('farmacia.index') }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Volver atrás">arrow_back</i></a> -->
+                                                    </div>        
                                             </div>
                                         </div> 
                                      @endcan               
@@ -55,6 +58,7 @@
             </div>        
         </div>
     </div>
+       
 
     <!-- MODAL DELETE -->
     <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
