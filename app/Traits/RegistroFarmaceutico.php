@@ -1,6 +1,7 @@
 <?php
 namespace App\Traits;
 
+use App\Mail\RegistroFarmaceuticoMailable;
 use App\Models\Role;
 use App\Models\Usuario;
 use Illuminate\Auth\Events\Registered;
@@ -8,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -29,6 +31,8 @@ trait RegistroFarmaceutico
         
         $rolFarma = Role::where('id_rol', 2)->first();
         
+        Mail::to($user->email)->send(new RegistroFarmaceuticoMailable);
+
         $user->getRoles()->attach($rolFarma);
         
 

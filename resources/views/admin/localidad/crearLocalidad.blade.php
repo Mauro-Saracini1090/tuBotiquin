@@ -14,7 +14,7 @@
 
         {!! csrf_field() !!}
         <div class="form-group">
-            <label for="nombre_localidad" style="color: white">Nombre Localidad:</label>
+            <label for="nombre_localidad">Nombre Localidad:</label>
             <input class="form-control" type="text" name="nombre_localidad" id="nombre_localidad" placeholder="Nombre Localidad"
                 value="{{ old('nombre_localidad') }}">
         </div>
@@ -24,7 +24,7 @@
             @endif
         </div>
         <div class="form-group">
-            <label for="codigo_postal" style="color: white">Código Postal:</label>
+            <label for="codigo_postal">Código Postal:</label>
             <input class="form-control" type="number" name="codigo_postal" id="codigo_postal" placeholder="código postal" value="{{ old('codigo_postal') }}">
 
             @if($errors->has('codigo_postal'))

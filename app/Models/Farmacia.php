@@ -36,7 +36,7 @@ class Farmacia extends Model
 
     public function obrasSociales()
     {
-        return $this->belongsToMany(ObraSocial::class, 'obra_social_farmacia', 'obra_social_id', 'farmacia_id');
+        return $this->belongsToMany(ObraSocial::class, 'obra_social_farmacia','farmacia_id','obra_social_id');
     }
     
 
