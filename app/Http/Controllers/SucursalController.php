@@ -25,10 +25,8 @@ class SucursalController extends Controller
      */
     public function create()
     {
-        // VER SI SOLO RECUPERO LA FARMACIA DEL USUARIO QUE CARGO Y ES EL QUE ESTA LOGUEADO 
-        $arrayFarmacias = Farmacia::where("habilitada", "=", 1)->get();
-       //$id_usuario = auth()->user()->id_usuario;
-        //$arrayFarmacias = Farmacia::where('id_usuario', auth()->user()->id_usuario);
+        $id_usuario = auth()->user()->id_usuario; 
+        $arrayFarmacias = Farmacia::where('id_usuario', "=" , $id_usuario)->get();
     
         return view('farmaceutico.cargarSucursal' , ['arrayFarmacias' => $arrayFarmacias ]); 
     }

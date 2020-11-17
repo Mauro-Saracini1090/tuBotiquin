@@ -58,4 +58,49 @@
             </div>        
         </div>
     </div>
-@endsection        
+       
+
+    <!-- MODAL DELETE -->
+    <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+        <div class="modal-header">
+            <h4 class="modal-title text-danger" >Eliminar</h4> 
+            <hr>   
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <div class="modal-body p-2">
+                <div class="container p-4">
+                    <h6>¿Está seguro que desea borrar la Farmacia?</h6>
+                    <p>Despúes de esta acción no podrá recuperar los datos</p>
+                </div>
+            </div>
+                <div class="modal-footer m-1">
+                    <form method="POST" action="">
+                        @method('DELETE' )
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Si</button>
+                    </form>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+@endsection
+@section('zona_js')
+<script>
+    $('#deleteModal').on('show.bs.modal', function (event) {
+        var boton = $(event.relatedTarget);
+        var id_farmacia = boton.data('id_farma');
+        var modal = $(this);
+        //modal.find('.modal-footer #id_rol').val(id_rol);
+        //revisar o buscar otra forma
+        modal.find('form').attr('action', 'farmacia/' + id_farmacia);
+    });
+
+</script>
+@endsection

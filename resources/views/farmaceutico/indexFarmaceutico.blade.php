@@ -8,7 +8,7 @@
         
             <div class="row">
                 <div class="col-12">
-                    <h4 class="masthead-subheading">Opciones</h4>
+                   
                 </div>
                  <div class="col-lg-3 col-12">
                      @can('esFarmaceutico')
@@ -50,7 +50,7 @@
                                     <a href=""><i class="material-icons" style="font-size: 40px">add_box</i></a> 
                                     
                             </div>
-                            <li class="list-group-item"><h6 class="masthead-subheading">Obra Social</h6>
+                            <li class="list-group-item"><h6 class="masthead-subheading">OBRA SOCIAL</h6>
                             <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
                                     <a href="{{ route('obrasocial.index')}}"><i class="material-icons" style="font-size: 40px">pageview</i></a>
                                     <a href="{{ route('obrasocialfarmacia')}}"><i class="material-icons" style="font-size: 40px">add_box</i></a> 
