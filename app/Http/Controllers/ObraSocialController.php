@@ -92,30 +92,38 @@ class ObraSocialController extends Controller
      * Funcion para mostrar las farmacias del usuario farmaceutico logeado,
      * envia el arreglo 
      */
-    public function listarObraSocialFarmacia(){
-        $id_usuario =Auth()->user()->id_usuario;
-        $arrayFarmacias = Farmacia::where("id_usuario","=" , $id_usuario)->get();
+    public function listarObraSocialFarmacia()
+    {
+        $id_usuario = Auth()->user()->id_usuario;
+        $arrayFarmacias = Farmacia::where("id_usuario", "=", $id_usuario)->get();
 
         $arrayObraSocial = ObraSocial::orderBy('nombre_obra_social', 'asc')->get();
-  
+
         return view('obrasocial.cargarObraSocialFarmacia', [
             'arrayFarmacias' => $arrayFarmacias,
             'arrayObraSocial' => $arrayObraSocial,
-            ]);
-    } 
-
-
-    public function agregarObrasocialFarmacia(Request $request) {
-
-            $arrayObrasSociales = $request->id_obra_social;
-            $id_farmacia = $request->id_farmacia;
-
-            foreach ($arrayObrasSociales as $obraSocial) {
-
-                $farmacia = Farmacia::find($id_farmacia);
-                $farmacia->obrasSociales()->attach($obraSocial);
-            }
-            return redirect(route('farmacia.index'));
+        ]);
     }
 
+
+    public function agregarObrasocialFarmacia(Request $request)
+    {
+
+        if ($request->ajax()){
+           
+            $farmacia = Farmacia::where('id_farmacia',$request->farmacia_id)->first();
+            $obs = $farmacia->obrasSociales;
+            return $obs;
+        }
+        
+        $arrayObrasSociales = $request->id_obra_social;
+        $id_farmacia = $request->id_farmacia;
+        $farmacia = Farmacia::find($id_farmacia);
+        $farmacia->obrasSociales()->detach();
+        foreach ($arrayObrasSociales as $idObraSocial) {
+            $obraSocial = ObraSocial::find($idObraSocial);
+            $farmacia->obrasSociales()->attach($obraSocial);
+        }
+        return redirect(route('farmacia.index'));
+    }
 }
