@@ -50,6 +50,12 @@
                                     <a href=""><i class="material-icons" style="font-size: 40px">add_box</i></a> 
                                     
                             </div>
+                            <li class="list-group-item"><h6 class="masthead-subheading">Obra Social</h6>
+                            <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
+                                    <a href="{{ route('obrasocial.index')}}"><i class="material-icons" style="font-size: 40px">pageview</i></a>
+                                    <a href="{{ route('obrasocialfarmacia')}}"><i class="material-icons" style="font-size: 40px">add_box</i></a> 
+                                    
+                            </div>
                         
                         </li>
                         <li class="list-group-item"><h6 class="masthead-subheading">CONTACTAR AL ADMINISTRADOR</h6>
