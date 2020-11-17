@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-12">
                 <div class="shadow p-3 mb-5 backCard rounded"> 
-                        <h3>nombre -> {{ $farmacia->nombre_farmacia }}</h3>
+                        <h3>{{ $farmacia->nombre_farmacia }}</h3>
                         <!-- Masthead Subheading-->
                         <h3 class="masthead-subheading text-center">Editar Farmacia</h3>
                         <p class="lead text-center">Edite los siguientes campos</p>
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <strong><label for="descripcion_farmacia">{{ __('Descripción') }}</label></strong>
                             <textarea class="form-control" name="descripcion_farmacia" type="textarea" placeholder="¡Aqui puede colocar el eslogan de su Farmacia!" @error('descripcion_farmacia') is-invalid @enderror
-                                    name="escripcion_farmacia" value="{{ old('descripcion_farmacia' , $farmacia->descripcion_farmacia ) }}"></textarea>
+                                    name="descripcion_farmacia">{{ old('descripcion_farmacia' , $farmacia->descripcion_farmacia ) }}</textarea>
 
                                 @error('descripcion_farmacia')
                                     <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
                         </div>
                         <div class="form-group">
                             <strong><label for="cuit">{{ __('CUIT') }}</label></strong>
-                            <input type="number" name="cuit" value="{{ old('cuit', $farmacia->descripcion_farmacia) }}" @error('cuit') is-invalid @enderror required class="form-control" >
+                            <input type="number" name="cuit" value="{{ old('cuit', $farmacia->cuit) }}" @error('cuit') is-invalid @enderror required class="form-control" >
                             <small  class="form-text text-muted">Sin espacios ni guiones</small>
                              @error('cuit')
                                     <span class="invalid-feedback" role="alert">

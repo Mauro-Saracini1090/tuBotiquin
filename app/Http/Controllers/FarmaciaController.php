@@ -121,9 +121,10 @@ class FarmaciaController extends Controller
      * @param  \App\Models\Farmacia  $farmacia
      * @return \Illuminate\Http\Response
      */
-    public function edit(Farmacia $farmacia)
-    {
-       return view('farmaceutico.editarFarmacia', ['farmacia' => $farmacia]);
+    public function edit(Farmacia $farmacium)
+    {   
+        $farmacia = $farmacium;
+       return view('farmaceutico.editarFarmacia', compact('farmacia'));
       
     }
 
