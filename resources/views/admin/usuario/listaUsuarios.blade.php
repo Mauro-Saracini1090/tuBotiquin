@@ -1,7 +1,7 @@
 @extends('admin.administrador')
 @section('datos')
 <h3 >Lista de Usuarios</h3>
-<a href="{{ route('usuario.create') }}" class="btn btn-primary float-right my-2">Crear Nuevo Usuario</a>
+<a href="{{ route('usuario.create') }}" class="btn btn-panel float-right my-2">Crear Nuevo Usuario</a>
 <table class="table table-dark">
     <thead>
         <tr>
@@ -23,12 +23,12 @@
                 <td>{{ $usuario->nombre_usuario }}</td>
                 <td>{{ $usuario->email }}</td>
                 <td>
-                    <a href="{{ route('usuario.show', [ $usuario->id_usuario]) }}">Ver</a>
-                    <a href="{{ route('usuario.edit', [ $usuario->id_usuario]) }}">Editar</a>
-                    <a href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $usuario->id_usuario }}">
+                    <a class="btn btn-panel" href="{{ route('usuario.show', [ $usuario->id_usuario]) }}">Ver</a>
+                    <a class="btn btn-panel" href="{{ route('usuario.edit', [ $usuario->id_usuario]) }}">Editar</a>
+                    <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $usuario->id_usuario }}">
                         Borrar
                     </a>
-                    <a class="btn btn-primary" href="{{ route('usuario.rolpermisos', [ $usuario->id_usuario]) }}">Asignar Rol y Permisos</a>
+                    <a class="btn btn-panel" href="{{ route('usuario.rolpermisos', [ $usuario->id_usuario]) }}">Asignar Rol </a>
                 </td>
             </tr>
         @endforeach
@@ -51,7 +51,7 @@
                     @csrf
                     {{-- <input type="hidden" id="id_rol" name="id_rol" value=""> --}}
 
-                    <button type="submit" class="btn btn-primary">Si</button>
+                    <button type="submit" class="btn btn-panel">Si</button>
                 </form>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>

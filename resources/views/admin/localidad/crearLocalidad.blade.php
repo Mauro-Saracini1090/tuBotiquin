@@ -1,7 +1,9 @@
 @extends('admin.administrador')
 
 @section('datos')
-<h3>Cargar Localidad</h3>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
+    <h1 class="h2">Cargar Localidad</h1>
+</div>
 @if($errors->any())
     <div class="alert alert-danger">
         <p>Por favor corrija los siguientes errores de abajo: </p>
@@ -30,8 +32,8 @@
             @endif
 
         </div>
-        <button type="submit" class="btn btn-success mx-1">Cargar Localidad</button>
-        <a href="{{ url()->previous() }}" class="btn btn-primary mx-1">Volver Atras</a>
+        <button type="submit" class="btn btn-panel mx-1">Cargar Localidad</button>
+        <a href="{{ url()->previous() }}" class="btn btn-secondary mx-1">Volver Atras</a>
     </form>
 
 @endsection

@@ -1,8 +1,10 @@
 @extends('admin.administrador')
 
 @section('datos')
-<h3>Lista de Localidades</h3>
-<a href="{{ route('localidad.create') }}" class="btn btn-primary float-right my-2">Cargar nueva localidad</a>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
+    <h1 class="h2">Lista de Localidades</h1>
+</div>
+<a href="{{ route('localidad.create') }}" class="btn btn-panel float-right my-2">Cargar nueva localidad</a>
 <table class="table table-dark">
     <thead>
         <tr>
@@ -18,8 +20,8 @@
                 <td>{{ $localidad->nombre_localidad }}</td>
                 <td>{{ $localidad->codigo_postal }}</td>
                 <td>
-                    <a href="{{ route('localidad.edit', [$localidad->codigo_postal]) }}">Editar</a>
-                    <a href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $localidad->codigo_postal }}">
+                    <a class="btn btn-panel" href="{{ route('localidad.edit', [$localidad->codigo_postal]) }}">Editar</a>
+                    <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $localidad->codigo_postal }}">
                         Borrar
                     </a>
                 </td>
@@ -44,7 +46,7 @@
                     @csrf
                     {{-- <input type="hidden" id="id_rol" name="id_rol" value=""> --}}
 
-                    <button type="submit" class="btn btn-primary">Si</button>
+                    <button type="submit" class="btn btn-panel">Si</button>
                 </form>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>

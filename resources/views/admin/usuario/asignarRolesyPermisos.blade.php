@@ -22,7 +22,7 @@
 
                 </select>
             </div>
-            <div id="caja_permisos">
+            {{-- <div id="caja_permisos">
                 <label for="permisos" class="col-form-label">{{ __('Seleccione Permisos') }}</label>
                 <div id="permisos">
 
@@ -71,12 +71,14 @@
                     </div>
                 </div>
                 @endif
-            @endif
-            <button type="submit" class="btn btn-success mx-1">Cargar Rol y Permisos</button>
+            @endif --}}
+            <button type="submit" class="btn btn-panel m-1">Cargar Rol</button>
+            <a href="{{ route('usuario.index') }}" class="btn btn-secondary m-1">Volver Atras</a>
     </div>
+    
 </div>
 </form>
-<a href="{{ route('usuario.index') }}" class="btn btn-primary">Volver Atras</a>
+
 @endsection
 @section('zona_js')
 <script>

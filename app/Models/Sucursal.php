@@ -20,6 +20,18 @@ class Sucursal extends Model
         'habilitado'
     ];
 
+    public function getFarmacia()
+    {
+        return $this->belongsTo(Farmacia::class,'id_farmacia','id_farmacia');
+    }
+
+     /**
+     * The turnos that belong to the sucursal.
+     */
+    public function getTurnos()
+    {
+        return $this->belongsToMany(Turno::class,'turno_sucursal','sucursal_id','turno_id');
+    }
 
  
 }

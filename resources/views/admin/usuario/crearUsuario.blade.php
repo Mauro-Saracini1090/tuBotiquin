@@ -198,13 +198,14 @@
 
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-panel">
                                 {{ __('Register') }}
                             </button>
+                            <a href="{{ route('usuario.index') }}" class="btn btn-secondary">Volver Atras</a>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('usuario.index') }}" class="btn btn-primary">Volver Atras</a>
+                
             </div>
         </div>
     </div>

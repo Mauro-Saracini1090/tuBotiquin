@@ -18,11 +18,17 @@
     <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+    {{-- <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json"> --}}
     <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
     <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
     <meta name="theme-color" content="#563d7c">
+
+    {{-- fullcalendar --}}
+    <link href='fullcalendar/main.css' rel='stylesheet' />
+    <script src='fullcalendar/main.js'></script>
+    <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
+
 
 
     <style>
@@ -39,6 +45,23 @@
           font-size: 3.5rem;
         }
       }
+      .btn-panel{
+          color: white;
+          background-color:#1abc9c;
+      }
+      .btn-panel:hover{
+          color: black;
+      }
+      #navHeader{
+          background-color: #1abc9c;
+      }
+      #admlogout{
+          color: white;
+      }
+      #admfooter{
+        color: white;
+        background-color: #2c3e50;
+      }
 
     
 
@@ -48,7 +71,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow px-3">
+    <nav id="navHeader" class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow px-3">
        
         <a class="navbar-brand col-4 col-md-3 col-lg-2 mr-0 px-3" href="#">TuBotiquin</a>
         <button class="navbar-toggler col-4 d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,14 +79,14 @@
         </button>
         @auth
 
-                    <div class="badge badge-primary text-wrap mx-2 mb-0">
+                    <div class="badge badge-dark text-wrap mx-2 mb-0">
                         {{ Auth::user()->nombre_usuario }}
                         {{ Auth::user()->getRoles->isNotEmpty() ? Auth::user()->getRoles->first()->nombre_rol : "" }}
                     </div>
                 @endauth
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link mb-1" href="#"
+                <a id="admlogout" class="nav-link btn btn-dark mb-1" href="#"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     Cerrar Sesion
                 </a>
@@ -77,34 +100,36 @@
 
     <div class="container-fluid">
         <div class="row" style="height: 100vh">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block  bg-dark sidebar collapse" style="height: 100vh">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse" style="height: 100vh">
                 <div class="sidebar-sticky pt-3">
                   
                     @auth
                         @can('esAdmin')
                         <ul class="nav flex-column py-2">
                                 <li class="nav-item my-1">
-                                    <a class="nav-link btn btn-success active"
+                                    <a class="nav-link btn-panel"
                                         href="{{ route('homeAdministrador') }}">
-                                        <span data-feather="home"></span>
-                                        Dashboard <span class="sr-only">(current)</span>
+                                        <span></span> Home
                                     </a>
                                 </li>
                                 <li class="nav-item my-1">
-                                    <a href="{{ route('permisos.index') }}"
-                                        class="btn btn-success nav-link ">Permisos</a>
+                                    <a href="{{ route('permisos.index') }}" class="btn-panel nav-link">Permisos</a>
                                 </li>
                                 <li class="nav-item my-1">
                                     <a href="{{ route('roles.index') }}"
-                                        class="nav-link  btn btn-success">Roles</a>
+                                        class="nav-link  btn-panel">Roles</a>
                                 </li>
                                 <li class="nav-item my-1">
                                     <a href="{{ route('usuario.index') }}"
-                                        class="nav-link  btn btn-success">Usuarios</a>
+                                        class="nav-link  btn-panel">Usuarios</a>
                                 </li>
                                 <li class="nav-item my-1">
                                     <a href="{{ route('localidad.index') }}"
-                                        class="nav-link btn btn-success">Localidades</a>
+                                        class="nav-link btn-panel">Localidades</a>
+                                </li>
+                                <li class="nav-item my-1">
+                                    <a href="{{ route('turno.index') }}"
+                                        class="nav-link btn-panel">Asignar Turno</a>
                                 </li>
                         @endcan
                     @endauth
@@ -113,22 +138,23 @@
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                @section('datos')
                 <div
-                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
                     <h1 class="h2">Home Administrador</h1>
 
                 </div>
                 <div class="container bg-light shadow-lg p-3 my-3  bg-white rounded">
-                    @section('datos')
-                    @show
+                   
+                    
                 </div>
-
+                @show
             </main>
 
 
 
 
-            <footer class="footer bg-dark mt-auto py-3 col-md-12">
+            <footer id="admfooter" class="footer mt-auto py-3 col-md-12">
                 <div class="container-fluid">
                     <span class="text-muted">TuBotiquin - 2020</span>
                 </div>
@@ -150,6 +176,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 
+    <script>
+        $(document).ready(function(e){
+            $('.btn-panel').on('mouseenter',function(e){
+                x = e.pageX - $(this).offset().left;
+                y = e.pageY - $(this).offset().top;
+                $(this).find('span').css({top:y, left:x})
+            })
+        })
+        
+    </script>
     @yield('zona_js')
 </body>
 
