@@ -4,8 +4,8 @@
 @section('opcionesFarmaceutico')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 col-12">
-                <div class="shadow p-3 mb-5 backCard rounded"> 
+             <div class=" col-12">
+                <div class="shadow p-3 mb-5 backCard rounded">  
                         <!-- Masthead Subheading-->
                         <h3 class="masthead-subheading text-center">Editar Farmacia</h3>
                         <p class="lead text-center">Edite los siguientes campos</p>
@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <strong><label for="cuit">{{ __('CUIT') }}</label></strong>
                             <input type="number" name="cuit" value="{{ old('cuit', $farmacia->cuit) }}" @error('cuit') is-invalid @enderror required class="form-control" >
-                            <small  class="form-text text-muted">Sin espacios ni guiones</small>
+                            <small  class="form-text text-muted">Sin espacios ni guiones - 8 caracteres mínimo</small>
                              @error('cuit')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
