@@ -124,7 +124,7 @@ class FarmaciaController extends Controller
     public function edit(Farmacia $farmacia)
     {
        return view('farmaceutico.editarFarmacia', ['farmacia' => $farmacia]);
-      
+        
     }
 
     /**
@@ -163,5 +163,7 @@ class FarmaciaController extends Controller
     public function destroy(Farmacia $farmacia)
     {
         //
+        $farmacia->delete();
+        return redirect(route('farmacia.index'));
     }
 }

@@ -11,7 +11,7 @@
                         <h3 class="masthead-subheading text-center">Editar Farmacia</h3>
                         <p class="lead text-center">Edite los siguientes campos</p>
                         
-                        <form  method="POST" action="/farmacia/{{ $farmacia->id_farmacia }}" enctype="multipart/form-data">
+                        <form  method="POST" action="{{  route('farmacia.update' , [ $farmacia->id_farmacia]) }}" enctype="multipart/form-data">
                          @method('PATCH')
                          @csrf
 
@@ -60,7 +60,7 @@
                          <div class="form-group">
                             <div class="d-flex d-flex justify-content-center"> 
                                   <button type="submit" class="btn btn-primary mx-1">Guardar cambios</button>
-                                  <a href="{{ url()->previous() }}" class="btn btn-primary mx-1">Volver Atras</a>
+                                  <a href="{{ url()->previous() }}" class="btn btn-primary mx-1">Volver Atrás</a>
                             </div>
                         </div>
                      </form>   

@@ -23,7 +23,7 @@
                                             <p>CUIT: {{ $farmacia->cuit }}</p>
                                             <hr>
                                             @if($farmacia->habilitada == 1)
-                                                 <span class="text-left text-success">Estado: habilitada </>   
+                                                 <p class="text-left text-success">Estado: habilitada </p>   
                                             @else
                                                 <p class="text-left text-warning">Estado: Deshabilitada </p> 
                                             @endif
@@ -35,19 +35,16 @@
                                                         <img src="{{ asset($farmacia->img_farmacia) }}" width="200" alt="Imagen Logo">
                                                     </figure>
                                             </div>
-                                     </div>
+                                    </div>
                                     @can('esFarmaceutico')
                                         <div class="col-12">
                                             <div class="d-flex justify-content-center">  
                                                     <div class="p-2">    
-                                                        <a href="{{ route('farmacia.edit' , [ $farmacia->id_farmacia]) }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>
+                                                        <a href="{{ route('farmacia.edit' , [$farmacia->id_farmacia]) }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>
                                                     </div>   
                                                     <div class="p-2"> 
-                                                        <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Eliminar Farmacia">delete</i></a>
+                                                         <a href="#" data-toggle="modal" data-target="#deleteModal" data-id_farma="{{ $farmacia->id_farmacia }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Eliminar Farmacia">delete</i></a>
                                                     </div>
-                                                    <div class="p-2">    
-                                                       <!-- <a href="{{ route('farmacia.index') }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Volver atrás">arrow_back</i></a> -->
-                                                    </div>        
                                             </div>
                                         </div> 
                                      @endcan               
@@ -58,4 +55,48 @@
             </div>        
         </div>
     </div>
-@endsection        
+
+    <!-- MODAL DELETE -->
+    <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+        <div class="modal-header">
+            <h4 class="modal-title text-danger" >Eliminar</h4> 
+            <hr>   
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <div class="modal-body p-2">
+                <div class="container p-4">
+                    <h6>¿Está seguro que desea borrar la Farmacia?</h6>
+                    <p>Despúes de esta acción no podrá recuperar los datos</p>
+                </div>
+            </div>
+                <div class="modal-footer m-1">
+                    <form method="POST" action="">
+                        @method('DELETE' )
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Si</button>
+                    </form>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+@endsection
+@section('zona_js')
+<script>
+    $('#deleteModal').on('show.bs.modal', function (event) {
+        var boton = $(event.relatedTarget);
+        var id_farmacia = boton.data('id_farma');
+        var modal = $(this);
+        //modal.find('.modal-footer #id_rol').val(id_rol);
+        //revisar o buscar otra forma
+        modal.find('form').attr('action', 'farmacia/' + id_farmacia);
+    });
+
+</script>
+@endsection
