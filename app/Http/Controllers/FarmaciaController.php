@@ -135,10 +135,10 @@ class FarmaciaController extends Controller
      * @param  \App\Models\Farmacia  $farmacia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Farmacia $farmacia)
+    public function update(Request $request, Farmacia $farmacium)
     {
-
-       
+        $farmacia = $farmacium;
+      
         Request()->validate(([
             'nombre_farmacia' => 'required',
             'cuit' => 'required',
@@ -148,9 +148,18 @@ class FarmaciaController extends Controller
         if($request->descripcion_farmacia != null){
             $farmacia->descripcion_farmacia = $request->descripcion_farmacia;
         }
+        if($request->img_farmacia != null){
+            $img_logo = $request->file('img_farmacia')->store('public/img_farmacias');  
+            $img_farmacia = Storage::url($img_logo);
+            $farmacia->img_farmacia = $img_farmacia;
+        }
+        $farmacia->id_usuario = $farmacia->id_usuario;
+        $farmacia->img_farmacia = $farmacia->img_farmacia;
         $farmacia->nombre_farmacia = $request->nombre_farmacia;
         $farmacia->cuit = $request->cuit;
+        $farmacia->habilitada = $farmacia->habilitada;
         $farmacia->save();
+
         return redirect(route('farmacia.index'));
     
     }
