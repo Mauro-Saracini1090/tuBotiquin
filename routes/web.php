@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
@@ -7,11 +8,11 @@ use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\LocalidadController;
 use App\Http\Controllers\FarmaciaController;
-use App\Http\Controllers\ObraSocialController;
+use App\Http\Controllers\LocalidadController;
+use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\SucursalController;
-
+//use App\Http\Controllers\ObraSocialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +37,7 @@ Route::get('/administrador', function () {
 //})->name('homeFarmaceutico')->middleware('roles:es-farmaceutico');
 
 Auth::routes();
-Route::post('login',  [LoginController::class,'loginPersonalizado']);
+//Route::post('login',  [LoginController::class,'loginPersonalizado']);
 Route::get('register/farmaceutico', [RegisterController::class,'showRegisFarmaceuticoForm'])->name('farmaceutico');
 Route::post('register/farmaceutico', [RegisterController::class,'registroFarmaceutico'])->name('registroFarmaceutico');
 
@@ -55,11 +56,11 @@ Route::post('usuario/rolypermisos',[UsuarioController::class,'almacenarRolesyPer
 Route::resource('roles', RolesController::class)->middleware('roles:es-administrador');
 Route::resource('permisos', PermisosController::class)->middleware('roles:es-administrador');
 Route::resource('localidad', LocalidadController::class)->middleware('roles:es-administrador');
-
+Route::get('farmacias', [FarmaciaController::class,'listarFarmacias'])->name('farmacias');
 Route::resource('farmacia', FarmaciaController::class)->middleware('roles:es-farmaceutico');
+Route::resource('turno', TurnoController::class)->middleware('roles:es-administrador');
 Route::resource('sucursal', SucursalController::class)->middleware('roles:es-farmaceutico');
-Route::resource('obrasocial', ObraSocialController::class)->middleware('roles:es-farmaceutico');
 
-
-Route::get('obrasocialfarmacia', [ObraSocialController::class, 'listarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('obrasocialfarmacia');
-Route::post('obrasocialfarmacia', [ObraSocialController::class, 'agregarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('agregarobrasocialfarmacia');
+//Route::resource('obrasocial', ObraSocialController::class)->middleware('roles:es-farmaceutico');
+//Route::get('obrasocialfarmacia', [ObraSocialController::class, 'listarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('obrasocialfarmacia');
+//Route::post('obrasocialfarmacia', [ObraSocialController::class, 'agregarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('agregarobrasocialfarmacia');
