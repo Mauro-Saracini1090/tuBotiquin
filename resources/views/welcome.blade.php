@@ -16,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/tuBotiquin/public/css/styles.css" rel="stylesheet" />
+         <link href="/tubotiquin/tuBotiquin/public/css/styles.css" rel="stylesheet">
          <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
     </head>
     <body id="page-top">
