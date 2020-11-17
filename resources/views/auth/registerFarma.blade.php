@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <strong><label for="nombre_usuario">{{ __('Nombre de Usuario *') }}</label></strong>
                                 <input id="nombre_usuario" type="text" class="form-control @error('nombre_usuario') is-invalid @enderror" 
-                                        name="nombre_usuario" value="{{ old('nombre_usuario') }}" required autocomplete="nombre_usuario" autofocus placeholder="Ingrese un nombre de usuario">
+                                        name="nombre_usuario" value="{{ old('nombre_usuario') }}" required autocomplete="nombre_usuario" autofocus placeholder="ej: nombra.apellido">
 
                                 @error('nombre_usuario')
                                     <span class="invalid-feedback" role="alert">
@@ -94,7 +94,7 @@
                             <div class="form-group">
                                 <strong><label for="cuil">{{ __('CUIL *') }}</label></strong>
                                 <input id="cuil" type="text" class="form-control @error('cuil') is-invalid @enderror" name="cuil" value="{{ old('cuil') }}"  autocomplete="cuil" autofocus required >
-                                <small  class="form-text text-muted">Sin espacios ni guiones</small>    
+                                <small  class="form-text text-muted">Sin espacios ni guiones, 8 caracteres mínimo</small>    
                                 @error('cuil')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -106,7 +106,7 @@
                             <div class="form-group ">
                                 <strong><label for="cuit">{{ __('CUIT *') }}</label></strong>
                                 <input id="cuit" type="text" class="form-control @error('cuit') is-invalid @enderror" name="cuit" value="{{ old('cuit') }}"  autocomplete="cuit" autofocus required >
-                                <small  class="form-text text-muted">Sin espacios ni guiones</small>
+                                <small  class="form-text text-muted">Sin espacios ni guiones, 8 caracteres mínimo</small>
                                 @error('cuit')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -118,7 +118,7 @@
                             <div class="form-group ">
                                 <strong><label for="dni">{{ __('DNI *') }}</label></strong>
                                 <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni') }}"  autocomplete="dni" autofocus required >
-                                <small  class="form-text text-muted">Sin puntos</small>
+                                <small  class="form-text text-muted">Sin puntos, 8 caracteres mínimo</small>
 
                                 @error('dni')
                                     <span class="invalid-feedback" role="alert">
