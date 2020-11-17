@@ -32,6 +32,10 @@ Route::get('/administrador', function () {
     return view('admin.administrador');
 })->name('homeAdministrador')->middleware('roles:es-administrador');
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b6110b669e999d70fbe82a315a6ffab2cb5644e5
 Auth::routes();
 Route::post('login',  [LoginController::class,'loginPersonalizado']);
 Route::get('register/farmaceutico', [RegisterController::class,'showRegisFarmaceuticoForm'])->name('farmaceutico');
@@ -60,4 +64,8 @@ Route::resource('sucursal', SucursalController::class)->middleware('roles:es-far
 
 Route::resource('obrasocial', ObraSocialController::class)->middleware('roles:es-farmaceutico');
 Route::get('obrasocialfarmacia', [ObraSocialController::class, 'listarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('obrasocialfarmacia');
+<<<<<<< HEAD
 Route::post('obrasocialfarmacia', [ObraSocialController::class, 'agregarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('agregarobrasocialfarmacia');
+=======
+Route::post('obrasocialfarmacia', [ObraSocialController::class, 'agregarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('agregarobrasocialfarmacia');
+>>>>>>> b6110b669e999d70fbe82a315a6ffab2cb5644e5
