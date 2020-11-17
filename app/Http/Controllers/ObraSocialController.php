@@ -18,7 +18,7 @@ class ObraSocialController extends Controller
     {
         //
         //Obtengo todas las localidades cargadas en la DB
-        $arrayObraSocial = ObraSocial::orderBy('nombre_obra_social', 'asc')->get();
+        $arrayObraSocial = ObraSocial::orderBy('nombre_obra_social', 'asc')->simplePaginate(5);
         return view('obrasocial.indexobrasocial', ['arrayObraSocial' => $arrayObraSocial]);
     }
 

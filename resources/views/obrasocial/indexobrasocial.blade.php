@@ -4,16 +4,24 @@
 @section('opcionesFarmaceutico')
     <div class="container">
             <div class="col-12 ">
-                <div class="shadow bg-white rounded"> 
-                    <div class="col-md-12 p-3 mb-5 fondo text-left">
-                        @foreach ($arrayObraSocial as $obrasocial)
-                            <h4 class="">{{ $obrasocial->Nombre_obra_social }}</h4>
-                            <p> {{ $obrasocial->Telefono_obra_Social  }}</p> 
-                            <hr>
-                        @endforeach
-                    </div>
-                </div>             
-            
-        </div>
+             
+                @foreach ($arrayObraSocial as $obrasocial)
+
+                    <div class="shadow bg-white rounded"> 
+                        <div class="p-0 mb-2 fondo text-left">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><h4 class="text-secondary">{{ $obrasocial->Nombre_obra_social }}</h4></li>
+                                <li class="list-group-item"><p> Teléfono de contacto: {{ $obrasocial->Telefono_obra_Social  }}</p></li>
+                                <li class="list-group-item"><p> E-mail: </p> </li>
+                            </ul>
+                        </div>
+                    </div>             
+                @endforeach
+             </div>
+     
+    <!-- Pagination for 6 elements -->
+         <div class="d-flex d-flex justify-content-center mt-4"> 
+                 {{ $arrayObraSocial->links() }}
+         </div>
     </div>         
 @endsection
