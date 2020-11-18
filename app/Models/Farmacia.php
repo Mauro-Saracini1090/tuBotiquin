@@ -18,6 +18,7 @@ class Farmacia extends Model
         'descripcion_farmacia',
         'cuit',
         'habilidata',
+        'borrado_logico_farmacia',
     ];
 
     // Para obtener el dueno de la farmacia
