@@ -25,7 +25,7 @@ class FarmaciaController extends Controller
     {
         $id_usuario = auth()->user()->id_usuario;
         $arrayFarmacias = array();
-        $arrayFarmacias = Farmacia::where("id_usuario", "=", $id_usuario)->get();
+        $arrayFarmacias = Farmacia::where("id_usuario", "=", $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
         //dd($arrayFarmacias);
 
        if(!(count($arrayFarmacias) >= 0)){
@@ -38,8 +38,8 @@ class FarmaciaController extends Controller
     {
         //Se obtienen todas las farmacias en estado habilitado = 1
         //Se paginan de a 6 elementos para ser mostrados en la vista
-        $farmaciasPaginate = Farmacia::where("habilitada", "=", 1)->simplePaginate(6);
-        $arrayFarmacias = Farmacia::where("habilitada", "=", 1)->get();
+        $farmaciasPaginate = Farmacia::where("habilitada", "=", 1)->where("borrado_logico_farmacia", "=", "0")->simplePaginate(6);
+        $arrayFarmacias = Farmacia::where("habilitada", "=", 1)->where("borrado_logico_farmacia", "=", "0")->get();
 
         return view('farmacia.farmacias', [
             'arrayFarmaciasPaginate' => $farmaciasPaginate,
@@ -77,6 +77,7 @@ class FarmaciaController extends Controller
 
         // Crear una nueva instacia de Farmacia y la guarda en la DB
         $habilitada = 0; // FLAG deshabilitada por defecto
+        $borado_logico = 0; // FALG - False por defecto, se cambia a verdadero por el admin
         $id_usuario = auth()->user()->id_usuario;
         
         $farmacia = new Farmacia();
@@ -90,6 +91,7 @@ class FarmaciaController extends Controller
         $farmacia->descripcion_farmacia = $request->descripcion_farmacia;
         $farmacia->cuit = $request->cuit;
         $farmacia->habilitada = $habilitada;
+        $farmacia->borrado_logico_farmacia = $borado_logico;
         $farmacia->save();
 
              
@@ -170,8 +172,24 @@ class FarmaciaController extends Controller
      * @param  \App\Models\Farmacia  $farmacia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Farmacia $farmacia)
+    public function destroy(Farmacia $farmacium)
     {
-        //
+        $farmacia = $farmacium;     
+        $farmacia->borrado_logico_farmacia = 1;
+        $farmacia->save();      
+        
+        return redirect(route('farmacia.index'));
     }
+    
+    
+
+    /**
+     * 
+     */
+    public function borradoLogico(Farmacia $farmacium) 
+    {
+        
+    
+    }
+
 }
