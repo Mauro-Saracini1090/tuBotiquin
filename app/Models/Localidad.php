@@ -12,6 +12,11 @@ class Localidad extends Model
     protected $table = 'localidad';
     protected $primaryKey = 'codigo_postal';
 
+    protected $fillable = [
+        'nombre_localidad',
+
+    ]; 
+
     /**
      * Get the Usuario para una Localidad.
      */
