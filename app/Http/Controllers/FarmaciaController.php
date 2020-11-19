@@ -181,15 +181,6 @@ class FarmaciaController extends Controller
         return redirect(route('farmacia.index'))->with('estado_delete','Su Farmacia se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');
     }
     
-    
 
-    /**
-     * 
-     */
-    public function borradoLogico(Farmacia $farmacium) 
-    {
-        
-    
-    }
 
 }
