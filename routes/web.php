@@ -57,6 +57,6 @@ Route::get('farmacias', [FarmaciaController::class,'listarFarmacias'])->name('fa
 Route::resource('turno', TurnoController::class)->middleware('roles:es-administrador');
 Route::resource('sucursal', SucursalController::class)->middleware('roles:es-farmaceutico');
 
-Route::resource('obrasocial', ObraSocialController::class)->middleware('roles:es-farmaceutico');
+Route::resource('obrasocial', ObraSocialController::class)->middleware('roles:es-farmaceutico,es-administrador');
 Route::get('obrasocialfarmacia', [ObraSocialController::class, 'listarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('obrasocialfarmacia');
 Route::post('obrasocialfarmacia', [ObraSocialController::class, 'agregarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('agregarobrasocialfarmacia');
