@@ -95,7 +95,7 @@ class ObraSocialController extends Controller
     public function listarObraSocialFarmacia()
     {
         $id_usuario = Auth()->user()->id_usuario;
-        $arrayFarmacias = Farmacia::where("id_usuario", "=", $id_usuario)->get();
+        $arrayFarmacias = Farmacia::where("id_usuario", "=", $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
 
         $arrayObraSocial = ObraSocial::orderBy('nombre_obra_social', 'asc')->get();
 
