@@ -15,18 +15,15 @@
                         
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item "><h6 class="masthead-subheading">FARMACIA</h6>
-                                <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
-                                    <a href="{{ route('farmacia.create') }}"> <i class=" Medium material-icons " style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Agregar nueva Farmacia">add_box</i></a>
-                                    <a href="{{ route('verfarmacia') }}"><i class="material-icons" style="font-size: 42px" data-toggle="tooltip" data-placement="left" title="Ver Farmacia">pageview</i></a>
-                                    <!--<a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>-->
-
+                                <div class="d-flex d-flex justify-content-left pb-2 ml-3">                             
+                                  <a href="{{ route('farmacia.create') }}"> <i class=" Medium material-icons " style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Agregar nueva Farmacia">add_box</i></a>
+                                  <a href="{{ route('verfarmacia') }}"><i class="material-icons" style="font-size: 42px" data-toggle="tooltip" data-placement="left" title="Ver Farmacia">pageview</i></a>
                                 <div>
                             </li>
                         <li class="list-group-item"><h6 class="masthead-subheading">SUCURSAL</h6>
                             <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
                                     <a href={{ route ('sucursal.create') }}><i class=" Medium material-icons " style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Agregar nueva Sucursal">add_box</i></a> 
                                     <a href="{{ route ('sucursal.index') }}"><i class="material-icons" style="font-size: 42px">pageview</i></a>
-                                    <!--<a href=""><i class="material-icons" style="font-size: 40px">edit</i></a>-->
                             <div>        
                         </li>
                         <li class="list-group-item"><h6 class="masthead-subheading">PEDIDOS</h6>
