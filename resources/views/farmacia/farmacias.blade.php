@@ -40,7 +40,13 @@
                                     <h4 class="card-title"> {{ $farmaciaPaginate->nombre_farmacia }}</h4>
                                     <p class="font-italic">{{ $farmaciaPaginate->descripcion_farmacia }}</p> 
                                     <hr>
-                                    <a href="{{ route ('farmaciaSucursal', ['farmacia' => $farmaciaPaginate->id_farmacia ]) }}" class="btn btn-link">Ver sucursales</a>
+                                    <form method="POST" action="{{ route('farmaciaSucursal')}}">
+                                     @csrf  
+                                       <input type="hidden" name="id_farmacia" value= {{ $farmaciaPaginate->id_farmacia }}>
+                                      <button type="submit" class="btn btn-link mx-2">
+                                            {{ __('Ver Sucursales') }}
+                                     </button>    
+                                    </form>
                                 </div>
                         </div>
                     </div> 
