@@ -29,8 +29,10 @@
                         <!-- Mostrar primero la sede central -->
                         @if(count($arraySucursales) > 0 )
                             <h4 class="text-secondary  m-3">Nuestras sucursales</h4>
+                            <hr>
                         @else
-                            <h4 class="text-secondary  m-3">Nuestra sucursal</h4>    
+                            <h4 class="text-secondary  m-3">Nuestra sucursal</h4>
+                            <hr>    
                         @endif       
                         @foreach ($arraySucursales as  $sucursal)
                            
