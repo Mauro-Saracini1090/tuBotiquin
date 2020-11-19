@@ -64,11 +64,24 @@
                         @endforeach
 
                         <!-- Obra Sociales -->
+                        @if( count($arrayObraSociales) >= 0 )
                          <div class="row">
                             <div class="col-12">
                                 <h5 class="text-secondary  m-3">Obras Sociales</h5>
+                                     <ul class="list-group list-group-flush">
+                                @foreach($arrayObraSociales as $obraSocial)
+                                        <li class="list-group-item">{{$obraSocial->Nombre_obra_social }}</li>           
+                                @endforeach
+                                 </ul>
                             </div>
                          </div>
+                        @else
+                         <div class="row">
+                            <div class="col-12">
+                                <h5 class="text-secondary  m-3">No hay Obras Sociales cargadas</h5>
+                            </div>
+                         </div>
+                        @endif  
             
                 </div>
              </div>
