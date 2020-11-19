@@ -27,7 +27,7 @@
                                                 <p>Cufe {{ $sucursal->cufe_sucursal }}</p> 
                                                 <p>Email: {{ $sucursal->email_sucursal }}</p>
                                                 <p>Teléfono: {{ $sucursal->telefono_sucursal }}</p> 
-
+                                                <p>Dirección: {{$sucursal->direccion_sucursal }} </p>
                                                 @if($sucursal->habilitado == 1)
                                                     <span class="text-left text-success">Estado: habilitada </p>   
                                                 @else

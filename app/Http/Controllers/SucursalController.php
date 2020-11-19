@@ -52,6 +52,7 @@ class SucursalController extends Controller
             'cufe_sucursal' => 'required',
             'email_sucursal' => 'required | email',
             'telefono_sucursal' => 'required',
+            'direccion_sucursal' => 'required',
             ]));
     
             // Crear una nueva instacia de Farmacia y la guarda en la DB
@@ -67,6 +68,7 @@ class SucursalController extends Controller
             $sucursal->cufe_sucursal = $request->cufe_sucursal;
             $sucursal->email_sucursal = $request->email_sucursal;
             $sucursal->telefono_sucursal  = $request->telefono_sucursal;
+            $sucursal->direccion_sucursal = $request->direccion_sucursal;
             $sucursal->habilitado = $habilitada;
             $sucursal->borrado_logico_sucursal = $borrado_logico_sucursal;
             $sucursal->save();
@@ -112,6 +114,7 @@ class SucursalController extends Controller
             'cufe_sucursal' => 'required',
             'email_sucursal' => 'required|email',
             'telefono_sucursal' => 'required', 
+            'direccion_sucursal' => 'required',
         ]));
 
         $sucursal->id_sucursal = $sucursal->id_sucursal;
@@ -120,7 +123,8 @@ class SucursalController extends Controller
         $sucursal->descripcion_sucursal = $request->descripcion_sucursal;
         $sucursal->cufe_sucursal = $request->cufe_sucursal;
         $sucursal->email_sucursal = $request->email_sucursal;
-        $sucursal->telefono_sucursal = $request->telefono_sucursal;   
+        $sucursal->telefono_sucursal = $request->telefono_sucursal;
+        $sucursal->direccion_sucursal = $request->direccion_sucursal;   
         //campso que nose pueden modificar    
         $sucursal->habilitado = $sucursal->habilitado;
         $sucursal->borrado_logico_sucursal = $sucursal->borrado_logico_sucursal;

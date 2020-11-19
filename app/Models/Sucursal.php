@@ -17,6 +17,7 @@ class Sucursal extends Model
         'cufe_sucursal',
         'email_sucursal',
         'telefono_sucural',
+        'direccion_sucursal',
         'habilitado',
         'borrado_logico_sucursal',
     ];

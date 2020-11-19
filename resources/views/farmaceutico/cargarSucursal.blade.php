@@ -44,7 +44,7 @@
                          <div class="form-group">
                             <strong><label  for="cufe_sucursal">{{ __('Cufe sucursal') }}</label></strong>
                             <input type="text" name="cufe_sucursal" value="{{ old('cufe_sucursal') }}" @error('cufe_sucursal') is-invalid @enderror required class="form-control">
-                            <small  class="form-text text-muted">Sin espacios ni guiones</small>
+                            <small  class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo</small>
 
                                  @error('cufe_sucursal')
                                     <span class="invalid-feedback" role="alert">
@@ -66,9 +66,21 @@
                          <!-- TELEFONO -->        
                          <div class="form-group">
                             <strong><label for="telefono_sucursal">{{ __('Teléfono') }}</label></strong>
-                            <input type="text" name="telefono_sucursal" value="{{ old('telefono_sucursal') }}" @error('telefono_sucursal') is-invalid @enderror required class="form-control" >
-                            <small  class="form-text text-muted">Sin espacios ni guiones</small>
+                            <input type="text" name="telefono_sucursal" value="{{ old('telefono_sucursal') }}" @error('telefono_sucursal') is-invalid @enderror placeholder="Ejemplo: 29844586958" required class="form-control" >
+                            <small  class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo</small>
                                  @error('telefono_sucursal')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+                        <!-- Direccion -->
+                        <div class="form-group">
+                            <strong><label for="direccion_sucursal">{{ __('Dirección *') }}</label></strong>
+                        <input type="text" name="direccion_sucursal" value="{{ old('direccion_sucursal') }}" @error('direccion_sucursal') is-invalid @enderror placeholder="Ejemplo: Entre Av. Libertad y San Martin n° 154" required class="form-control" >
+                            <small  class="form-text text-muted">Calle y número</small>
+
+                                @error('direccion_sucursal')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
