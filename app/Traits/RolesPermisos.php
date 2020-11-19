@@ -12,17 +12,18 @@ trait RolesPermisos
 {
     public function getRoles()
     {
-        return $this->belongsToMany(Role::class,'usuario_roles','usuario_id','rol_id');
+        return $this->belongsToMany(Role::class, 'usuario_roles', 'usuario_id', 'rol_id');
     }
 
     public function getPermisos()
     {
-        return $this->belongsToMany(Permiso::class,'usuario_permisos','usuario_id','permiso_id');
+        return $this->belongsToMany(Permiso::class, 'usuario_permisos', 'usuario_id', 'permiso_id');
     }
 
-    public function tieneRol($rol){
+    public function tieneRole($rol)
+    {
 
-        if ($this->getRoles->contains('slug_rol',$rol)){
+        if ($this->getRoles->contains('slug_rol', $rol)) {
             return true;
         }
         return false;

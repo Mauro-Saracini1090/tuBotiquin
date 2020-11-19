@@ -16,6 +16,9 @@ class SucursalController extends Controller
     public function index()
     {
         //
+        $farmacias= Farmacia::all();
+        $sucursales= Sucursal::all();
+        return view ('farmaceutico.listadoSucursal',compact('farmacias','sucursales'));
     }
     
     /**

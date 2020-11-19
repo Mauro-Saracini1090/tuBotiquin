@@ -25,7 +25,7 @@
                         <li class="list-group-item"><h6 class="masthead-subheading">SUCURSAL</h6>
                             <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
                                     <a href={{ route ('sucursal.create') }}><i class=" Medium material-icons " style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Agregar nueva Sucursal">add_box</i></a> 
-                                    <a href=""><i class="material-icons" style="font-size: 42px">pageview</i></a>
+                                    <a href="{{ route ('sucursal.index') }}"><i class="material-icons" style="font-size: 42px">pageview</i></a>
                                     <!--<a href=""><i class="material-icons" style="font-size: 40px">edit</i></a>-->
                             <div>        
                         </li>

@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Dashboard Template · Bootstrap</title>
+    <title>Panel Administrador</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
 
@@ -73,8 +73,7 @@
       #sidebarMenu{
           height: 108vh;
       }
-
-    
+      
 
     </style>
     <!-- Custom styles for this template -->
@@ -141,6 +140,10 @@
                                 <li class="nav-item my-1">
                                     <a href="{{ route('turno.index') }}"
                                         class="nav-link btn-panel">Asignar Turno</a>
+                                </li>
+                                <li class="nav-item my-1">
+                                    <a href="{{ route('obrasocial.index') }}"
+                                        class="nav-link btn-panel">Agregar Obra Social</a>
                                 </li>
                         @endcan
                     @endauth

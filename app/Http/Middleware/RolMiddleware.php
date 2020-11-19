@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class RolMiddleware
 {
-
+    use RolesPermisos;
     /**
      * Handle an incoming request.
      *
@@ -29,10 +29,9 @@ class RolMiddleware
         //$roles = array_slice(func_get_args(),2);
 
         foreach ($roles as $rol) {
-            if (!(auth()->user() == null)) {
-                if (auth()->user()->tieneRol($rol)) {
-                    return $next($request);
-                }
+
+            if (auth()->user()->tieneRole($rol)){
+                return $next($request);
             }
         }
 

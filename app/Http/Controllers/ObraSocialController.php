@@ -6,6 +6,7 @@ use App\Models\ObraSocial;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Farmacia;
+use Illuminate\Support\Facades\Gate;
 
 class ObraSocialController extends Controller
 {
@@ -18,6 +19,11 @@ class ObraSocialController extends Controller
     {
         //
         //Obtengo todas las localidades cargadas en la DB
+        if(\auth()->user()->getRoles->contains('slug_rol','es-administrador')){
+            $arrayObraSocial = ObraSocial::simplePaginate(5);
+            return view('admin.obrasocial.index', ['arrayObraSocial' => $arrayObraSocial]);
+        }
+
         $arrayObraSocial = ObraSocial::orderBy('nombre_obra_social', 'asc')->simplePaginate(5);
         return view('obrasocial.indexobrasocial', ['arrayObraSocial' => $arrayObraSocial]);
     }
@@ -30,6 +36,8 @@ class ObraSocialController extends Controller
     public function create()
     {
         //
+        Gate::authorize('esAdmin');
+        return view('admin.obrasocial.create');
     }
 
     /**
@@ -41,6 +49,17 @@ class ObraSocialController extends Controller
     public function store(Request $request)
     {
         //
+        Gate::authorize('esAdmin');
+        Request()->validate(([
+            'Nombre_obra_social' => 'required',
+            'Telefono_obra_Social' => 'required|numeric',
+
+        ]));
+            $obrasocial = new ObraSocial;
+            $obrasocial->Nombre_obra_social = $request->Nombre_obra_social;
+            $obrasocial->Telefono_obra_Social = $request->Telefono_obra_Social;
+            $obrasocial->save();
+            return redirect(route('obrasocial.index'));
     }
 
     /**
@@ -49,7 +68,7 @@ class ObraSocialController extends Controller
      * @param  \App\Models\ObraSocial  $obraSocial
      * @return \Illuminate\Http\Response
      */
-    public function show(ObraSocial $obraSocial)
+    public function show(ObraSocial $obrasocial)
     {
         //
     }
@@ -60,9 +79,11 @@ class ObraSocialController extends Controller
      * @param  \App\Models\ObraSocial  $obraSocial
      * @return \Illuminate\Http\Response
      */
-    public function edit(ObraSocial $obraSocial)
+    public function edit(ObraSocial $obrasocial)
     {
         //
+        Gate::authorize('esAdmin');
+        return view('admin.obrasocial.edit', compact('obrasocial'));
     }
 
     /**
@@ -72,9 +93,20 @@ class ObraSocialController extends Controller
      * @param  \App\Models\ObraSocial  $obraSocial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ObraSocial $obraSocial)
+    public function update(Request $request, ObraSocial $obrasocial)
     {
         //
+        Gate::authorize('esAdmin');
+        Request()->validate(([
+            'Nombre_obra_social' => 'required',
+            'Telefono_obra_Social' => 'required|numeric',
+
+        ]));
+            // Recibe una instanacia $localidad y procede a guardar los valores
+            $obrasocial->Nombre_obra_social = $request->Nombre_obra_social;
+            $obrasocial->Telefono_obra_Social = $request->Telefono_obra_Social;
+            $obrasocial->save();
+            return redirect(route('obrasocial.index'));
     }
 
     /**
@@ -83,9 +115,13 @@ class ObraSocialController extends Controller
      * @param  \App\Models\ObraSocial  $obraSocial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ObraSocial $obraSocial)
+    public function destroy(ObraSocial $obrasocial)
     {
         //
+        Gate::authorize('esAdmin');
+       $obrasocial->farmacias()->detach();
+       $obrasocial->delete();
+       return redirect(route('obrasocial.index'));
     }
 
     /**
