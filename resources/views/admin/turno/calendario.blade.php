@@ -48,7 +48,7 @@
                             <input name="arrSu[]" class="form-check-input" type="checkbox" value="{{ $sucursal->id_sucursal}}" id="{{$sucursal->id_sucursal}}">
                             <label class="form-check-label" for="defaultCheck1">
                                 {{ $sucursal->getFarmacia->nombre_farmacia }} - 
-                                {{ $sucursal->Descripcion_sucursal }} - Direccion
+                                {{ $sucursal->descripcion_sucursal }} - Direccion
                             </label>
                         </div>
                     @endforeach
@@ -110,7 +110,7 @@
                         @if("{{$turnoSuc->fecha_turno}}" == "{{$turno->fecha_turno}}")
                             
                                 {
-                                title  : '{{$sucursal->Descripcion_sucursal}}',
+                                title  : '{{$sucursal->descripcion_sucursal}}',
                                 start  : '{{$turnoSuc->fecha_turno}}',
                                 },
                         @endif
