@@ -69,6 +69,41 @@
                     
                     </div>
                     <div class="col-lg-8 col-12">
+                            <!-- para mostrar los alert -->
+                            @if(session()->has('estado_create'))
+                                <div class="alert alert-primary alert-dismissible fade show focus" role="alert">
+                                    <h5 class="alert-heading pb-4">Registro Exitoso</h5>
+                                    <strong>{{ session()->get('estado_create') }}</strong>
+                                    <br>
+                                    <hr>
+                                    <p class="text-right">Equipo TuBotiquín</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @elseif(session()->has('estado_update'))
+                                <div class="alert alert-primary alert-dismissible fade show focus" role="alert">
+                                    <h5 class="alert-heading pb-4">Actualización Exitosa</h5>
+                                    <strong>{{ session()->get('estado_update') }}</strong>
+                                    <br>
+                                    <hr>
+                                    <p class="text-right">Equipo TuBotiquín</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @elseif(session()->has('estado_delete'))
+                                <div class="alert alert-primary alert-dismissible fade show focus" role="alert">
+                                    <h5 class="alert-heading pb-4">Borrado Exitoso</h5>
+                                    <strong>{{ session()->get('estado_delete') }}</strong>
+                                    <br>
+                                    <hr>
+                                    <p class="text-right">Equipo TuBotiquín</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>    
+                            @endif
                             @yield('opcionesFarmaceutico')
                     </div>        
                  @endcan
