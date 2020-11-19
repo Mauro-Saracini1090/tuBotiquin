@@ -95,7 +95,7 @@ class FarmaciaController extends Controller
         $farmacia->save();
 
              
-        return redirect(route('farmacia.index'));
+        return redirect(route('farmacia.index'))->with('estado_create','Su Farmacia se registró correctamente y será evaluada a la brevedad por el Administrador para verificar los datos.');
     }
     
     //public function farmaciabuscar($nombreFarmacia)
@@ -162,7 +162,7 @@ class FarmaciaController extends Controller
         $farmacia->habilitada = $farmacia->habilitada;
         $farmacia->save();
 
-        return redirect(route('farmacia.index'));
+        return redirect(route('farmacia.index'))->with('estado_update','Los cambios se registraron correctamente en la plataforma.');
     
     }
 
@@ -178,7 +178,7 @@ class FarmaciaController extends Controller
         $farmacia->borrado_logico_farmacia = 1;
         $farmacia->save();      
         
-        return redirect(route('farmacia.index'));
+        return redirect(route('farmacia.index'))->with('estado_delete','Su Farmacia se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');
     }
     
     
