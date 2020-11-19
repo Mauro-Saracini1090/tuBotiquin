@@ -31,7 +31,7 @@ class SucursalController extends Controller
     public function create()
     {
         $id_usuario = auth()->user()->id_usuario; 
-        $arrayFarmacias = Farmacia::where('id_usuario', "=" , $id_usuario)->get();
+        $arrayFarmacias = Farmacia::where('id_usuario', "=" , $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
     
         return view('farmaceutico.cargarSucursal' , ['arrayFarmacias' => $arrayFarmacias ]); 
     }
@@ -71,7 +71,7 @@ class SucursalController extends Controller
             $sucursal->borrado_logico_sucursal = $borrado_logico_sucursal;
             $sucursal->save();
     
-            return redirect(route('farmacia.index'));
+            return redirect(route('farmacia.index'))->with('estado_create','Su Sucursal se registró correctamente y será evaluada a la brevedad por el Administrador para verificar los datos.');
     }
 
     /**
@@ -125,7 +125,7 @@ class SucursalController extends Controller
         $sucursal->habilitado = $sucursal->habilitado;
         $sucursal->borrado_logico_sucursal = $sucursal->borrado_logico_sucursal;
         $sucursal->save();
-        return redirect(route('farmacia.index'));
+        return redirect(route('farmacia.index'))->with('estado_update','Los cambios se registraron correctamente en la plataforma.');
          
        
     }
@@ -142,7 +142,7 @@ class SucursalController extends Controller
         $sucursal->borrado_logico_sucursal = 1;
         $sucursal->save();      
         
-        return redirect(route('farmacia.index'));
+        return redirect(route('farmacia.index'))->with('estado_delete','Su Sucursal se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');;
     }
 
     public function buscarFarmaciaSucursal(Request $request ){
