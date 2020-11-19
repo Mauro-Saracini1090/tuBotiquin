@@ -22,6 +22,7 @@ class CreateSucursalTable extends Migration
             $table->string('email_sucursal');
             $table->integer('telefono_sucursal');
             $table->boolean('habilitado');
+            $table->boolean('borrado_logico_sucursal');  
             
             $table->timestamps();
 
