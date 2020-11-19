@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Sucursal;
 use App\Models\Farmacia;
+use App\Models\ObraSocial;
 use Illuminate\Http\Request;
 
 
@@ -16,7 +17,8 @@ class SucursalController extends Controller
     public function index()
     {
         //
-        $farmacias= Farmacia::all();
+        $id_usuario = auth()->user()->id_usuario;
+        $farmacias= Farmacia::where("id_usuario", "=", $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
         $sucursales= Sucursal::all();
         return view ('farmaceutico.listadoSucursal',compact('farmacias','sucursales'));
     }
@@ -138,10 +140,16 @@ class SucursalController extends Controller
         $farmacia = Farmacia::find($farmacia);
         $arraySucursales = Sucursal::where("id_farmacia", "=" , $farmacia->id_farmacia)->get();
 
-        return view('farmacia.verFarmaciaySucursal' , [
-                 'arraySucursales' => $arraySucursales,
-                 'farmacia' => $farmacia,
-                 ]); 
+                 
+        $arrayObraSociales = $farmacia->obrasSociales();
+
+       
+        dd($arrayObraSociales);
+        //return view('farmacia.verFarmaciaySucursal' , [
+        //         'arraySucursales' => $arraySucursales,
+        //         'farmacia' => $farmacia,
+        //         'arrayObraSociales' => $arrayObraSociales,
+        //         ]);  
     }
 
 
