@@ -125,8 +125,13 @@ class SucursalController extends Controller
         
     }
 
-    public function farmaciaSucursal($farmacia){
 
+    /**
+     * 
+     */
+    public function farmaciaSucursal(Request $request){
+
+        $farmacia = $request->id_farmacia;
         $farmacia = Farmacia::find($farmacia);
         $arraySucursales = Sucursal::where("id_farmacia", "=" , $farmacia->id_farmacia)->get();
 
