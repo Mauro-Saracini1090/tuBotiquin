@@ -53,7 +53,7 @@ class HomeController extends Controller
         
         
         //dd($arrSucursalesTurnoSiguiente);
-        return view('welcome', compact('sucursalesTurno','arrSucursalesTurnoSiguiente'));
+        return view('layout.contenidoPrincipal', compact('sucursalesTurno','arrSucursalesTurnoSiguiente'));
     }
 
     /**
