@@ -110,7 +110,7 @@
                         @if("{{$turnoSuc->fecha_turno}}" == "{{$turno->fecha_turno}}")
                             
                                 {
-                                title  : '{{$sucursal->descripcion_sucursal}}',
+                                title  : '{{$sucursal->getFarmacia->nombre_farmacia}}{{$sucursal->direccion_sucursal}}',
                                 start  : '{{$turnoSuc->fecha_turno}}',
                                 },
                         @endif
