@@ -9,7 +9,7 @@
                         <div class="row">
                             <div class="col-8">
                                <h2 class="text-secondary  m-3"> {{ $farmacia->nombre_farmacia }}</h2>
-                                <p class="font-italic m-3">{{ $farmacia->descripcion_farmacia }}</p>
+                                <p class="font-italic m-3"> <?php echo $farmacia->descripcion_farmacia ?> </p>
                             </div>
                             <div class="col-4">
                                 <img class="card-img-top" src="{{ asset($farmacia->img_farmacia) }}" alt="Logotipo" width="100" height="150">
@@ -21,9 +21,9 @@
                                 @if ($sucursal->getFarmacia->id_farmacia == $farmacia->id_farmacia)
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-8">
+                                        <div class="col-10">
                                             
-                                                <p>Descripcion: {{ $sucursal->descripcion_sucursal}}</p>
+                                                <p>Descripcion:  <?php echo $sucursal->descripcion_sucursal ?> </p>
                                                 <p>Cufe {{ $sucursal->cufe_sucursal }}</p> 
                                                 <p>Email: {{ $sucursal->email_sucursal }}</p>
                                                 <p>Teléfono: {{ $sucursal->telefono_sucursal }}</p> 
@@ -35,7 +35,7 @@
                                                 @endif 
                                                 
                                         </div>
-                                        <div class="col-4 text-right">
+                                        <div class="col-2 text-right">
                                             <div class="p-2">    
                                                 <a href="{{ route('sucursal.edit', [ $sucursal->id_sucursal]) }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar sucursal">edit</i></a>
                                             </div>   

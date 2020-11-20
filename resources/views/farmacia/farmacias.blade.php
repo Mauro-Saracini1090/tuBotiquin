@@ -38,7 +38,7 @@
                             <img class="card-img-top" src="{{ asset($farmaciaPaginate->img_farmacia) }}" alt="Logotipo" width="300" height="250">
                                 <div class="card-body text-center">
                                     <h4 class="card-title"> {{ $farmaciaPaginate->nombre_farmacia }}</h4>
-                                    <p class="font-italic">{{ $farmaciaPaginate->descripcion_farmacia }}</p> 
+                                    <p class="font-italic"><?php echo  $farmaciaPaginate->descripcion_farmacia ?></p> 
                                     <hr>
                                     <form method="POST" action="{{ route('farmaciaSucursal')}}">
                                      @csrf  

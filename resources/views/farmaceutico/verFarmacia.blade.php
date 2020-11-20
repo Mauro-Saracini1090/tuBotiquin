@@ -18,7 +18,7 @@
                                 <div Class="col-lg-8 col-12" >
                                         <h2 class="text-secondary  m-3">{{ $farmacia->nombre_farmacia }}</h2>
                                          <div class="text m-3 p-3">   
-                                            <p>Descripción: {{ $farmacia->descripcion_farmacia }}<p>
+                                            <p>Descripción:<?php echo $farmacia->descripcion_farmacia ?><p>
                                             <hr>
                                             <p>CUIT: {{ $farmacia->cuit }}</p>
                                             <hr>
