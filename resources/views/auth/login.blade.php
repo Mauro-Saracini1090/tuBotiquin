@@ -17,7 +17,7 @@
                             <input type="text"  @if ($errors->has('login') || $errors->has('email')) is-invalid @endif class="form-control"
                              id="exampleInputEmail1" aria-describedby="emailHelp"  name="login" placeholder="Ingrese su nombre de usuario o correo "
                                     value="{{ old('login') ?: old('email') }}"
-                                    required autocomplete="email">
+                                    required autocomplete="email" autofocus>
 
                              @if ($errors->has('login') || $errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
