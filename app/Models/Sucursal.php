@@ -17,7 +17,9 @@ class Sucursal extends Model
         'cufe_sucursal',
         'email_sucursal',
         'telefono_sucural',
-        'habilitado'
+        'direccion_sucursal',
+        'habilitado',
+        'borrado_logico_sucursal',
     ];
 
     public function getFarmacia()

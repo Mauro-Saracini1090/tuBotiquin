@@ -21,7 +21,7 @@ class CreateFarmaciaTable extends Migration
             $table->string('descripcion_farmacia', 250);
             $table->bigInteger('cuit')->unique();
             $table->boolean('habilitada');  
-
+            $table->boolean('borrado_logico_farmacia');    
             $table->timestamps();
             $table->foreign('id_usuario')->references('id_usuario')->on('usuario')->onDelete('cascade');
         });

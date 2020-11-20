@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Sucursal;
 use App\Models\Farmacia;
+use App\Models\ObraSocial;
 use Illuminate\Http\Request;
 
 
@@ -16,8 +17,9 @@ class SucursalController extends Controller
     public function index()
     {
         //
-        $farmacias= Farmacia::all();
-        $sucursales= Sucursal::all();
+        $id_usuario = auth()->user()->id_usuario;
+        $farmacias= Farmacia::where("id_usuario", "=", $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
+        $sucursales= Sucursal::where("borrado_logico_sucursal", "=", "0")->get();
         return view ('farmaceutico.listadoSucursal',compact('farmacias','sucursales'));
     }
     
@@ -29,7 +31,7 @@ class SucursalController extends Controller
     public function create()
     {
         $id_usuario = auth()->user()->id_usuario; 
-        $arrayFarmacias = Farmacia::where('id_usuario', "=" , $id_usuario)->get();
+        $arrayFarmacias = Farmacia::where('id_usuario', "=" , $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
     
         return view('farmaceutico.cargarSucursal' , ['arrayFarmacias' => $arrayFarmacias ]); 
     }
@@ -50,10 +52,12 @@ class SucursalController extends Controller
             'cufe_sucursal' => 'required',
             'email_sucursal' => 'required | email',
             'telefono_sucursal' => 'required',
+            'direccion_sucursal' => 'required',
             ]));
     
             // Crear una nueva instacia de Farmacia y la guarda en la DB
             $habilitada = 0; // FLAG deshabilitada por defecto
+            $borrado_logico_sucursal = 0; // FLAG
             $sucursal = new Sucursal();
             $sucursal->id_farmacia = $request->id_farmacia;
 
@@ -64,10 +68,12 @@ class SucursalController extends Controller
             $sucursal->cufe_sucursal = $request->cufe_sucursal;
             $sucursal->email_sucursal = $request->email_sucursal;
             $sucursal->telefono_sucursal  = $request->telefono_sucursal;
+            $sucursal->direccion_sucursal = $request->direccion_sucursal;
             $sucursal->habilitado = $habilitada;
+            $sucursal->borrado_logico_sucursal = $borrado_logico_sucursal;
             $sucursal->save();
     
-            return redirect(route('farmacia.index'));
+            return redirect(route('farmacia.index'))->with('estado_create','Su Sucursal se registró correctamente y será evaluada a la brevedad por el Administrador para verificar los datos.');
     }
 
     /**
@@ -90,6 +96,7 @@ class SucursalController extends Controller
     public function edit(Sucursal $sucursal)
     {
         //
+        return view('farmaceutico.editarSucursal', ['sucursal' => $sucursal]);
     }
 
     /**
@@ -101,7 +108,30 @@ class SucursalController extends Controller
      */
     public function update(Request $request, Sucursal $sucursal)
     {
-        //
+        
+        Request()->validate(([
+        //    'descripcion_sucursal' => 'required',
+            'cufe_sucursal' => 'required',
+            'email_sucursal' => 'required|email',
+            'telefono_sucursal' => 'required', 
+            'direccion_sucursal' => 'required',
+        ]));
+
+        $sucursal->id_sucursal = $sucursal->id_sucursal;
+        $sucursal->id_farmacia = $sucursal->id_farmacia;
+        //Campos que se pueden modificar
+        $sucursal->descripcion_sucursal = $request->descripcion_sucursal;
+        $sucursal->cufe_sucursal = $request->cufe_sucursal;
+        $sucursal->email_sucursal = $request->email_sucursal;
+        $sucursal->telefono_sucursal = $request->telefono_sucursal;
+        $sucursal->direccion_sucursal = $request->direccion_sucursal;   
+        //campso que nose pueden modificar    
+        $sucursal->habilitado = $sucursal->habilitado;
+        $sucursal->borrado_logico_sucursal = $sucursal->borrado_logico_sucursal;
+        $sucursal->save();
+        return redirect(route('farmacia.index'))->with('estado_update','Los cambios se registraron correctamente en la plataforma.');
+         
+       
     }
 
     /**
@@ -112,7 +142,11 @@ class SucursalController extends Controller
      */
     public function destroy(Sucursal $sucursal)
     {
-        //
+          
+        $sucursal->borrado_logico_sucursal = 1;
+        $sucursal->save();      
+        
+        return redirect(route('farmacia.index'))->with('estado_delete','Su Sucursal se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');;
     }
 
     public function buscarFarmaciaSucursal(Request $request ){
@@ -121,30 +155,33 @@ class SucursalController extends Controller
         $farmacia = Farmacia::find($request->id_farmacia);
         $arraySucursales = Sucursal::where("id_farmacia", "=" , $request->id_farmacia)->get();
         return view('farmacia.verFarmaciaySucursal' , [
-                'arraySucursales' => $arraySucursales,
-                 'farmacia' => $farmacia,
-                 ]);
-        
-        
+                    'arraySucursales' => $arraySucursales,
+                    'farmacia' => $farmacia,
+        ]);
     }
 
-    public function farmaciaSucursal($farmacia){
 
+    /**
+     * 
+     */
+    public function farmaciaSucursal(Request $request){
+
+        $farmacia = $request->id_farmacia;
         $farmacia = Farmacia::find($farmacia);
         $arraySucursales = Sucursal::where("id_farmacia", "=" , $farmacia->id_farmacia)->get();
 
-        return view('farmacia.verFarmaciaySucursal' , [
-                 'arraySucursales' => $arraySucursales,
-                 'farmacia' => $farmacia,
-                 ]); 
+                 
+        $arrayObraSociales = $farmacia->obrasSociales();
+
+       
+        dd($arrayObraSociales);
+        //return view('farmacia.verFarmaciaySucursal' , [
+        //         'arraySucursales' => $arraySucursales,
+        //         'farmacia' => $farmacia,
+        //         'arrayObraSociales' => $arrayObraSociales,
+        //         ]);  
     }
 
 
-
-  public function listarFarmaciaSucursales()
-  {
-    $id_usuario = auth()->user()->id_usuario;
-    $arraySucursales = Farmacia::find($id_usuario)->getSucursales();
-  }
 
 }

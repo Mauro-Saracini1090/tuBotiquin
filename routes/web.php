@@ -38,9 +38,11 @@ Route::post('register/farmaceutico', [RegisterController::class,'registroFarmace
 
 Route::resource('farmacia', FarmaciaController::class)->middleware('roles:es-farmaceutico');
 Route::get('farmacias', [FarmaciaController::class,'listarFarmacias'])->name('farmacias');
-Route::get('farmaciasucursal/{farmacia}', [SucursalController::class,'farmaciaSucursal'])->name('farmaciaSucursal');
+Route::post('farmaciasucursal', [SucursalController::class,'farmaciaSucursal'])->name('farmaciaSucursal');
 Route::get('verfarmacia',[FarmaciaController::class,'verFarmacia'])->middleware('roles:es-farmaceutico')->name('verfarmacia');
 Route::post('buscarfarmaciasucursal/', [SucursalController::class,'buscarFarmaciaSucursal'])->name('buscarFarmaciaSucursal');
+Route::post('borrarfarmacia' , [FarmaciaController::class,'borradoLogico'])->middleware('roles:es-farmaceutico')->name('borrarfarmacia');
+
 //Al usar el middleware RolMiddleware podemos enviar mas de un rol, pero debemos cambiar ('roles:esAdmin') o por (roles:slug_rol) siendo slug_rol el valor del atributo de la Base de Datos 
 // porque antes estabamos usando gates , pero a las gates no le podemos pasar mas de un ROL al mismo tiempo en las rutas
 // Esto es solo para las rutas, en las vistas seguimos usando gates y para definir varias gates en la vista

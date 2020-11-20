@@ -16,7 +16,7 @@
                         <div class="shadow p-3 mb-5 backCard rounded">
                             <div class="row" >
                                 <div Class="col-lg-8 col-12" >
-                                        <h2 class="page-section-heading text-uppercase text-secondary  m-3">{{ $farmacia->nombre_farmacia }}</h2>
+                                        <h2 class="text-secondary  m-3">{{ $farmacia->nombre_farmacia }}</h2>
                                          <div class="text m-3 p-3">   
                                             <p>Descripción: {{ $farmacia->descripcion_farmacia }}<p>
                                             <hr>
@@ -43,10 +43,7 @@
                                                         <a href="{{ route('farmacia.edit', [ $farmacia->id_farmacia]) }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>
                                                     </div>   
                                                     <div class="p-2"> 
-                                                        <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Eliminar Farmacia">delete</i></a>
-                                                    </div>
-                                                    <div class="p-2">    
-                                                       <!-- <a href="{{ route('farmacia.index') }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Volver atrás">arrow_back</i></a> -->
+                                                        <a href="" title="Eliminar Farmacia" data-toggle="modal" data-target="#deleteModal" data-id_farma="{{ $farmacia->id_farmacia}}"><i class="material-icons" style="font-size: 40px" data-placement="left"  ">delete</i></a>
                                                     </div>        
                                             </div>
                                         </div> 
@@ -97,10 +94,7 @@
         var boton = $(event.relatedTarget);
         var id_farmacia = boton.data('id_farma');
         var modal = $(this);
-        //modal.find('.modal-footer #id_rol').val(id_rol);
-        //revisar o buscar otra forma
-        modal.find('form').attr('action', 'farmacia/' + id_farmacia);
+        modal.find('form').attr('action', 'farmacia/' + id_farmacia );    
     });
-
 </script>
 @endsection

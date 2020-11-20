@@ -15,18 +15,15 @@
                         
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item "><h6 class="masthead-subheading">FARMACIA</h6>
-                                <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
-                                    <a href="{{ route('farmacia.create') }}"> <i class=" Medium material-icons " style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Agregar nueva Farmacia">add_box</i></a>
-                                    <a href="{{ route('verfarmacia') }}"><i class="material-icons" style="font-size: 42px" data-toggle="tooltip" data-placement="left" title="Ver Farmacia">pageview</i></a>
-                                    <!--<a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>-->
-
+                                <div class="d-flex d-flex justify-content-left pb-2 ml-3">                             
+                                  <a href="{{ route('farmacia.create') }}"> <i class=" Medium material-icons " style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Agregar nueva Farmacia">add_box</i></a>
+                                  <a href="{{ route('verfarmacia') }}"><i class="material-icons" style="font-size: 42px" data-toggle="tooltip" data-placement="left" title="Ver Farmacia">pageview</i></a>
                                 <div>
                             </li>
                         <li class="list-group-item"><h6 class="masthead-subheading">SUCURSAL</h6>
                             <div class="d-flex d-flex justify-content-left pb-2 ml-3"> 
                                     <a href={{ route ('sucursal.create') }}><i class=" Medium material-icons " style="font-size: 40px" data-toggle="tooltip" data-placement="left" title="Agregar nueva Sucursal">add_box</i></a> 
                                     <a href="{{ route ('sucursal.index') }}"><i class="material-icons" style="font-size: 42px">pageview</i></a>
-                                    <!--<a href=""><i class="material-icons" style="font-size: 40px">edit</i></a>-->
                             <div>        
                         </li>
                         <li class="list-group-item"><h6 class="masthead-subheading">PEDIDOS</h6>
@@ -69,6 +66,41 @@
                     
                     </div>
                     <div class="col-lg-8 col-12">
+                            <!-- para mostrar los alert -->
+                            @if(session()->has('estado_create'))
+                                <div class="alert alert-primary alert-dismissible fade show focus" role="alert">
+                                    <h5 class="alert-heading pb-4">Registro Exitoso</h5>
+                                    <strong>{{ session()->get('estado_create') }}</strong>
+                                    <br>
+                                    <hr>
+                                    <p class="text-right">Equipo TuBotiquín</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @elseif(session()->has('estado_update'))
+                                <div class="alert alert-primary alert-dismissible fade show focus" role="alert">
+                                    <h5 class="alert-heading pb-4">Actualización Exitosa</h5>
+                                    <strong>{{ session()->get('estado_update') }}</strong>
+                                    <br>
+                                    <hr>
+                                    <p class="text-right">Equipo TuBotiquín</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @elseif(session()->has('estado_delete'))
+                                <div class="alert alert-primary alert-dismissible fade show focus" role="alert">
+                                    <h5 class="alert-heading pb-4">Borrado Exitoso</h5>
+                                    <strong>{{ session()->get('estado_delete') }}</strong>
+                                    <br>
+                                    <hr>
+                                    <p class="text-right">Equipo TuBotiquín</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>    
+                            @endif
                             @yield('opcionesFarmaceutico')
                     </div>        
                  @endcan
