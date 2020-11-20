@@ -16,7 +16,7 @@
                             <div class="form-group">
                                 <strong><label for="nombre">{{ __('Nombre *') }}</label></strong>
                                 <input id="nombre" type="text" class="form-control focus @error('nombre') is-invalid @enderror" 
-                                        name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus placeholder="Ingrese su Nombre">
+                                        name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus placeholder="Ingrese su Nombre" autofocus>
 
                                 @error('nombre')
                                     <span class="invalid-feedback" role="alert">
