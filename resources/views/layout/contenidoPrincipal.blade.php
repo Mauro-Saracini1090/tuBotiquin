@@ -41,7 +41,9 @@
                                             <p>Email:{{ $sucursalesTurno[0]->email_sucursal }} </p>
                                             <p>Telefono:{{ $sucursalesTurno[0]->telefono_sucursal }} </p>
                                             <hr>
-                                            <a href="#" class="btn btn-primary btn-sm">Mas información</a>
+                                            <div class="d-flex d-flex justify-content-center"> 
+                                                <a href="#" class="btn btn-primary btn-sm">Ver sucursal</a>
+                                            </div>    
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +71,7 @@
                                                 
                                                 <hr>
                                                 <div class="d-flex d-flex justify-content-center"> 
-                                                    <a href="#" class="btn btn-primary btn-sm">Mas información</a>
+                                                    <a href="#" class="btn btn-primary btn-sm">Ver sucursal</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,7 +116,9 @@
                                     <p>Email: {{ $sucursal->email_sucursal }} </p>
                                     <p>Telefono: {{ $sucursal->telefono_sucursal }} </p>
                                     <hr>
-                                    <a href="#" class="btn btn-primary btn-sm">Mas Información</a>
+                                    <div class="d-flex d-flex justify-content-center"> 
+                                        <a href="#" class="btn btn-primary btn-sm">Ver sucursal</a>
+                                    </div>    
                                 </div>
 
                             </div>
