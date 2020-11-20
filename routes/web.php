@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FarmaciaController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocalidadController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\SucursalController;
@@ -23,9 +24,7 @@ use App\Http\Controllers\ObraSocialController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/',  [HomeController::class,'index'])->name('home');
 
 Route::get('/administrador', function () {
     return view('admin.administrador');
