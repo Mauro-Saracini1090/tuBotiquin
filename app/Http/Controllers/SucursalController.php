@@ -168,18 +168,15 @@ class SucursalController extends Controller
 
         $farmacia = $request->id_farmacia;
         $farmacia = Farmacia::find($farmacia);
-        $arraySucursales = Sucursal::where("id_farmacia", "=" , $farmacia->id_farmacia)->get();
-
+        $arraySucursales = Sucursal::where("id_farmacia", "=" , $farmacia->id_farmacia)->where("borrado_logico_sucursal", "=", "0")->get();
                  
-        $arrayObraSociales = $farmacia->obrasSociales();
+        $arrayObraSociales = $farmacia->obrasSociales;
 
-       
-        dd($arrayObraSociales);
-        //return view('farmacia.verFarmaciaySucursal' , [
-        //         'arraySucursales' => $arraySucursales,
-        //         'farmacia' => $farmacia,
-        //         'arrayObraSociales' => $arrayObraSociales,
-        //         ]);  
+        return view('farmacia.verFarmaciaySucursal' , [
+                 'arraySucursales' => $arraySucursales,
+                 'farmacia' => $farmacia,
+                 'arrayObraSociales' => $arrayObraSociales,
+                 ]);  
     }
 
 
