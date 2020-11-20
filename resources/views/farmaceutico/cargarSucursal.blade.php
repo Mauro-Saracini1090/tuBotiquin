@@ -16,7 +16,7 @@
 
                         <!-- select Farmacias -->
                         <div class="form-group">
-                                <strong><label for="id_farmacia">{{ __('Seleccione su Farmacia') }}</label></strong>
+                                <strong><label for="id_farmacia">{{ __('Seleccione su Farmacia *') }}</label></strong>
 
                                 <select id="id_farmacia" class="form-control @error('Farmacia') is-invalid @enderror"
                                         name="id_farmacia" value="{{ old('id_farmacia') }}" required>
@@ -30,8 +30,8 @@
                         </div>
                        <!-- Descripcion -->
                         <div class="form-group">
-                            <strong><label for="descripcion_sucursal">{{ __('Descripción') }}</label></strong>
-                            <textarea class="form-control" name="descripcion_sucursal" type="textarea" placeholder="¡Aqui puede colocar el eslogan de su sucursal!" @error('descripcion_sucursal') is-invalid @enderror
+                            <strong><label for="descripcion_sucursal">{{ __('Descripción *') }}</label></strong>
+                            <textarea class="form-control" name="descripcion_sucursal" type="textarea" @error('descripcion_sucursal') is-invalid @enderror
                                     name="descripcion_sucursal" value="{{ old('descripcion_sucursal') }}"rows="3"></textarea>
 
                                 @error('descripcion_fsucursal')
@@ -42,7 +42,7 @@
                         </div>
                         <!-- Cufe -->
                          <div class="form-group">
-                            <strong><label  for="cufe_sucursal">{{ __('Cufe sucursal') }}</label></strong>
+                            <strong><label  for="cufe_sucursal">{{ __('Cufe sucursal *') }}</label></strong>
                             <input type="text" name="cufe_sucursal" value="{{ old('cufe_sucursal') }}" @error('cufe_sucursal') is-invalid @enderror required class="form-control">
                             <small  class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo</small>
 
@@ -54,7 +54,7 @@
                         </div>
                          <!-- EMAIL --> 
                         <div class="form-group">
-                            <strong><label for="email_sucursal">{{ __('E-mail') }}</label></strong>
+                            <strong><label for="email_sucursal">{{ __('E-mail *') }}</label></strong>
                             <input type="email" name="email_sucursal" value="{{ old('email_sucursal') }}" @error('email_sucursal') is-invalid @enderror required placeholder="correo@ejemplo.com"class="form-control" >
                             
                                  @error('email_sucursal')
@@ -65,7 +65,7 @@
                         </div>
                          <!-- TELEFONO -->        
                          <div class="form-group">
-                            <strong><label for="telefono_sucursal">{{ __('Teléfono') }}</label></strong>
+                            <strong><label for="telefono_sucursal">{{ __('Teléfono *') }}</label></strong>
                             <input type="text" name="telefono_sucursal" value="{{ old('telefono_sucursal') }}" @error('telefono_sucursal') is-invalid @enderror placeholder="Ejemplo: 29844586958" required class="form-control" >
                             <small  class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo</small>
                                  @error('telefono_sucursal')
@@ -86,7 +86,13 @@
                                     </span>
                                 @enderror
                         </div>
-                      
+                        </div>
+                        <div class="form-group">
+                            <div class="d-flex d-flex justify-content-left"> 
+                                <small  class="form-text text-muted">Los campos marcados con (*) son obligatorios</small>
+                            </div>    
+                        </div>
+                        
                          <div class="form-group">
                             <div class="d-flex d-flex justify-content-center"> 
                                 <button type="submit" class="btn btn-primary mr-1">
@@ -100,5 +106,10 @@
             </div>   
         </div>                
     </div>
+
+<script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script> 
+<script>
+    CKEDITOR.replace( 'descripcion_sucursal' );
+</script>    
 
 @endsection

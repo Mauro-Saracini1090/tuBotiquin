@@ -17,7 +17,7 @@
                        <!-- Descripcion -->
                         <div class="form-group">
                             <strong><label for="descripcion_sucursal">{{ __('Descripción *') }}</label></strong>
-                            <textarea class="form-control" name="descripcion_sucursal" type="textarea" placeholder="¡Aqui puede colocar el eslogan de su sucursal!" @error('descripcion_sucursal') is-invalid @enderror
+                            <textarea class="form-control" name="descripcion_sucursal" type="textarea" placeholder="¡Aqui puede colocar el eslogan de su sucursal!" @error('descripcion_sucursal') is-invalid required @enderror
                                     name="descripcion_sucursal" value={{ old('descripcion_sucursal', $sucursal->descripcion_sucursal) }} rows="3"></textarea>
 
                                 @error('descripcion_sucursal')
@@ -40,7 +40,7 @@
                         </div>
                          <!-- EMAIL --> 
                         <div class="form-group">
-                            <strong><label for="email_sucursal">{{ __('E-mail') }}</label></strong>
+                            <strong><label for="email_sucursal">{{ __('E-mail *') }}</label></strong>
                             <input type="email" name="email_sucursal" value={{ old('email_sucursal *', $sucursal->email_sucursal) }} @error('email_sucursal') is-invalid @enderror required placeholder="correo@ejemplo.com"class="form-control" >
                             
                                  @error('email_sucursal')
@@ -91,5 +91,9 @@
             </div>   
         </div>                
     </div>
-
+<script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script> 
+<script>
+    CKEDITOR.replace( 'descripcion_sucursal' );
+    config.editorplaceholder = 'Type your comment…';
+</script>
 @endsection

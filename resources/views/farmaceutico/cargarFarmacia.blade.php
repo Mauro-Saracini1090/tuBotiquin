@@ -34,7 +34,7 @@
                                     </span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        <div class="form-group"> 
                             <strong><label for="descripcion_farmacia">{{ __('Descripción *') }}</label></strong>
                             <textarea class="form-control" name="descripcion_farmacia" type="textarea" placeholder="¡Aqui puede colocar el eslogan de su Farmacia!" @error('descripcion_farmacia') is-invalid @enderror
                                     name="escripcion_farmacia" value="{{ old('descripcion_farmacia') }}"rows="3"></textarea>
@@ -59,7 +59,8 @@
                                 <div class="d-flex d-flex justify-content-left"> 
                                     <small  class="form-text text-muted">Los campos marcados con (*) son obligatorios</small>
                                 </div>    
-                            </div>
+                        </div>
+                             
                          <div class="form-group">
                             <div class="d-flex d-flex justify-content-center"> 
                                 <button type="submit" class="btn btn-primary mr-1">
@@ -73,4 +74,10 @@
             </div>   
         </div>                
     </div>
+
+<script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script> 
+<script>
+    CKEDITOR.replace( 'descripcion_farmacia' );
+</script>
+
 @endsection    
