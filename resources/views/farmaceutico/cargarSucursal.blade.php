@@ -34,7 +34,7 @@
                             <textarea class="form-control" name="descripcion_sucursal" type="textarea" @error('descripcion_sucursal') is-invalid @enderror
                                     name="descripcion_sucursal" value="{{ old('descripcion_sucursal') }}"rows="3"></textarea>
 
-                                @error('descripcion_fsucursal')
+                                @error('descripcion_sucursal')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
