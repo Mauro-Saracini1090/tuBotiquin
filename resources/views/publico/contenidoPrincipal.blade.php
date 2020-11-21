@@ -32,49 +32,59 @@
                         <!-- Hay una sola de turno -->
                         @if(count($sucursalesTurno) == 1)
                               
-                            <div class="col-12">  
-                                    <div class="d-flex d-flex justify-content-center"> 
-                                        <div class="col-4"> 
-                                             <img class="card-img-top" src="{{URL::to('/')}}{{ $sucursalesTurno[0]->getFarmacia->img_farmacia }}"
-                                                alt="{{ $sucursalesTurno[0]->getFarmacia->nombre_farmacia }}" width="200">
+                            
+                                <div class="col-12">
+                                     <div class="shadow  p-3 mb-4  bg-white rounded">
+                                        <div class="col-8 mx-auto">
+                                            <div class="row">
+                                                <div class="col-8 my-auto text-center">
+                                                    <h2 class="card-title"><?php echo strtoupper($sucursalesTurno[0]->getFarmacia->nombre_farmacia ) ?></h2>
+                                                    <p> <?php echo $sucursalesTurno[0]->getFarmacia->descripcion_farmacia ?> </p>
+                                                </div>     
+                                         
+                                                <div class="col-4">
+                                                <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursalesTurno[0]->getFarmacia->img_farmacia }}"
+                                                    alt="{{ $sucursalesTurno[0]->getFarmacia->nombre_farmacia }}"  width="200" height="150">
+                                                <hr>
+                                            </div>       
+                                        </div>       
+                                        <div class="card-body">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">Dirección: {{$sucursalesTurno[0]->direccion_sucursal }} </li>
+                                                    <li class="list-group-item">Email: {{ $sucursalesTurno[0]->email_sucursal }} </li>
+                                                    <li class="list-group-item">Telefono: {{ $sucursalesTurno[0]->telefono_sucursal }} </li> 
+                                                </ul>
+                                                <hr>   
+                                                <div class="d-flex d-flex justify-content-center"> 
+                                                    <a href="#" class="btn btn-primary btn-sm">Ver sucursal</a>
+                                                </div>
                                         </div>
-                                    </div>    
-                                    <div class="card-body mb-2">
-                                        <h4 class="card-title text-center"> {{ $sucursalesTurno[0]->getFarmacia->nombre_farmacia }}</h4>
-                                            <p>Direccion:{{ $sucursalesTurno[0]->direccion_sucursal }} </p>
-                                            
-                                            <p>Email:{{ $sucursalesTurno[0]->email_sucursal }} </p>
-                                            <p>Telefono:{{ $sucursalesTurno[0]->telefono_sucursal }} </p>
-                                            
-                                            <div class="d-flex d-flex justify-content-center"> 
-                                                <a href="#" class="btn btn-primary btn-sm">Ver sucursal</a>
-                                            </div>    
-                                        </div>
-                                    </div>    
-                                </div>
-                           </div>
+                                    </div>
+                               </div> 
                         @else
                             <!-- Hay mas de una de turno -->
                             @foreach ($sucursalesTurno as $sucursal)
                               
                                 <div class="col-md-6 col-12 ">
                                      <div class="shadow  p-3 mb-4  bg-white rounded">
-                                                <div class="col-6">
-
+                                            <div class="row">
+                                                <div class="col-8 my-auto text-center">
+                                                    <h2 class="card-title"><?php echo strtoupper($sucursal->getFarmacia->nombre_farmacia ) ?></h2>
+                                                    <p> <?php echo $sucursal->getFarmacia->descripcion_farmacia ?> </p>
                                                 </div>     
-                                        <div class="d-flex d-flex justify-content-end"> 
-                                                <h2 class="card-title text-left">{{ $sucursal->getFarmacia->nombre_farmacia }}</h2>
-                                                <div class="col-6">
+                                         
+                                                <div class="col-4">
                                                 <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
-                                                    alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="200" >
-                                                    <hr>
-                                                </div>   
+                                                    alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="200" height="150">
+                                                <hr>
+                                            </div>       
                                         </div>       
                                         <div class="card-body">
-                                                
-                                                <p class="text-secondary">Dirección: {{ $sucursal->direccion_sucursal }} </p>
-                                                <p>Email: {{ $sucursal->email_sucursal }} </p>
-                                                <p>Telefono: {{ $sucursal->telefono_sucursal }} </p> 
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">Dirección: {{ $sucursal->direccion_sucursal }} </li>
+                                                    <li class="list-group-item">Email: {{ $sucursal->email_sucursal }} </li>
+                                                    <li class="list-group-item">Telefono: {{ $sucursal->telefono_sucursal }} </li> 
+                                                </ul>
                                                 <hr>   
                                                 <div class="d-flex d-flex justify-content-center"> 
                                                     <a href="#" class="btn btn-primary btn-sm">Ver sucursal</a>
@@ -121,15 +131,16 @@
                                  <div class="d-flex d-flex justify-content-center"> 
                                     <div class="col-6"> 
                                         <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
-                                         alt="{{ $sucursal->getFarmacia->nombre_farmacia }}" >
+                                         alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="110" height="110">
                                   </div>
                                </div>
                                 <div class="card-body">
-                                    <h4 class="card-title text-center">{{ $sucursal->getFarmacia->nombre_farmacia }}</h4>
-                                    <p>Direccion:  {{$sucursal->direccion_sucursal }}</p>
-                                    
-                                    <p>Email: {{ $sucursal->email_sucursal }} </p>
-                                    <p>Telefono: {{ $sucursal->telefono_sucursal }} </p>
+                                    <h4 class="card-title text-center"><?php echo strtoupper($sucursal->getFarmacia->nombre_farmacia) ?></h4>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Direccion:  {{$sucursal->direccion_sucursal }}</li>
+                                        <li class="list-group-item">Email: {{ $sucursal->email_sucursal }} </li>
+                                        <li class="list-group-item">Telefono: {{ $sucursal->telefono_sucursal }} </li>
+                                    </ul>
                                     <hr>  
                                     <div class="d-flex d-flex justify-content-center"> 
                                         <a href="#" class="btn btn-primary btn-sm">Ver sucursal</a>
