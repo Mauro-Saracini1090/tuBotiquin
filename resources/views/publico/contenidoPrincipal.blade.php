@@ -6,6 +6,7 @@
 
             <div class="container">    
                 <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">De turno hoy</h2>
+                <h4 class="text-secondary text-center my-2 "><ins><?php echo date('d-m-Y') ?> </ins></h4>
                 <p class="lead text-center my-2 pb-4">Farmacias que se encuentran de turno el día de hoy</p>
             </div>
 
