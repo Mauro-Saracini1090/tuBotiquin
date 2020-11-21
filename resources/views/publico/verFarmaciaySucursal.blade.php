@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
-                <div class="p-4 mb-5 shadow-sm bg-white"> 
+                <div class="p-4 mb-5  shadow bg-white rounded"> 
                     <!-- Masthead Subheading-->
 
                      <div class="row" >
