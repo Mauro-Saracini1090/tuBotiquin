@@ -41,7 +41,7 @@ class FarmaciaController extends Controller
         $farmaciasPaginate = Farmacia::where("habilitada", "=", 1)->where("borrado_logico_farmacia", "=", "0")->simplePaginate(6);
         $arrayFarmacias = Farmacia::where("habilitada", "=", 1)->where("borrado_logico_farmacia", "=", "0")->get();
 
-        return view('farmacia.farmacias', [
+        return view('publico.farmacias', [
             'arrayFarmaciasPaginate' => $farmaciasPaginate,
             'arrayFarmacias' => $arrayFarmacias,
             ]);

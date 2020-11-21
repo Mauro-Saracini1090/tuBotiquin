@@ -4,7 +4,7 @@
 <div class="container">
    <div class="row justify-content-center">
         <div class="col-md-8 col-12">
-                <div class="shadow p-3 mb-5 backCard rounded"> 
+                <div class="p-3 mb-5 shadow  rounded"> 
                     <div class="card-body mb-2">
                         <h3 class="masthead-subheading  mb-0 text-center"> {{ "Verifique su Dirección de E-mail" }}</h3>
 
