@@ -35,13 +35,15 @@ Route::post('login',  [LoginController::class,'loginPersonalizado']);
 Route::get('register/farmaceutico', [RegisterController::class,'showRegisFarmaceuticoForm'])->name('farmaceutico');
 Route::post('register/farmaceutico', [RegisterController::class,'registroFarmaceutico'])->name('registroFarmaceutico');
 
-Route::resource('farmacia', FarmaciaController::class)->middleware('roles:es-farmaceutico');
+Route::resource('farmacia', FarmaciaController::class)->middleware('roles:es-farmaceutico,es-administrador');
+Route::delete('borrarFarmacia/{farmacia}', [FarmaciaController::class,'borrarFarmacias'])->middleware('roles:es-administrador');
+Route::post('almacenarFarmacia', [FarmaciaController::class,'almacenarFarmaciasAdmin'])->name('almacenarFarmaciaAdmin')->middleware('roles:es-administrador');
+Route::post('solicitudFarmacia', [FarmaciaController::class,'solicitudFarmacia'])->name('solicitudFarmacia')->middleware('roles:es-administrador');
+
 Route::get('farmacias', [FarmaciaController::class,'listarFarmacias'])->name('farmacias');
 Route::post('farmaciasucursal', [SucursalController::class,'farmaciaSucursal'])->name('farmaciaSucursal');
 Route::get('verfarmacia',[FarmaciaController::class,'verFarmacia'])->middleware('roles:es-farmaceutico')->name('verfarmacia');
 Route::post('buscarfarmaciasucursal/', [SucursalController::class,'buscarFarmaciaSucursal'])->name('buscarFarmaciaSucursal');
-Route::post('borrarfarmacia' , [FarmaciaController::class,'borradoLogico'])->middleware('roles:es-farmaceutico')->name('borrarfarmacia');
-
 //Al usar el middleware RolMiddleware podemos enviar mas de un rol, pero debemos cambiar ('roles:esAdmin') o por (roles:slug_rol) siendo slug_rol el valor del atributo de la Base de Datos 
 // porque antes estabamos usando gates , pero a las gates no le podemos pasar mas de un ROL al mismo tiempo en las rutas
 // Esto es solo para las rutas, en las vistas seguimos usando gates y para definir varias gates en la vista
@@ -56,7 +58,10 @@ Route::get('farmacias', [FarmaciaController::class,'listarFarmacias'])->name('fa
 
 
 Route::resource('turno', TurnoController::class)->middleware('roles:es-administrador');
-Route::resource('sucursal', SucursalController::class)->middleware('roles:es-farmaceutico');
+Route::resource('sucursal', SucursalController::class)->middleware('roles:es-farmaceutico,es-administrador');
+Route::delete('borrarSucursal/{sucursal}', [SucursalController::class,'borrarSucursal'])->middleware('roles:es-administrador');
+Route::post('solicitudSucursal', [SucursalController::class,'solicitudSucursal'])->name('solicitudSucursal')->middleware('roles:es-administrador');
+
 
 Route::resource('obrasocial', ObraSocialController::class)->middleware('roles:es-farmaceutico,es-administrador');
 Route::get('obrasocialfarmacia', [ObraSocialController::class, 'listarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('obrasocialfarmacia');
