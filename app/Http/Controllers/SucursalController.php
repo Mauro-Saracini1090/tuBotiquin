@@ -5,7 +5,7 @@ use App\Models\Sucursal;
 use App\Models\Farmacia;
 use App\Models\ObraSocial;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Gate;
 
 class SucursalController extends Controller
 {
@@ -17,6 +17,11 @@ class SucursalController extends Controller
     public function index()
     {
         //
+        if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
+            Gate::authorize('esAdmin');
+            $sucursales = Sucursal::simplePaginate(5);
+            return view('admin.sucursales.indexSucursal', compact('sucursales'));
+        }
         $id_usuario = auth()->user()->id_usuario;
         $farmacias= Farmacia::where("id_usuario", "=", $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
         $sucursales= Sucursal::where("borrado_logico_sucursal", "=", "0")->get();
@@ -29,7 +34,13 @@ class SucursalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
+            Gate::authorize('esAdmin');
+            $arrayFarmacias = Farmacia::where('habilitada', "=" , "1")->where("borrado_logico_farmacia", "=", "0")->get();    
+            return view('admin.sucursales.crearSucursal',compact('arrayFarmacias'));
+        }
+
         $id_usuario = auth()->user()->id_usuario; 
         $arrayFarmacias = Farmacia::where('id_usuario', "=" , $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
     
@@ -72,6 +83,11 @@ class SucursalController extends Controller
             $sucursal->habilitado = $habilitada;
             $sucursal->borrado_logico_sucursal = $borrado_logico_sucursal;
             $sucursal->save();
+
+            if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
+                Gate::authorize('esAdmin');
+                return redirect(route('sucursal.index'));
+            }
     
             return redirect(route('farmacia.index'))->with('estado_create','Su Sucursal se registró correctamente y será evaluada a la brevedad por el Administrador para verificar los datos.');
     }
@@ -85,6 +101,9 @@ class SucursalController extends Controller
     public function show(Sucursal $sucursal)
     {
         //
+        Gate::authorize('esAdmin');
+
+        return view('admin.sucursales.informacionSucursal', compact('sucursal'));
     }
 
     /**
@@ -96,6 +115,11 @@ class SucursalController extends Controller
     public function edit(Sucursal $sucursal)
     {
         //
+        if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
+            Gate::authorize('esAdmin');
+            return view('admin.sucursales.editarSucursal', compact('sucursal'));
+        }
+
         return view('farmaceutico.editarSucursal', ['sucursal' => $sucursal]);
     }
 
@@ -129,6 +153,12 @@ class SucursalController extends Controller
         $sucursal->habilitado = $sucursal->habilitado;
         $sucursal->borrado_logico_sucursal = $sucursal->borrado_logico_sucursal;
         $sucursal->save();
+        
+        if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
+            Gate::authorize('esAdmin');
+            return redirect(route('sucursal.index'));
+        }
+
         return redirect(route('farmacia.index'))->with('estado_update','Los cambios se registraron correctamente en la plataforma.');
          
        
@@ -146,7 +176,12 @@ class SucursalController extends Controller
         $sucursal->borrado_logico_sucursal = 1;
         $sucursal->save();      
         
-        return redirect(route('farmacia.index'))->with('estado_delete','Su Sucursal se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');;
+        return redirect(route('farmacia.index'))->with('estado_delete','Su Sucursal se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');
+    }
+    public function borrarSucursal(Sucursal $sucursal)
+    {   
+        $sucursal->delete();
+        return redirect(route('sucursal.index'))->with('estado_delete','La Sucursal se ha borrado correctamente de la plataforma.');
     }
 
     public function buscarFarmaciaSucursal(Request $request ){
@@ -164,7 +199,8 @@ class SucursalController extends Controller
     /**
      * 
      */
-    public function farmaciaSucursal(Request $request){
+    public function farmaciaSucursal(Request $request)
+    {
 
         $farmacia = $request->id_farmacia;
         $farmacia = Farmacia::find($farmacia);
@@ -180,6 +216,16 @@ class SucursalController extends Controller
         //         'farmacia' => $farmacia,
         //         'arrayObraSociales' => $arrayObraSociales,
         //         ]);  
+    }
+
+    public function solicitudSucursal(Request $request)
+    {
+        Gate::authorize('esAdmin');
+
+        $sucursal = Sucursal::find($request->sucursal);
+        $sucursal->habilitado = $request->estado_habilitacion;
+        $sucursal->save();
+        return redirect(route('sucursal.show', [$sucursal->id_sucursal]));
     }
 
 
