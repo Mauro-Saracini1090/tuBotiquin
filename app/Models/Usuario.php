@@ -58,6 +58,11 @@ class Usuario extends Authenticatable
         return $this->belongsTo(Localidad::class,'cod_postal','codigo_postal');
     }
 
+    public function getFarmacias()
+    {
+        return $this->hasMany(Farmacia::class,'id_usuario');
+    }
+
 
     
 }

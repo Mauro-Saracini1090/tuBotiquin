@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Farmacia;
 use APP\Models\Sucursal;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Inline\Element\Strong;
 
@@ -17,6 +20,11 @@ class FarmaciaController extends Controller
      */
     public function index()
     {
+        if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
+            Gate::authorize('esAdmin');
+            $arrayFarmacias = Farmacia::simplePaginate(5);
+            return view('admin.farmacias.indexFarmacias', compact('arrayFarmacias'));
+        }
         return view('farmaceutico.indexFarmaceutico');
     }
 
@@ -28,10 +36,10 @@ class FarmaciaController extends Controller
         $arrayFarmacias = Farmacia::where("id_usuario", "=", $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
         //dd($arrayFarmacias);
 
-       if(!(count($arrayFarmacias) >= 0)){
-           $arrayFarmacias = null;
+        if (!(count($arrayFarmacias) >= 0)) {
+            $arrayFarmacias = null;
         }
-        return view('farmaceutico.verFarmacia', [   'arrayFarmacias' => $arrayFarmacias  ]);
+        return view('farmaceutico.verFarmacia', ['arrayFarmacias' => $arrayFarmacias]);
     }
 
     public function listarFarmacias()
@@ -44,9 +52,8 @@ class FarmaciaController extends Controller
         return view('publico.farmacias', [
             'arrayFarmaciasPaginate' => $farmaciasPaginate,
             'arrayFarmacias' => $arrayFarmacias,
-            ]);
-
-    }    
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -54,9 +61,16 @@ class FarmaciaController extends Controller
      */
     public function create()
     {
+
+        if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
+            Gate::authorize('esAdmin');
+            $farmaceuticos = DB::table('usuario')->whereNotNull('numero_matricula')->get();
+            return view('admin.farmacias.crearFarmacia', compact('farmaceuticos'));
+        }
+
         // Retorna a la vista para cargar una nueva Farmacia a traves de  un formulario
-       //return view('farmaceutico.cargarFarmacia');
-       return view('farmaceutico.cargarFarmacia'); 
+        //return view('farmaceutico.cargarFarmacia');
+        return view('farmaceutico.cargarFarmacia');
     }
 
     /**
@@ -69,22 +83,22 @@ class FarmaciaController extends Controller
     {
         //Valida los campos 
         Request()->validate(([
-            
-        'nombre_farmacia' => 'required',
-        'img_farmacia' => 'required|image|mimes:jpeg,png|max:4096',
-        'cuit' => 'required',
+
+            'nombre_farmacia' => 'required',
+            'img_farmacia' => 'required|image|mimes:jpeg,png|max:4096',
+            'cuit' => 'required',
         ]));
 
         // Crear una nueva instacia de Farmacia y la guarda en la DB
         $habilitada = 0; // FLAG deshabilitada por defecto
         $borado_logico = 0; // FALG - False por defecto, se cambia a verdadero por el admin
         $id_usuario = auth()->user()->id_usuario;
-        
+
         $farmacia = new Farmacia();
         $farmacia->id_usuario = $id_usuario;
         $farmacia->nombre_farmacia = $request->nombre_farmacia;
 
-        $img_logo = $request->file('img_farmacia')->store('public/img_farmacias');  
+        $img_logo = $request->file('img_farmacia')->store('public/img_farmacias');
         $img_farmacia = Storage::url($img_logo);
 
         $farmacia->img_farmacia = $img_farmacia;
@@ -94,10 +108,49 @@ class FarmaciaController extends Controller
         $farmacia->borrado_logico_farmacia = $borado_logico;
         $farmacia->save();
 
-             
-        return redirect(route('farmacia.index'))->with('estado_create','Su Farmacia se registró correctamente y será evaluada a la brevedad por el Administrador para verificar los datos.');
+
+        return redirect(route('farmacia.index'))->with('estado_create', 'Su Farmacia se registró correctamente y será evaluada a la brevedad por el Administrador para verificar los datos.');
     }
-    
+    public function almacenarFarmaciasAdmin(Request $request)
+    {
+        //Valida los campos 
+        Gate::authorize('esAdmin');
+
+        Request()->validate(([
+            'nombre_farmacia' => 'required',
+            'farmaceutico' => 'required',
+            //'img_farmacia' => 'required|image|mimes:jpeg,png|max:4096',
+            'cuit' => 'required',
+            'habilitada' => 'required',
+        ]));
+
+        // Crear una nueva instacia de Farmacia y la guarda en la DB
+        $habilitada = 0; // FLAG deshabilitada por defecto
+        $borado_logico = 0; // FALG - False por defecto, se cambia a verdadero por el admin
+        $id_usuario = $request->farmaceutico;
+
+        $farmacia = new Farmacia();
+        $farmacia->id_usuario = $id_usuario;
+        $farmacia->nombre_farmacia = $request->nombre_farmacia;
+
+        if ($request->img_farmacia != null) {
+            $img_logo = $request->file('img_farmacia')->store('public/img_farmacias');
+            $img_farmacia = Storage::url($img_logo);
+            $farmacia->img_farmacia = $img_farmacia;
+        } else {
+            $farmacia->img_farmacia = '';
+        }
+
+        $farmacia->descripcion_farmacia = $request->descripcion_farmacia;
+        $farmacia->cuit = $request->cuit;
+        $farmacia->habilitada = $request->habilitada;
+        $farmacia->borrado_logico_farmacia = $borado_logico;
+        $farmacia->save();
+
+
+        return redirect(route('farmacia.index'))->with('estado_create', 'Su Farmacia se registró correctamente y será evaluada a la brevedad por el Administrador para verificar los datos.');
+    }
+
     //public function farmaciabuscar($nombreFarmacia)
     //{
 
@@ -112,9 +165,13 @@ class FarmaciaController extends Controller
      * @param  \App\Models\Farmacia  $farmacia
      * @return \Illuminate\Http\Response
      */
-    public function show(Farmacia $farmacia)
+    public function show(Farmacia $farmacium)
     {
-        //
+        //            
+        Gate::authorize('esAdmin');
+
+
+        return view('admin.farmacias.informacionFarmacia', compact('farmacium'));
     }
 
     /**
@@ -124,10 +181,16 @@ class FarmaciaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Farmacia $farmacium)
-    {   
+    {
         $farmacia = $farmacium;
-       return view('farmaceutico.editarFarmacia', compact('farmacia'));
-      
+        if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
+            Gate::authorize('esAdmin');
+
+            return view('admin.farmacias.editarFarmacia', compact('farmacia'));
+        }
+
+
+        return view('farmaceutico.editarFarmacia', compact('farmacia'));
     }
 
     /**
@@ -140,18 +203,18 @@ class FarmaciaController extends Controller
     public function update(Request $request, Farmacia $farmacium)
     {
         $farmacia = $farmacium;
-      
+
         Request()->validate(([
             'nombre_farmacia' => 'required',
             'cuit' => 'required',
 
         ]));
-        
-        if($request->descripcion_farmacia != null){
+
+        if ($request->descripcion_farmacia != null) {
             $farmacia->descripcion_farmacia = $request->descripcion_farmacia;
         }
-        if($request->img_farmacia != null){
-            $img_logo = $request->file('img_farmacia')->store('public/img_farmacias');  
+        if ($request->img_farmacia != null) {
+            $img_logo = $request->file('img_farmacia')->store('public/img_farmacias');
             $img_farmacia = Storage::url($img_logo);
             $farmacia->img_farmacia = $img_farmacia;
         }
@@ -162,8 +225,7 @@ class FarmaciaController extends Controller
         $farmacia->habilitada = $farmacia->habilitada;
         $farmacia->save();
 
-        return redirect(route('farmacia.index'))->with('estado_update','Los cambios se registraron correctamente en la plataforma.');
-    
+        return redirect(route('farmacia.index'))->with('estado_update', 'Los cambios se registraron correctamente en la plataforma.');
     }
 
     /**
@@ -174,13 +236,28 @@ class FarmaciaController extends Controller
      */
     public function destroy(Farmacia $farmacium)
     {
-        $farmacia = $farmacium;     
+        $farmacia = $farmacium;
         $farmacia->borrado_logico_farmacia = 1;
-        $farmacia->save();      
-        
-        return redirect(route('farmacia.index'))->with('estado_delete','Su Farmacia se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');
+        $farmacia->save();
+
+        return redirect(route('farmacia.index'))->with('estado_delete', 'Su Farmacia se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');
     }
-    
 
+    public function borrarFarmacias(Farmacia $farmacia)
+    {              
+        Gate::authorize('esAdmin');
 
+        $farmacia->delete();
+        return redirect(route('farmacia.index'))->with('estado_delete', 'Su Farmacia se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');
+    }
+
+    public function solicitudFarmacia(Request $request)
+    {
+        Gate::authorize('esAdmin');
+
+        $farmacia = Farmacia::find($request->farmacia);
+        $farmacia->habilitada = $request->estado_habilitacion;
+        $farmacia->save();
+        return redirect(route('farmacia.show', [$farmacia->id_farmacia]));
+    }
 }

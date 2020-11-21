@@ -24,7 +24,8 @@ class Farmacia extends Model
     // Para obtener el dueno de la farmacia
     public function usuarioFarmaceutico()
     {
-        return $this->hasMany(Usuario::class,'id_usuario');
+        return $this->belongsTo(Usuario::class,'id_usuario');
+    
     }
 
     //Para obtener todas las sucursales
