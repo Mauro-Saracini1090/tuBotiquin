@@ -42,7 +42,7 @@ class SucursalController extends Controller
         }
 
         $id_usuario = auth()->user()->id_usuario; 
-        $arrayFarmacias = Farmacia::where('id_usuario', "=" , $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
+        $arrayFarmacias = Farmacia::where('id_usuario', "=" , $id_usuario)->where('habilitada', "=" , "1")->where("borrado_logico_farmacia", "=", "0")->get();
     
         return view('farmaceutico.cargarSucursal' , ['arrayFarmacias' => $arrayFarmacias ]); 
     }
