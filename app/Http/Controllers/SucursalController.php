@@ -6,7 +6,7 @@ use App\Models\Farmacia;
 use App\Models\ObraSocial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Validation\Rule;
 class SucursalController extends Controller
 {
     /**
@@ -136,9 +136,9 @@ class SucursalController extends Controller
         $request->validate(([
             'id_farmacia' => 'required',
             'descripcion_sucursal' => 'max:255',
-            'cufe_sucursal' => 'required|unique:sucursal|max:255',
-            'email_sucursal' => 'required|email|unique:sucursal|max:255',
-            'telefono_sucursal' => 'required|max:11',
+            'cufe_sucursal' =>  ['required', 'max:255', Rule::unique('sucursal','cufe_sucursal' )->ignore($sucursal)],
+            'email_sucursal' => ['required', 'email', 'max:255', Rule::unique('sucursal','email_sucursal' )->ignore($sucursal)],
+            'telefono_sucursal' => ['required', 'numeric', Rule::unique('sucursal','telefono_sucursal' )->ignore($sucursal)],
             'direccion_sucursal' => 'required|unique:sucursal|max:255',
             ]));
 
