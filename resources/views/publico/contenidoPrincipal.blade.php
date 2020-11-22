@@ -32,34 +32,39 @@
                         <!-- Hay una sola de turno -->
                         @if(count($sucursalesTurno) == 1)
                               
-                            
                                 <div class="col-12">
                                      <div class="shadow  p-3 mb-4  bg-white rounded">
-                                        <div class="col-8 mx-auto">
                                             <div class="row">
                                                 <div class="col-8 my-auto text-center">
                                                     <h2 class="card-title"><?php echo strtoupper($sucursalesTurno[0]->getFarmacia->nombre_farmacia ) ?></h2>
                                                     <p> <?php echo $sucursalesTurno[0]->getFarmacia->descripcion_farmacia ?> </p>
                                                 </div>     
                                          
-                                                <div class="col-4">
-                                                <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursalesTurno[0]->getFarmacia->img_farmacia }}"
-                                                    alt="{{ $sucursalesTurno[0]->getFarmacia->nombre_farmacia }}"  width="200" height="150">
-                                                <hr>
-                                            </div>       
+                                                <div class="col-md-3 col-12">
+                                                    <div class="d-flex d-flex justify-content-center">
+                                                        <img class="card-img-top shadow img-rounded img-fluid" src="{{URL::to('/')}}{{$sucursalesTurno[0]->getFarmacia->img_farmacia }}"
+                                                            alt="{{ $sucursalesTurno[0]->getFarmacia->nombre_farmacia }}"  width="150" height="150">
+                                                        <hr>
+                                                    </div>
+                                                </div>       
                                         </div>       
                                         <div class="card-body">
                                                 <ul class="list-group list-group-flush">
                                                     <li class="list-group-item">Dirección: {{$sucursalesTurno[0]->direccion_sucursal }} </li>
                                                     <li class="list-group-item">Email: {{ $sucursalesTurno[0]->email_sucursal }} </li>
-                                                    <li class="list-group-item">Telefono: {{ $sucursalesTurno[0]->telefono_sucursal }} </li> 
+                                                     <li class="list-group-item">Telefono: {{ $sucursalesTurno[0]->telefono_sucursal }} </li> 
                                                 </ul>
                                                 <hr>   
                                                 <div class="d-flex d-flex justify-content-center"> 
-                                                    <a href="#" class="btn btn-primary btn-sm">Ver sucursal</a>
+                                                    <form method="POST" action="{{ route('verSucursalTurnoHoy')}}">
+                                                        @csrf  
+                                                        <input type="hidden" name="id_sucursal" value= {{ $sucursalesTurno[0]->id_sucursal}}>
+                                                        <button type="submit" class="btn btn-link mx-2">
+                                                                {{ __('Ver sucursal') }}
+                                                        </button>    
+                                                    </form>
                                                 </div>
                                         </div>
-                                    </div>
                                </div> 
                         @else
                             <!-- Hay mas de una de turno -->
@@ -86,8 +91,14 @@
                                                     <li class="list-group-item">Telefono: {{ $sucursal->telefono_sucursal }} </li> 
                                                 </ul>
                                                 <hr>   
-                                                <div class="d-flex d-flex justify-content-center"> 
-                                                    <a href="#" class="btn btn-primary btn-sm">Ver sucursal</a>
+                                               <div class="d-flex d-flex justify-content-center"> 
+                                                    <form method="POST" action="{{ route('verSucursalTurnoHoy')}}">
+                                                        @csrf  
+                                                        <input type="hidden" name="id_sucursal" value= {{ $sucursal->id_sucursal}}>
+                                                        <button type="submit" class="btn btn-link mx-2">
+                                                                {{ __('Ver sucursal') }}
+                                                        </button>    
+                                                    </form>
                                                 </div>
                                         </div>
                                     </div>
@@ -143,8 +154,14 @@
                                     </ul>
                                     <hr>  
                                     <div class="d-flex d-flex justify-content-center"> 
-                                        <a href="#" class="btn btn-primary btn-sm">Ver sucursal</a>
-                                    </div>    
+                                        <form method="POST" action="{{ route('verSucursalTurnoHoy')}}">
+                                        @csrf  
+                                        <input type="hidden" name="id_sucursal" value= {{ $sucursal->id_sucursal}}>
+                                            <button type="submit" class="btn btn-link mx-2">
+                                                {{ __('Ver sucursal') }}
+                                            </button>    
+                                         </form>
+                                     </div>   
                                 </div>
 
                             </div>
