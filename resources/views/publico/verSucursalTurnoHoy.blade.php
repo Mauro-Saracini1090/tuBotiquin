@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
 
-                          @if( !(empty($arrayObraSociales)))
+                          @if((empty($arrayObraSociales)))
                             <!-- Obra Sociales -->
                             <div class="row">
                                 <div class="col-12">
