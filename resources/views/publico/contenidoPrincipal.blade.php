@@ -73,13 +73,13 @@
                                 <div class="col-md-6 col-12 ">
                                      <div class="shadow  p-3 mb-4  bg-white rounded">
                                             <div class="row">
-                                                <div class="col-8 my-auto text-center">
+                                                <div class="col-md-8 col-12 my-auto text-center">
                                                     <h2 class="card-title"><?php echo strtoupper($sucursal->getFarmacia->nombre_farmacia ) ?></h2>
                                                     <p> <?php echo $sucursal->getFarmacia->descripcion_farmacia ?> </p>
                                                 </div>     
                                          
-                                                <div class="col-4">
-                                                <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
+                                                <div class="col-md-4 col-12">
+                                                <img class="card-img-top shadow img-rounded img-fluid" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
                                                     alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="200" height="150">
                                                 <hr>
                                             </div>       
