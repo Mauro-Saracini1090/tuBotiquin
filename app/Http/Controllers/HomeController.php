@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Farmacia;
+use App\Models\Sucursal;
 use App\Models\Turno;
+use App\Models\ObraSocial;
 use DateInterval;
 use DatePeriod;
 use DateTime;
@@ -122,11 +125,28 @@ class HomeController extends Controller
         //
     }
 
-    public function farmaciasTurnoHoy()
-    {
+    /**
+     * Funcion que lista los datos de la farmacia y sucursal (solo una) de turno del home. 
+     * Se llama en el boton "ver sucursal" de los cards
+     */
+    public function verSucursalTurnoHoy(Request $request)
+    {   
+        $sucursal = Sucursal::find($request->id_sucursal);
+        $farmacia = Farmacia::find($sucursal->id_farmacia);
+        $arrayObraSociales = $farmacia->obrasSociales;
+
+        return view('publico.verSucursalTurnoHoy', [
+            'sucursal' => $sucursal,
+            'farmacia' => $farmacia,
+            'arrayObraSociales' => $arrayObraSociales,
+        ]); 
     }
 
-    public function farmaciasTurnoProximas()
+
+    public function verSucursalesProximasTruno()
     {
+
+
     }
+
 }
