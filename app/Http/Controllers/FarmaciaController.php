@@ -81,12 +81,12 @@ class FarmaciaController extends Controller
      */
     public function store(Request $request)
     {
-        //Valida los campos 
-        Request()->validate(([
-
-            'nombre_farmacia' => 'required',
-            'img_farmacia' => 'required|image|mimes:jpeg,png|max:4096',
-            'cuit' => 'required',
+        //Valida los campos del formulario cargarFarmacia.blade 
+        $request->validate(([
+            'nombre_farmacia' => 'required|max:255|unique:farmacia',
+            'descripcion_farmacia' => 'max:250',
+            'img_farmacia' => 'required|image|mimes:jpeg,jpe,png|max:4096',
+            'cuit' => 'required|between:8,20',
         ]));
 
         // Crear una nueva instacia de Farmacia y la guarda en la DB
@@ -102,7 +102,11 @@ class FarmaciaController extends Controller
         $img_farmacia = Storage::url($img_logo);
 
         $farmacia->img_farmacia = $img_farmacia;
-        $farmacia->descripcion_farmacia = $request->descripcion_farmacia;
+
+         if($request->descripcion_farmacia != null){
+            $farmacia->descripcion_farmacia = $request->descripcion_farmacia ;
+         }   
+     
         $farmacia->cuit = $request->cuit;
         $farmacia->habilitada = $habilitada;
         $farmacia->borrado_logico_farmacia = $borado_logico;
@@ -131,7 +135,7 @@ class FarmaciaController extends Controller
 
         $farmacia = new Farmacia();
         $farmacia->id_usuario = $id_usuario;
-        $farmacia->nombre_farmacia = $request->nombre_farmacia;
+        $farmacia->nombre_farmacia = strtoupper($request->nombre_farmacia);
 
         if ($request->img_farmacia != null) {
             $img_logo = $request->file('img_farmacia')->store('public/img_farmacias');
@@ -204,11 +208,14 @@ class FarmaciaController extends Controller
     {
         $farmacia = $farmacium;
 
-        Request()->validate(([
-            'nombre_farmacia' => 'required',
-            'cuit' => 'required',
-
+        //Valida los campos del formulario editarFarmacia.blade 
+        $request->validate(([
+            'nombre_farmacia' => 'required|max:255|unique:farmacia',
+            'descripcion_farmacia' => 'max:250',
+            'img_farmacia' => 'required|image|mimes:jpeg,jpe,png|max:4096',
+            'cuit' => 'required|between:8,20',
         ]));
+
 
         if ($request->descripcion_farmacia != null) {
             $farmacia->descripcion_farmacia = $request->descripcion_farmacia;
@@ -220,7 +227,7 @@ class FarmaciaController extends Controller
         }
         $farmacia->id_usuario = $farmacia->id_usuario;
         $farmacia->img_farmacia = $farmacia->img_farmacia;
-        $farmacia->nombre_farmacia = $request->nombre_farmacia;
+        $farmacia->nombre_farmacia = strtoupper($request->nombre_farmacia);
         $farmacia->cuit = $request->cuit;
         $farmacia->habilitada = $farmacia->habilitada;
         $farmacia->save();

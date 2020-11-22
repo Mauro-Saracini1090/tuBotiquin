@@ -56,14 +56,14 @@ class SucursalController extends Controller
     public function store(Request $request)
     {
         //
-        //Valida los campos 
-        Request()->validate(([
-            
+        //Valida los campos del formulario cargarSucursal.blade
+        $request->validate(([
             'id_farmacia' => 'required',
-            'cufe_sucursal' => 'required',
-            'email_sucursal' => 'required | email',
-            'telefono_sucursal' => 'required',
-            'direccion_sucursal' => 'required',
+            'descripcion_sucursal' => 'max:255',
+            'cufe_sucursal' => 'required|unique:sucursal|max:255',
+            'email_sucursal' => 'required|email|unique:sucursal|max:255',
+            'telefono_sucursal' => 'required|max:11',
+            'direccion_sucursal' => 'required|unique:sucursal|max:255',
             ]));
     
             // Crear una nueva instacia de Farmacia y la guarda en la DB
@@ -133,13 +133,14 @@ class SucursalController extends Controller
     public function update(Request $request, Sucursal $sucursal)
     {
         
-        Request()->validate(([
-        //    'descripcion_sucursal' => 'required',
-            'cufe_sucursal' => 'required',
-            'email_sucursal' => 'required|email',
-            'telefono_sucursal' => 'required', 
-            'direccion_sucursal' => 'required',
-        ]));
+        $request->validate(([
+            'id_farmacia' => 'required',
+            'descripcion_sucursal' => 'max:255',
+            'cufe_sucursal' => 'required|unique:sucursal|max:255',
+            'email_sucursal' => 'required|email|unique:sucursal|max:255',
+            'telefono_sucursal' => 'required|max:11',
+            'direccion_sucursal' => 'required|unique:sucursal|max:255',
+            ]));
 
         $sucursal->id_sucursal = $sucursal->id_sucursal;
         $sucursal->id_farmacia = $sucursal->id_farmacia;
