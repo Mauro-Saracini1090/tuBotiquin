@@ -5,7 +5,7 @@
 <div class="container">
     @foreach($farmacias as $farmacia)
             @if($farmacia->habilitada == 1)
-                    <div class="shadow p-3 mb-5 backCard rounded">
+                    <div class="shadow p-3 mb-5 bg-white rounded">
                         <div class="row">
                             <div class="col-8">
                                <h2 class="text-secondary  m-3"> {{ $farmacia->nombre_farmacia }}</h2>
@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <hr>
-                        @if( count($sucursales) > 0 )
+                        @if( count($sucursales) >= 0 )
                             @foreach ($sucursales as $sucursal)
                                 @if ($sucursal->getFarmacia->id_farmacia == $farmacia->id_farmacia)
                                 <div class="card-body">
@@ -48,8 +48,8 @@
                                 </div>
                                 @endif
                             @endforeach
-                            <!-- REVISAR ESTA DE ABAJO NO FUNCIONA -->
-                        @elseif( empty($sucursales))   
+                        
+                        @elseif( count($sucursales) < 1)   
                              <div class="card-body">
                                     <div class="row">
                                         <div class="col-12">
