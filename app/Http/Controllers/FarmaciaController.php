@@ -46,8 +46,8 @@ class FarmaciaController extends Controller
     {
         //Se obtienen todas las farmacias en estado habilitado = 1
         //Se paginan de a 6 elementos para ser mostrados en la vista
-        $farmaciasPaginate = Farmacia::where("habilitada", "=", 1)->where("borrado_logico_farmacia", "=", "0")->simplePaginate(6);
-        $arrayFarmacias = Farmacia::where("habilitada", "=", 1)->where("borrado_logico_farmacia", "=", "0")->get();
+        $farmaciasPaginate = Farmacia::where("habilitada", "=", "1")->where("borrado_logico_farmacia", "=", "0")->simplePaginate(6);
+        $arrayFarmacias = Farmacia::where("habilitada", "=", "1")->where("borrado_logico_farmacia", "=", "0")->get();
 
         return view('publico.farmacias', [
             'arrayFarmaciasPaginate' => $farmaciasPaginate,
