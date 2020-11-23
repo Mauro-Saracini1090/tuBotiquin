@@ -13,6 +13,7 @@
                                       <h6 class="font-weight-bold text-center mb-2">No posee Farmacias cargadas</h6>
                                     <br>
                                     <p class="text-center">Si cree que esto es un error, contacte al Administrador </p>
+                                    <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
                                 </div>
                             </div>
                         </div>   
