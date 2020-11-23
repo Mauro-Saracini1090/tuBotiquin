@@ -30,6 +30,6 @@ class RegistroFarmaceuticoMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.registroFarmaceutico');
+        return $this->view('emails.Farmaceutico.registroFarmaceutico');
     }
 }
