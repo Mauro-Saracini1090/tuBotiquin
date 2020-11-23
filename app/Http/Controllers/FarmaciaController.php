@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SolicitudHabilitacionFarmaciaMailable;
 use App\Models\Farmacia;
 use APP\Models\Sucursal;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Inline\Element\Strong;
 
@@ -102,7 +104,7 @@ class FarmaciaController extends Controller
         $img_farmacia = Storage::url($img_logo);
 
         $farmacia->img_farmacia = $img_farmacia;
-
+        
          if($request->descripcion_farmacia != null){
             $farmacia->descripcion_farmacia = $request->descripcion_farmacia ;
          }   
@@ -111,6 +113,15 @@ class FarmaciaController extends Controller
         $farmacia->habilitada = $habilitada;
         $farmacia->borrado_logico_farmacia = $borado_logico;
         $farmacia->save();
+        
+        //Se busca el email del usuario administrador
+        $emailAdministrador = DB::table('usuario')
+        ->join('usuario_roles', 'usuario.id_usuario', '=', 'usuario_roles.usuario_id')
+        ->join('roles', 'usuario_roles.rol_id', '=', 'roles.id_rol')
+        ->where('roles.slug_rol', '=', 'es-administrador')
+        ->select('email')
+        ->get();
+        Mail::to($emailAdministrador)->send(new SolicitudHabilitacionFarmaciaMailable);
 
 
         return redirect(route('farmacia.index'))->with('estado_create', 'Su Farmacia se registró correctamente y será evaluada a la brevedad por el Administrador para verificar los datos.');
