@@ -53,9 +53,9 @@
                                         </div>       
                                         <div class="card-body">
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Dirección: <span class="font-weight-bold text-secondary">{{$sucursalesTurno[0]->direccion_sucursal }} </span></li>
-                                                    <li class="list-group-item">Email: <span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->email_sucursal }} </span></li>
-                                                     <li class="list-group-item">Telefono: <span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->telefono_sucursal }} </span></li> 
+                                                    <li class="list-group-item"><i class="material-icons">location_on</i> Dirección: <span class="font-weight-bold text-secondary">{{$sucursalesTurno[0]->direccion_sucursal }} </span></li>
+                                                    <li class="list-group-item"><i class="material-icons">mail</i> Email: <span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->email_sucursal }} </span></li>
+                                                     <li class="list-group-item"><i class="material-icons">local_phone</i> Telefono: <span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->telefono_sucursal }} </span></li> 
                                                 </ul>
                                                 <hr>   
                                                 <div class="d-flex d-flex justify-content-center"> 
@@ -89,9 +89,9 @@
                                         </div>       
                                         <div class="card-body">
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Dirección: <span class="font-weight-bold text-secondary"> {{ $sucursal->direccion_sucursal }} </span></li>
-                                                    <li class="list-group-item">Email: <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }}  </span></li>
-                                                    <li class="list-group-item">Telefono: <span class="font-weight-bold text-secondary">  {{ $sucursal->telefono_sucursal }} </span></li> 
+                                                    <li class="list-group-item"><i class="material-icons">location_on</i> Dirección: <span class="font-weight-bold text-secondary"> {{ $sucursal->direccion_sucursal }} </span></li>
+                                                    <li class="list-group-item"><i class="material-icons">mail</i> Email: <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }}  </span></li>
+                                                    <li class="list-group-item"><i class="material-icons">local_phone</i> Telefono: <span class="font-weight-bold text-secondary">  {{ $sucursal->telefono_sucursal }} </span></li> 
                                                 </ul>
                                                 <hr>   
                                                <div class="d-flex d-flex justify-content-center"> 
@@ -156,9 +156,9 @@
                                 <div class="card-body">
                                     <h4 class="card-title text-center"><?php echo strtoupper($sucursal->getFarmacia->nombre_farmacia) ?></h4>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Direccion: <span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></li>
-                                        <li class="list-group-item">Email: <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></li>
-                                        <li class="list-group-item">Telefono: <span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></li>
+                                        <li class="list-group-item"><i class="material-icons">location_on</i> Direccion: <span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></li>
+                                        <li class="list-group-item"><i class="material-icons">mail</i> Email: <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></li>
+                                        <li class="list-group-item"><i class="material-icons">local_phone</i> Telefono: <span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></li>
                                     </ul>
                                     <hr>  
                                     <div class="d-flex d-flex justify-content-center"> 
