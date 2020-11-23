@@ -26,7 +26,7 @@
                       </div>
 
                         <!-- Sucursal -->
-                        <h4 class="text-secondary  m-3">SUCURSAL DEL TURNO HOY  [ <ins><?php echo date('d-m-Y') ?> ] </ins></h4>
+                        <h4 class="text-secondary  m-3">SUCURSAL</h4>
                         <hr>    
                                 <div class="row">
                                     <div Class="col-lg-7 col-12 " >
