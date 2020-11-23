@@ -64,7 +64,7 @@
                                  
                         @endforeach
 
-                         @if((empty($arrayObraSociales)))
+                         @if( !(count($arrayObraSociales)) < 1 )
                             <!-- Obra Sociales -->
                             <div class="row">
                                 <div class="col-12">
