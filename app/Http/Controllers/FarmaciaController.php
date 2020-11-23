@@ -105,6 +105,9 @@ class FarmaciaController extends Controller
 
          if($request->descripcion_farmacia != null){
             $farmacia->descripcion_farmacia = $request->descripcion_farmacia ;
+         }
+         else{
+            $farmacia->descripcion_farmacia = NULL;
          }   
      
         $farmacia->cuit = $request->cuit;
