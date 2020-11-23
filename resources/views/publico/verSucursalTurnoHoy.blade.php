@@ -33,9 +33,9 @@
                                         <div class="text ml-5 p-1"> 
                                        
                                             <p><?php echo $sucursal->descripcion_sucursal ?></p>
-                                            <p>Email: {{$sucursal->email_sucursal }}</p>
-                                            <p>Teléfono: {{ $sucursal->telefono_sucursal }}</p> 
-                                            <p>Dirección: {{$sucursal->direccion_sucursal }} </p> 
+                                            <p>Email: <span class="font-weight-bold text-secondary">{{$sucursal->email_sucursal }} </span></p>
+                                            <p>Teléfono: <span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }}</span></p> 
+                                            <p>Dirección: <span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></p> 
 
                                         </div>
                                     </div>  
@@ -80,7 +80,7 @@
                     @else
                         <div class="row">
                                 <div class="col-12">
-                                    <div class="p-3 mb-2 bg-warning text-dark">
+                                    <div class="p-3 mb-2 bg-warning rounded text-dark ">
                                         <h6 class="font-weight-bold text-center">Atención. Ocurrio un error en la búsqueda, intentelo nuevamente mas tarde</h6>
                                     </div>
                                 </div>
