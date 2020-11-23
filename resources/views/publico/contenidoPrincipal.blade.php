@@ -121,7 +121,7 @@
                     
                         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Próximas de turno</h2>
                         <p class="lead text-center my-2 ">Farmacias que se encontrarán de turnos los próximos días
-                        <button type="button" class="btn btn-link">[ Ver más ]</button></p>
+                        <a href="{{ route('verTurnosSiguientes') }}" class="btn btn-link">[ Ver más ]</a> 
                     </div>
                 </div>
             </div>
