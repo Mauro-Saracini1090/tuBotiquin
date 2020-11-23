@@ -82,7 +82,7 @@
                                                 </div>     
                                          
                                                 <div class="col-md-4 col-12">
-                                                <img class="card-img-top shadow img-rounded img-fluid" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
+                                                <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
                                                     alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="200" height="150">
                                                 <hr>
                                             </div>       
