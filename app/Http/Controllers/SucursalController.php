@@ -6,7 +6,7 @@ use App\Models\Farmacia;
 use App\Models\ObraSocial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Validation\Rule;
 class SucursalController extends Controller
 {
     /**
@@ -42,7 +42,7 @@ class SucursalController extends Controller
         }
 
         $id_usuario = auth()->user()->id_usuario; 
-        $arrayFarmacias = Farmacia::where('id_usuario', "=" , $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
+        $arrayFarmacias = Farmacia::where('id_usuario', "=" , $id_usuario)->where('habilitada', "=" , "1")->where("borrado_logico_farmacia", "=", "0")->get();
     
         return view('farmaceutico.cargarSucursal' , ['arrayFarmacias' => $arrayFarmacias ]); 
     }
@@ -56,14 +56,14 @@ class SucursalController extends Controller
     public function store(Request $request)
     {
         //
-        //Valida los campos 
-        Request()->validate(([
-            
+        //Valida los campos del formulario cargarSucursal.blade
+        $request->validate(([
             'id_farmacia' => 'required',
-            'cufe_sucursal' => 'required',
-            'email_sucursal' => 'required | email',
-            'telefono_sucursal' => 'required',
-            'direccion_sucursal' => 'required',
+            'descripcion_sucursal' => 'max:255',
+            'cufe_sucursal' => 'required|unique:sucursal|max:255',
+            'email_sucursal' => 'required|email|unique:sucursal|max:255',
+            'telefono_sucursal' => 'required|max:11',
+            'direccion_sucursal' => 'required|unique:sucursal|max:255',
             ]));
     
             // Crear una nueva instacia de Farmacia y la guarda en la DB
@@ -133,13 +133,14 @@ class SucursalController extends Controller
     public function update(Request $request, Sucursal $sucursal)
     {
         
-        Request()->validate(([
-        //    'descripcion_sucursal' => 'required',
-            'cufe_sucursal' => 'required',
-            'email_sucursal' => 'required|email',
-            'telefono_sucursal' => 'required', 
-            'direccion_sucursal' => 'required',
-        ]));
+        $request->validate(([
+            'id_farmacia' => 'required',
+            'descripcion_sucursal' => 'max:255',
+            'cufe_sucursal' =>  ['required', 'max:255', Rule::unique('sucursal','cufe_sucursal' )->ignore($sucursal)],
+            'email_sucursal' => ['required', 'email', 'max:255', Rule::unique('sucursal','email_sucursal' )->ignore($sucursal)],
+            'telefono_sucursal' => ['required', 'numeric', Rule::unique('sucursal','telefono_sucursal' )->ignore($sucursal)],
+            'direccion_sucursal' => 'required|unique:sucursal|max:255',
+            ]));
 
         $sucursal->id_sucursal = $sucursal->id_sucursal;
         $sucursal->id_farmacia = $sucursal->id_farmacia;
@@ -189,7 +190,7 @@ class SucursalController extends Controller
         //$farmacia = Farmacia::where("id_farmacia", "=" , $request->id_farmacia)->get();
         $farmacia = Farmacia::find($request->id_farmacia);
         $arraySucursales = Sucursal::where("id_farmacia", "=" , $request->id_farmacia)->get();
-        return view('farmacia.verFarmaciaySucursal' , [
+        return view('publico.verFarmaciaySucursal' , [
                     'arraySucursales' => $arraySucursales,
                     'farmacia' => $farmacia,
         ]);
@@ -204,18 +205,15 @@ class SucursalController extends Controller
 
         $farmacia = $request->id_farmacia;
         $farmacia = Farmacia::find($farmacia);
-        $arraySucursales = Sucursal::where("id_farmacia", "=" , $farmacia->id_farmacia)->get();
-
+        $arraySucursales = Sucursal::where("id_farmacia", "=" , $farmacia->id_farmacia)->where("borrado_logico_sucursal", "=", "0")->get();
                  
-        $arrayObraSociales = $farmacia->obrasSociales();
+        $arrayObraSociales = $farmacia->obrasSociales;
 
-       
-        dd($arrayObraSociales);
-        //return view('farmacia.verFarmaciaySucursal' , [
-        //         'arraySucursales' => $arraySucursales,
-        //         'farmacia' => $farmacia,
-        //         'arrayObraSociales' => $arrayObraSociales,
-        //         ]);  
+        return view('publico.verFarmaciaySucursal' , [
+                 'arraySucursales' => $arraySucursales,
+                 'farmacia' => $farmacia,
+                 'arrayObraSociales' => $arrayObraSociales,
+                 ]);  
     }
 
     public function solicitudSucursal(Request $request)

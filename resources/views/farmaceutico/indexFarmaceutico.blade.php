@@ -10,7 +10,7 @@
                 <div class="col-12">
                    
                 </div>
-                 <div class="col-lg-3 col-12">
+                 <div class="col-md-3 col-12">
                      @can('esFarmaceutico')
                         
                         <ul class="list-group list-group-flush">

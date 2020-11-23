@@ -5,10 +5,10 @@
 
  <div class="row justify-content-center">
         <div class="col-md-6 col-12">
-             <div class="shadow p-3 mb-5 backCard rounded"> 
+             <div class="p-3 mb-5 shadow bg-white rounded"> 
                 <div class="card-body mb-2"> 
                     <!-- Masthead Subheading-->
-                    <h3 class="masthead-subheading mb-0 text-center">Registrarse</h3>
+                    <h3 class="text-secondary mb-0 text-center">REGISTRARSE</h3>
                     <p class="text-muted text-center">Complete los siguientes campos</p>
     
                         <form method="POST" action="{{ route('register') }}">
@@ -98,7 +98,7 @@
                                     <a class="btn btn-link" href="{{route('farmaceutico')}}" >¿Sos farmaceutico?</a>
                                 </div>
                             </div> 
-                            
+                            <hr>
                             <div class="form-group">
                                 <div class="d-flex d-flex justify-content-center">  
                                     <button type="submit" class="btn btn-primary">

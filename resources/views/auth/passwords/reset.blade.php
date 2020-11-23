@@ -7,7 +7,7 @@
             <div class="col-md-6 col-12">
                     <div class="shadow p-3 mb-5 bg-white rounded"> 
                         <div class="card-body mb-2">
-                        <h3 class="masthead-subheading text-center my-4">{{ __('Reestablecer Contraseña') }}</h3>
+                        <h3 class="text-secondary text-center my-4">{{ __('RESTABLECER CONTRASEÑA') }}</h3>
                         <p>Por favor, ingrese su cuenta de correo</p>
             
                             <form method="POST" action="{{ route('password.update') }}">
@@ -43,7 +43,7 @@
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                    
                                 </div>
-
+                                <<hr>
                                 <div class="form-group">
                                     <div class="d-flex d-flex justify-content-center">  
                                         <button type="submit" class="btn btn-primary">
