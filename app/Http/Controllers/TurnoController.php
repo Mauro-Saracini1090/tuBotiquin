@@ -17,7 +17,7 @@ class TurnoController extends Controller
     public function index()
     {
         //
-        $sucursales= Sucursal::all();
+        $sucursales = Sucursal::where("borrado_logico_sucursal", "=", "0")->where('habilitado', "=" , "1")->get();
         $turnos = Turno::all();
         return view('admin.turno.calendario',compact('sucursales','turnos'));
     }

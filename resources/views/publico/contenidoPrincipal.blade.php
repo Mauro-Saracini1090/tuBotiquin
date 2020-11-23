@@ -14,12 +14,15 @@
             <div class="container">
                 <div class="row ">
                     @if(count($sucursalesTurno) < 1)
-                        <div class="alert alert-warning alert-dismissible fade show focus" role="alert">
-                            <strong>No Existen Farmacias de turno Registradas en tuBotiquin en este momento. Disculpe
-                                las Molestias. Equipo tuBotiquin</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        
+                        <div class="col-12">
+                            <div class="p-3 mb-2 bg-warning rounded shadow text-dark text-center mx-auto">
+                                <h6 class="mb-2">
+                                    No existen Farmacias de turnos para el día <ins><?php echo date('d-m-Y') ?> </ins> registradas en la plataforma.
+                                </h6>   
+                                <br>        
+                                <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
+                            </div>        
                         </div>
                 </div>
             </div> <!-- Cierre no hay cargadas --> 
@@ -50,9 +53,9 @@
                                         </div>       
                                         <div class="card-body">
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Dirección: {{$sucursalesTurno[0]->direccion_sucursal }} </li>
-                                                    <li class="list-group-item">Email: {{ $sucursalesTurno[0]->email_sucursal }} </li>
-                                                     <li class="list-group-item">Telefono: {{ $sucursalesTurno[0]->telefono_sucursal }} </li> 
+                                                    <li class="list-group-item"><i class="material-icons">location_on</i> Dirección: <span class="font-weight-bold text-secondary">{{$sucursalesTurno[0]->direccion_sucursal }} </span></li>
+                                                    <li class="list-group-item"><i class="material-icons">mail</i> Email: <span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->email_sucursal }} </span></li>
+                                                     <li class="list-group-item"><i class="material-icons">local_phone</i> Teléfono: <span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->telefono_sucursal }} </span></li> 
                                                 </ul>
                                                 <hr>   
                                                 <div class="d-flex d-flex justify-content-center"> 
@@ -70,7 +73,7 @@
                             <!-- Hay mas de una de turno -->
                             @foreach ($sucursalesTurno as $sucursal)
                               
-                                <div class="col-md-6 col-12 ">
+                                <div class="col-lg-6 col-12 ">
                                      <div class="shadow  p-3 mb-4  bg-white rounded">
                                             <div class="row">
                                                 <div class="col-md-8 col-12 my-auto text-center">
@@ -79,16 +82,16 @@
                                                 </div>     
                                          
                                                 <div class="col-md-4 col-12">
-                                                <img class="card-img-top shadow img-rounded img-fluid" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
+                                                <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
                                                     alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="200" height="150">
                                                 <hr>
                                             </div>       
                                         </div>       
                                         <div class="card-body">
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Dirección: {{ $sucursal->direccion_sucursal }} </li>
-                                                    <li class="list-group-item">Email: {{ $sucursal->email_sucursal }} </li>
-                                                    <li class="list-group-item">Telefono: {{ $sucursal->telefono_sucursal }} </li> 
+                                                    <li class="list-group-item"><i class="material-icons">location_on</i> Dirección: <span class="font-weight-bold text-secondary"> {{ $sucursal->direccion_sucursal }} </span></li>
+                                                    <li class="list-group-item"><i class="material-icons">mail</i> Email: <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }}  </span></li>
+                                                    <li class="list-group-item"><i class="material-icons">local_phone</i> Teléfono: <span class="font-weight-bold text-secondary">  {{ $sucursal->telefono_sucursal }} </span></li> 
                                                 </ul>
                                                 <hr>   
                                                <div class="d-flex d-flex justify-content-center"> 
@@ -118,7 +121,7 @@
                     
                         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Próximas de turno</h2>
                         <p class="lead text-center my-2 ">Farmacias que se encontrarán de turnos los próximos días
-                        <button type="button" class="btn btn-link">[ Ver más ]</button></p>
+                        <a href="{{ route('verTurnosSiguientes') }}" class="btn btn-link">[ Ver más ]</a> 
                     </div>
                 </div>
             </div>
@@ -128,16 +131,21 @@
             <div class="container pt-4">
                 <div class="row">
                     @if(count($arrSucursalesTurnoSiguiente) == 0)
-                        <div class="alert alert-warning alert-dismissible fade show focus" role="alert">
-                                <strong>No Existen Farmacias de turno para dias siguientes Registradas en tuBotiquin en este momento. Disculpe
-                                    las Molestias. Equipo tuBotiquin</strong>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                         
+                        <div class="col-12">
+                            <div class="p-3 mb-2 bg-warning rounded shadow text-dark text-center mx-auto">
+                                <h6 class="mb-2">
+                                    No existen Farmacias de turnos para los siguientes días registradas en la plataforma en este momento
+                                </h6>   
+                                <br>       
+                                 <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
+                                
+                            </div>        
                         </div>
+                    
                     @endif
                     @foreach($arrSucursalesTurnoSiguiente as $sucursal)
-                        <div class="col-md-4 col-12">
+                        <div class="col-lg-4 col-12">
                             <div class="p-3 mb-4 shadow bg-white rounded">
                                  <div class="d-flex d-flex justify-content-center"> 
                                     <div class="col-6"> 
@@ -148,9 +156,9 @@
                                 <div class="card-body">
                                     <h4 class="card-title text-center"><?php echo strtoupper($sucursal->getFarmacia->nombre_farmacia) ?></h4>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Direccion:  {{$sucursal->direccion_sucursal }}</li>
-                                        <li class="list-group-item">Email: {{ $sucursal->email_sucursal }} </li>
-                                        <li class="list-group-item">Telefono: {{ $sucursal->telefono_sucursal }} </li>
+                                        <li class="list-group-item"><i class="material-icons">location_on</i> Dirección: <span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></li>
+                                        <li class="list-group-item"><i class="material-icons">mail</i> Email: <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></li>
+                                        <li class="list-group-item"><i class="material-icons">local_phone</i> Teléfono: <span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></li>
                                     </ul>
                                     <hr>  
                                     <div class="d-flex d-flex justify-content-center"> 

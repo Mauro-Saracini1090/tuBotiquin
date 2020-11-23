@@ -68,3 +68,4 @@ Route::get('obrasocialfarmacia', [ObraSocialController::class, 'listarObraSocial
 Route::post('obrasocialfarmacia', [ObraSocialController::class, 'agregarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('agregarobrasocialfarmacia');
 
 Route::post('sucursalturnohoy', [homeController::class,'verSucursalTurnoHoy'])->name('verSucursalTurnoHoy');
+Route::get('turnossiguientes', [homeController::class,'verSucursalesProximasTurno'])->name('verTurnosSiguientes');
