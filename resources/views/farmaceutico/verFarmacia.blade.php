@@ -6,27 +6,33 @@
     <div class="container">
         <div class="row justify-content-left">
             <div class="col-12 ">
-                @if(count($arrayFarmacias) < 0 )
-                        <div class="shadow p-3 mb-5 bg-warning text-dark rounded"> 
-                            <h2 class="page-section-heading text-uppercase text-secondary mb-0">No posee Farmacias cargadas</h2>
-                            <p class="text-center">Si cree que esto es un error, contacte al Administrador </p>
-                        </div>    
+                @if((count($arrayFarmacias) < 1))
+                     <div class="row">
+                        <div class="col-12 text-center">
+                                <div class="p-3 mb-2 bg-warning rounded shadow">
+                                      <h6 class="font-weight-bold text-center mb-2">No posee Farmacias cargadas</h6>
+                                    <br>
+                                    <p class="text-center">Si cree que esto es un error, contacte al Administrador </p>
+                                    <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
+                                </div>
+                            </div>
+                        </div>   
                 @else          
                     @foreach ($arrayFarmacias as $farmacia)
                         <div class="shadow p-3 mb-5 bg-white rounded">
                             <div class="row" >
                                 <div Class="col-lg-8 col-12" >
-                                        <h2 class="text-secondary  m-3">{{ $farmacia->nombre_farmacia }}</h2>
-                                         <div class="text m-3 p-3">   
-                                            <p>Descripción:<?php echo $farmacia->descripcion_farmacia ?><p>
-                                            <hr>
-                                            <p>CUIT: {{ $farmacia->cuit }}</p>
-                                            <hr>
-                                            @if($farmacia->habilitada == 1)
-                                                 <span class="text-left text-success">Estado: habilitada </>   
-                                            @else
-                                                <p class="text-left text-warning">Estado: Deshabilitada </p> 
-                                            @endif
+                                        <h2 class="text-secondary  m-3"><?php echo strtoupper($farmacia->nombre_farmacia) ?></h2>
+                                         <div class="text m-3 p-3">  
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">Descripción: <span class="font-weight-bold text-secondary"><?php echo $farmacia->descripcion_farmacia ?> </span></li>
+                                                <li class="list-group-item">CUIT: <span class="font-weight-bold text-secondary">{{ $farmacia->cuit }} </span></li>
+                                                @if($farmacia->habilitada == 1)
+                                                     <li class="list-group-item"> <span class="text-left text-success">Estado: habilitada </li>   
+                                                @else
+                                                     <li class="list-group-item"><p class="text-left text-warning">Estado: Deshabilitada </li>
+                                                @endif
+                                            </ul>    
                                          </div>   
                                     </div>
                                     <div Class="col-lg-3 col-12">

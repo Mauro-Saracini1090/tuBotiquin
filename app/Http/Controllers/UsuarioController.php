@@ -49,12 +49,28 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
+          //Valida los campos del formulario registro
+          $request->validate([
+            'nombre' => 'required|max:255',
+            'apellido' => 'required|max:255',
+            'nombre_usuario' =>'required|unique:usuario|max:255',
+            'email' => 'required|unique:usuario|email|max:255',
+            'password' => 'required|max:255|between:8,50',
+            'cod_postal' => 'required|numeric',
+            'cuil' => 'required|unique:usuario|numeric|between:8,20',
+            'cuit' => 'required|unique:usuario|numeric|between:8,20',
+            'dni' => 'required|unique:usuario|numeric|between:7,8',
+            'matricula' => 'required|unique:usuario|max:200',
+        ]);   
+        
         if ($request->habilitado == 'si') {
             $habilitado = true;
         } else {
             $habilitado = false;
         }
 
+      
+        
         $usuario = new Usuario();
         $usuario->nombre = $request->nombre;
         $usuario->apellido = $request->apellido;

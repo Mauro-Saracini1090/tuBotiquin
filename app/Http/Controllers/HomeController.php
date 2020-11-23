@@ -143,10 +143,25 @@ class HomeController extends Controller
     }
 
 
-    public function verSucursalesProximasTruno()
+    /**
+     * Funcion que lista todas las farmacias cargdas de turno.
+     * Se llama en el boton del home [ Ver mas ]
+     */
+    public function verSucursalesProximasTurno()
     {
-
-
+        $arrayTurnos = Turno::all();
+        $arrSucursalDia = array();
+        $arrSucursalDiaCompleto = array();
+        
+        foreach ($arrayTurnos as  $turno) {    
+            foreach ($turno->getSucursales as $sucursal) {
+                $originalDate = $turno->fecha_turno;
+                $newDate = date("d/m/Y", strtotime($originalDate));
+                 $arrSucursalDia = [ "sucursal" => $sucursal , "diaTurno" => $newDate ];
+                 array_push($arrSucursalDiaCompleto, $arrSucursalDia);   
+            }   
+        }
+        return view('publico.verSucursalProximosDias', [ 'arregloSucursalTurnodia' => $arrSucursalDiaCompleto ]);    
     }
 
 }
