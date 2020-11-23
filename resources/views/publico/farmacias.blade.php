@@ -39,7 +39,7 @@
                             <div class="p-2 mb-4  shadow bg-white rounded">
                                 <div class="d-flex d-flex justify-content-center"> 
                                     <div class="col-12">           
-                                        <img class="card-img-top shadow img-responsive" src="{{ asset($farmaciaPaginate->img_farmacia) }}" alt="Logotipo" width="150" height="200">
+                                        <img class="card-img-top shadow img-responsive" src="{{ asset($farmaciaPaginate->img_farmacia) }}" alt="Logotipo" width="100" height="200">
                                     </div>
                                 </div>       
                                     <div class="card-body text-center">
