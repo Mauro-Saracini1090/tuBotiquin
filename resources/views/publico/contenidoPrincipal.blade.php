@@ -21,7 +21,7 @@
                                     No existen Farmacias de turnos para el día <ins><?php echo date('d-m-Y') ?> </ins> registradas en la plataforma.
                                 </h6>   
                                 <br>        
-                                <p>Disculpe las Molestias. <strong>Equipo tuBotiquin</strong></p>
+                                <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
                             </div>        
                         </div>
                 </div>
@@ -138,7 +138,7 @@
                                     No existen Farmacias de turnos para los siguientes días registradas en la plataforma en este momento
                                 </h6>   
                                 <br>       
-                                 <p>Disculpe las Molestias. <strong>Equipo tuBotiquin</strong></p>
+                                 <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
                                 
                             </div>        
                         </div>
