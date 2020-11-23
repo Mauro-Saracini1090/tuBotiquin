@@ -6,11 +6,16 @@
     <div class="container">
         <div class="row justify-content-left">
             <div class="col-12 ">
-                @if(count($arrayFarmacias) < 0 )
-                        <div class="shadow p-3 mb-5 bg-warning text-dark rounded"> 
-                            <h2 class="page-section-heading text-uppercase text-secondary mb-0">No posee Farmacias cargadas</h2>
-                            <p class="text-center">Si cree que esto es un error, contacte al Administrador </p>
-                        </div>    
+                @if((count($arrayFarmacias) < 1))
+                     <div class="row">
+                        <div class="col-12 text-center">
+                                <div class="p-3 mb-2 bg-warning rounded shadow">
+                                      <h6 class="font-weight-bold text-center mb-2">No posee Farmacias cargadas</h6>
+                                    <br>
+                                    <p class="text-center">Si cree que esto es un error, contacte al Administrador </p>
+                                </div>
+                            </div>
+                        </div>   
                 @else          
                     @foreach ($arrayFarmacias as $farmacia)
                         <div class="shadow p-3 mb-5 bg-white rounded">
