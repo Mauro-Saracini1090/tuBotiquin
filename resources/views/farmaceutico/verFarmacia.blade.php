@@ -16,7 +16,7 @@
                         <div class="shadow p-3 mb-5 bg-white rounded">
                             <div class="row" >
                                 <div Class="col-lg-8 col-12" >
-                                        <h2 class="text-secondary  m-3">{{ $farmacia->nombre_farmacia }}</h2>
+                                        <h2 class="text-secondary  m-3"><?php echo strtoupper($farmacia->nombre_farmacia) ?></h2>
                                          <div class="text m-3 p-3">  
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">Descripción: <span class="font-weight-bold text-secondary"><?php echo $farmacia->descripcion_farmacia ?> </span></li>

@@ -42,9 +42,9 @@
                                         <div class="text ml-5 p-1"> 
                                        
                                             <p><?php echo $sucursal->descripcion_sucursal ?></p>
-                                            <p>Email: {{$sucursal->email_sucursal }}</p>
-                                            <p>Teléfono: {{ $sucursal->telefono_sucursal }}</p> 
-                                            <p>Dirección: {{$sucursal->direccion_sucursal }} </p> 
+                                            <p>Email: <span class="font-weight-bold text-secondary">{{$sucursal->email_sucursal }} </span></p>
+                                            <p>Teléfono: <span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></p> 
+                                            <p>Dirección: <span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }} </span></p> 
 
                                         </div>
                                     </div>  
