@@ -146,7 +146,7 @@
                             </div>
                             <hr>
                         <div class="form-group">
-                            <div class="d-flex d-flex justify-content-center">  
+                            <div class="d-flex d-flex justify-content-center pt-3">  
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Registrarse') }}
                                 </button>
