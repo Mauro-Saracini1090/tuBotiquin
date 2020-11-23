@@ -23,11 +23,11 @@
                                     <div class="row">
                                         <div class="col-10">
                                             
-                                                <p>Descripcion:  <?php echo $sucursal->descripcion_sucursal ?> </p>
-                                                <p>Cufe {{ $sucursal->cufe_sucursal }}</p> 
-                                                <p>Email: {{ $sucursal->email_sucursal }}</p>
-                                                <p>Teléfono: {{ $sucursal->telefono_sucursal }}</p> 
-                                                <p>Dirección: {{$sucursal->direccion_sucursal }} </p>
+                                                <p>Descripción: <span class="font-weight-bold text-secondary"><?php echo $sucursal->descripcion_sucursal ?> </span></p>
+                                                <p>Cufe: <span class="font-weight-bold text-secondary">{{ $sucursal->cufe_sucursal }} </span></p> 
+                                                <p>Email: <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></p>
+                                                <p>Teléfono: <span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></p> 
+                                                <p>Dirección: <span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }} </span></p>
                                                 @if($sucursal->habilitado == 1)
                                                     <span class="text-left text-success">Estado: habilitada </p>   
                                                 @else

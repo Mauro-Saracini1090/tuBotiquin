@@ -17,16 +17,16 @@
                             <div class="row" >
                                 <div Class="col-lg-8 col-12" >
                                         <h2 class="text-secondary  m-3">{{ $farmacia->nombre_farmacia }}</h2>
-                                         <div class="text m-3 p-3">   
-                                            <p>Descripción:<?php echo $farmacia->descripcion_farmacia ?><p>
-                                            <hr>
-                                            <p>CUIT: {{ $farmacia->cuit }}</p>
-                                            <hr>
-                                            @if($farmacia->habilitada == 1)
-                                                 <span class="text-left text-success">Estado: habilitada </>   
-                                            @else
-                                                <p class="text-left text-warning">Estado: Deshabilitada </p> 
-                                            @endif
+                                         <div class="text m-3 p-3">  
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">Descripción: <span class="font-weight-bold text-secondary"><?php echo $farmacia->descripcion_farmacia ?> </span></li>
+                                                <li class="list-group-item">CUIT: <span class="font-weight-bold text-secondary">{{ $farmacia->cuit }} </span></li>
+                                                @if($farmacia->habilitada == 1)
+                                                     <li class="list-group-item"> <span class="text-left text-success">Estado: habilitada </li>   
+                                                @else
+                                                     <li class="list-group-item"><p class="text-left text-warning">Estado: Deshabilitada </li>
+                                                @endif
+                                            </ul>    
                                          </div>   
                                     </div>
                                     <div Class="col-lg-3 col-12">
