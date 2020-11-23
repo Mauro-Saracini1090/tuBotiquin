@@ -73,7 +73,7 @@
                             <!-- Hay mas de una de turno -->
                             @foreach ($sucursalesTurno as $sucursal)
                               
-                                <div class="col-md-6 col-12 ">
+                                <div class="col-lg-6 col-12 ">
                                      <div class="shadow  p-3 mb-4  bg-white rounded">
                                             <div class="row">
                                                 <div class="col-md-8 col-12 my-auto text-center">
@@ -145,7 +145,7 @@
                     
                     @endif
                     @foreach($arrSucursalesTurnoSiguiente as $sucursal)
-                        <div class="col-md-4 col-12">
+                        <div class="col-lg-4 col-12">
                             <div class="p-3 mb-4 shadow bg-white rounded">
                                  <div class="d-flex d-flex justify-content-center"> 
                                     <div class="col-6"> 
