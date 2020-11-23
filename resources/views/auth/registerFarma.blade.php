@@ -77,7 +77,7 @@
                                 <strong><label for="password">{{ __('Contraseña') }}</label><Strong>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" 
                                         name="password" required autocomplete="new-password" placeholder="**************************************">
-                                <small  class="form-text text-muted">Su contraseña debe tener entre 8 y 20 caracteres, contener letras y números, y no debe contener espacios, caracteres especiales</small>
+                                <small  class="form-text text-muted">Su contraseña debe tener entre 8 y 20 caracteres</small>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -93,8 +93,8 @@
                             <!-- CUIL -->
                             <div class="form-group">
                                 <strong><label for="cuil">{{ __('CUIL *') }}</label></strong>
-                                <input id="cuil" type="text" class="form-control @error('cuil') is-invalid @enderror" name="cuil" value="{{ old('cuil') }}"  autocomplete="cuil" autofocus required >
-                                <small  class="form-text text-muted">Sin espacios ni guiones</small>    
+                                <input id="cuil" type="text" class="form-control @error('cuil') is-invalid @enderror" name="cuil" value="{{ old('cuil') }}"  autocomplete="cuil" autofocus placeholder="Ej:12345678" required >
+                                <small  class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo<</small>    
                                 @error('cuil')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -105,8 +105,8 @@
                             <!-- CUIT -->
                             <div class="form-group ">
                                 <strong><label for="cuit">{{ __('CUIT *') }}</label></strong>
-                                <input id="cuit" type="text" class="form-control @error('cuit') is-invalid @enderror" name="cuit" value="{{ old('cuit') }}"  autocomplete="cuit" autofocus required >
-                                <small  class="form-text text-muted">Sin espacios ni guiones</small>
+                                <input id="cuit" type="text" class="form-control @error('cuit') is-invalid @enderror" name="cuit" value="{{ old('cuit') }}"  autocomplete="cuit" autofocus placeholder="Ej:12345678" required >
+                                <small  class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo<</small>
                                 @error('cuit')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -117,8 +117,8 @@
                             <!-- DNI -->
                             <div class="form-group ">
                                 <strong><label for="dni">{{ __('DNI *') }}</label></strong>
-                                <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni') }}"  autocomplete="dni" autofocus required >
-                                <small  class="form-text text-muted">Sin puntos</small>
+                                <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni') }}"  autocomplete="dni" autofocus placeholder="Ej:12345678" required >
+                                <small  class="form-text text-muted">Sin puntos ni guiones</small>
 
                                 @error('dni')
                                     <span class="invalid-feedback" role="alert">
@@ -130,7 +130,7 @@
                             <!-- matricula -->
                             <div class="form-group">
                                 <strong><label for="matricula">{{ __('Número de Matricula *') }}</label></strong>       
-                                <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula" value="{{ old('matricula') }}"  autocomplete="matricula" autofocus required>
+                                <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula" value="{{ old('matricula') }}"  autocomplete="matricula" autofocus placeholder="Ej: mn345678" required>
                                 <small  class="form-text text-muted">Sin espacios ni guiones</small>
 
                                 @error('matricula')
