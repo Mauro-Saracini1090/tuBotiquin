@@ -11,13 +11,11 @@
             </div>    
         <div class="row mt-2">
                  @foreach ($arregloSucursalTurnodia as $sucursalDia)       
-                            <div class="col-lg-4 col-12">
-                                <div class="p-3 mb-4 shadow bg-white rounded">
-                                    <div class="col-12 bg-success text-center rounded">
-                                        
-                                             <span class="font-weight-bold my-2 text-white "> {{  $sucursalDia["diaTurno"] }} </span>
-                                        
-                                    </div> 
+                            <div class="col-lg-4 col-12  mt-4 my-4">
+                                <div class=" shadow bg-white">
+                                    <div class="col-12 bg-encabezado mb-3 p-3 text-center">
+                                        <h5 class="  text-success "> {{  $sucursalDia["diaTurno"] }} </h5>
+                                    </div>
                                     <div class="d-flex d-flex justify-content-center mt-3"> 
                                         <div class="col-6"> 
                                             <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursalDia["sucursal"]->getFarmacia->img_farmacia }}"

@@ -35,8 +35,10 @@
                         <!-- Hay una sola de turno -->
                         @if(count($sucursalesTurno) == 1)
                               
-                                <div class="col-12">
-                                     <div class="shadow  p-3 mb-4  bg-white rounded">
+                                <div class="col-12 mt-4">
+                                     <div class="shadow bg-white">
+                                            <div class="col-12 bg-encabezado mb-3 p-4">
+                                            </div>
                                             <div class="row">
                                                 <div class="col-8 my-auto text-center">
                                                     <h2 class="card-title"><?php echo strtoupper($sucursalesTurno[0]->getFarmacia->nombre_farmacia ) ?></h2>
@@ -73,18 +75,20 @@
                             <!-- Hay mas de una de turno -->
                             @foreach ($sucursalesTurno as $sucursal)
                               
-                                <div class="col-lg-6 col-12 ">
-                                     <div class="shadow  p-3 mb-4  bg-white rounded">
+                                <div class="col-lg-6 col-12 mt-4">
+                                     <div class="shadow bg-white ">
+                                            <div class="col-12 bg-encabezado mb-3 p-3">
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-8 col-12 my-auto text-center">
                                                     <h2 class="card-title"><?php echo strtoupper($sucursal->getFarmacia->nombre_farmacia ) ?></h2>
                                                     <p> <?php echo $sucursal->getFarmacia->descripcion_farmacia ?> </p>
                                                 </div>     
                                          
-                                                <div class="col-md-4 col-12">
+                                                <div class="col-md-4 col-6 mx-auto ">
                                                 <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
                                                     alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="200" height="150">
-                                                <hr>
+                                                
                                             </div>       
                                         </div>       
                                         <div class="card-body">
@@ -145,13 +149,15 @@
                     
                     @endif
                     @foreach($arrSucursalesTurnoSiguiente as $sucursal)
-                        <div class="col-lg-4 col-12">
-                            <div class="p-3 mb-4 shadow bg-white rounded">
-                                 <div class="d-flex d-flex justify-content-center"> 
+                        <div class="col-lg-4 col-12 p-3 mb-4 mt-4">
+                            <div class="shadow bg-white">
+                                <div class="col-12 bg-encabezado mb-3 p-3">
+                                </div>
+                                <div class="d-flex d-flex justify-content-center"> 
                                     <div class="col-6"> 
                                         <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
                                          alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="110" height="110">
-                                  </div>
+                                </div>
                                </div>
                                 <div class="card-body">
                                     <h4 class="card-title text-center"><?php echo strtoupper($sucursal->getFarmacia->nombre_farmacia) ?></h4>

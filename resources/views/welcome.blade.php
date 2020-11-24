@@ -78,7 +78,7 @@
                                 data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                 aria-expanded="false">Farmaceutico</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Mi Perfil</a>
+                                <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}">Mi Perfil</a>
                                 <a class="dropdown-item" href="{{ route('farmacia.index') }}">Panel de
                                     opciones</a>
                             </div>

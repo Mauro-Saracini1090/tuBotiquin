@@ -6,7 +6,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
-                <div class="p-4 mb-5  shadow bg-white rounded"> 
+                <div class="shadow bg-white"> 
+                <div class="col-12 bg-encabezado mb-3 p-4">
+                </div>
                     <!-- Masthead Subheading-->
                     @if( !(empty($farmacia)  && empty($arraySucursales)))
                      <div class="row" >
@@ -90,7 +92,7 @@
                     @else
                         <div class="row">
                                 <div class="col-12">
-                                    <div class="p-3 mb-2 bg-warning rounded text-dark ">
+                                    <div class="p-3 mb-2 bg-warning text-dark ">
                                         <h6 class="font-weight-bold text-center">Atención. Ocurrio un error en la búsqueda, intentelo nuevamente mas tarde</h6>
                                     </div>
                                 </div>
