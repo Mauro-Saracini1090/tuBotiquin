@@ -55,11 +55,11 @@
                                         </div>       
                                         <div class="card-body">
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item"><i class="material-icons">location_on</i> Dirección: <span class="font-weight-bold text-secondary">{{$sucursalesTurno[0]->direccion_sucursal }} </span></li>
-                                                    <li class="list-group-item"><i class="material-icons">mail</i> Email: <span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->email_sucursal }} </span></li>
-                                                     <li class="list-group-item"><i class="material-icons">local_phone</i> Teléfono: <span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->telefono_sucursal }} </span></li> 
+                                                    <li class="list-group-item"><i class="material-icons">location_on</i> <span class="font-weight-bold text-secondary">{{$sucursalesTurno[0]->direccion_sucursal }} </span></li>
+                                                    <li class="list-group-item"><i class="material-icons">mail</i> <span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->email_sucursal }} </span></li>
+                                                    <li class="list-group-item"><i class="material-icons">local_phone</i> <span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->telefono_sucursal }} </span></li> 
+                                                    <li class="list-group-item"></li>
                                                 </ul>
-                                                <hr>   
                                                 <div class="d-flex d-flex justify-content-center"> 
                                                     <form method="POST" action="{{ route('verSucursalTurnoHoy')}}">
                                                         @csrf  
@@ -93,11 +93,12 @@
                                         </div>       
                                         <div class="card-body">
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item"><i class="material-icons">location_on</i> Dirección: <span class="font-weight-bold text-secondary"> {{ $sucursal->direccion_sucursal }} </span></li>
-                                                    <li class="list-group-item"><i class="material-icons">mail</i> Email: <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }}  </span></li>
-                                                    <li class="list-group-item"><i class="material-icons">local_phone</i> Teléfono: <span class="font-weight-bold text-secondary">  {{ $sucursal->telefono_sucursal }} </span></li> 
+                                                    <li class="list-group-item"><i class="material-icons">location_on</i> <span class="font-weight-bold text-secondary"> {{ $sucursal->direccion_sucursal }} </span></li>
+                                                    <li class="list-group-item"><i class="material-icons">mail</i> <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }}  </span></li>
+                                                    <li class="list-group-item"><i class="material-icons">local_phone</i> <span class="font-weight-bold text-secondary">  {{ $sucursal->telefono_sucursal }} </span></li> 
+                                                    <li class="list-group-item"></li>    
                                                 </ul>
-                                                <hr>   
+           
                                                <div class="d-flex d-flex justify-content-center"> 
                                                     <form method="POST" action="{{ route('verSucursalTurnoHoy')}}">
                                                         @csrf  
@@ -162,11 +163,11 @@
                                 <div class="card-body">
                                     <h4 class="card-title text-center"><?php echo strtoupper($sucursal->getFarmacia->nombre_farmacia) ?></h4>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><i class="material-icons">location_on</i> Dirección: <span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></li>
-                                        <li class="list-group-item"><i class="material-icons">mail</i> Email: <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></li>
-                                        <li class="list-group-item"><i class="material-icons">local_phone</i> Teléfono: <span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></li>
-                                    </ul>
-                                    <hr>  
+                                        <li class="list-group-item"><i class="material-icons">location_on</i> <span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></li>
+                                        <li class="list-group-item"><i class="material-icons">mail</i> <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></li>
+                                        <li class="list-group-item"><i class="material-icons">local_phone</i> <span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></li>
+                                        <li class="list-group-item"></li>
+                                    </ul> 
                                     <div class="d-flex d-flex justify-content-center"> 
                                         <form method="POST" action="{{ route('verSucursalTurnoHoy')}}">
                                         @csrf  
