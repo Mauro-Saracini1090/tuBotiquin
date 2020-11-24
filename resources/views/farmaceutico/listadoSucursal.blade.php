@@ -7,7 +7,7 @@
     @if((count($farmacias) < 1))
         <div class="row">
             <div class="col-12 text-center">
-                <div class="p-3 mb-2 bg-warning rounded shadow">
+                <div class="p-3 mb-2 bg-warning shadow">
                     <h6 class="font-weight-bold text-center mb-2">No posee Farmacias cargadas</h6>
                     <br>
                     <p class="text-center">Si cree que esto es un error, contacte al Administrador </p>
@@ -18,7 +18,7 @@
     @else          
             @foreach($farmacias as $farmacia)
                 @if($farmacia->habilitada == 1)
-                            <div class="shadow p-3 mb-5 bg-white rounded">
+                            <div class="shadow p-3 mb-5 bg-white">
                                 <div class="row">
                                     <div class="col-8">
                                     <h2 class="text-secondary  m-3"> {{ $farmacia->nombre_farmacia }}</h2>
@@ -80,7 +80,7 @@
                                 @endif                  
                             </div>
                     @else
-                         <div class="shadow p-3 mb-5 bg-white rounded">
+                         <div class="shadow p-3 mb-5 bg-white">
                                 <div class="row">
                                     <div class="col-8">
                                         <h2 class="text-secondary  m-3"> {{ $farmacia->nombre_farmacia }}</h2>
