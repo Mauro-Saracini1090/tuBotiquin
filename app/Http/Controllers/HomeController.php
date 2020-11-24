@@ -149,7 +149,16 @@ class HomeController extends Controller
      */
     public function verSucursalesProximasTurno()
     {
-        $arrayTurnos = Turno::all();
+        //$arrayTurnos = Turno::all();
+        $fechasSiguiente1 = date('Y-m-d', strtotime('+1 days'));
+        $fechasSiguiente2 = date('Y-m-d', strtotime('+2 days'));
+        $fechasSiguiente3 = date('Y-m-d', strtotime('+3 days'));
+        $fechasSiguiente4 = date('Y-m-d', strtotime('+4 days'));
+        $fechasSiguiente5 = date('Y-m-d', strtotime('+5 days'));
+        $fechasSiguiente6 = date('Y-m-d', strtotime('+6 days'));
+        $arrayTurnos =  Turno::where('fecha_turno', '=', $fechasSiguiente1)->orWhere('fecha_turno', '=', $fechasSiguiente2)
+                            ->orWhere('fecha_turno', '=', $fechasSiguiente3)->orWhere('fecha_turno', '=', $fechasSiguiente4)
+                            ->orWhere('fecha_turno', '=', $fechasSiguiente5)->orWhere('fecha_turno', '=', $fechasSiguiente6)->get();
         $arrSucursalDia = array();
         $arrSucursalDiaCompleto = array();
         
