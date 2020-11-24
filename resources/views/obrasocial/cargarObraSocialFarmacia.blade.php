@@ -1,11 +1,11 @@
 @extends('farmaceutico.indexFarmaceutico')
-@section('titulo','Cargar Farmacia')
+@section('titulo','Cargar Obra social')
 
 @section('opcionesFarmaceutico')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
-            <div class="shadow p-3 mb-5 ">
+            <div class="shadow bg-white p-3 mb-5 ">
 
                 <!-- Masthead Subheading-->
                 <h3 class="masthead-subheading text-center">Cargar Obra Social a Farmacia</h3>
@@ -29,25 +29,26 @@
                             Administrador</small>
                     </div>
                     <p>A continuacion seleccione las obras sociales </p>
-
-                    @foreach($arrayObraSocial as $obraSocial)
+                    <ul class="list-inline">
+                        @foreach($arrayObraSocial as $obraSocial)               
+                            <li class="list-inline-item m-2">
+                                <input type="checkbox" name="id_obra_social[]" value="{{ $obraSocial->id_obra_social }}" id="{{ $obraSocial->id_obra_social }}">
+                                <strong class="checkbox px-2"><label
+                                        for="id_obra_social">{{ __($obraSocial->Nombre_obra_social) }}</label></strong>
+                            </li>
+                        @endforeach
+                     @can('esFarmaceutico') 
                         <div class="form-group">
-                            <input type="checkbox" name="id_obra_social[]" value="{{ $obraSocial->id_obra_social }}" id="{{ $obraSocial->id_obra_social }}">
-                            <strong class="checkbox px-2"><label
-                                    for="id_obra_social">{{ __($obraSocial->Nombre_obra_social) }}</label></strong>
-                            <hr>
-                        </div>
-                    @endforeach
 
-                    <div class="form-group">
-                        <div class="d-flex d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary mr-1">
-                                {{ __('Cargar') }}
-                            </button>
-                            <a href="{{ route('farmacia.index') }}"
-                                class="btn btn-primary">Cancelar</a>
+                            <div class="d-flex d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary mr-1">
+                                    {{ __('Cargar') }}
+                                </button>
+                                <a href="{{ route('farmacia.index') }}"
+                                    class="btn btn-primary">Cancelar</a>
+                            </div>
                         </div>
-                    </div>
+                    @endcan    
                 </form>
             </div>
         </div>
