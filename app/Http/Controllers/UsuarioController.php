@@ -223,4 +223,16 @@ class UsuarioController extends Controller
 
         return redirect(route('usuario.rolpermisos', [$usuario->id_usuario]));
     }
+
+
+
+    /**
+     * Funcion que muestra el perfil con lso datos del usuario farmaceutico
+     */    
+    public function verMiPerfilFarmaceutico(){
+
+        $id_usuarioFarma = auth()->user()->id_usuario;
+        $usuarioFarmaceutico = Usuario::find($id_usuarioFarma);
+        return view('farmaceutico.miPerfilFarmaceutico', [ "usuarioFarmaceutico" => $usuarioFarmaceutico ]);
+    }
 }
