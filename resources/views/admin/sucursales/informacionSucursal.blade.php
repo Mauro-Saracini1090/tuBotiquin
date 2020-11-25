@@ -3,16 +3,21 @@
 <div class="row mt-2">
     <div class="col align-bottom">
         <span class="align-bottom"><h3 class="">Informacion de Sucursal</h3></span>
-        <span class="align-bottom">
-            <a class="btn btn-panel my-1" href="#" data-toggle="modal" data-target="#habilitacion" data-habi="1">
-                Aceptar Sucursal
-            </a>
-        </span>
-        <span class="align-bottom">
-            <a class="btn btn-panel btn-danger bg-danger  my-1" href="#" data-toggle="modal" data-target="#habilitacion" data-habi="0">
-                Rechazar Sucursal
-            </a>
-        </span>
+        @if($sucursal->borrado_logico_sucursal == 0 )
+            @if($sucursal->habilitado == 0)
+            <span class="align-bottom">
+                <a class="btn btn-panel my-1" href="#" data-toggle="modal" data-target="#habilitacion" data-habi="1">
+                    Aceptar Sucursal
+                </a>
+            </span>
+            @endif
+            <span class="align-bottom">
+                <a class="btn btn-panel btn-danger bg-danger  my-1" href="#" data-toggle="modal" data-target="#habilitacion" data-habi="0">
+                    Rechazar Sucursal
+                </a>
+            </span>
+           
+        @endif
     </div>
 </div>
 <table class="table table-dark">
@@ -80,7 +85,7 @@
         </tr>
     </tbody>
 </table>
-<a href="{{ route('sucursal.index') }}" class="btn btn-secondary">Volver Atras</a>
+<a href="{{ url()->previous() }}" class="btn btn-secondary">Volver Atras</a>
 <div class="modal fade" id="habilitacion" tabindex="-1" aria-labelledby="habModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
