@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SolicitudHabilitacionSucursalMailable;
+use App\Mail\solicitudSucursalAceptadaMailable;
+use App\Mail\solicitudSucursalRechazadaMailable;
 use App\Models\Sucursal;
 use App\Models\Farmacia;
 use App\Models\ObraSocial;
@@ -24,7 +26,7 @@ class SucursalController extends Controller
         //
         if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
             Gate::authorize('esAdmin');
-            $sucursales = Sucursal::simplePaginate(5);
+            $sucursales = Sucursal::simplePaginate(2);
             return view('admin.sucursales.indexSucursal', compact('sucursales'));
         }
         $id_usuario = auth()->user()->id_usuario;
@@ -87,6 +89,8 @@ class SucursalController extends Controller
         $sucursal->direccion_sucursal = $request->direccion_sucursal;
         $sucursal->habilitado = $habilitada;
         $sucursal->borrado_logico_sucursal = $borrado_logico_sucursal;
+        $sucursal->sucursal_latitud = $request->lat;
+        $sucursal->sucursal_longitud = $request->long;
         $sucursal->save();
 
         if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
@@ -145,14 +149,17 @@ class SucursalController extends Controller
      */
     public function update(Request $request, Sucursal $sucursal)
     {
-
         $request->validate(([
-            'id_farmacia' => 'required',
+            //'id_farmacia' => 'required',
             'descripcion_sucursal' => 'max:255',
-            'cufe_sucursal' =>  ['required', 'max:255', Rule::unique('sucursal', 'cufe_sucursal')->ignore($sucursal)],
-            'email_sucursal' => ['required', 'email', 'max:255', Rule::unique('sucursal', 'email_sucursal')->ignore($sucursal)],
-            'telefono_sucursal' => ['required', 'numeric', Rule::unique('sucursal', 'telefono_sucursal')->ignore($sucursal)],
-            'direccion_sucursal' => 'required|unique:sucursal|max:255',
+            'cufe_sucursal' =>  'required|max:255',
+            'cufe_sucursal' =>   Rule::unique('sucursal', 'cufe_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
+            'email_sucursal' =>  Rule::unique('sucursal', 'email_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
+            'email_sucursal' => 'required|email|max:255',
+            'telefono_sucursal' => 'required|numeric',
+            'telefono_sucursal' => Rule::unique('sucursal', 'telefono_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
+            'direccion_sucursal' => 'required|max:255',
+            'direccion_sucursal' => Rule::unique('sucursal', 'direccion_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
         ]));
 
         $sucursal->id_sucursal = $sucursal->id_sucursal;
@@ -166,6 +173,14 @@ class SucursalController extends Controller
         //campso que nose pueden modificar    
         $sucursal->habilitado = $sucursal->habilitado;
         $sucursal->borrado_logico_sucursal = $sucursal->borrado_logico_sucursal;
+            
+        if($request->lat != null && $request->long != null){
+            $sucursal->sucursal_latitud = $request->lat;
+            $sucursal->sucursal_longitud = $request->long;
+        }
+        $sucursal->sucursal_latitud = $sucursal->sucursal_latitud;
+        $sucursal->sucursal_longitud = $sucursal->sucursal_longitud;
+
         $sucursal->save();
 
         if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
@@ -233,10 +248,21 @@ class SucursalController extends Controller
     public function solicitudSucursal(Request $request)
     {
         Gate::authorize('esAdmin');
-
         $sucursal = Sucursal::find($request->sucursal);
-        $sucursal->habilitado = $request->estado_habilitacion;
-        $sucursal->save();
+        $borado_logico = 1;
+        if($request->estado_habilitacion == 0)
+        {   
+            $sucursal->borrado_logico_sucursal=$borado_logico;
+            $sucursal->habilitado = $request->estado_habilitacion;
+            $sucursal->save();
+            Mail::to($sucursal->getFarmacia->usuarioFarmaceutico->email)->send(new solicitudSucursalRechazadaMailable);
+
+        }else{
+            $sucursal->habilitado = $request->estado_habilitacion;
+            $sucursal->save();
+            Mail::to($sucursal->getFarmacia->usuarioFarmaceutico->email)->send(new solicitudSucursalAceptadaMailable);
+
+        }
         return redirect(route('sucursal.show', [$sucursal->id_sucursal]));
     }
 }
