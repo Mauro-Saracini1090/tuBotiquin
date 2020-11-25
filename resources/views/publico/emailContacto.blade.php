@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <strong><label for="consulta">{{ __('Consulta *') }}</label></strong>
                                 <textarea  name="consulta" rows="7" placeholder="Deje su consulta aqui" class="form-control @error('consulta') is-invalid @enderror"
-                                        value="{{ old('consulta') }}"></textarea>
+                                        value="{{ old('consulta') }}" required></textarea>
                                
                                     @error('consulta')
                                         <span class="invalid-feedback" role="alert">
