@@ -53,7 +53,7 @@ trait RegistersUsers
         }
         return $request->wantsJson()
             ? new JsonResponse([], 201)
-            : redirect($this->redirectPath());
+            : redirect($this->redirectPath())->with('estado','Bienvenido a Tu Botiquin, muchas gracias por registrarse. Saludos Equipo Tu Botiquin');
     }
 
     
