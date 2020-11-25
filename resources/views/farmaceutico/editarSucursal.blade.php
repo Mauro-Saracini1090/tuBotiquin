@@ -207,7 +207,6 @@
         var marcador = {};
         map.on('dblclick', e => {
             map.removeLayer(marcador);
-            map.removeLayer(actual);
             let latlng = map.mouseEventToLatLng(e.originalEvent);
             marcador = L.marker([latlng.lat, latlng.lng]);
             $('#lat').val(latlng.lat);
