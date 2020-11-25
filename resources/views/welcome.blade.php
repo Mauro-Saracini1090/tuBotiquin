@@ -50,7 +50,7 @@
 
         <div class="container">
             <a class="navbar-brand js-scroll-trigger pl-0" id="page-top"
-                href="{{ route('home') }}">TuBotiquin</a>
+                href="{{ route('home') }}">TuBotiquín</a>
             @auth
                 <div class="badge badge-primary text-wrap mx-2 mb-0">
                     {{ Auth::user()->nombre_usuario }}
@@ -70,7 +70,7 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                             href="{{ route('farmacias') }}">Farmacias</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                            href="">Contacto</a></li>
+                            href="{{ route('emailcontacto')}}">Contacto</a></li>
 
                     @can('esFarmaceutico')
                         <li class="dropdown nav-item mx-0 mx-lg-1">
@@ -79,8 +79,7 @@
                                 aria-expanded="false">Farmaceutico</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}">Mi Perfil</a>
-                                <a class="dropdown-item" href="{{ route('farmacia.index') }}">Panel de
-                                    opciones</a>
+                                <a class="dropdown-item" href="{{ route('farmacia.index') }}">Panel de opciones</a>
                             </div>
                         </li>
                     @endcan
@@ -131,7 +130,7 @@
                             <li> <a href="#" class="text-white">HOME</a> </li>
                             <li> <a href="{{ route('farmacias') }}" class="text-white">FARMACIAS</a>
                             </li>
-                            <li><a href="#" class="text-white">CONTACTO</a> </li>
+                            <li><a href="{{ route('emailcontacto')}}" class="text-white">CONTACTO</a> </li>
                             @auth
                                 <li>
                                     <a href="#" class="text-white"

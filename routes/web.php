@@ -35,6 +35,8 @@ Route::post('login',  [LoginController::class,'loginPersonalizado']);
 Route::get('register/farmaceutico', [RegisterController::class,'showRegisFarmaceuticoForm'])->name('farmaceutico');
 Route::post('register/farmaceutico', [RegisterController::class,'registroFarmaceutico'])->name('registroFarmaceutico');
 
+
+
 Route::resource('farmacia', FarmaciaController::class)->middleware('roles:es-farmaceutico,es-administrador');
 Route::delete('borrarFarmacia/{farmacia}', [FarmaciaController::class,'borrarFarmacias'])->middleware('roles:es-administrador');
 Route::post('almacenarFarmacia', [FarmaciaController::class,'almacenarFarmaciasAdmin'])->name('almacenarFarmaciaAdmin')->middleware('roles:es-administrador');
@@ -72,3 +74,11 @@ Route::get('turnossiguientes', [homeController::class,'verSucursalesProximasTurn
 
 //Mi perfil Farmacuetico
 Route::get('vermiperfil', [usuarioController::class, 'verMiPerfilFarmaceutico'])->middleware('roles:es-farmaceutico')->name('miPerfilFarmacuetico');
+Route::get('subirfotoperfil', [usuarioController::class, 'subirFotoPerfil'])->middleware('roles:es-farmaceutico')->name('subirFotoPerfil');
+Route::post('subirfotoperfil/cargada', [usuarioController::class, 'cargarFotoPerfil'])->middleware('roles:es-farmaceutico')->name('cargarFotoPerfil');
+Route::get('editarperfil', [usuarioController::class, 'editarPerfil'])->middleware('roles:es-farmaceutico')->name('editarPerfil');
+Route::post('editarperfil/actualizar', [usuarioController::class, 'actualizarPerfil'])->middleware('roles:es-farmaceutico')->name('actualizarPerfil');
+
+//E-mail contacto
+Route::get('emailcontacto', [homeController::class,'emailContacto'])->name('emailcontacto'); 
+Route::post('enviarconsulta', [homeController::class,'enviarEmailContacto'])->name('enviarEmailContacto');
