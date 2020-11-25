@@ -52,7 +52,7 @@ trait RegistroFarmaceutico
 
         return $request->wantsJson()
             ? new JsonResponse([], 201)
-            : redirect($this->redirectPath());
+            : redirect($this->redirectPath())->with('estado','Gracias por registrarse a Tu Botiquin, su perfil de Farmaceutico necesitar se evaluado y aprobado por el Admnisitrador.Se le notificara al Correo Electronico que uso para el registro. Saludos Equipo Tu Botiquin');;
     }
 
 
