@@ -4,7 +4,7 @@
 @section('contenido')
      <div class="container">
         <div class="row">
-            <div class="col-10 shadow bg-white rounded mx-auto">
+            <div class="col-10 shadow bg-white mx-auto">
                @can('esFarmaceutico')
                             <div class="row" >
                                 <div class="col-12 bg-encabezado mb-3 p-2">
@@ -24,24 +24,33 @@
                                         </ul>    
                                     </div>   
                                     </div>
-                                    <div Class="col-lg-4 col-12  border">
-                                        <div class="d-flex justify-content-center m-3">
-                                            <figure class="figure">
-                                                <img src="" width="200" alt="Imagen del perfil aca">
-                                            </figure>
+                                    <div Class="col-lg-4 col-12 mt-4 mx-auto">
+                                        <div class="d-flex justify-content-center">
+                                            @if( $usuarioFarmaceutico->img_perfil == NULL)
+                                                <img class="card-img-top shadow img-thumbnail" src="{{URL::to('/')}}/storage/foto_perfil/logoPerfil.png" alt="Imagen de perfil avatar" width="300" height="300">
+                                            @else
+                                                <img class="card-img-top shadow img-thumbnail" src="{{ asset($usuarioFarmaceutico->img_perfil) }}" alt="Imagen de perfil avatar" width="300" height="300">
+                                            @endif
                                         </div>
-                                        <div class="">
-                                                 <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">account_box</i>Cargar foto</a>
+                                        <div class="col-12 ">
+                                            <div class="d-flex justify-content-center">         
+                                                  @yield('subir_foto')
+                                                  <!-- Section for upload image form -->                                                  
+                                                    
+                                            </div>
                                         </div>
                                      </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="d-flex justify-content-center">
-                                        <div class="p-2">    
-                                            <a href=""><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar Farmacia">edit</i></a>
+                                        <div class="p-2"> 
+                                            <a href="{{ route('editarPerfil') }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Editar datos">edit</i></a>
                                         </div>   
                                         <div class="p-2"> 
-                                            <a href="" title="Eliminar Farmacia" data-toggle="modal" data-target="#deleteModal" data-id_farma=""><i class="material-icons" style="font-size: 40px" data-placement="left"  ">delete</i></a>
+                                            <a href="" title="Eliminar cuenta de usuario" data-toggle="modal" data-target="#deleteModal" data-id_farma=""><i class="material-icons" style="font-size: 40px" data-placement="left">delete</i></a>
+                                        </div>
+                                        <div class="p-2">
+                                            <a href="{{ route('subirFotoPerfil') }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Subir foto de perfil">cloud_upload</i></a>
                                         </div>
                                     </div> 
                                 </div>    
