@@ -173,4 +173,33 @@ class HomeController extends Controller
         return view('publico.verSucursalProximosDias', [ 'arregloSucursalTurnodia' => $arrSucursalDiaCompleto ]);    
     }
 
+
+    /**
+     * Funcion que invoca el formulario de contacto del menu del home 
+     */
+    public function emailContacto()
+    {
+       return view('publico.emailContacto');
+    }
+
+    /**
+     * Funcion que recibe por post los datos del formulario de contacto
+     */    
+    public function enviarEmailContacto(Request $request)
+    {
+        //Valida los campos del formulario de contacto
+         $request->validate([
+            'nombre' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'asunto' =>'required|max:255',
+            'consulta' => 'required||max:255',
+         ]);
+
+         // ACA FALTA LA PARTE DE ENVIAR EL MAIL
+
+    }
+
 }
+
+
+
