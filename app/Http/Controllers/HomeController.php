@@ -26,37 +26,40 @@ class HomeController extends Controller
         $hoy = date('Y-m-d');
         // dd($hoy); 
         $turnos = Turno::where('fecha_turno', '=', $hoy)->first();
+        $sucursalesTurno = [];
+        $arrSucursalesTurnoSiguiente = [];
+        if (isset($turnos)) {
 
-        $sucursalesTurno = $turnos->getSucursales->take(2);
 
-        //Primera Forma Para obtener Dias siguientes
-        //La clase DatePeriod 
-        // (PHP 5 >= 5.3.0, PHP 7)
-        // Representa un período de fechas.
-        // Un período de fechas permite la iteración sobre un conjunto de fechas y horas, repitiéndose a intervalos regulares durante un período dado.
-        // dd($sucursalesTurno);
-        // $periodo = new DatePeriod(new DateTime(), new DateInterval('P1D'), 3);
-        // $fechasSiguientes = array();
-        // foreach ($periodo as $date) {
-        //     array_push($fechasSiguientes, $date->format('Y-m-d'));
-        // }
-        // Segunda Forma, Mas simple pero efectiva
-        $fechasSiguiente1 = date('Y-m-d', strtotime('+1 days'));
-        $fechasSiguiente2 = date('Y-m-d', strtotime('+2 days'));
-        $fechasSiguiente3 = date('Y-m-d', strtotime('+3 days'));
-        $TurnoSiguientes=  Turno::where('fecha_turno', '=', $fechasSiguiente1)->orWhere('fecha_turno', '=', $fechasSiguiente2)->orWhere('fecha_turno', '=', $fechasSiguiente3)->get();
-        $arrSucursalesTurnoSiguiente = array();
-       
+            $sucursalesTurno = $turnos->getSucursales->take(2);
+
+            //Primera Forma Para obtener Dias siguientes
+            //La clase DatePeriod 
+            // (PHP 5 >= 5.3.0, PHP 7)
+            // Representa un período de fechas.
+            // Un período de fechas permite la iteración sobre un conjunto de fechas y horas, repitiéndose a intervalos regulares durante un período dado.
+            // dd($sucursalesTurno);
+            // $periodo = new DatePeriod(new DateTime(), new DateInterval('P1D'), 3);
+            // $fechasSiguientes = array();
+            // foreach ($periodo as $date) {
+            //     array_push($fechasSiguientes, $date->format('Y-m-d'));
+            // }
+            // Segunda Forma, Mas simple pero efectiva
+            $fechasSiguiente1 = date('Y-m-d', strtotime('+1 days'));
+            $fechasSiguiente2 = date('Y-m-d', strtotime('+2 days'));
+            $fechasSiguiente3 = date('Y-m-d', strtotime('+3 days'));
+            $TurnoSiguientes =  Turno::where('fecha_turno', '=', $fechasSiguiente1)->orWhere('fecha_turno', '=', $fechasSiguiente2)->orWhere('fecha_turno', '=', $fechasSiguiente3)->get();
+            $arrSucursalesTurnoSiguiente = array();
+
             foreach ($TurnoSiguientes as $turno) {
                 // array_push($arrSucursalesTurnoSiguiente = $turno->getSucursales->take(3));
                 foreach ($turno->getSucursales->take(2) as $sucursal) {
-                   array_push($arrSucursalesTurnoSiguiente,$sucursal);
+                    array_push($arrSucursalesTurnoSiguiente, $sucursal);
                 }
             }
-        
-        
+        }
         //dd($arrSucursalesTurnoSiguiente);
-        return view('publico.contenidoPrincipal', compact('sucursalesTurno','arrSucursalesTurnoSiguiente'));
+        return view('publico.contenidoPrincipal', compact('sucursalesTurno', 'arrSucursalesTurnoSiguiente'));
     }
 
     /**
@@ -67,6 +70,16 @@ class HomeController extends Controller
     public function create()
     {
         //
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function mapa()
+    {
+        //
+        return view('admin.mapa.mapa');
     }
 
     /**
@@ -130,7 +143,7 @@ class HomeController extends Controller
      * Se llama en el boton "ver sucursal" de los cards
      */
     public function verSucursalTurnoHoy(Request $request)
-    {   
+    {
         $sucursal = Sucursal::find($request->id_sucursal);
         $farmacia = Farmacia::find($sucursal->id_farmacia);
         $arrayObraSociales = $farmacia->obrasSociales;
@@ -139,7 +152,7 @@ class HomeController extends Controller
             'sucursal' => $sucursal,
             'farmacia' => $farmacia,
             'arrayObraSociales' => $arrayObraSociales,
-        ]); 
+        ]);
     }
 
 
@@ -152,16 +165,15 @@ class HomeController extends Controller
         $arrayTurnos = Turno::all();
         $arrSucursalDia = array();
         $arrSucursalDiaCompleto = array();
-        
-        foreach ($arrayTurnos as  $turno) {    
+
+        foreach ($arrayTurnos as  $turno) {
             foreach ($turno->getSucursales as $sucursal) {
                 $originalDate = $turno->fecha_turno;
                 $newDate = date("d/m/Y", strtotime($originalDate));
-                 $arrSucursalDia = [ "sucursal" => $sucursal , "diaTurno" => $newDate ];
-                 array_push($arrSucursalDiaCompleto, $arrSucursalDia);   
-            }   
+                $arrSucursalDia = ["sucursal" => $sucursal, "diaTurno" => $newDate];
+                array_push($arrSucursalDiaCompleto, $arrSucursalDia);
+            }
         }
-        return view('publico.verSucursalProximosDias', [ 'arregloSucursalTurnodia' => $arrSucursalDiaCompleto ]);    
+        return view('publico.verSucursalProximosDias', ['arregloSucursalTurnodia' => $arrSucursalDiaCompleto]);
     }
-
 }
