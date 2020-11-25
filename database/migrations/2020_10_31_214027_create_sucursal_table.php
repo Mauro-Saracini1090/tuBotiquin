@@ -24,6 +24,8 @@ class CreateSucursalTable extends Migration
             $table->string('direccion_sucursal', 250);
             $table->boolean('habilitado');
             $table->boolean('borrado_logico_sucursal');  
+            $table->decimal('sucursal_latitud', 18, 15);  
+            $table->decimal('sucursal_longitud', 18, 15);  
             
             $table->timestamps();
 
