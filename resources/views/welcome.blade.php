@@ -16,8 +16,13 @@
         type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/tubotiquin/tuBotiquin/public/css/styles.css" rel="stylesheet">
+    <link href="/tuBotiquin/public/css/styles.css" rel="stylesheet">
     <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
+    
+    {{-- Leaflet - map osm --}}
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+
 </head>
 
 <body id="page-top">
@@ -33,15 +38,6 @@
             <!-- Masthead Subheading-->
             <h3 class="masthead-subheading  mb-0 text-dark ">Tu farmacia de turno</h3>
         </div>
-        <!-- para determinar el estado de la sesion -->
-        @if(session()->has('estado'))
-            <div class="alert alert-danger alert-dismissible fade show focus" role="alert">
-                <strong>{{ session()->get('estado') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
 
     </header>
 
