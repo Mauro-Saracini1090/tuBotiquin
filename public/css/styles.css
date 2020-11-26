@@ -10283,3 +10283,7 @@ form .row:first-child .floating-label-form-group {
   box-shadow: 5px 5px 5px #888;
 }
 
+.bg-encabezado{
+  background-color: #344557;
+  color: #fff;
+ }
