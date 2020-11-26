@@ -2,9 +2,25 @@
 @section('titulo','Home')
 
 @section('contenido')
- 
 
-            <div class="container">    
+            <!-- Section of  alert mail contac send -->
+            @if(session()->has('mensajeEnviado'))
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 mx-auto">
+                            <div class="text-left alert alert-success alert-dismissible fade show" role="alert">
+                                <p class="font-weight-bold">{{ session()->get('mensajeEnviado') }}</p> 
+                                <strong><p class="text-right">Equipo TuBotiquín</p></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>    
+                </div>        
+            @endif
+            
+            <div class="container">
                 <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">De turno hoy</h2>
                 <h4 class="text-secondary text-center my-2 "><ins><?php echo date('d-m-Y') ?> </ins></h4>
                 <p class="lead text-center my-2 pb-4">Farmacias que se encuentran de turno el día de hoy</p>
