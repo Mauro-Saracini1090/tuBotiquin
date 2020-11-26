@@ -50,10 +50,10 @@
                                     </div>  
                                 
                                     <div Class="col-lg-5 col-12">
-                                        <div class="d-flex d-flex justify-content-center"> 
-                                            <div class="mapa" id="{{$sucursal->id_sucursal}}">
+                                        <div class="d-flex d-flex justify-content-center">
+                                                <div class="mapa" id="{{$sucursal->id_sucursal}}">
                                                 
-                                           </div>
+                                                </div>
                                         </div>   
                                     </div>
                                     <div class="col-12">
@@ -108,8 +108,7 @@
          var latitud = {{ $sucursal->sucursal_latitud }};
          var longitud = {{ $sucursal->sucursal_longitud }};
         if ($.isNumeric(latitud) && $.isNumeric(longitud) ) {
-              console.log(latitud);
-              console.log(longitud);
+              
              var map = L.map('{{$sucursal->id_sucursal}}').setView({
                  lon: longitud,
                   lat: latitud
@@ -129,15 +128,27 @@
 
         // show the scale bar on the lower left corner
         L.control.scale().addTo(map);
-
-        map.dragging.enable();
-        map.touchZoom.disable();
-        map.doubleClickZoom.disable();
-        map.scrollWheelZoom.disable();
-        map.boxZoom.disable();
-        map.keyboard.disable();
-        if (map.tap) map.tap.disable();
-        $('#{{$sucursal->id_sucursal}}').css('cursor', 'default');
+        
+        $('#{{$sucursal->id_sucursal}}').mouseenter(function(){
+            map.scrollWheelZoom.enable();
+            map.dragging.enable();
+            map.touchZoom.enable();
+            map.doubleClickZoom.enable();
+            map.boxZoom.enable();
+            map.keyboard.enable();
+            if (map.tap) map.tap.enable();
+            $('#{{$sucursal->id_sucursal}}').css('cursor', 'drag');
+        })
+        $('#{{$sucursal->id_sucursal}}').mouseleave(function(){
+            map.scrollWheelZoom.disable();
+            map.dragging.disable();
+            map.touchZoom.disable();
+            map.doubleClickZoom.disable();
+            map.boxZoom.disable();
+            map.keyboard.disable();
+            if (map.tap) map.tap.disable();
+            $('#{{$sucursal->id_sucursal}}').css('cursor', 'drag');
+        })
         @endif  
     @endforeach
 </script>
