@@ -10,9 +10,13 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FarmaciaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocalidadController;
+use App\Http\Controllers\MedicamentoController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\ObraSocialController;
+use App\Models\MarcaMedicamento;
+use App\Models\TipoMedicamento;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,3 +73,8 @@ Route::post('obrasocialfarmacia', [ObraSocialController::class, 'agregarObraSoci
 
 Route::post('sucursalturnohoy', [homeController::class,'verSucursalTurnoHoy'])->name('verSucursalTurnoHoy');
 Route::get('turnossiguientes', [homeController::class,'verSucursalesProximasTurno'])->name('verTurnosSiguientes');
+
+Route::resource('medicamentos', MedicamentoController::class)->middleware('roles:es-administrador');
+Route::resource('tipoMedicamentos', TipoMedicamento::class)->middleware('roles:es-administrador');
+Route::resource('marcaMedicamentos', MarcaMedicamento::class)->middleware('roles:es-administrador');
+
