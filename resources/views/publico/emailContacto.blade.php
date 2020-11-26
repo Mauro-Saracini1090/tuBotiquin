@@ -1,5 +1,5 @@
 @extends('welcome')
-@section('titulo','Home')
+@section('titulo','Contacto')
 
 @section('contenido')
 
@@ -16,7 +16,7 @@
                              <!-- Nombre -->
                             <div class="form-group">
                                 <strong><label  for="nombre">{{ __('Nombre *') }}</label></strong>
-                                <input type="text" name="nombre" value="{{ old('nombre') }}" class="form-control @error('nombre') is-invalid @enderror" required >
+                                <input type="text" name="nombre" value="{{ old('nombre') }}" placeholder="Su nombre" class="form-control @error('nombre') is-invalid @enderror" required >
                                 
                                 @error('nombre')
                                         <span class="invalid-feedback" role="alert">
@@ -28,7 +28,7 @@
                              <!-- asunto -->
                             <div class="form-group">
                                 <strong><label  for="">{{ __('Asunto *') }}</label></strong>
-                                <input type="text" name="asunto" value="{{ old('asunto') }}" class="form-control @error('asunto') is-invalid @enderror" required >
+                                <input type="text" name="asunto" value="{{ old('asunto') }}" placeholder="¿Porque nos escribe?" class="form-control @error('asunto') is-invalid @enderror" required >
                                 
                                 @error('asunto')
                                         <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
                             <!-- Email -->
                             <div class="form-group">
                                 <strong><label for="email">{{ __('E-mail *') }}</label></strong>
-                                <input type="email" id="iemail"  placeholder="Ingrese su correo electronico" class="form-control @error('email') is-invalid @enderror" name="email" required
+                                <input type="email" id="email"  placeholder="Ej: micorreo@mail.com" class="form-control @error('email') is-invalid @enderror" name="email" required
                                         required>
                                 <small class="form-text text-muted">Le vamos a responder a este e-mail</small>       
                                 @error('email')
