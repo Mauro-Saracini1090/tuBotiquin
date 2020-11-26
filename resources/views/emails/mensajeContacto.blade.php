@@ -10,7 +10,7 @@
     <h1>Nuevo mensaje de contacto</h1>
     <p>Recibiste un mensaje de: {{ $msjContacto['nombre'] }}  - {{ $msjContacto['email'] }} </p>
     <p>Asunto: {{ $msjContacto['asunto'] }} </p>
-    <p>Consulta: {{ $msjContacto['consulta '] }} </p>
+    <p>Consulta: {{ $msjContacto['consulta'] }} </p>
  
 </body>
 </html>
