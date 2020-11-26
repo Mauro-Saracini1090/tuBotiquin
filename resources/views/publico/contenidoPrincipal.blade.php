@@ -1,9 +1,6 @@
 @extends('welcome')
 @section('titulo','Home')
 
-@extends('welcome')
-@section('titulo','Home')
-
 @section('contenido')
 
             <!-- Section of  alert mail contac send -->
