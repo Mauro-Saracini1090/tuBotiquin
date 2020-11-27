@@ -11,4 +11,14 @@ class Medicamento extends Model
 
     protected $table ="medicamentos";
     protected $primaryKey = 'id_medicamento';
+
+
+    public function getTipo()
+    {
+        return $this->belongsTo(TipoMedicamento::class,'tipo_id','id_tipo');
+    }
+    public function getMarca()
+    {
+        return $this->belongsTo(MarcaMedicamento::class,'marca_id','id_marca');
+    }
 }
