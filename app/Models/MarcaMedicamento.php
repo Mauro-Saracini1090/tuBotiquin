@@ -10,4 +10,9 @@ class MarcaMedicamento extends Model
     use HasFactory;
     protected $table ="marca_medicamentos";
     protected $primaryKey = 'id_marca';
+
+    public function getMedicamentosMarca()
+    {
+        return $this->hasMany(Medicamento::class,'id_marca','marca_id');
+    }
 }
