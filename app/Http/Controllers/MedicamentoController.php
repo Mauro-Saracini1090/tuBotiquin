@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Medicamento;
 use App\Http\Controllers\Controller;
+use App\Models\MarcaMedicamento;
+use App\Models\TipoMedicamento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -18,7 +20,7 @@ class MedicamentoController extends Controller
     {
         //
         $medicamentos = Medicamento::all();
-        return view('admin.medicamento.index',compact('medicamentos'));
+        return view('admin.medicamento.index', compact('medicamentos'));
     }
 
     /**
@@ -29,7 +31,9 @@ class MedicamentoController extends Controller
     public function create()
     {
         //
-        return view('admin.medicamento.crearMedicamento');
+        $tipos = TipoMedicamento::all();
+        $marcas = MarcaMedicamento::all();
+        return view('admin.medicamento.crearMedicamento', compact('tipos', 'marcas'));
     }
 
     /**
@@ -41,20 +45,21 @@ class MedicamentoController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        // $request->validate(([
-        //     'nombre_medicamento' => 'required',
-        //     'indicaciones' => 'required',
-        //     'contradicciones' => 'required',
-        //     'composicion	' => 'required',
-        //     'posologia' => 'required',
-        // ]));
-        
+        $request->validate([
+            'nombre_medicamento' => 'required',
+            'informacion' => 'required',
+            'id_marca' => 'required',
+            'id_tipo' => 'required',
+        ], [
+            'id_marca.required' => 'Es obligatorio seleccionar una Marca de Medicamento',
+            'id_tipo.required' => 'Es obligatorio seleccionar un Tipo de Medicamento',
+        ]);
+
         $medicamento = new Medicamento();
         $medicamento->nombre_medicamento = $request->nombre_medicamento;
-        $medicamento->indicaciones = $request->indicaciones;
-        $medicamento->contradicciones = $request->contradicciones;
-        $medicamento->composicion = $request->composicion;
-        $medicamento->posologia = $request->posologia;
+        $medicamento->informacion = $request->informacion;
+        $medicamento->marca_id = $request->id_marca;
+        $medicamento->tipo_id = $request->id_tipo;
         $medicamento->save();
         return redirect(route('medicamentos.index'));
     }
@@ -68,6 +73,7 @@ class MedicamentoController extends Controller
     public function show(Medicamento $medicamento)
     {
         //
+        return view('admin.medicamento.detalleMedicamento', compact('medicamento'));
     }
 
     /**
@@ -79,6 +85,9 @@ class MedicamentoController extends Controller
     public function edit(Medicamento $medicamento)
     {
         //
+        $tipos = TipoMedicamento::all();
+        $marcas = MarcaMedicamento::all();
+        return view('admin.medicamento.editarMedicamento', compact('tipos', 'marcas','medicamento'));
     }
 
     /**
@@ -91,6 +100,22 @@ class MedicamentoController extends Controller
     public function update(Request $request, Medicamento $medicamento)
     {
         //
+        $request->validate([
+            'nombre_medicamento' => 'required',
+            'informacion' => 'required',
+            'id_marca' => 'required',
+            'id_tipo' => 'required',
+        ], [
+            'id_marca.required' => 'Es obligatorio seleccionar una Marca de Medicamento',
+            'id_tipo.required' => 'Es obligatorio seleccionar un Tipo de Medicamento',
+        ]);
+
+        $medicamento->nombre_medicamento = $request->nombre_medicamento;
+        $medicamento->informacion = $request->informacion;
+        $medicamento->marca_id = $request->id_marca;
+        $medicamento->tipo_id = $request->id_tipo;
+        $medicamento->save();
+        return redirect(route('medicamentos.index'));
     }
 
     /**
@@ -102,5 +127,7 @@ class MedicamentoController extends Controller
     public function destroy(Medicamento $medicamento)
     {
         //
+        $medicamento->delete();
+        return redirect(route('medicamentos.index'));
     }
 }
