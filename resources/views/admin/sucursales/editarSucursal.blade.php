@@ -36,8 +36,7 @@
                         <strong><label
                                 for="cufe_sucursal">{{ __('Cufe sucursal *') }}</label></strong>
                         <input type="text" name="cufe_sucursal"
-                            value={{ old('cufe_sucursal', $sucursal->cufe_sucursal ) }}
-                            @error('cufe_sucursal') is-invalid @enderror required class="form-control">
+                            value={{ old('cufe_sucursal', $sucursal->cufe_sucursal ) }} required class="form-control @error('cufe_sucursal') is-invalid @enderror">
                         <small class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo</small>
 
                         @error('cufe_sucursal')
