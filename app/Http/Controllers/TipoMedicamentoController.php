@@ -16,6 +16,8 @@ class TipoMedicamentoController extends Controller
     public function index()
     {
         //
+        $tiposMedicamentos = TipoMedicamento::simplePaginate(7);
+        return view('admin.tipoMedicamento.listadoTipo',compact('tiposMedicamentos'));
     }
 
     /**
@@ -26,6 +28,7 @@ class TipoMedicamentoController extends Controller
     public function create()
     {
         //
+        return view('admin.tipoMedicamento.nuevoTipoMedicamento');
     }
 
     /**
@@ -37,6 +40,15 @@ class TipoMedicamentoController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nombre_tipo' => 'required'
+        ]);
+
+        $tipo = new TipoMedicamento();
+        $tipo->nombre_tipo = $request->nombre_tipo;
+        $tipo->save();
+
+        return redirect(route('tipoMedicamentos.index'));
     }
 
     /**
@@ -59,6 +71,7 @@ class TipoMedicamentoController extends Controller
     public function edit(TipoMedicamento $tipoMedicamento)
     {
         //
+        return view('admin.tipoMedicamento.editarTipoMedicamento',compact('tipoMedicamento'));
     }
 
     /**
@@ -71,6 +84,14 @@ class TipoMedicamentoController extends Controller
     public function update(Request $request, TipoMedicamento $tipoMedicamento)
     {
         //
+        $request->validate([
+            'nombre_tipo' => 'required'
+        ]);
+
+        $tipoMedicamento->nombre_tipo = $request->nombre_tipo;
+        $tipoMedicamento->save();
+
+        return redirect(route('tipoMedicamentos.index'));
     }
 
     /**
@@ -82,5 +103,9 @@ class TipoMedicamentoController extends Controller
     public function destroy(TipoMedicamento $tipoMedicamento)
     {
         //
+
+        $tipoMedicamento->delete();
+        return redirect(route('tipoMedicamentos.index'));
+
     }
 }
