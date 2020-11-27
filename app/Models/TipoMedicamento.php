@@ -10,4 +10,9 @@ class TipoMedicamento extends Model
     use HasFactory;
     protected $table ="tipo_medicamentos";
     protected $primaryKey = 'id_tipo';
+
+    public function getMedicamentosTipo()
+    {
+        return $this->hasMany(Medicamento::class,'id_tipo','tipo_id');
+    }
 }
