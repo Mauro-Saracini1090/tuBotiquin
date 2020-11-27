@@ -16,10 +16,7 @@ class CreateMedicamentosTable extends Migration
         Schema::create('medicamentos', function (Blueprint $table) {
             $table->id('id_medicamento');
             $table->string('nombre_medicamento',250);
-            $table->string('indicaciones',250);
-            $table->string('contradicciones',250);
-            $table->string('composicion',250);
-            $table->string('posologia',250);
+            $table->string('informacion',4000);
             $table->unsignedBigInteger('marca_id');
             $table->unsignedBigInteger('tipo_id');
             $table->timestamps();
