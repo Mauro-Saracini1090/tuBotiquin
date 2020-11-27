@@ -16,6 +16,8 @@ class MarcaMedicamentoController extends Controller
     public function index()
     {
         //
+        $marcasMedicamentos = MarcaMedicamento::simplePaginate(7);
+        return view('admin.marcaMedicamento.listadoMarcas',compact('marcasMedicamentos'));
     }
 
     /**
@@ -26,6 +28,7 @@ class MarcaMedicamentoController extends Controller
     public function create()
     {
         //
+        return view('admin.marcaMedicamento.nuevaMarcaMedicamento');
     }
 
     /**
@@ -37,6 +40,15 @@ class MarcaMedicamentoController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nombre_marca' => 'required'
+        ]);
+
+        $tipo = new MarcaMedicamento();
+        $tipo->nombre_marca = $request->nombre_marca;
+        $tipo->save();
+
+        return redirect(route('marcaMedicamentos.index'));
     }
 
     /**
@@ -59,6 +71,8 @@ class MarcaMedicamentoController extends Controller
     public function edit(MarcaMedicamento $marcaMedicamento)
     {
         //
+        return view('admin.marcaMedicamento.editarMarcaMedicamento',compact('marcaMedicamento'));
+
     }
 
     /**
@@ -71,6 +85,14 @@ class MarcaMedicamentoController extends Controller
     public function update(Request $request, MarcaMedicamento $marcaMedicamento)
     {
         //
+        $request->validate([
+            'nombre_marca' => 'required'
+        ]);
+
+        $marcaMedicamento->nombre_marca = $request->nombre_marca;
+        $marcaMedicamento->save();
+
+        return redirect(route('marcaMedicamentos.index'));
     }
 
     /**
@@ -82,5 +104,7 @@ class MarcaMedicamentoController extends Controller
     public function destroy(MarcaMedicamento $marcaMedicamento)
     {
         //
+        $marcaMedicamento->delete();
+        return redirect(route('marcaMedicamentos.index'));
     }
 }
