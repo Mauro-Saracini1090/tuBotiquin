@@ -153,6 +153,18 @@
                                     <a href="{{ route('sucursal.index') }}"
                                         class="nav-link btn-panel">Sucursales</a>
                                 </li>
+                                <li class="nav-item my-1">
+                                    <a href="{{ route('tipoMedicamentos.index') }}"
+                                        class="nav-link btn-panel">Tipos de Medicamentos</a>
+                                </li>
+                                <li class="nav-item my-1">
+                                    <a href="{{ route('marcaMedicamentos.index') }}"
+                                        class="nav-link btn-panel">Marcas de Medicamento</a>
+                                </li>
+                                <li class="nav-item my-1">
+                                    <a href="{{ route('medicamentos.index') }}"
+                                        class="nav-link btn-panel">Medicamentos</a>
+                                </li>
                         @endcan
                     @endauth
                     </ul>
