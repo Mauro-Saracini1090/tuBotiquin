@@ -79,5 +79,7 @@ Route::get('turnossiguientes', [homeController::class,'verSucursalesProximasTurn
 Route::resource('tipoMedicamentos',TipoMedicamentoController::class)->middleware('roles:es-administrador');
 Route::resource('marcaMedicamentos',MarcaMedicamentoController::class)->middleware('roles:es-administrador');
 Route::resource('medicamentos',MedicamentoController::class)->middleware('roles:es-administrador');
+Route::get('cargarMedicamento',[SucursalController::class,'cargarStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.cargar');
+Route::post('almacenarStockMedicamento',[SucursalController::class,'almacenarStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.almacenar');
 
 
