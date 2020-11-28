@@ -5,7 +5,7 @@
 
  <div class="row justify-content-center">
         <div class="col-md-6 col-12">
-             <div class="shadow bg-white rounded"> 
+             <div class="shadow bg-white"> 
                 <div class="col-12 bg-encabezado mb-3 p-3">
                         <h3 class="text-white text-center">REGISTRARSE</h3>
                         <p class="text-white text-center">Complete los siguientes campos</p>
