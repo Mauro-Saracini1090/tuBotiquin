@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <strong><label for="descripcion_farmacia">{{ __('Descripción *') }}</label></strong>
                             <textarea  name="descripcion_farmacia"  placeholder="¡Aqui puede colocar el eslogan de su Farmacia!" class="form-control @error('descripcion_farmacia') is-invalid @enderror"
-                                    value="{{ old('descripcion_farmacia' , $farmacia->descripcion_farmacia ) }}"></textarea>
+                                    value="">{{ old('descripcion_farmacia' , $farmacia->descripcion_farmacia ) }}</textarea>
                             <small  class="form-text text-muted">¡Aqui puede colocar el eslogan de su Farmacia!</small>        
 
                                 @error('descripcion_farmacia')

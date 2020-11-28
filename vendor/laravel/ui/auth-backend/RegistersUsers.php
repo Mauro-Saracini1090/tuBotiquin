@@ -2,6 +2,7 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Mail\RegistroUsuarioClienteMailable;
 use App\Models\Role;
 use App\Models\Usuario;
 use App\Traits\RegistroFarmaceutico;
@@ -10,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 trait RegistersUsers
 {
@@ -41,7 +43,9 @@ trait RegistersUsers
         $rolFarma = Role::where('id_rol', 3)->first();
         
         $user->getRoles()->attach($rolFarma);
-        
+
+        Mail::to($user->email)->send(new RegistroUsuarioClienteMailable);
+
         $this->guard()->login($user);
 
         if ($response = $this->registered($request, $user)) {
@@ -49,7 +53,7 @@ trait RegistersUsers
         }
         return $request->wantsJson()
             ? new JsonResponse([], 201)
-            : redirect($this->redirectPath());
+            : redirect($this->redirectPath())->with('estado','Bienvenido a Tu Botiquin, muchas gracias por registrarse. Saludos Equipo Tu Botiquin');
     }
 
     

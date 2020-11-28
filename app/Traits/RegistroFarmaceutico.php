@@ -1,6 +1,7 @@
 <?php
 namespace App\Traits;
 
+use App\Mail\NotificacionNuevoFarmaceuticoAdministradorMailable;
 use App\Mail\RegistroFarmaceuticoMailable;
 use App\Models\Role;
 use App\Models\Usuario;
@@ -31,7 +32,15 @@ trait RegistroFarmaceutico
         
         $rolFarma = Role::where('id_rol', 2)->first();
         
+        $emailAdministrador = DB::table('usuario')
+        ->join('usuario_roles', 'usuario.id_usuario', '=', 'usuario_roles.usuario_id')
+        ->join('roles', 'usuario_roles.rol_id', '=', 'roles.id_rol')
+        ->where('roles.slug_rol', '=', 'es-administrador')
+        ->select('email')
+        ->get();
+           
         Mail::to($user->email)->send(new RegistroFarmaceuticoMailable);
+        Mail::to($emailAdministrador)->send(new NotificacionNuevoFarmaceuticoAdministradorMailable);
 
         $user->getRoles()->attach($rolFarma);
         
@@ -43,7 +52,7 @@ trait RegistroFarmaceutico
 
         return $request->wantsJson()
             ? new JsonResponse([], 201)
-            : redirect($this->redirectPath());
+            : redirect($this->redirectPath())->with('estado','Gracias por registrarse a Tu Botiquin, su perfil de Farmaceutico necesitar se evaluado y aprobado por el Admnisitrador.Se le notificara al Correo Electronico que uso para el registro. Saludos Equipo Tu Botiquin');;
     }
 
 

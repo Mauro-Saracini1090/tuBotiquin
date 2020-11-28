@@ -53,10 +53,10 @@
                                     </div>  
                                 
                                     <div Class="col-lg-5 col-12">
-                                        <div class="d-flex d-flex justify-content-center"> 
-                                            <div class="mapa">
-                                                <iframe class="iframe border" height="200"></iframe>
-                                           </div>
+                                        <div class="d-flex d-flex justify-content-center">
+                                                <div class="mapa" id="{{$sucursal->id_sucursal}}">
+                                                
+                                                </div>
                                         </div>   
                                     </div>
                                     <div class="col-12">
@@ -104,4 +104,56 @@
                 </div>
              </div>
         </div>           
+@endsection
+@section('zona_js')
+<script>   
+    @foreach ($arraySucursales as  $sucursal)
+        @if ($sucursal->habilitado == 1)
+         var latitud = {{ $sucursal->sucursal_latitud }};
+         var longitud = {{ $sucursal->sucursal_longitud }};
+        if ($.isNumeric(latitud) && $.isNumeric(longitud) ) {
+              
+             var map = L.map('{{$sucursal->id_sucursal}}').setView({
+                 lon: longitud,
+                  lat: latitud
+              }, 16);
+             var actual = L.marker([latitud, longitud]).addTo(map).bindPopup('{{$farmacia->nombre_farmacia}}').openPopup();
+          }else{
+            var map = L.map('{{$sucursal->id_sucursal}}').setView({
+                lon: -67.8284165,
+                lat: -38.9793436
+            }, 15);
+        }
+        // add the OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+        }).addTo(map);
+
+        // show the scale bar on the lower left corner
+        L.control.scale().addTo(map);
+        
+        $('#{{$sucursal->id_sucursal}}').mouseenter(function(){
+            map.scrollWheelZoom.enable();
+            map.dragging.enable();
+            map.touchZoom.enable();
+            map.doubleClickZoom.enable();
+            map.boxZoom.enable();
+            map.keyboard.enable();
+            if (map.tap) map.tap.enable();
+            $('#{{$sucursal->id_sucursal}}').css('cursor', 'drag');
+        })
+        $('#{{$sucursal->id_sucursal}}').mouseleave(function(){
+            map.scrollWheelZoom.disable();
+            map.dragging.disable();
+            map.touchZoom.disable();
+            map.doubleClickZoom.disable();
+            map.boxZoom.disable();
+            map.keyboard.disable();
+            if (map.tap) map.tap.disable();
+            $('#{{$sucursal->id_sucursal}}').css('cursor', 'drag');
+        })
+        @endif  
+    @endforeach
+</script>
 @endsection

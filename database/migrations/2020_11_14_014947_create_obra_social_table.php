@@ -16,7 +16,7 @@ class CreateObraSocialTable extends Migration
         Schema::create('obra_social', function (Blueprint $table) {
             $table->id('id_obra_social');
             $table->string('Nombre_obra_social', 150);
-            $table->integer('Telefono_obra_Social');
+            $table->bigInteger('Telefono_obra_Social');
             $table->timestamps();
         });
     }

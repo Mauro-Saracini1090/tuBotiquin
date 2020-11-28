@@ -145,7 +145,6 @@
         </div>
     </div>
 </div>
-
 <script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('descripcion_sucursal');
@@ -164,6 +163,11 @@
             maxZoom: 19,
             attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
         }).addTo(map);
+
+        // show the scale bar on the lower left corner
+        L.control.scale().addTo(map);
+
+
         // show the scale bar on the lower left corner
         L.control.scale().addTo(map);
         map.dragging.disable();
@@ -174,6 +178,7 @@
         map.keyboard.disable();
         if (map.tap) map.tap.disable();
         $('#map').css('cursor', 'default');
+
         $('#desMap').click(function () {
             $('#actMap').prop('disabled', true);
             $('#desMap').prop('disabled', false);
@@ -201,6 +206,7 @@
             if (map.tap) map.tap.enable();
             $('#map').css('cursor', 'grab');
         })
+
         // show a marker on the map
         var marcador = {};
         map.on('dblclick', e => {
@@ -216,3 +222,4 @@
     })
 </script>
 @endsection
+
