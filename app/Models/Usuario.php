@@ -31,6 +31,7 @@ class Usuario extends Authenticatable
         'cuit',
         'dni',
         'numero_matricula',
+        'img_perfil',
         'habilitado',
     ];
 

@@ -145,18 +145,15 @@
         </div>
     </div>
 </div>
-
 <script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('descripcion_sucursal');
-
 </script>
 @endsection
 @section('zona_js')
 <script>
     $(document).ready(function () {
         $('#alertMap').hide();
-
         var map = L.map('map').setView({
             lon: -67.8284165,
             lat: -38.9793436
@@ -170,6 +167,9 @@
         // show the scale bar on the lower left corner
         L.control.scale().addTo(map);
 
+
+        // show the scale bar on the lower left corner
+        L.control.scale().addTo(map);
         map.dragging.disable();
         map.touchZoom.disable();
         map.doubleClickZoom.disable();
@@ -198,7 +198,6 @@
             $('#desMap').prop('disabled', true);
             $('#alertMap').text('El Mapa esta activo ahora');
             $('#alertMap').show();
-
             map.dragging.enable();
             map.touchZoom.enable();
             map.scrollWheelZoom.enable();
@@ -221,6 +220,6 @@
             // console.log($('#long').val());	
         })
     })
-
 </script>
 @endsection
+

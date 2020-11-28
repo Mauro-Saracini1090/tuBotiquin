@@ -2,11 +2,11 @@
 @section('titulo','Cargar Sucursal')
 
 @section('opcionesFarmaceutico')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class=" col-12">
-            <div class="shadow p-3 mb-5 bg-white rounded">
 
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="shadow p-3 mb-5 bg-white">  
                 <!-- Masthead Subheading-->
                 <h3 class="masthead-subheading text-center">EDITAR SUCURSAL</h3>
                 <p class="lead text-center">Complete los siguientes campos</p>

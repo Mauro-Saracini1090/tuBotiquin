@@ -3,13 +3,14 @@
 @section('contenido')
 
 <div class="row justify-content-center">
-    <div class="row justify-content-center">
-            <div class="col-md-6 col-12">
-                    <div class="shadow p-3 mb-5 bg-white rounded"> 
-                        <div class="card-body mb-2">
+        <div class="col-md-6 col-12">
+                <div class="shadow bg-white">
+                    <div class="col-12 bg-encabezado mb-3 p-3">
                         <h3 class="text-secondary text-center my-4">{{ __('RESTABLECER CONTRASEÑA') }}</h3>
                         <p>Por favor, ingrese su cuenta de correo</p>
-            
+                     </div> 
+                    <div class="card-body mb-2">
+                        
                             <form method="POST" action="{{ route('password.update') }}">
                                 @csrf
 
@@ -27,7 +28,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password"">{{ __('Password') }}</label>
+                                    <label for="password">{{ __('Password') }}</label>
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                     @error('password')

@@ -9,6 +9,7 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UsuarioController extends Controller
 {
@@ -82,6 +83,7 @@ class UsuarioController extends Controller
         $usuario->cuit = $request->cuit;
         $usuario->dni = $request->dni;
         $usuario->numero_matricula = $request->matricula;
+        $usuario->img_perfil = NULL;
         $usuario->habilitado = $habilitado;
         $usuario->save();
 
@@ -223,4 +225,88 @@ class UsuarioController extends Controller
 
         return redirect(route('usuario.rolpermisos', [$usuario->id_usuario]));
     }
+
+
+
+    /**
+     * Funcion que muestra el perfil con lso datos del usuario farmaceutico
+     */    
+    public function verMiPerfilFarmaceutico(){
+
+        $id_usuarioFarma = auth()->user()->id_usuario;
+        $usuarioFarmaceutico = Usuario::find($id_usuarioFarma);
+        return view('farmaceutico.miPerfilFarmaceutico', [ "usuarioFarmaceutico" => $usuarioFarmaceutico ]);
+    }
+
+   
+    /**
+     * 
+     */
+    public function subirFotoPerfil(){
+        $id_usuarioFarma = auth()->user()->id_usuario;
+        $usuarioFarmaceutico = Usuario::find($id_usuarioFarma);
+        return view('farmaceutico.cargarFotoPerfil', [ "usuarioFarmaceutico" => $usuarioFarmaceutico ]);
+       //return view ('farmaceutico.cargarFotoPerfil');
+    }
+
+    
+    public function cargarFotoPerfil(Request $request){
+
+        $id_usuarioFarma = auth()->user()->id_usuario;
+        $usuarioFarmaceutico = Usuario::find($id_usuarioFarma );
+        $request->validate([
+            'img_ferfil_form' => 'required|image|mimes:jpeg,jpe,png|max:4096',
+        ]);
+
+        $img_perfil_form = $request->file('img_ferfil_form')->store('public/foto_perfil');
+        $img_perfil = Storage::url($img_perfil_form);
+        $usuarioFarmaceutico->img_perfil = $img_perfil;
+        $usuarioFarmaceutico->save();
+        return view('farmaceutico.miPerfilFarmaceutico', [ "usuarioFarmaceutico" => $usuarioFarmaceutico ]);
+    }
+
+    public function editarPerfil(){
+
+        $id_usuarioFarma = auth()->user()->id_usuario;
+        $usuarioFarmaceutico = Usuario::find($id_usuarioFarma );    
+        $localidades = Localidad::all();
+        return view('farmaceutico.editarPerfil', [
+                'localidades' => $localidades,
+                'usuario' => $usuarioFarmaceutico,
+        ]);
+    }
+
+
+    /**
+     * 
+     * REVISAR ESTO NO ANDA BIEN ____ :T
+     */
+    public function actualizarPerfil(Usuario $usuario, Request $request){
+         //Valida los campos del formulario registro
+           
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->nombre_usuario = $request->nombre_usuario;
+        $usuario->email = $request->email;
+        $usuario->password = Hash::make($request->password);
+        $usuario->cod_postal = $request->localidad;
+        $usuario->cuil = $request->cuil;
+        $usuario->cuit = $request->cuit;
+        $usuario->dni = $request->dni;
+        $usuario->numero_matricula = $request->matricula;
+        $usuario->habilitado = "1";
+
+        if($usuario->img_perfil  == NULL){
+            $usuario->img_perfil = NULL;
+        }    
+        else{
+            $usuario->img_perfil = $usuario->img_perfil;
+        }
+       
+        $usuario->save();
+        return $usuario->img_perfil;
+        //return view('farmaceutico.miPerfilFarmaceutico', [ "usuarioFarmaceutico" => $usuario ]); 
+        
+    }
+
 }
