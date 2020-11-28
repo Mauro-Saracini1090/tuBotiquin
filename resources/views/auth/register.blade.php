@@ -5,12 +5,13 @@
 
  <div class="row justify-content-center">
         <div class="col-md-6 col-12">
-             <div class="p-3 mb-5 shadow bg-white rounded"> 
+             <div class="shadow bg-white rounded"> 
+                <div class="col-12 bg-encabezado mb-3 p-3">
+                        <h3 class="text-white text-center">REGISTRARSE</h3>
+                        <p class="text-white text-center">Complete los siguientes campos</p>
+                    </div> 
                 <div class="card-body mb-2"> 
                     <!-- Masthead Subheading-->
-                    <h3 class="text-secondary mb-0 text-center">REGISTRARSE</h3>
-                    <p class="text-muted text-center">Complete los siguientes campos</p>
-    
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <!-- NOMBRE -->

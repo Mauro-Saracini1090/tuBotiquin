@@ -27,6 +27,7 @@ class CreateUsuarioTable extends Migration
             $table->bigInteger('cuit')->nullable();
             $table->bigInteger('dni')->nullable();
             $table->string('numero_matricula',200)->nullable();
+            $table->string('img_perfil', 250)->nullable();;
             $table->boolean('habilitado');
             $table->timestamps();
 

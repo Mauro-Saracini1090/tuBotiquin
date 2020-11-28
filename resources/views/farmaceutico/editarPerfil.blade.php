@@ -1,25 +1,24 @@
 @extends('welcome')
-@section('titulo',' Registrarse Farmaceutico')
-@section('contenido')
+@section('titulo','Home')
 
-  <div class="row justify-content-center">
+@section('contenido')
+     <div class="row justify-content-center">
         <div class="col-md-6 col-12">
              <div class="shadow bg-white"> 
                     <div class="col-12 bg-encabezado mb-3 p-3">
-                        <h3 class="text-white text-center">REGISTRARSE</h3>
-                        <p class="text-white text-center">Complete los siguientes campos</p>
-                    </div> 
-                    <div class="card-body mb-2"> 
-                    <!-- Masthead Subheading-->
-                   
-    
-                        <form method="POST" action="{{ route('registroFarmaceutico') }}">
+                    <h2 class="text-center text-white"> EDITAR PERFIL</h2>
+                    <p class="text-white text-center">Complete los siguientes campos</p>
+                </div> 
+                <div class="card-body">   
+                @can('esFarmaceutico')
+
+                         <form method="POST" action="{{ route('actualizarPerfil',[$usuario] ) }}">
                             @csrf
                             <!-- NOMBRE -->
                             <div class="form-group">
                                 <strong><label for="nombre">{{ __('Nombre *') }}</label></strong>
                                 <input id="nombre" type="text" class="form-control focus @error('nombre') is-invalid @enderror" 
-                                        name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus placeholder="Ingrese su Nombre" autofocus>
+                                        name="nombre" value="{{ old('nombre', $usuario->nombre ) }}" required autocomplete="nombre" autofocus placeholder="Ingrese su Nombre" autofocus>
 
                                 @error('nombre')
                                     <span class="invalid-feedback" role="alert">
@@ -31,7 +30,7 @@
                             <div class="form-group">
                                 <strong><label for="apellido">{{ __('Apellido *') }}</label></strong>
                                 <input id="apellido" type="text" class="form-control @error('apellido') is-invalid @enderror" 
-                                        name="apellido" value="{{ old('apellido') }}" required autocomplete="apellido" autofocus placeholder="Ingrese su Apellido">
+                                        name="apellido" value="{{ old('apellido' , $usuario->apellido) }}" required autocomplete="apellido" autofocus placeholder="Ingrese su Apellido">
 
                                 @error('apellido')
                                     <span class="invalid-feedback" role="alert">
@@ -44,7 +43,7 @@
                             <div class="form-group">
                                 <strong><label for="nombre_usuario">{{ __('Nombre de Usuario *') }}</label></strong>
                                 <input id="nombre_usuario" type="text" class="form-control @error('nombre_usuario') is-invalid @enderror" 
-                                        name="nombre_usuario" value="{{ old('nombre_usuario') }}" required autocomplete="nombre_usuario" autofocus placeholder="Ingrese un nombre de usuario">
+                                        name="nombre_usuario" value="{{ old('nombre_usuario', $usuario->nombre_usuario) }}" required autocomplete="nombre_usuario" autofocus placeholder="Ingrese un nombre de usuario">
 
                                 @error('nombre_usuario')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +55,7 @@
                             <!-- EMAIL -->
                             <div class="form-group">    
                                 <strong><label for="email">{{ __('Direccion de E-Mail *') }}</label></strong>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" 
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $usuario->email) }}" required 
                                     required autocomplete="email" placeholder="micorreo@email.com">
 
                                 @error('email')
@@ -79,7 +78,7 @@
                             <div class="form-group">
                                 <strong><label for="password">{{ __('Contraseña') }}</label><Strong>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" 
-                                        name="password" required autocomplete="new-password" placeholder="**************************************">
+                                        name="password" required autocomplete="new-password" placeholder="**************************************" >
                                 <small  class="form-text text-muted">Su contraseña debe tener entre 8 y 20 caracteres</small>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -96,19 +95,19 @@
                             <!-- CUIL -->
                             <div class="form-group">
                                 <strong><label for="cuil">{{ __('CUIL *') }}</label></strong>
-                                <input id="cuil" type="text" class="form-control @error('cuil') is-invalid @enderror" name="cuil" value="{{ old('cuil') }}"  autocomplete="cuil" autofocus placeholder="Ej:12345678" required >
+                                <input id="cuil" type="text" class="form-control @error('cuil') is-invalid @enderror" name="cuil" value="{{ old('cuil', $usuario->cuil) }}"  readonly autocomplete="cuil" autofocus placeholder="Ej:12345678" required >
                                 <small  class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo<</small>    
                                 @error('cuil')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror  
                             </div>
 
                             <!-- CUIT -->
                             <div class="form-group ">
                                 <strong><label for="cuit">{{ __('CUIT *') }}</label></strong>
-                                <input id="cuit" type="text" class="form-control @error('cuit') is-invalid @enderror" name="cuit" value="{{ old('cuit') }}"  autocomplete="cuit" autofocus placeholder="Ej:12345678" required >
+                                <input id="cuit" type="readonly" class="form-control @error('cuit') is-invalid @enderror" name="cuit" value="{{ old('cuit', $usuario->cuit) }}"  autocomplete="cuit"  autofocus placeholder="Ej:12345678" required >
                                 <small  class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo<</small>
                                 @error('cuit')
                                     <span class="invalid-feedback" role="alert">
@@ -120,7 +119,7 @@
                             <!-- DNI -->
                             <div class="form-group ">
                                 <strong><label for="dni">{{ __('DNI *') }}</label></strong>
-                                <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni') }}"  autocomplete="dni" autofocus placeholder="Ej:12345678" required >
+                                <input id="dni" type="readonly" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni', $usuario->dni) }}"  autocomplete="dni" autofocus placeholder="Ej:12345678" required >
                                 <small  class="form-text text-muted">Sin puntos ni guiones</small>
 
                                 @error('dni')
@@ -133,7 +132,7 @@
                             <!-- matricula -->
                             <div class="form-group">
                                 <strong><label for="matricula">{{ __('Número de Matricula *') }}</label></strong>       
-                                <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula" value="{{ old('matricula') }}"  autocomplete="matricula" autofocus placeholder="Ej: mn345678" required>
+                                <input id="matricula" type="readonly" class="form-control @error('matricula') is-invalid @enderror" name="matricula" value="{{ $usuario->numero_matricula }}" readonly autocomplete="matricula" autofocus placeholder="Ej: mn345678" required>
                                 <small  class="form-text text-muted">Sin espacios ni guiones</small>
 
                                 @error('matricula')
@@ -151,12 +150,19 @@
                         <div class="form-group">
                             <div class="d-flex d-flex justify-content-center pt-3">  
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Registrarse') }}
+                                    {{ __('Actualizar') }}
                                 </button>
+                                  <a href="{{  route('miPerfilFarmacuetico') }}" class="btn btn-primary mx-1">Cancelar</a>
                             </div>
                         </div>
                     </form>
                 </div>
-            
+            </div>    
+
+
+
+                @endcan
+            </div>
+       </div>         
     </div>
 @endsection

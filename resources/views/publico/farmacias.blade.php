@@ -35,16 +35,18 @@
             <div class="row">
                 @foreach ($arrayFarmaciasPaginate as $farmaciaPaginate)
                     @if ($farmaciaPaginate->habilitada == 1)
-                        <div class="col-md-4">
-                            <div class="p-2 mb-4  shadow bg-white rounded">
+                        <div class="col-lg-4 col-12 mt-4">
+                            <div class="shadow bg-white">
+                            <div class="col-12 bg-encabezado mb-3 p-3">
+                                </div>
                                 <div class="d-flex d-flex justify-content-center"> 
-                                    <div class="col-12">           
-                                        <img class="card-img-top shadow img-responsive" src="{{ asset($farmaciaPaginate->img_farmacia) }}" alt="Logotipo" width="100" height="200">
+                                    <div class="col-6">           
+                                        <img class="card-img-top shadow" src="{{ asset($farmaciaPaginate->img_farmacia) }}" alt="Logotipo" width="110" height="110">
                                     </div>
                                 </div>       
                                     <div class="card-body text-center">
                                         <h4 class="card-title"> <?php echo strtoupper($farmaciaPaginate->nombre_farmacia) ?></h4>
-                                        <p class="font-italic"><?php echo  $farmaciaPaginate->descripcion_farmacia ?></p> 
+                                        <p class="font-italic"><?php echo $farmaciaPaginate->descripcion_farmacia ?></p> 
                                         <hr>
                                         <form method="POST" action="{{ route('farmaciaSucursal')}}">
                                         @csrf  

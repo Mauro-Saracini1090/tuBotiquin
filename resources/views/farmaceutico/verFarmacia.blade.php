@@ -9,7 +9,7 @@
                 @if((count($arrayFarmacias) < 1))
                      <div class="row">
                         <div class="col-12 text-center">
-                                <div class="p-3 mb-2 bg-warning rounded shadow">
+                                <div class="p-3 mb-2 bg-warning shadow">
                                       <h6 class="font-weight-bold text-center mb-2">No posee Farmacias cargadas</h6>
                                     <br>
                                     <p class="text-center">Si cree que esto es un error, contacte al Administrador </p>
@@ -19,7 +19,7 @@
                         </div>   
                 @else          
                     @foreach ($arrayFarmacias as $farmacia)
-                        <div class="shadow p-3 mb-5 bg-white rounded">
+                        <div class="shadow p-3 mb-5 bg-white">
                             <div class="row" >
                                 <div Class="col-lg-8 col-12" >
                                         <h2 class="text-secondary  m-3"><?php echo strtoupper($farmacia->nombre_farmacia) ?></h2>

@@ -11,13 +11,11 @@
             </div>    
         <div class="row mt-2">
                  @foreach ($arregloSucursalTurnodia as $sucursalDia)       
-                            <div class="col-lg-4 col-12">
-                                <div class="p-3 mb-4 shadow bg-white rounded">
-                                    <div class="col-12 bg-success text-center rounded">
-                                        
-                                             <span class="font-weight-bold my-2 text-white "> {{  $sucursalDia["diaTurno"] }} </span>
-                                        
-                                    </div> 
+                            <div class="col-lg-4 col-12  mt-4 my-4">
+                                <div class=" shadow bg-white">
+                                    <div class="col-12 bg-encabezado mb-3 p-3 text-center">
+                                        <h5 class="text-white"> {{  $sucursalDia["diaTurno"] }} </h5>
+                                    </div>
                                     <div class="d-flex d-flex justify-content-center mt-3"> 
                                         <div class="col-6"> 
                                             <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursalDia["sucursal"]->getFarmacia->img_farmacia }}"
@@ -27,11 +25,11 @@
                                     <div class="card-body">
                                         <h4 class="card-title text-center"><?php echo strtoupper($sucursalDia["sucursal"]->getFarmacia->nombre_farmacia) ?></h4>
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><i class="material-icons">location_on</i> Dirección: <span class="font-weight-bold text-secondary">{{$sucursalDia["sucursal"]->direccion_sucursal }}</span></li>
-                                            <li class="list-group-item"><i class="material-icons">mail</i> Email: <span class="font-weight-bold text-secondary">{{ $sucursalDia["sucursal"]->email_sucursal }} </span></li>
-                                            <li class="list-group-item"><i class="material-icons">local_phone</i> Teléfono: <span class="font-weight-bold text-secondary">{{ $sucursalDia["sucursal"]->telefono_sucursal }} </span></li>
-                                        </ul>
-                                        <hr>  
+                                            <li class="list-group-item"><i class="material-icons">location_on</i>  <span class="font-weight-bold text-secondary"> {{$sucursalDia["sucursal"]->direccion_sucursal }}</span></li>
+                                            <li class="list-group-item"><i class="material-icons">mail</i>  <span class="font-weight-bold text-secondary"> {{ $sucursalDia["sucursal"]->email_sucursal }} </span></li>
+                                            <li class="list-group-item"><i class="material-icons">local_phone</i>  <span class="font-weight-bold text-secondary"> {{ $sucursalDia["sucursal"]->telefono_sucursal }} </span></li>
+                                            <li class="list-group-item"></li>
+                                        </ul> 
                                         <div class="d-flex d-flex justify-content-center"> 
                                             <form method="POST" action="{{ route('verSucursalTurnoHoy')}}">
                                             @csrf  

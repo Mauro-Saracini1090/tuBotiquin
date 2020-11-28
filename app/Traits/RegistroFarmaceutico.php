@@ -69,6 +69,7 @@ trait RegistroFarmaceutico
             'cuil' => ['required', 'string', 'min:8'],
             'cuit' => ['required', 'string', 'min:8'],
             'matricula' => ['required', 'string', 'min:8'],
+            'img_perfil' => ['string max:255'],
             'dni' => ['required', 'string', 'min:8'],
 
         ]);

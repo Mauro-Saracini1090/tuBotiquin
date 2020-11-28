@@ -7,12 +7,11 @@
              
                 @foreach ($arrayObraSocial as $obrasocial)
 
-                    <div class="shadow bg-white rounded"> 
+                    <div class="shadow bg-white"> 
                         <div class="p-0 mb-2 fondo text-left">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><h4 class="text-secondary">{{ $obrasocial->Nombre_obra_social }}</h4></li>
                                 <li class="list-group-item"><p> Teléfono de contacto: {{ $obrasocial->Telefono_obra_Social  }}</p></li>
-                                <li class="list-group-item"><p> E-mail: </p> </li>
                             </ul>
                         </div>
                     </div>             
