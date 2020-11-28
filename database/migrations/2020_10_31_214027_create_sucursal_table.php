@@ -15,9 +15,11 @@ class CreateSucursalTable extends Migration
     {
         Schema::create('sucursal', function (Blueprint $table) {
             $table->id('id_sucursal');
-            //$table->bigInteger('id_usuario');
+            $table->unsignedBigInteger('usuario_id');
             $table->unsignedBigInteger('id_farmacia');
             $table->string('descripcion_sucursal', 250);
+            $table->unsignedBigInteger('telefono_movil');
+            $table->unsignedBigInteger('telefono_fijo');
             $table->string('cufe_sucursal')->unique();
             $table->string('email_sucursal');
             $table->bigInteger('telefono_sucursal');
@@ -29,7 +31,7 @@ class CreateSucursalTable extends Migration
             
             $table->timestamps();
 
-            //$table->foreign('id_usuario')->references('id_usuario')->on('usuario')->onDelete('cascade');
+            $table->foreign('usuario_id')->references('id_usuario')->on('usuario')->onDelete('cascade');
             $table->foreign('id_farmacia')->references('id_farmacia')->on('farmacia')->onDelete('cascade');
         });
     }
