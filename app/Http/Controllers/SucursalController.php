@@ -69,7 +69,8 @@ class SucursalController extends Controller
             'descripcion_sucursal' => 'max:255',
             'cufe_sucursal' => 'required|unique:sucursal|max:255',
             'email_sucursal' => 'required|email|unique:sucursal|max:255',
-            'telefono_sucursal' => 'required|max:11',
+            'telefono_fijo' => 'required',
+            'telefono_movil' => 'numeric',
             'direccion_sucursal' => 'required|unique:sucursal|max:255',
         ]));
 
@@ -156,8 +157,10 @@ class SucursalController extends Controller
             'cufe_sucursal' =>   Rule::unique('sucursal', 'cufe_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
             'email_sucursal' =>  Rule::unique('sucursal', 'email_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
             'email_sucursal' => 'required|email|max:255',
-            'telefono_sucursal' => 'required|numeric',
-            'telefono_sucursal' => Rule::unique('sucursal', 'telefono_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
+            'telefono_fijo' => 'required|numeric',
+            'telefono_fijo' => Rule::unique('sucursal', 'telefono_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
+            'telefono_movil' => 'numeric',
+            'telefono_movil' => Rule::unique('sucursal', 'telefono_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
             'direccion_sucursal' => 'required|max:255',
             'direccion_sucursal' => Rule::unique('sucursal', 'direccion_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
         ]));
