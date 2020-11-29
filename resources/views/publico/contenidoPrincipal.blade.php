@@ -157,7 +157,7 @@
                                         </div>       
                                         <div class="card-body">
                                              <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">
+                                                    <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1"><i class="material-icons">location_on</i></div>
                                                             <div class="col-10"><span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></div>
@@ -185,7 +185,7 @@
                                                             </div>
                                                             <div class="col-10">
                                                                 <span class="font-weight-bold text-secondary">
-                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_sucursal }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
+                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil}}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -278,7 +278,7 @@
                                         <li class="list-group-item">
                                             <div class="row">
                                                 <div class="col-1"><i class="material-icons">local_phone</i></div>
-                                                <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></div>
+                                                <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
                                             </div>
                                         </li>
                                         <li class="list-group-item">
@@ -288,12 +288,12 @@
                                                 </div>
                                                 <div class="col-10">
                                                     <span class="font-weight-bold text-secondary">
-                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_sucursal }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
+                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
                                                     </span>
                                                 </div>
                                             </div>
                                         </li>
-                                        
+
                                         <li class="list-group-item"></li>
                                         
                                     </ul> 
