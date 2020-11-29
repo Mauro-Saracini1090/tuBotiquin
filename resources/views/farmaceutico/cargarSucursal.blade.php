@@ -76,23 +76,39 @@
                         @enderror
                     </div>
 
-                    <!-- TELEFONO -->
+                    <!-- TELEFONO FIJO -->
                     <div class="form-group">
                         <strong><label
-                                for="telefono_sucursal">{{ __('Teléfono *') }}</label></strong>
-                        <input type="text" name="telefono_sucursal"
-                            value="{{ old('telefono_sucursal') }}" placeholder="Ejemplo: 29844586958"
-                            class="form-control @error('telefono_sucursal') is-invalid @enderror" required>
+                                for="telefono_fijo">{{ __('Teléfono fijo*') }}</label></strong>
+                        <input type="text" name="telefono_fijo"
+                            value="{{ old('telefono_fijo') }}" placeholder="Ejemplo: 29844586958"
+                            class="form-control @error('telefono_fijo') is-invalid @enderror" required>
                         <small class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo</small>
 
-                        @error('telefono_sucursal')
+                        @error('telefono_fijo')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
 
-                    <!-- Direccion -->
+                    <!-- TELEFONO MOVIL -->
+                    <div class="form-group">
+                        <strong><label
+                                for="telefono_movil">{{ __('Teléfono móvil *') }}</label></strong>
+                        <input type="text" name="telefono_movil"
+                            value="{{ old('telefono_movil') }}" placeholder="Ejemplo: 29844586958"
+                            class="form-control @error('telefono_movil') is-invalid @enderror" required>
+                        <small class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo</small>
+
+                        @error('telefono_movil')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <!-- Dirección -->
                     <div class="form-group">
                         <strong><label
                                 for="direccion_sucursal">{{ __('Dirección *') }}</label></strong>
@@ -108,6 +124,7 @@
                             </span>
                         @enderror
                     </div>
+
                     <div class="form-group">
                         <strong>
                             <label for="ubicacion_mapa">{{ __('Ubicacion Mapa:') }}</label>

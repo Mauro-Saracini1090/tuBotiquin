@@ -86,7 +86,9 @@ class SucursalController extends Controller
 
         $sucursal->cufe_sucursal = $request->cufe_sucursal;
         $sucursal->email_sucursal = $request->email_sucursal;
-        $sucursal->telefono_sucursal  = $request->telefono_sucursal;
+        $sucursal->telefono_fijo  = $request->telefono_fijo;
+        $sucursal->telefono_movil  = $request->telefono_movil;
+
         $sucursal->direccion_sucursal = $request->direccion_sucursal;
         $sucursal->habilitado = $habilitada;
         $sucursal->borrado_logico_sucursal = $borrado_logico_sucursal;
@@ -171,7 +173,9 @@ class SucursalController extends Controller
         $sucursal->descripcion_sucursal = $request->descripcion_sucursal;
         $sucursal->cufe_sucursal = $request->cufe_sucursal;
         $sucursal->email_sucursal = $request->email_sucursal;
-        $sucursal->telefono_sucursal = $request->telefono_sucursal;
+        $sucursal->telefono_fijo = $request->telefono_fijo;
+        $sucursal->telefono_movil = $request->telefono_movil;
+
         $sucursal->direccion_sucursal = $request->direccion_sucursal;
         //campso que nose pueden modificar    
         $sucursal->habilitado = $sucursal->habilitado;
