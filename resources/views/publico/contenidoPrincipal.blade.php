@@ -128,7 +128,11 @@
                                             <div class="row">
                                                 <div class="col-md-8 col-12 my-auto text-center">
                                                     <h2 class="card-title"><?php echo strtoupper($sucursal->getFarmacia->nombre_farmacia ) ?></h2>
-                                                    <p> <?php echo $sucursal->getFarmacia->descripcion_farmacia ?> </p>
+                                                    @if($sucursal->getFarmacia->descripcion_farmacia == "")
+                                                        <p>&nbsp</p> 
+                                                    @else
+                                                        <p> <?php echo $sucursal->getFarmacia->descripcion_farmacia ?> </p>
+                                                    @endif
                                                 </div>     
                                          
                                                 <div class="col-md-4 col-6 mx-auto ">
