@@ -128,7 +128,7 @@
 
                     <p class="lead mb-0">
                         <ul class="list-unstyled">
-                            <li> <a href="#" class="text-white">HOME</a> </li>
+                            <li> <a href="{{ route('home') }}" class="text-white">HOME</a> </li>
                             <li> <a href="{{ route('farmacias') }}" class="text-white">FARMACIAS</a>
                             </li>
                             <li><a href="{{ route('emailcontacto')}}" class="text-white">CONTACTO</a> </li>
