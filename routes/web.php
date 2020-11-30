@@ -95,4 +95,6 @@ Route::resource('medicamentos',MedicamentoController::class)->middleware('roles:
 Route::get('cargarMedicamento',[SucursalController::class,'cargarStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.cargar');
 Route::post('almacenarStockMedicamento',[SucursalController::class,'almacenarStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.almacenar');
 
-
+//Contactar Al Admin
+Route::get('contactaradministrador', [SucursalController::class,'contactarAdmin'])->middleware('roles:es-farmaceutico')->name('contactarAdmin');
+Route::post('enviarmailadministrador', [SucursalController::class,'enviarEmailAdministrador'])->middleware('roles:es-farmaceutico')->name('enviarEmailAdministrador');
