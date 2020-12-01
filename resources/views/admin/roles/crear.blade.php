@@ -2,13 +2,6 @@
 @section('datos')
 <h3>Crear Rol</h3>
 
-@if($errors->any())
-    <div class="alert alert-danger">
-        <p>Por favor corrija los siguientes errores de abajo: </p>
-    </div>
-@endif
-
-
 <form class="form-signin" method="post" action="{{ route('roles.store') }}">
 
     {!! csrf_field() !!}
