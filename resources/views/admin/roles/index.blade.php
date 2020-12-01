@@ -17,7 +17,7 @@
                 <th scope="row">{{ $rol->id_rol }}</th>
                 <td>{{ $rol->nombre_rol }}</td>
                 <td>
-                    <a class="btn btn-panel" href="{{ route('roles.show', [$rol->id_rol]) }}">Asignar Permisos</a>
+                    {{-- <a class="btn btn-panel" href="{{ route('roles.show', [$rol->id_rol]) }}">Asignar Permisos</a> --}}
                    {{-- <a class="btn btn-panel" href="{{ route('roles.edit', [$rol->id_rol]) }}">Editar</a>  --}}
                     <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $rol->id_rol }}">
                         Borrar
