@@ -76,7 +76,7 @@
                                 aria-expanded="false">Farmaceutico</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}">Mi Perfil</a>
-                                <a class="dropdown-item" href="{{ route('farmacia.index') }}">Panel de opciones</a>
+                                <a class="dropdown-item" href="{{ route('panel.farmaceutico') }}">Panel de opciones</a>
                             </div>
                         </li>
                     @endcan
