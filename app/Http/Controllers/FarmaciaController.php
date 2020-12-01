@@ -85,10 +85,11 @@ class FarmaciaController extends Controller
      */
     public function store(Request $request)
     {
-        //Valida los campos del formulario cargarFarmacia.blade 
+        //Valida los campos del formulario cargarFarmacia.blade
         $request->validate(([
             'nombre_farmacia' => 'required|max:255|unique:farmacia',
             'descripcion_farmacia' => 'max:250',
+            'cuit' => 'required|unique:farmacia|max:255',
             'img_farmacia' => 'required|image|mimes:jpeg,jpe,png|max:4096',
             'cuit' => 'required|between:8,20',
         ]));
@@ -120,13 +121,13 @@ class FarmaciaController extends Controller
         $farmacia->save();
         
         //Se busca el email del usuario administrador
-        $emailAdministrador = DB::table('usuario')
-        ->join('usuario_roles', 'usuario.id_usuario', '=', 'usuario_roles.usuario_id')
-        ->join('roles', 'usuario_roles.rol_id', '=', 'roles.id_rol')
-        ->where('roles.slug_rol', '=', 'es-administrador')
-        ->select('email')
-        ->get();
-        Mail::to($emailAdministrador)->send(new SolicitudHabilitacionFarmaciaMailable);
+        // $emailAdministrador = DB::table('usuario')
+        // ->join('usuario_roles', 'usuario.id_usuario', '=', 'usuario_roles.usuario_id')
+        // ->join('roles', 'usuario_roles.rol_id', '=', 'roles.id_rol')
+        // ->where('roles.slug_rol', '=', 'es-administrador')
+        // ->select('email')
+        // ->get();
+        // Mail::to($emailAdministrador)->send(new SolicitudHabilitacionFarmaciaMailable);
 
 
         return redirect(route('farmacia.index'))->with('estado_create', 'Su Farmacia se registró correctamente y será evaluada a la brevedad por el Administrador para verificar los datos.');
@@ -138,19 +139,18 @@ class FarmaciaController extends Controller
 
         Request()->validate(([
             'nombre_farmacia' => 'required',
-            'farmaceutico' => 'required',
-            //'img_farmacia' => 'required|image|mimes:jpeg,png|max:4096',
-            'cuit' => 'required',
+            // 'farmaceutico' => 'required',
+            'img_farmacia' => 'required|image|mimes:jpeg,png|max:4096',
+            'cuit' => 'required|unique:farmacia|max:255',
             'habilitada' => 'required',
         ]));
 
         // Crear una nueva instacia de Farmacia y la guarda en la DB
         // FLAG deshabilitada por defecto
         $borado_logico = 0; // FALG - False por defecto, se cambia a verdadero por el admin
-        $id_usuario = $request->farmaceutico;
 
         $farmacia = new Farmacia();
-        $farmacia->id_usuario = $id_usuario;
+        $farmacia->id_usuario = auth()->user()->id_usuario;
         $farmacia->nombre_farmacia = strtoupper($request->nombre_farmacia);
 
         if ($request->img_farmacia != null) {
@@ -274,26 +274,26 @@ class FarmaciaController extends Controller
         return redirect(route('farmacia.index'))->with('estado_delete', 'Su Farmacia se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');
     }
 
-    public function solicitudFarmacia(Request $request)
-    {
-        Gate::authorize('esAdmin');
-        $farmacia = Farmacia::find($request->farmacia);
-        $borado_logico = 1;
-        if($request->estado_habilitacion == 0)
-        {   
-            $farmacia->borrado_logico_farmacia=$borado_logico;
-            $farmacia->habilitada = $request->estado_habilitacion;
-            $farmacia->save();
-            Mail::to($farmacia->usuarioFarmaceutico->email)->send(new solicitudFarmaciaRechazadaMailable);
+    // public function solicitudFarmacia(Request $request)
+    // {
+    //     Gate::authorize('esAdmin');
+    //     $farmacia = Farmacia::find($request->farmacia);
+    //     $borado_logico = 1;
+    //     if($request->estado_habilitacion == 0)
+    //     {   
+    //         $farmacia->borrado_logico_farmacia=$borado_logico;
+    //         $farmacia->habilitada = $request->estado_habilitacion;
+    //         $farmacia->save();
+    //         Mail::to($farmacia->usuarioFarmaceutico->email)->send(new solicitudFarmaciaRechazadaMailable);
 
-        }else{
-            $farmacia->habilitada = $request->estado_habilitacion;
-            $farmacia->save();
-            Mail::to($farmacia->usuarioFarmaceutico->email)->send(new solicitudFarmaciaAceptadaMailable($farmacia) );
+    //     }else{
+    //         $farmacia->habilitada = $request->estado_habilitacion;
+    //         $farmacia->save();
+    //         Mail::to($farmacia->usuarioFarmaceutico->email)->send(new solicitudFarmaciaAceptadaMailable($farmacia) );
 
-        }
+    //     }
         
         
-        return redirect(route('farmacia.show', [$farmacia->id_farmacia]));
-    }
+    //     return redirect(route('farmacia.show', [$farmacia->id_farmacia]));
+    // }
 }
