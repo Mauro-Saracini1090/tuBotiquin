@@ -4,12 +4,6 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
     <h1 class="h2">Cargar Localidad</h1>
 </div>
-@if($errors->any())
-    <div class="alert alert-danger">
-        <p>Por favor corrija los siguientes errores de abajo: </p>
-    </div>
-@endif
-
     <form class="form-signin" method="post" action="{{ route('localidad.store') }}">
 
         {!! csrf_field() !!}
