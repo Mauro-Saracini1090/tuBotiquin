@@ -22,7 +22,8 @@ class CreateSucursalTable extends Migration
             $table->unsignedBigInteger('telefono_fijo');
             $table->string('cufe_sucursal')->unique();
             $table->string('email_sucursal');
-            $table->bigInteger('telefono_sucursal');
+            $table->bigInteger('telefono_fijo')->nullable();
+            $table->bigInteger('telefono_movil')->nullable();
             $table->string('direccion_sucursal', 250);
             $table->boolean('habilitado');
             $table->boolean('borrado_logico_sucursal');  

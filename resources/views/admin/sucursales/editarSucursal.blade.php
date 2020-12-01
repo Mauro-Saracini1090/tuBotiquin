@@ -59,15 +59,30 @@
                             </span>
                         @enderror
                     </div>
-                    <!-- TELEFONO -->
+                    <!-- TELEFONO FIJO -->
                     <div class="form-group">
                         <strong><label
-                                for="telefono_sucursal">{{ __('Teléfono *') }}</label></strong>
-                        <input type="text" name="telefono_sucursal"
-                            value={{ old('telefono_sucursal', $sucursal->telefono_sucursal) }}
+                                for="telefono_fijo">{{ __('Teléfono fijo *') }}</label></strong>
+                        <input type="text" name="telefono_fijo"
+                            value={{ old('telefono_fijo', $sucursal->telefono_fijo) }}
                             @error('telefono_sucursal') is-invalid @enderror required class="form-control">
                         <small class="form-text text-muted">Sin espacios ni guiones</small>
-                        @error('telefono_sucursal')
+                        @error('telefono_fijo')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                   <!-- TELEFONO MÓVIL--> 
+                    <div class="form-group">
+                        <strong><label
+                                for="telefono_movil">{{ __('Teléfono móvil*') }}</label></strong>
+                        <input type="text" name="telefono_movil"
+                            value={{ old('telefono_movil', $sucursal->telefono_movil) }}
+                            @error('telefono_movill') is-invalid @enderror required class="form-control">
+                        <small class="form-text text-muted">Sin espacios ni guiones</small>
+                        @error('telefono_movil')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

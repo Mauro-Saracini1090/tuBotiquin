@@ -61,20 +61,37 @@
                             </span>
                         @enderror
                     </div>
-                    <!-- TELEFONO -->
+                    <!-- TELEFONO FIJO -->
                     <div class="form-group">
                         <strong><label
-                                for="telefono_sucursal">{{ __('Teléfono *') }}</label></strong>
-                        <input type="text" name="telefono_sucursal"
-                            value={{ old('telefono_sucursal', $sucursal->telefono_sucursal) }}
-                            class="form-control @error('telefono_sucursal') is-invalid @enderror" required>
+                                for="telefono_fijo">{{ __('Teléfono fijo') }}</label></strong>
+                        <input type="text" name="telefono_fijo"
+                            value={{ old('telefono_sucursal', $sucursal->telefono_fijo) }}
+                            class="form-control @error('telefono_fijo') is-invalid @enderror" required>
                         <small class="form-text text-muted">Sin espacios ni guiones</small>
-                        @error('telefono_sucursal')
+                        @error('telefono_fijo')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
+
+                    <!-- TELEFONO MOVIL -->
+                    <div class="form-group">
+                        <strong><label
+                                for="telefono_movil">{{ __('Teléfono movil') }}</label></strong>
+                        <input type="text" name="telefono_fijo"
+                            value={{ old('telefono_movil', $sucursal->telefono_movil) }}
+                            class="form-control @error('telefono_movil') is-invalid @enderror" required>
+                        <small class="form-text text-muted">Sin espacios ni guiones</small>
+                        @error('telefono_movil')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                   </div>
+
+
                     <!-- Direccion -->
                     <div class="form-group">
                         <strong><label
