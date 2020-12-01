@@ -32,6 +32,7 @@
                     <a class="btn btn-panel my-1" href="#" data-toggle="modal" data-target="#deleteModal" data-farmaid="{{ $farmacias->id_farmacia }}">
                         Borrar
                     </a>
+                    <a class="btn btn-panel" href="{{ route('obrasocialfarmacia') }}">Asignar Obra Social a Farmacia</a>
                 </td>
             </tr>
         @endforeach
