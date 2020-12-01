@@ -18,7 +18,7 @@
                         @csrf
                         <div class="form-group">
                             <strong><label for="login">E-mail - Nombre de Usuario</label></strong>
-                            <input type="text"  @if ($errors->has('login') || $errors->has('email')) is-invalid @endif class="form-control"
+                            <input type="text"  class="form-control  @if ($errors->has('login') || $errors->has('email')) is-invalid @endif"
                              id="exampleInputEmail1" aria-describedby="emailHelp"  name="login" placeholder="Ingrese su nombre de usuario o correo "
                                     value="{{ old('login') ?: old('email') }}"
                                     required autocomplete="email" autofocus>
@@ -32,7 +32,7 @@
 
                         <div class="form-group">
                             <strong><label for="password">{{ __('Contraseña') }}</label></strong>
-                            <input type="password" class="form-control" id="inputPassword2" placeholder="Ingrese su contraseña" class="form-control @error('password') is-invalid @enderror" name="password"
+                            <input type="password" id="inputPassword2" placeholder="Ingrese su contraseña" class="form-control @error('password') is-invalid @enderror" name="password"
                                     required autocomplete="current-password">
                              <small class="form-text text-muted">Nunca revele su contraseña</small>       
                             @error('password')
