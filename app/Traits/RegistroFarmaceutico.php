@@ -63,14 +63,15 @@ trait RegistroFarmaceutico
             'nombre' => ['required', 'string', 'max:255'],
             'apellido' => ['required', 'string', 'max:255'],
             'localidad' => ['required'],
-            'nombre_usuario' => ['required','unique:usuario'],
+            'nombre_usuario' => ['required','unique:usuario','unique:usuario'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:usuario'],
+            'telefono_movil' => ['required','numeric', 'digits_between:8,12','unique:usuario'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'cuil' => ['required', 'string', 'min:8'],
-            'cuit' => ['required', 'string', 'min:8'],
-            'matricula' => ['required', 'string', 'min:8'],
+            'cuil' => ['required', 'numeric', 'digits:11','unique:usuario'],
+            'cuit' => ['required', 'numeric', 'digits:11','unique:usuario'],
+            'numero_matricula' => ['required', 'string', 'min:8','unique:usuario'],
             'img_perfil' => ['string max:255'],
-            'dni' => ['required', 'string', 'min:8'],
+            'dni' => ['required', 'numeric', 'min:8','unique:usuario'],
 
         ]);
     }
@@ -83,11 +84,12 @@ trait RegistroFarmaceutico
             'nombre_usuario' => $data['nombre_usuario'],
             'cod_postal' => $data['localidad'],
             'email' => $data['email'],
+            'telefono_movil' => $data['telefono_movil'],
             'password' => Hash::make($data['password']),
             'cuil' => $data['cuil'],
             'cuit' => $data['cuit'],
             'dni' => $data['dni'],
-            'numero_matricula' => $data['matricula'],
+            'numero_matricula' => $data['numero_matricula'],
             'habilitado' => false,
 
         ]);
