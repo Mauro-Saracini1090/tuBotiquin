@@ -16,7 +16,8 @@ class LocalidadController extends Controller
     public function index()
     {
         //Obtengo todas las localidades cargadas en la DB
-        $localidades = Localidad::orderBy('nombre_localidad', 'asc')->get();
+
+        $localidades = Localidad::orderBy('nombre_localidad', 'asc')->simplePaginate(4);
         return view('admin.localidad.indexLocalidad', ['localidades' => $localidades]);
     }
 
