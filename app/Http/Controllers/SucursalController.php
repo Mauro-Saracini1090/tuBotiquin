@@ -7,6 +7,7 @@ use App\Mail\solicitudSucursalAceptadaMailable;
 use App\Mail\solicitudSucursalRechazadaMailable;
 use App\Models\Sucursal;
 use App\Models\Farmacia;
+use App\Models\Medicamento;
 use App\Models\ObraSocial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,12 @@ use Illuminate\Validation\Rule;
 
 class SucursalController extends Controller
 {
+
+    public function panelFarmaceutico()
+    {
+
+        return view('farmaceutico.indexFarmaceutico');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,8 +37,8 @@ class SucursalController extends Controller
             return view('admin.sucursales.indexSucursal', compact('sucursales'));
         }
         $id_usuario = auth()->user()->id_usuario;
-        $farmacias = Farmacia::where("id_usuario", "=", $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
-        $sucursales = Sucursal::where("borrado_logico_sucursal", "=", "0")->get();
+        $farmacias = Farmacia::where("borrado_logico_farmacia", "=", "0")->get();
+        $sucursales = Sucursal::where("usuario_id", "=", $id_usuario)->where("borrado_logico_sucursal", "=", "0")->get();
         return view('farmaceutico.listadoSucursal', compact('farmacias', 'sucursales'));
     }
 
@@ -49,7 +56,7 @@ class SucursalController extends Controller
         }
 
         $id_usuario = auth()->user()->id_usuario;
-        $arrayFarmacias = Farmacia::where('id_usuario', "=", $id_usuario)->where('habilitada', "=", "1")->where("borrado_logico_farmacia", "=", "0")->get();
+        $arrayFarmacias = Farmacia::where('habilitada', "=", "1")->where("borrado_logico_farmacia", "=", "0")->get();
 
         return view('farmaceutico.cargarSucursal', ['arrayFarmacias' => $arrayFarmacias]);
     }
@@ -69,8 +76,8 @@ class SucursalController extends Controller
             'descripcion_sucursal' => 'max:255',
             'cufe_sucursal' => 'required|unique:sucursal|max:255',
             'email_sucursal' => 'required|email|unique:sucursal|max:255',
-            'telefono_fijo' => 'required',
-            'telefono_movil' => 'numeric',
+            'telefono_fijo' => 'required|unique:sucursal|numeric',
+            'telefono_movil' => 'numeric|unique:sucursal',
             'direccion_sucursal' => 'required|unique:sucursal|max:255',
         ]));
 
@@ -88,7 +95,7 @@ class SucursalController extends Controller
         $sucursal->email_sucursal = $request->email_sucursal;
         $sucursal->telefono_fijo  = $request->telefono_fijo;
         $sucursal->telefono_movil  = $request->telefono_movil;
-
+        $sucursal->usuario_id = auth()->user()->id_usuario;
         $sucursal->direccion_sucursal = $request->direccion_sucursal;
         $sucursal->habilitado = $habilitada;
         $sucursal->borrado_logico_sucursal = $borrado_logico_sucursal;
@@ -109,7 +116,7 @@ class SucursalController extends Controller
             ->get();
         Mail::to($emailAdministrador)->send(new SolicitudHabilitacionSucursalMailable);
 
-        return redirect(route('farmacia.index'))->with('estado_create', 'Su Sucursal se registró correctamente y será evaluada a la brevedad por el Administrador para verificar los datos.');
+        return redirect(route('sucursal.index'))->with('estado_create', 'Su Sucursal se registró correctamente y será evaluada a la brevedad por el Administrador para verificar los datos.');
     }
 
     /**
@@ -160,9 +167,9 @@ class SucursalController extends Controller
             'email_sucursal' =>  Rule::unique('sucursal', 'email_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
             'email_sucursal' => 'required|email|max:255',
             'telefono_fijo' => 'required|numeric',
-            'telefono_fijo' => Rule::unique('sucursal', 'telefono_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
+            'telefono_fijo' => Rule::unique('sucursal', 'telefono_fijo')->ignore($sucursal->id_sucursal, 'id_sucursal'),
             'telefono_movil' => 'numeric',
-            'telefono_movil' => Rule::unique('sucursal', 'telefono_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
+            'telefono_movil' => Rule::unique('sucursal', 'telefono_movil')->ignore($sucursal->id_sucursal, 'id_sucursal'),
             'direccion_sucursal' => 'required|max:255',
             'direccion_sucursal' => Rule::unique('sucursal', 'direccion_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
         ]));
@@ -180,8 +187,8 @@ class SucursalController extends Controller
         //campso que nose pueden modificar    
         $sucursal->habilitado = $sucursal->habilitado;
         $sucursal->borrado_logico_sucursal = $sucursal->borrado_logico_sucursal;
-            
-        if($request->lat != null && $request->long != null){
+
+        if ($request->lat != null && $request->long != null) {
             $sucursal->sucursal_latitud = $request->lat;
             $sucursal->sucursal_longitud = $request->long;
         }
@@ -195,7 +202,7 @@ class SucursalController extends Controller
             return redirect(route('sucursal.index'));
         }
 
-        return redirect(route('farmacia.index'))->with('estado_update', 'Los cambios se registraron correctamente en la plataforma.');
+        return redirect(route('sucursal.index'))->with('estado_update', 'Los cambios se registraron correctamente en la plataforma.');
     }
 
     /**
@@ -223,12 +230,12 @@ class SucursalController extends Controller
 
         //$farmacia = Farmacia::where("id_farmacia", "=" , $request->id_farmacia)->get();
         $farmacia = Farmacia::find($request->id_farmacia);
-        $arraySucursales = Sucursal::where("id_farmacia", "=" , $request->id_farmacia)->get();
+        $arraySucursales = Sucursal::where("id_farmacia", "=", $request->id_farmacia)->get();
         $arrayObraSociales = $farmacia->obrasSociales;
-        return view('publico.verFarmaciaySucursal' , [
-                    'arraySucursales' => $arraySucursales,
-                    'farmacia' => $farmacia,
-                    'arrayObraSociales' => $arrayObraSociales,
+        return view('publico.verFarmaciaySucursal', [
+            'arraySucursales' => $arraySucursales,
+            'farmacia' => $farmacia,
+            'arrayObraSociales' => $arrayObraSociales,
         ]);
     }
 
@@ -257,19 +264,115 @@ class SucursalController extends Controller
         Gate::authorize('esAdmin');
         $sucursal = Sucursal::find($request->sucursal);
         $borado_logico = 1;
-        if($request->estado_habilitacion == 0)
-        {   
-            $sucursal->borrado_logico_sucursal=$borado_logico;
+        if ($request->estado_habilitacion == 0) {
+            $sucursal->borrado_logico_sucursal = $borado_logico;
             $sucursal->habilitado = $request->estado_habilitacion;
             $sucursal->save();
-            Mail::to($sucursal->getFarmacia->usuarioFarmaceutico->email)->send(new solicitudSucursalRechazadaMailable);
-
-        }else{
+            Mail::to($sucursal->getFarmaceutico->email)->send(new solicitudSucursalRechazadaMailable);
+        } else {
             $sucursal->habilitado = $request->estado_habilitacion;
             $sucursal->save();
-            Mail::to($sucursal->getFarmacia->usuarioFarmaceutico->email)->send(new solicitudSucursalAceptadaMailable);
-
+            Mail::to($sucursal->getFarmaceutico->email)->send(new solicitudSucursalAceptadaMailable);
         }
         return redirect(route('sucursal.show', [$sucursal->id_sucursal]));
+    }
+    public function cargarStockMedicamento(Sucursal $sucursal)
+    {
+        //
+        $medicamentos = Medicamento::all();
+        return view('farmaceutico.medicamento', compact('medicamentos', 'sucursal'));
+    }
+
+    public function almacenarStockMedicamento(Request $request, Sucursal $sucursal)
+    {
+        //
+        $request->validate([
+            'medicamento_id' => 'required',
+            'cantidad' => 'required|min:1|max:50',
+        ], [
+            'medicamento_id.required' => 'Seleccionar un Medicamento es obligatorio.'
+        ]);
+        $cantidadTotal = 0;
+        $cantidadActualSucursal = 0;
+        $farmacia = $sucursal->getFarmacia;
+        // dd(json_decode($sucursal->getMedicamentos));
+        if ($farmacia != null) {
+            foreach ($farmacia->getSucursales as $sucur) {
+                if (json_decode($sucur->getMedicamentos) != null) {
+                    foreach ($sucur->getMedicamentos as $med) {
+                        if ($request->medicamento_id == $med->pivot->medicamento_id) {
+                            $cantidadTotal = $med->pivot->cantidadTotal;
+                            $sucur->getMedicamentos()->updateExistingPivot($request->medicamento_id, ['cantidadTotal' => ($cantidadTotal + $request->cantidad)]);
+                        }
+                    }
+                }
+            }
+            // dd ( $sucursal->getMedicamentos($request->medicamento_id)->pivot->cantidadTotal);
+            foreach ($sucursal->getMedicamentos as $medicamento) {
+                if ($medicamento->id_medicamento == $request->medicamento_id) {
+                    $cantidadActualSucursal = $medicamento->pivot->cantidad;
+                }
+            }
+
+            $sucursal->getMedicamentos()->detach($request->medicamento_id);
+            $sucursal->getMedicamentos()->attach($request->medicamento_id, ['cantidad' => ($cantidadActualSucursal + $request->cantidad), 'cantidadTotal' => ($cantidadTotal + $request->cantidad)]);
+        }
+
+
+        return redirect(route('medicamentos.cargar', [$sucursal]))->with('medicamento', 'Se a registrado exitosamente la nueva carga de stock.');
+    }
+
+    public function verMedicamentosFarmacia(Farmacia $farmacia)
+    {
+        $arrayMedicamentos = [];
+        if ($farmacia->getSucursales != null) {
+            foreach ($farmacia->getSucursales as $sucursal) {
+                if ($sucursal->getMedicamentos != null) {
+                    foreach ($sucursal->getMedicamentos as $medicamento) {
+                        if ($arrayMedicamentos == null) {
+                            array_push($arrayMedicamentos, $medicamento);
+                        } else {
+                            $bandera = true;
+                            $a = 0;
+                            while ($bandera && $a < count($arrayMedicamentos)) {
+                                if ($arrayMedicamentos[$a]->id_medicamento != $medicamento->id_medicamento) {
+                                    array_push($arrayMedicamentos, $medicamento);
+                                    $a++;
+                                    $bandera = false;
+                                } else {
+                                    $bandera = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return view('registrado.listadoMedicametosFarmacia', compact('arrayMedicamentos', 'farmacia'));
+    }
+
+    public function borrarStockSucursal(Sucursal $sucursal,Medicamento $medicamento)
+    {
+        // dd($sucursal);
+        // dd($medicamento);
+        $cantidadActualSucursal = DB::table('sucursal_medicamento')->select('cantidad')->where('medicamento_id','=',$medicamento->id_medicamento)->where('sucursal_id','=',$sucursal->id_sucursal)->first();
+        $cantidadTotalFarmacia = DB::table('sucursal_medicamento')->select('cantidadTotal')->where('medicamento_id','=',$medicamento->id_medicamento)->where('sucursal_id','=',$sucursal->id_sucursal)->first();
+        // dd($cantidadActualSucursal);
+        // dd($cantidadTotalFarmacia);
+        $farmacia = $sucursal->getFarmacia;
+        if ($farmacia != null) {
+            foreach ($farmacia->getSucursales as $sucur) {
+                if (json_decode($sucur->getMedicamentos) != null) {
+                    foreach ($sucur->getMedicamentos as $med) {
+                        if ($medicamento->id_medicamento == $med->pivot->medicamento_id && ($cantidadTotalFarmacia >= $cantidadActualSucursal)) {
+                            $sucur->getMedicamentos()->updateExistingPivot($medicamento->id_medicamento, ['cantidadTotal' => ($cantidadTotalFarmacia->cantidadTotal - $cantidadActualSucursal->cantidad)]);
+                        }
+                    }
+                }
+            }
+        }
+        DB::table('sucursal_medicamento')->where('medicamento_id','=',$medicamento->id_medicamento)->where('sucursal_id','=',$sucursal->id_sucursal)->delete();
+        return redirect(route('medicamentos.cargar', [$sucursal]))->with('medicamento', 'El Stock de la Sucursal se ha borrado correctamente.');
+
     }
 }
