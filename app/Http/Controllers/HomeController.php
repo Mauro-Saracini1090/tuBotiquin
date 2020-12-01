@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Mail;
 Use App\Mail\MensajeContacto;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -25,6 +27,10 @@ class HomeController extends Controller
     {
         //
         // 
+        // if (\auth()->user()->getRoles->contains('slug_rol','es-administrador')) {
+        //     Gate::authorize('esAdmin');
+        //     return redirect('/administrador');
+        // }
         $hoy = date('Y-m-d');
         // dd($hoy); 
         $turnos = Turno::where('fecha_turno', '=', $hoy)->first();
@@ -87,7 +93,13 @@ class HomeController extends Controller
 
          $variablesContacto = $request;
          // Si la validacion es se procede a enviar el mail al administrador de Tubotiquín
-         Mail::to('tubotiquin2020@gmail.com')->send(new MensajeContacto($variablesContacto));
+         $emailAdministrador = DB::table('usuario')
+         ->join('usuario_roles', 'usuario.id_usuario', '=', 'usuario_roles.usuario_id')
+         ->join('roles', 'usuario_roles.rol_id', '=', 'roles.id_rol')
+         ->where('roles.slug_rol', '=', 'es-administrador')
+         ->select('email')
+         ->get();
+         Mail::to($emailAdministrador)->send(new MensajeContacto($variablesContacto));
 
         return redirect(route('home'))->with('mensajeEnviado', 'Su mensaje fue enviado con exito, a la brevedad le estaremos respondiendo. Gracias por su consulta');
 
