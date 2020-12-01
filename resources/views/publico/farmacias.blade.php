@@ -46,12 +46,7 @@
                                 </div>       
                                     <div class="card-body text-center">
                                         <h4 class="card-title"> <?php echo strtoupper($farmaciaPaginate->nombre_farmacia) ?></h4>
-
-                                        @if($farmaciaPaginate->descripcion_farmacia == "")
-                                                        <p>&nbsp</p> 
-                                                    @else
-                                                        <p> <?php echo $farmaciaPaginate->descripcion_farmacia ?> </p>
-                                                    @endif
+                                        <p class="font-italic"><?php echo $farmaciaPaginate->descripcion_farmacia ?></p> 
                                         <hr>
                                         <form method="POST" action="{{ route('farmaciaSucursal')}}">
                                         @csrf  
@@ -60,6 +55,11 @@
                                                 {{ __('Ver Sucursales') }}
                                         </button>    
                                         </form>
+                                        @can('esRegistrado')
+                                        <div class="p-2">
+                                            <a href="{{ route('listado.medicamentos',[$farmaciaPaginate->id_farmacia]) }}"><i class="material-icons" style="font-size: 40px" data-toggle="tooltip" data-placement="left"  title="Listado Medicamentos de {{$farmaciaPaginate->nombre_farmacia}}">event_note</i></a> 
+                                        </div>  
+                                        @endcan
                                     </div>
                             </div>
                         </div> 
