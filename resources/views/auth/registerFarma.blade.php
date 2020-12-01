@@ -65,6 +65,19 @@
                                     </span>
                                 @enderror
                             </div>
+                            <!-- Telefono -->
+                            <div class="form-group">    
+                                <strong><label for="telefono_movil">{{ __('Telefono *') }}</label></strong>
+                                <input id="telefono_movil" type="telefono_movil" class="form-control @error('telefono_movil') is-invalid @enderror" name="telefono_movil" value="{{ old('telefono_movil') }}" 
+                                    required autocomplete="telefono_movil" placeholder="(Cod-Area) Numero de telefono sin el 15">
+                                    <small class="form-text text-muted">(Cod-Area) Numero de telefono sin el 15</small>
+
+                                @error('telefono_movil')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                               <!-- LOCALIDAD -->
                             <div class="form-group">
                                 <strong><label for="localidad">{{ __('Localidad *') }}</label></strong>
@@ -97,7 +110,7 @@
                             <div class="form-group">
                                 <strong><label for="cuil">{{ __('CUIL *') }}</label></strong>
                                 <input id="cuil" type="text" class="form-control @error('cuil') is-invalid @enderror" name="cuil" value="{{ old('cuil') }}"  autocomplete="cuil" autofocus placeholder="Ej:12345678" required >
-                                <small  class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo<</small>    
+                                <small  class="form-text text-muted">Sin espacios ni guiones, 11 dígitos.</small>    
                                 @error('cuil')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -109,7 +122,7 @@
                             <div class="form-group ">
                                 <strong><label for="cuit">{{ __('CUIT *') }}</label></strong>
                                 <input id="cuit" type="text" class="form-control @error('cuit') is-invalid @enderror" name="cuit" value="{{ old('cuit') }}"  autocomplete="cuit" autofocus placeholder="Ej:12345678" required >
-                                <small  class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo<</small>
+                                <small  class="form-text text-muted">Sin espacios ni guiones, 11 dígitos.</small>
                                 @error('cuit')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -132,11 +145,11 @@
 
                             <!-- matricula -->
                             <div class="form-group">
-                                <strong><label for="matricula">{{ __('Número de Matricula *') }}</label></strong>       
-                                <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula" value="{{ old('matricula') }}"  autocomplete="matricula" autofocus placeholder="Ej: mn345678" required>
+                                <strong><label for="numero_matricula">{{ __('Número de Matricula *') }}</label></strong>       
+                                <input id="numero_matricula" type="text" class="form-control @error('numero_matricula') is-invalid @enderror" name="numero_matricula" value="{{ old('numero_matricula') }}"  autocomplete="numero_matricula" autofocus placeholder="Ej: mn345678" required>
                                 <small  class="form-text text-muted">Sin espacios ni guiones</small>
 
-                                @error('matricula')
+                                @error('numero_matricula')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
