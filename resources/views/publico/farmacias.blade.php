@@ -46,7 +46,12 @@
                                 </div>       
                                     <div class="card-body text-center">
                                         <h4 class="card-title"> <?php echo strtoupper($farmaciaPaginate->nombre_farmacia) ?></h4>
-                                        <p class="font-italic"><?php echo $farmaciaPaginate->descripcion_farmacia ?></p> 
+
+                                        @if($farmaciaPaginate->descripcion_farmacia == "")
+                                                        <p>&nbsp</p> 
+                                                    @else
+                                                        <p> <?php echo $farmaciaPaginate->descripcion_farmacia ?> </p>
+                                                    @endif
                                         <hr>
                                         <form method="POST" action="{{ route('farmaciaSucursal')}}">
                                         @csrf  

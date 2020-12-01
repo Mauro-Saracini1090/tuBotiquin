@@ -44,9 +44,39 @@
                                         <div class="text ml-5 p-1"> 
                                            <ul class="list-group list-group-flush">
                                                 <li class="list-group-item"><i class="material-icons">access_time</i> <span class="font-weight-bold text-secondary"> <?php echo $sucursal->descripcion_sucursal ?></li>
-                                                <li class="list-group-item"><i class="material-icons">location_on</i> <span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></li>
-                                                <li class="list-group-item"><i class="material-icons">mail</i> <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></li>
-                                                <li class="list-group-item"><i class="material-icons">local_phone</i> <span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></li>
+                                                <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-1"><i class="material-icons">location_on</i></div>
+                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></div>
+                                                        </div>
+                                                    </li>                           
+                                                    
+                                                    <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-1"><i class="material-icons">mail</i></div>
+                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-1"><i class="material-icons">local_phone</i></div>
+                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-1">
+                                                                <i class="fab fa-whatsapp"  style="font-size:25px"></i>
+                                                            </div>
+                                                            <div class="col-10">
+                                                                <span class="font-weight-bold text-secondary">
+                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
                                                 <li class="list-group-item"></li>
                                             </ul>  
                                         </div>
@@ -86,7 +116,7 @@
                                 <div class="col-12">
                                 <h4 class="text-secondary  m-3">Obras sociales</h4>
                                     <div class="p-3 mb-2 bg-warning text-dark">
-                                        <h6 class="font-weight-bold text-center">Esta Sucursal Farmacuetica no posee Obras Sosciales cargadas</h6>
+                                        <h6 class="font-weight-bold text-center">Esta Sucursal Farmaceutica no posee Obras Sosciales cargadas</h6>
                                     </div>
                                 </div>
                         </div>
