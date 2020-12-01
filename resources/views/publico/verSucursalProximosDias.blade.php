@@ -3,6 +3,9 @@
 
 @section('contenido')
     <div class="container">
+
+        @if( !(count($arregloSucursalTurnodia)) < 1 )
+
             <div class="row">
                 <div class="col-12 mx-4 pb-4">
                     <h2 class="page-section-heading text-center text-uppercase text-secondary ">turnos</h2>
@@ -45,6 +48,16 @@
                             </div>
                          @endforeach             
             </div>
+            @else    
+            <div class="row">
+                <div class="col-12 text-center">
+                        <div class="p-3 mb-2 bg-warning rounded shadow text-dark ">
+                            <h6 class="font-weight-bold text-center mb-2">Atención. Ocurrio un error en la búsqueda, intentelo nuevamente mas tarde</h6>
+                            <br>
+                            <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
+                        </div>
+                    </div>
+                </div>
+            @endif    
     </div>
 @endsection
-
