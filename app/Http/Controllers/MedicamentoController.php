@@ -8,6 +8,7 @@ use App\Models\MarcaMedicamento;
 use App\Models\TipoMedicamento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class MedicamentoController extends Controller
 {
@@ -50,6 +51,7 @@ class MedicamentoController extends Controller
             'informacion' => 'required',
             'id_marca' => 'required',
             'id_tipo' => 'required',
+            'img_medicamento' => 'required|image|mimes:jpeg,jpe,png|max:4096',
         ], [
             'id_marca.required' => 'Es obligatorio seleccionar una Marca de Medicamento',
             'id_tipo.required' => 'Es obligatorio seleccionar un Tipo de Medicamento',
@@ -60,6 +62,12 @@ class MedicamentoController extends Controller
         $medicamento->informacion = $request->informacion;
         $medicamento->marca_id = $request->id_marca;
         $medicamento->tipo_id = $request->id_tipo;
+
+        $img_logo = $request->file('img_medicamento')->store('public/img_medicamento');
+        $img_farmacia = Storage::url($img_logo);
+
+        $medicamento->img_medicamento = $img_farmacia;
+
         $medicamento->save();
         return redirect(route('medicamentos.index'));
     }
