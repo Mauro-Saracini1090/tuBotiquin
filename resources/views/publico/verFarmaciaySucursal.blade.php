@@ -71,19 +71,24 @@
                                                         </div>
                                                     </li>
 
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <div class="col-1">
-                                                                <i class="fab fa-whatsapp"  style="font-size:25px"></i>
+                                                    @if($sucursal->telefono_movil != "")
+                                                        <li class="list-group-item">
+                                                            <div class="row">
+                                                                <div class="col-1">
+                                                                    <i class="fab fa-whatsapp "  style="font-size:25px"></i>
+                                                                </div>
+                                                                <div class="col-10">
+                                                                    <span class="font-weight-bold text-secondary">
+                                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
+                                                                    </span>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-10">
-                                                                <span class="font-weight-bold text-secondary">
-                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                <li class="list-group-item"></li>
+                                                        </li>
+                                                        <li class="list-group-item" ></li>
+
+                                                    @else
+                                                        <li class="list-group-item" style="height:78px"></li>
+                                                    @endif
                                             </ul>  
                                         </div>
                                     </div>  
