@@ -61,8 +61,9 @@ class HomeController extends Controller
 
             foreach ($TurnoSiguientes as $turno) {
                 // array_push($arrSucursalesTurnoSiguiente = $turno->getSucursales->take(3));
-                if (count($arrSucursalesTurnoSiguiente) < 3) {
-                    foreach ($turno->getSucursales->take(2) as $sucursal) {
+
+                foreach ($turno->getSucursales as $sucursal) {
+                    if (count($arrSucursalesTurnoSiguiente) < 3) {
                         array_push($arrSucursalesTurnoSiguiente, $sucursal);
                     }
                 }
