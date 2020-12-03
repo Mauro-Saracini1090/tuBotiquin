@@ -12,7 +12,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Mail;
-Use App\Mail\MensajeContacto;
+use App\Mail\MensajeContacto;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -61,8 +61,11 @@ class HomeController extends Controller
 
             foreach ($TurnoSiguientes as $turno) {
                 // array_push($arrSucursalesTurnoSiguiente = $turno->getSucursales->take(3));
-                foreach ($turno->getSucursales->take(2) as $sucursal) {
-                    array_push($arrSucursalesTurnoSiguiente, $sucursal);
+
+                foreach ($turno->getSucursales as $sucursal) {
+                    if (count($arrSucursalesTurnoSiguiente) < 3) {
+                        array_push($arrSucursalesTurnoSiguiente, $sucursal);
+                    }
                 }
             }
         }
@@ -70,39 +73,38 @@ class HomeController extends Controller
         return view('publico.contenidoPrincipal', compact('sucursalesTurno', 'arrSucursalesTurnoSiguiente'));
     }
 
- /**
+    /**
      * Funcion que invoca el formulario de contacto del menu del home 
      */
     public function emailContacto()
     {
-       return view('publico.emailContacto');
+        return view('publico.emailContacto');
     }
 
     /**
      * Funcion que recibe por post los datos del formulario de contacto
-     */    
+     */
     public function enviarEmailContacto(Request $request)
     {
         //Valida los campos del formulario de contacto
-         $request->validate([
+        $request->validate([
             'nombre' => 'required|max:255',
             'email' => 'required|email|max:255',
-            'asunto' =>'required|max:255',
+            'asunto' => 'required|max:255',
             'consulta' => 'required|max:600',
-         ]);
+        ]);
 
-         $variablesContacto = $request;
-         // Si la validacion es se procede a enviar el mail al administrador de Tubotiquín
-         $emailAdministrador = DB::table('usuario')
-         ->join('usuario_roles', 'usuario.id_usuario', '=', 'usuario_roles.usuario_id')
-         ->join('roles', 'usuario_roles.rol_id', '=', 'roles.id_rol')
-         ->where('roles.slug_rol', '=', 'es-administrador')
-         ->select('email')
-         ->get();
-         Mail::to($emailAdministrador)->send(new MensajeContacto($variablesContacto));
+        $variablesContacto = $request;
+        // Si la validacion es se procede a enviar el mail al administrador de Tubotiquín
+        $emailAdministrador = DB::table('usuario')
+            ->join('usuario_roles', 'usuario.id_usuario', '=', 'usuario_roles.usuario_id')
+            ->join('roles', 'usuario_roles.rol_id', '=', 'roles.id_rol')
+            ->where('roles.slug_rol', '=', 'es-administrador')
+            ->select('email')
+            ->get();
+        Mail::to($emailAdministrador)->send(new MensajeContacto($variablesContacto));
 
         return redirect(route('home'))->with('mensajeEnviado', 'Su mensaje fue enviado con exito, a la brevedad le estaremos respondiendo. Gracias por su consulta');
-
     }
 
     /**
@@ -137,8 +139,8 @@ class HomeController extends Controller
         $fechasSiguiente5 = date('Y-m-d', strtotime('+5 days'));
         $fechasSiguiente6 = date('Y-m-d', strtotime('+6 days'));
         $arrayTurnos =  Turno::where('fecha_turno', '=', $fechasSiguiente1)->orWhere('fecha_turno', '=', $fechasSiguiente2)
-                            ->orWhere('fecha_turno', '=', $fechasSiguiente3)->orWhere('fecha_turno', '=', $fechasSiguiente4)
-                            ->orWhere('fecha_turno', '=', $fechasSiguiente5)->orWhere('fecha_turno', '=', $fechasSiguiente6)->get();
+            ->orWhere('fecha_turno', '=', $fechasSiguiente3)->orWhere('fecha_turno', '=', $fechasSiguiente4)
+            ->orWhere('fecha_turno', '=', $fechasSiguiente5)->orWhere('fecha_turno', '=', $fechasSiguiente6)->get();
         $arrSucursalDia = array();
         $arrSucursalDiaCompleto = array();
 
@@ -153,4 +155,3 @@ class HomeController extends Controller
         return view('publico.verSucursalProximosDias', ['arregloSucursalTurnodia' => $arrSucursalDiaCompleto]);
     }
 }
-
