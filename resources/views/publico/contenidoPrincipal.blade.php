@@ -100,28 +100,25 @@
                                                             <div class="col-1"><i class="material-icons">local_phone</i></div>
                                                             <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->telefono_fijo }} </span></div>
                                                         </div>
-                                                    </li>   
-                                                    @if($sucursalesTurno[0]->telefono_movil !=null)
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <div class="col-1">
-                                                                <i class="fab fa-whatsapp"  style="font-size:25px"></i>
+                                                    </li>
+                                                    @if($sucursal->telefono_movil != "")
+                                                        <li class="list-group-item">
+                                                            <div class="row">
+                                                                <div class="col-1">
+                                                                    <i class="fab fa-whatsapp "  style="font-size:25px"></i>
+                                                                </div>
+                                                                <div class="col-10">
+                                                                    <span class="font-weight-bold text-secondary">
+                                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
+                                                                    </span>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-10">
-                                                                <span class="font-weight-bold text-secondary">
-                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursalesTurno[0]->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </li> 
+                                                        </li>
+                                                        <li class="list-group-item" ></li>
+
                                                     @else
-                                                    <div class="row">
-                                                        <div class="col-1 m-2">   
-                                                            <p>&nbsp</p>  
-                                                        </div>
-                                                    </div>                                                                              
-                                                     @endif
-                                                    <li class="list-group-item"></li>
+                                                        <li class="list-group-item" style="height:78px"></li>
+                                                    @endif
                                                 </ul>
 
                                                 <!-- Link  "Ver sucursal" -->
@@ -184,15 +181,17 @@
                                                         </div>
                                                     </li>
 
+
                                                     @if($sucursal->telefono_movil !=null)
                                                     <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1">
-                                                                <i class="fab fa-whatsapp"  style="font-size:25px"></i>
+                                                                <i class="fab fa-whatsapp "  style="font-size:25px"></i>
                                                             </div>
                                                             <div class="col-10">
                                                                 <span class="font-weight-bold text-secondary">
-                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
+
+                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -205,7 +204,11 @@
                                                         </div>                                                                              
                                                     @endif
                                                     
-                                                    <li class="list-group-item"></li>    
+                                                    <li class="list-group-item" ></li>
+
+                                                    @else
+                                                        <li class="list-group-item" style="height:78px"></li>
+                                                    @endif   
                                                 </ul>
 
                                                <!-- Link  "Ver sucursal" -->
@@ -295,7 +298,6 @@
                                                 <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
                                             </div>
                                         </li>
-
                                         @if($sucursal->telefono_movil !=null)
                                         <li class="list-group-item">
                                             <div class="row">
@@ -316,9 +318,6 @@
                                                 </div>
                                             </div>                                                                              
                                          @endif
-
-                                        <li class="list-group-item"></li>
-                                        
                                     </ul> 
 
                                     <!-- Link  "Ver sucursal" -->

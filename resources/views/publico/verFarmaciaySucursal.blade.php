@@ -65,7 +65,6 @@
                                                             <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
                                                         </div>
                                                     </li>
-            
                                                     @if($sucursal->telefono_movil !=null)
                                                     <li class="list-group-item">
                                                         <div class="row">
