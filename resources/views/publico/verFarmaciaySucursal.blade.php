@@ -65,7 +65,8 @@
                                                             <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
                                                         </div>
                                                     </li>
-
+            
+                                                    @if($sucursal->telefono_movil !=null)
                                                     <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1">
@@ -77,9 +78,16 @@
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                    </li>
-                                                <li class="list-group-item"></li>
-                                            </ul>  
+                                                    </li>                                      
+                                                    @else
+                                                        <div class="row">
+                                                            <div class="col-1 m-2">   
+                                                                <p>&nbsp</p>  
+                                                            </div>
+                                                        </div>                                                                              
+                                                     @endif
+                                                    <li class="list-group-item"></li>
+                                                </ul> 
                                         </div>
                                     </div>  
                                 
