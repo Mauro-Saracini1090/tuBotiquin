@@ -45,7 +45,7 @@
                                             <li class="list-group-item">
                                                 <div class="row">
                                                     <div class="col-1"><i class="material-icons">local_phone</i></div>
-                                                    <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalDia["sucursal"]->telfono_fijo }} </span></div>
+                                                    <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalDia["sucursal"]->telefono_fijo }} </span></div>
                                                 </div>
                                             </li>
     

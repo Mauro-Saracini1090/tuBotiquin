@@ -17,7 +17,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
-                            <strong><label for="login">E-mail - Nombre de Usuario</label></strong>
+                            <strong><label for="login">E-mail o Nombre de Usuario</label></strong>
                             <input type="text"  class="form-control  @if ($errors->has('login') || $errors->has('email')) is-invalid @endif"
                              id="exampleInputEmail1" aria-describedby="emailHelp"  name="login" placeholder="Ingrese su nombre de usuario o correo "
                                     value="{{ old('login') ?: old('email') }}"

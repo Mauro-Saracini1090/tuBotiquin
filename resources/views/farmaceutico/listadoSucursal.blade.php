@@ -5,8 +5,9 @@
 <div class="container">
 
 
-
     @if( count($sucursales) > 0 )
+    
+    <div class="shadow p-3 mb-5 bg-white">
         @foreach($sucursales as $sucursal)
             @if($sucursal->getFarmacia->habilitada == 0)
                 <div class="card-body">
@@ -20,8 +21,9 @@
                         </div>
                     </div>
                 </div>
+
+            <!--Hay farmacias habilitadas -->    
             @else
-            <div class="shadow p-3 mb-5 bg-white">
                 <div class="row">
                     <div class="col-8">
                         <h2 class="text-secondary  m-3"> {{ $sucursal->getFarmacia->nombre_farmacia }}</h2>
@@ -46,19 +48,50 @@
                     <div class="row">
                         <div class="col-10">
 
-                            <p>Descripción: <span
-                                    class="font-weight-bold text-secondary"><?php echo $sucursal->descripcion_sucursal ?>
-                                </span></p>
-                            <p>Cufe: <span class="font-weight-bold text-secondary">{{ $sucursal->cufe_sucursal }}
-                                </span></p>
-                            <p>Email: <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }}
-                                </span></p>
-                            <p>Teléfono: <span
-                                    class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span>
-                            </p>
-                            <p>Dirección: <span
-                                    class="font-weight-bold text-secondary">{{ $sucursal->direccion_sucursal }}
-                                </span></p>
+                            
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-1"><i class="material-icons">location_on</i></div>
+                                        <div class="col-10"><span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></div>
+                                    </div>
+                                </li>                           
+                                
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-1"><i class="material-icons">mail</i></div>
+                                        <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-1"><i class="material-icons">local_phone</i></div>
+                                        <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
+                                    </div>
+                                </li>
+
+
+                                @if($sucursal->telefono_movil !=null)
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <i class="fab fa-whatsapp "  style="font-size:25px"></i>
+                                        </div>
+                                        
+                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{$sucursal->telefono_movil }}</span></div>
+                                        
+                                    </div>
+                                </li>
+                                @else
+                                    <div class="row">
+                                        <div class="col-1">   
+                                            <p>&nbsp</p>  
+                                        </div>
+                                    </div>                                                                              
+                                @endif
+                                <li class="list-group-item" ></li>
+                                </ul>        
                             @if($sucursal->habilitado == 1)
                                 <span class="text-left text-success">Estado: habilitada </p>
                                 @else
@@ -66,6 +99,8 @@
                             @endif
 
                         </div>
+                        
+                        <!-- Botones -->
                         <div class="col-2 text-right">
                             <div class="p-2">
                                 <a
@@ -104,7 +139,6 @@
     @endif
 </div>
 
-</div>
 
 <!-- MODAL DELETE -->
 <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
