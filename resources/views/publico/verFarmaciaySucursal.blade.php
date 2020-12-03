@@ -27,12 +27,13 @@
                             </div>
                       </div>
 
+                    @if( !(count($arraySucursales)) < 1 )
                         <!-- Sucursales -->
                         <!-- Mostrar primero la sede central -->
                         @if(count($arraySucursales) > 0 )
                             <h4 class="text-secondary  m-3">Nuestras sucursales</h4>
                             <hr>
-                        @else
+                        @elseif(count($arraySucursales) == 0 )
                             <h4 class="text-secondary  m-3">Nuestra sucursal</h4>
                             <hr>    
                         @endif       
@@ -62,12 +63,6 @@
                                                         <div class="row">
                                                             <div class="col-1"><i class="material-icons">local_phone</i></div>
                                                             <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <div class="col-1"><i class="material-icons">local_phone</i></div>
-                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_movil }} </span></div>
                                                         </div>
                                                     </li>
 
@@ -100,8 +95,18 @@
                                     </div>
                                 </div>
                             @endif  
-                                 
+                             
                         @endforeach
+                    @else
+                    <div class="row">
+                        <div class="col-12">
+
+                                <div class="p-3 mb-2 bg-warning text-dark">
+                                    <h6 class="font-weight-bold text-center"> Atención - Esta Farmacia no posee sucursales cargadas</h6>
+                                </div>
+                            </div>
+                    </div>        
+                    @endif
 
                          @if( !(count($arrayObraSociales)) < 1 )
                             <!-- Obra Sociales -->
