@@ -95,13 +95,8 @@
                                                         </div>
                                                     </li>
 
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <div class="col-1"><i class="material-icons">local_phone</i></div>
-                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->telefono_fijo }} </span></div>
-                                                        </div>
-                                                    </li>
-                                                    @if($sucursalesTurno[0]->telefono_movil != "")
+                                    
+                                                    @if($sucursalesTurno[0]->telefono_fijo != NULL)
                                                         <li class="list-group-item">
                                                             <div class="row">
                                                                 <div class="col-1">
@@ -109,7 +104,7 @@
                                                                 </div>
                                                                 <div class="col-10">
                                                                     <span class="font-weight-bold text-secondary">
-                                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursalesTurno[0]->telefono_movil }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
+                                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursalesTurno[0]->telefono_fijo }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -196,9 +191,15 @@
                                                             </div>
                                                         </div>
                                                     </li>
-
                                                     @else
-                                                        <li class="list-group-item" style="height:78px"></li>
+                                                        <div class="row">
+                                                            <div class="col-1">   
+                                                                <p>&nbsp</p>  
+                                                            </div>
+                                                        </div>                                                                              
+                                                    
+                                                    <li class="list-group-item" ></li>
+                                                    
                                                     @endif   
                                                 </ul>
 

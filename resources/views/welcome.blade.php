@@ -89,7 +89,7 @@
                     @auth
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded " href="#"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Cerrar Sesion
+                                SALIR
                             </a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                             class="d-none btn btn-success">
@@ -136,7 +136,7 @@
                                 <li>
                                     <a href="#" class="text-white"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        CERRAR SESIÓN
+                                        SALIR
                                     </a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
