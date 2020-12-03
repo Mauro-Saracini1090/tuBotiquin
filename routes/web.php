@@ -98,3 +98,7 @@ Route::get('cargarMedicamento/{sucursal}/cargarStock',[SucursalController::class
 Route::patch('almacenarStockMedicamento/{sucursal}',[SucursalController::class,'almacenarStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.almacenar');
 Route::get('listado/{farmacia}/medicamentos',[SucursalController::class,'verMedicamentosFarmacia'])->middleware('roles:es-registrado')->name('listado.medicamentos');
 Route::delete('borrarStockSucursal/{sucursal}/{medicamento}',[SucursalController::class,'borrarStockSucursal'])->middleware('roles:es-farmaceutico')->name('stocksucursal.borrar');
+
+//Contactar Al Admin
+Route::get('contactaradministrador', [SucursalController::class,'contactarAdmin'])->middleware('roles:es-farmaceutico')->name('contactarAdmin');
+Route::post('enviarmailadministrador', [SucursalController::class,'enviarEmailAdministrador'])->middleware('roles:es-farmaceutico')->name('enviarEmailAdministrador');
