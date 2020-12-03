@@ -17,7 +17,7 @@
         type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/tuBotiquin/public/css/styles.css" rel="stylesheet">
+    <link href="/tubotiquin/tuBotiquin/public/css/styles.css" rel="stylesheet">
     <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
     
     {{-- Leaflet - map osm --}}
@@ -65,9 +65,13 @@
                 <ul class="navbar-nav ml-auto" style="font-size: 1.0rem">
 
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                            href="{{ route('farmacias') }}">Farmacias</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                            href="{{ route('emailcontacto')}}">Contacto</a></li>
+                            href="{{ route('farmacias') }}">Farmacias</a>
+                    </li>
+                    @cannot('esFarmaceutico')
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                                href="{{ route('emailcontacto')}}">Contacto</a>
+                        </li>
+                    @endcannot    
 
                     @can('esFarmaceutico')
                         <li class="dropdown nav-item mx-0 mx-lg-1">
@@ -124,7 +128,7 @@
 
                     <p class="lead mb-0">
                         <ul class="list-unstyled">
-                            <li> <a href="#" class="text-white">HOME</a> </li>
+                        <li> <a href="{{route('home')}}" class="text-white">HOME</a> </li>
                             <li> <a href="{{ route('farmacias') }}" class="text-white">FARMACIAS</a>
                             </li>
                             <li><a href="{{ route('emailcontacto')}}" class="text-white">CONTACTO</a> </li>

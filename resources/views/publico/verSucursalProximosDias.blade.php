@@ -26,13 +26,52 @@
                                     </div>
                                 </div>
                                     <div class="card-body">
-                                        <h4 class="card-title text-center"><?php echo strtoupper($sucursalDia["sucursal"]->getFarmacia->nombre_farmacia) ?></h4>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><i class="material-icons">location_on</i>  <span class="font-weight-bold text-secondary"> {{$sucursalDia["sucursal"]->direccion_sucursal }}</span></li>
-                                            <li class="list-group-item"><i class="material-icons">mail</i>  <span class="font-weight-bold text-secondary"> {{ $sucursalDia["sucursal"]->email_sucursal }} </span></li>
-                                            <li class="list-group-item"><i class="material-icons">local_phone</i>  <span class="font-weight-bold text-secondary"> {{ $sucursalDia["sucursal"]->telefono_sucursal }} </span></li>
-                                            <li class="list-group-item"></li>
+                                         
+                                        <ul class="list-group list-group-flush">                                  
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-1"><i class="material-icons">location_on</i></div>
+                                                    <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalDia["sucursal"]->direccion_sucursal  }}</span></div>
+                                                </div>
+                                            </li>                           
+                                            
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-1"><i class="material-icons">mail</i></div>
+                                                    <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalDia["sucursal"]->email_sucursal }} </span></div>
+                                                </div>
+                                            </li>
+    
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-1"><i class="material-icons">local_phone</i></div>
+                                                    <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalDia["sucursal"]->telfono_fijo }} </span></div>
+                                                </div>
+                                            </li>
+    
+                                            @if($sucursalDia["sucursal"]->telefono_movil !=null)
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-1">
+                                                        <i class="fab fa-whatsapp"  style="font-size:25px"></i>
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <span class="font-weight-bold text-secondary">
+                                                            <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursalDia["sucursal"]->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>                                      
+                                            @else
+                                                <div class="row">
+                                                    <div class="col-1 m-2">   
+                                                        <p>&nbsp</p>  
+                                                    </div>
+                                                </div>                                                                              
+                                             @endif
+                                            <li class="list-group-item"></li>  
                                         </ul> 
+
                                         <div class="d-flex d-flex justify-content-center"> 
                                             <form method="POST" action="{{ route('verSucursalTurnoHoy')}}">
                                             @csrf  

@@ -27,12 +27,13 @@
                             </div>
                       </div>
 
+                    @if( !(count($arraySucursales)) < 1 )
                         <!-- Sucursales -->
                         <!-- Mostrar primero la sede central -->
                         @if(count($arraySucursales) > 0 )
                             <h4 class="text-secondary  m-3">Nuestras sucursales</h4>
                             <hr>
-                        @else
+                        @elseif(count($arraySucursales) == 0 )
                             <h4 class="text-secondary  m-3">Nuestra sucursal</h4>
                             <hr>    
                         @endif       
@@ -64,32 +65,28 @@
                                                             <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
                                                         </div>
                                                     </li>
+                                                    @if($sucursal->telefono_movil !=null)
                                                     <li class="list-group-item">
                                                         <div class="row">
-                                                            <div class="col-1"><i class="material-icons">local_phone</i></div>
-                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_movil }} </span></div>
-                                                        </div>
-                                                    </li>
-
-                                                    @if($sucursal->telefono_movil != "")
-                                                        <li class="list-group-item">
-                                                            <div class="row">
-                                                                <div class="col-1">
-                                                                    <i class="fab fa-whatsapp "  style="font-size:25px"></i>
-                                                                </div>
-                                                                <div class="col-10">
-                                                                    <span class="font-weight-bold text-secondary">
-                                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
-                                                                    </span>
-                                                                </div>
+                                                            <div class="col-1">
+                                                                <i class="fab fa-whatsapp"  style="font-size:25px"></i>
                                                             </div>
-                                                        </li>
-                                                        <li class="list-group-item" ></li>
-
+                                                            <div class="col-10">
+                                                                <span class="font-weight-bold text-secondary">
+                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>                                      
                                                     @else
-                                                        <li class="list-group-item" style="height:78px"></li>
-                                                    @endif
-                                            </ul>  
+                                                        <div class="row">
+                                                            <div class="col-1 m-2">   
+                                                                <p>&nbsp</p>  
+                                                            </div>
+                                                        </div>                                                                              
+                                                     @endif
+                                                    <li class="list-group-item"></li>
+                                                </ul> 
                                         </div>
                                     </div>  
                                 
@@ -105,8 +102,18 @@
                                     </div>
                                 </div>
                             @endif  
-                                 
+                             
                         @endforeach
+                    @else
+                    <div class="row">
+                        <div class="col-12">
+
+                                <div class="p-3 mb-2 bg-warning text-dark">
+                                    <h6 class="font-weight-bold text-center"> Atención - Esta Farmacia no posee sucursales cargadas</h6>
+                                </div>
+                            </div>
+                    </div>        
+                    @endif
 
                          @if( !(count($arrayObraSociales)) < 1 )
                             <!-- Obra Sociales -->

@@ -72,7 +72,7 @@
                             <li class="list-group-item">
                                 <h6 class="masthead-subheading">CONTACTAR AL ADMINISTRADOR</h6>
                                 <div class="d-flex d-flex justify-content-left pb-2 ml-3">
-                                    <a href=""><i class="material-icons" style="font-size: 40px">email</i></a>
+                                    <a href="{{route('contactarAdmin') }}"><i class="material-icons" title="Enviar email al administrador" style="font-size: 40px">email</i></a>
                                 </div>
                             </li>
 
@@ -115,6 +115,17 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                @elseif(session()->has('mensajeEnviado')) 
+                        <div class="alert alert-primary alert-dismissible fade show focus" role="alert">
+                            <h5 class="alert-heading pb-4">Mensaje envido con exito</h5>
+                            <strong>{{ session()->get('mensajeEnviado') }}</strong>
+                            <br>
+                            <hr>
+                            <p class="text-right">Equipo TuBotiquín</p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>           
                 @endif
                 @yield('opcionesFarmaceutico')
             </div>

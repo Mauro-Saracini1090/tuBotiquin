@@ -31,30 +31,60 @@
                         <!-- Sucursal -->
                         <h4 class="text-secondary  m-3">Sucursal</h4>
                                
-                                <div class="row">
- 
-                                    <div Class="col-lg-7 col-12 " >
-                                        <div class="text ml-5 p-1"> 
-                                             <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><i class="material-icons">access_time</i> <span class="font-weight-bold text-secondary"> <?php echo $sucursal->descripcion_sucursal ?></li>
-                                                <li class="list-group-item"><i class="material-icons">location_on</i> <span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></li>
-                                                <li class="list-group-item"><i class="material-icons">mail</i> <span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></li>
-                                                <li class="list-group-item"><i class="material-icons">local_phone</i> <span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></li>
-                                                <li class="list-group-item"></li>
-                                            </ul> 
-                                        </div>
-                                    </div> 
-                                    <div Class="col-lg-5 col-12">
-                                        <div class="d-flex d-flex justify-content-center"> 
-                                            <div class="mapa">
-                                                <iframe class="iframe border" height="200"></iframe>
-                                           </div>
-                                        </div>   
-                                    </div>
-                                    <div class="col-12">
-                                        <hr>    
-                                    </div>
+                        <div class="row">
+                            <div Class="col-lg-7 col-12 " >
+                                <div class="text ml-5 p-1"> 
+                                   <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><i class="material-icons">access_time</i> <span class="font-weight-bold text-secondary"> <?php echo $sucursal->descripcion_sucursal ?></li>
+                                        <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-1"><i class="material-icons">location_on</i></div>
+                                                    <div class="col-10"><span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></div>
+                                                </div>
+                                            </li>                           
+                                            
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-1"><i class="material-icons">mail</i></div>
+                                                    <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></div>
+                                                </div>
+                                            </li>
+
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-1"><i class="material-icons">local_phone</i></div>
+                                                    <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
+                                                </div>
+                                            </li>
+
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-1">
+                                                        <i class="fab fa-whatsapp"  style="font-size:25px"></i>
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <span class="font-weight-bold text-secondary">
+                                                            <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        <li class="list-group-item"></li>
+                                    </ul>  
                                 </div>
+                            </div>  
+                        
+                            <div Class="col-lg-5 col-12">
+                                <div class="d-flex d-flex justify-content-center">
+                                        <div class="mapa" id="{{$sucursal->id_sucursal}}">
+                                        
+                                        </div>
+                                </div>   
+                            </div>
+                            <div class="col-12">
+                                <hr>    
+                            </div>
+                        </div>
 
                           @if( !(count($arrayObraSociales)) < 1 )
                             <!-- Obra Sociales -->

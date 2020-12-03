@@ -84,25 +84,23 @@
                                                     <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1"><i class="material-icons">location_on</i></div>
-                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></div>
+                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->direccion_sucursal }}</span></div>
                                                         </div>
                                                     </li>                           
                                         
                                                     <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1"><i class="material-icons">mail</i></div>
-                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></div>
+                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->email_sucursal }} </span></div>
                                                         </div>
                                                     </li>
 
                                                     <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1"><i class="material-icons">local_phone</i></div>
-                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></div>
+                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->telefono_fijo }} </span></div>
                                                         </div>
-                                                    </li>   
-
-
+                                                    </li>
                                                     @if($sucursal->telefono_movil != "")
                                                         <li class="list-group-item">
                                                             <div class="row">
@@ -179,12 +177,12 @@
                                                     <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1"><i class="material-icons">local_phone</i></div>
-                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_sucursal }} </span></div>
+                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
                                                         </div>
                                                     </li>
 
-                                    
-                                                    @if($sucursal->telefono_movil != "")
+
+                                                    @if($sucursal->telefono_movil !=null)
                                                     <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1">
@@ -192,11 +190,19 @@
                                                             </div>
                                                             <div class="col-10">
                                                                 <span class="font-weight-bold text-secondary">
-                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
+
+                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </li>
+                                                    @else
+                                                        <div class="row">
+                                                            <div class="col-1 m-2">   
+                                                                <p>&nbsp</p>  
+                                                            </div>
+                                                        </div>                                                                              
+                                                    @endif
                                                     
                                                     <li class="list-group-item" ></li>
 
@@ -292,26 +298,26 @@
                                                 <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
                                             </div>
                                         </li>
-
-                                        @if($sucursal->telefono_movil != "")
-                                            <li class="list-group-item">
+                                        @if($sucursal->telefono_movil !=null)
+                                        <li class="list-group-item">
                                             <div class="row">
-                                                    <div class="col-1">
-                                                        <i class="fab fa-whatsapp "  style="font-size:25px"></i>
-                                                    </div>
-                                                    <div class="col-10">
-                                                        <span class="font-weight-bold text-secondary">
-                                                            <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
-                                                        </span>
-                                                    </div>
+                                                <div class="col-1">
+                                                    <i class="fab fa-whatsapp"  style="font-size:25px"></i>
                                                 </div>
-                                            </li>
-                                            <li class="list-group-item" ></li>
-
+                                                <div class="col-10">
+                                                    <span class="font-weight-bold text-secondary">
+                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>                                      
                                         @else
-                                            <li class="list-group-item" style="height:78px"></li>
-                                        @endif
-
+                                            <div class="row">
+                                                <div class="col-1 m-2">   
+                                                    <p>&nbsp</p>  
+                                                </div>
+                                            </div>                                                                              
+                                         @endif
                                     </ul> 
 
                                     <!-- Link  "Ver sucursal" -->
