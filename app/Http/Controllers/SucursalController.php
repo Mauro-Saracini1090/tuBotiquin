@@ -9,6 +9,8 @@ use App\Models\Sucursal;
 use App\Models\Farmacia;
 use App\Models\Medicamento;
 use App\Models\ObraSocial;
+use App\Models\Usuario;
+Use App\Mail\MensajeContactoFarmaceutico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -375,4 +377,36 @@ class SucursalController extends Controller
         return redirect(route('medicamentos.cargar', [$sucursal]))->with('medicamento', 'El Stock de la Sucursal se ha borrado correctamente.');
 
     }
+
+     /**
+     * Funcion que retorna un formulario de vista.
+     * Pertenece al user Farmaceutico y lo recibe el admin en su correo
+     */    
+    public function contactarAdmin()
+    {
+        $id_usuario = auth()->user()->id_usuario;
+        $usuarioFarmaceutico = Usuario::find($id_usuario);
+        return view('farmaceutico.contactarAdmin', ['usuario' => $usuarioFarmaceutico]);
+    }
+
+    /**
+     * Funcion que recibe los datos del formulario de contactar al Administrador
+     * y envia por mail al admin
+     */
+    public function enviarEmailAdministrador(Request $request)
+    {
+        //Valida los campos del formulario de contactar al Administrador
+        $request->validate([
+           //'email' => 'email|max:255',
+            'motivo' =>'required',
+            'consulta' => 'required|max:900',
+         ]);
+
+         $variablesContacto = $request;
+         // Si la validacion es correcta se procede a enviar el mail al administrador de Tubotiquín
+        Mail::to('tubotiquin2020@gmail.com')->send(new MensajeContactoFarmaceutico($variablesContacto));
+        return redirect(route('panel.farmaceutico'))->with('mensajeEnviado', 'Su mensaje fue enviado con exito, a la brevedad le estaremos respondiendo. Gracias por su consulta');
+       //dd($variablesContacto);    
+    }
+
 }
