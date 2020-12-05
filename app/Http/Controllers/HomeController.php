@@ -13,8 +13,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MensajeContacto;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 
 class HomeController extends Controller
 {
@@ -129,29 +132,45 @@ class HomeController extends Controller
      * Funcion que lista todas las farmacias cargdas de turno.
      * Se llama en el boton del home [ Ver mas ]
      */
-    public function verSucursalesProximasTurno()
+    public function verSucursalesProximasTurno(Request $request)
     {
         //$arrayTurnos = Turno::all();
-        $fechasSiguiente1 = date('Y-m-d', strtotime('+1 days'));
-        $fechasSiguiente2 = date('Y-m-d', strtotime('+2 days'));
-        $fechasSiguiente3 = date('Y-m-d', strtotime('+3 days'));
-        $fechasSiguiente4 = date('Y-m-d', strtotime('+4 days'));
-        $fechasSiguiente5 = date('Y-m-d', strtotime('+5 days'));
-        $fechasSiguiente6 = date('Y-m-d', strtotime('+6 days'));
-        $arrayTurnos =  Turno::where('fecha_turno', '=', $fechasSiguiente1)->orWhere('fecha_turno', '=', $fechasSiguiente2)
-            ->orWhere('fecha_turno', '=', $fechasSiguiente3)->orWhere('fecha_turno', '=', $fechasSiguiente4)
-            ->orWhere('fecha_turno', '=', $fechasSiguiente5)->orWhere('fecha_turno', '=', $fechasSiguiente6)->get();
+
+        // if ($request->busquedaTurno == null) {
+        //     $fechasSiguiente1 = date('Y-m-d', strtotime('+1 days'));
+        //     $fechasSiguiente2 = date('Y-m-d', strtotime('+2 days'));
+        //     $fechasSiguiente3 = date('Y-m-d', strtotime('+3 days'));
+        //     $fechasSiguiente4 = date('Y-m-d', strtotime('+4 days'));
+        //     $fechasSiguiente5 = date('Y-m-d', strtotime('+5 days'));
+        //     $fechasSiguiente6 = date('Y-m-d', strtotime('+6 days'));
+        //     $arrayTurnos =  Turno::where('fecha_turno', '=', $fechasSiguiente1)->orWhere('fecha_turno', '=', $fechasSiguiente2)
+        //         ->orWhere('fecha_turno', '=', $fechasSiguiente3)->orWhere('fecha_turno', '=', $fechasSiguiente4)
+        //         ->orWhere('fecha_turno', '=', $fechasSiguiente5)->orWhere('fecha_turno', '=', $fechasSiguiente6)->get();
+        // } else {}
+        $arrayTurnos =  Turno::orderBy('fecha_turno','ASC')->where('fecha_turno', '>=', date('Y-m-d'))->FechaTurno($request->busquedaTurno)->get();
         $arrSucursalDia = array();
-        $arrSucursalDiaCompleto = array();
+        $arregloSucursalTurnodia = array();
 
         foreach ($arrayTurnos as  $turno) {
             foreach ($turno->getSucursales as $sucursal) {
                 $originalDate = $turno->fecha_turno;
                 $newDate = date("d/m/Y", strtotime($originalDate));
                 $arrSucursalDia = ["sucursal" => $sucursal, "diaTurno" => $newDate];
-                array_push($arrSucursalDiaCompleto, $arrSucursalDia);
+                array_push($arregloSucursalTurnodia, $arrSucursalDia);
             }
         }
-        return view('publico.verSucursalProximosDias', ['arregloSucursalTurnodia' => $arrSucursalDiaCompleto]);
+
+        $currentPage = $request->page;
+        if($request->page == null){
+            $currentPage = 1;
+        }
+        $perPage = 6;
+
+        $currentElements = array_slice($arregloSucursalTurnodia, ($perPage * ($currentPage - 1)), $perPage);
+        // dd($currentElements);
+        $arregloSucursalTurnodia = new LengthAwarePaginator($currentElements, count($arregloSucursalTurnodia), $perPage, $currentPage);
+        $arregloSucursalTurnodia->setPath('turnossiguientes');
+        // dd($arrSucursalDiaCompleto);
+        return view('publico.verSucursalProximosDias', compact('arregloSucursalTurnodia'));
     }
 }
