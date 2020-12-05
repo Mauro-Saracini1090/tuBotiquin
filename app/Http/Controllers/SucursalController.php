@@ -219,7 +219,7 @@ class SucursalController extends Controller
         $sucursal->borrado_logico_sucursal = 1;
         $sucursal->save();
 
-        return redirect(route('farmacia.index'))->with('estado_delete', 'Su Sucursal se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');
+        return redirect(route('panel.farmaceutico'))->with('estado_delete', 'Su Sucursal se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');
     }
     public function borrarSucursal(Sucursal $sucursal)
     {
