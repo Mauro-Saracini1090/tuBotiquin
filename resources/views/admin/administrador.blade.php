@@ -2,6 +2,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
@@ -122,9 +123,9 @@
                                         <span></span> Home
                                     </a>
                                 </li>
-                                <li class="nav-item my-1">
+                                {{-- <li class="nav-item my-1">
                                     <a href="{{ route('permisos.index') }}" class="btn-panel nav-link">Permisos</a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item my-1">
                                     <a href="{{ route('roles.index') }}"
                                         class="nav-link  btn-panel">Roles</a>

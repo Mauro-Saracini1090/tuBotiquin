@@ -62,6 +62,19 @@
                                     </span>
                                 @enderror
                             </div>
+                            <!-- Telefono -->
+                            <div class="form-group">    
+                                <strong><label for="telefono_movil">{{ __('Telefono *') }}</label></strong>
+                                <input id="telefono_movil" type="telefono_movil" class="form-control @error('telefono_movil') is-invalid @enderror" name="telefono_movil" value="{{ old('telefono_movil') }}" 
+                                    required autocomplete="telefono_movil" placeholder="(Cod-Area) Numero de telefono sin el 15">
+                                    <small class="form-text text-muted">(Cod-Area) Numero de telefono sin el 15</small>
+
+                                @error('telefono_movil')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                             <!-- LOCALIDAD -->
                             <div class="form-group">
                                 <strong><label for="localidad">{{ __('Localidad *') }}</label></strong>

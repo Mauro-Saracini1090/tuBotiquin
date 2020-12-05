@@ -11,9 +11,10 @@
                 </div> 
                 <div class="card-body">   
                 @can('esFarmaceutico')
-
+                        
                          <form method="POST" action="{{ route('actualizarPerfil',[$usuario] ) }}">
                             @csrf
+                            @method('PATCH')
                             <!-- NOMBRE -->
                             <div class="form-group">
                                 <strong><label for="nombre">{{ __('Nombre *') }}</label></strong>
@@ -52,6 +53,20 @@
                                 @enderror
                             </div>
                             
+                            <!-- Telefono -->
+                            <div class="form-group">    
+                                <strong><label for="telefono_movil">{{ __('Telefono *') }}</label></strong>
+                                <input id="telefono_movil" type="telefono_movil" class="form-control @error('telefono_movil') is-invalid @enderror" name="telefono_movil" value="{{ old('telefono_movil', $usuario->telefono_movil) }}" 
+                                    required autocomplete="telefono_movil" placeholder="(Cod-Area) Numero de telefono sin el 15">
+                                    <small class="form-text text-muted">(Cod-Area) Numero de telefono sin el 15</small>
+
+                                @error('telefono_movil')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
                             <!-- EMAIL -->
                             <div class="form-group">    
                                 <strong><label for="email">{{ __('Direccion de E-Mail *') }}</label></strong>
@@ -131,11 +146,11 @@
 
                             <!-- matricula -->
                             <div class="form-group">
-                                <strong><label for="matricula">{{ __('Número de Matricula *') }}</label></strong>       
-                                <input id="matricula" type="readonly" class="form-control @error('matricula') is-invalid @enderror" name="matricula" value="{{ $usuario->numero_matricula }}" readonly autocomplete="matricula" autofocus placeholder="Ej: mn345678" required>
+                                <strong><label for="numero_matricula">{{ __('Número de Matricula *') }}</label></strong>       
+                                <input id="numero_matricula" type="readonly" class="form-control @error('numero_matricula') is-invalid @enderror" name="numero_matricula" value="{{ $usuario->numero_matricula }}" readonly autocomplete="numero_matricula" autofocus placeholder="Ej: mn345678" required>
                                 <small  class="form-text text-muted">Sin espacios ni guiones</small>
 
-                                @error('matricula')
+                                @error('numero_matricula')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

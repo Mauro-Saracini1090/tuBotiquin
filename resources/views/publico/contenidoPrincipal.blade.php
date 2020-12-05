@@ -72,7 +72,7 @@
                                          
                                                 <div class="col-md-3 col-12">
                                                     <div class="d-flex d-flex justify-content-center">
-                                                        <img class="card-img-top shadow img-rounded img-fluid" src="{{URL::to('/')}}{{$sucursalesTurno[0]->getFarmacia->img_farmacia }}"
+                                                        <img class="card-img-top shadow rounded img-fluid" src="{{URL::to('/')}}{{$sucursalesTurno[0]->getFarmacia->img_farmacia }}"
                                                             alt="{{ $sucursalesTurno[0]->getFarmacia->nombre_farmacia }}"  width="150" height="150">
                                                         <hr>
                                                     </div>
@@ -84,14 +84,14 @@
                                                     <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1"><i class="material-icons">location_on</i></div>
-                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></div>
+                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->direccion_sucursal }}</span></div>
                                                         </div>
                                                     </li>                           
                                         
                                                     <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1"><i class="material-icons">mail</i></div>
-                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->email_sucursal }} </span></div>
+                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->email_sucursal }} </span></div>
                                                         </div>
                                                     </li>
 
@@ -111,7 +111,7 @@
                                                                 </div>
                                                                 <div class="col-10">
                                                                     <span class="font-weight-bold text-secondary">
-                                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
+                                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursalesTurno[0]->telefono_movil }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -144,7 +144,7 @@
                                             <div class="col-12 bg-encabezado mb-3 p-3">
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-8 col-12 my-auto text-center">
+                                                <div class="col-md-7 col-12 my-auto text-center">
                                                     <h2 class="card-title"><?php echo strtoupper($sucursal->getFarmacia->nombre_farmacia ) ?></h2>
                                                     @if($sucursal->getFarmacia->descripcion_farmacia == "")
                                                         <p>&nbsp</p> 
@@ -153,8 +153,8 @@
                                                     @endif
                                                 </div>     
                                          
-                                                <div class="col-md-4 col-6 mx-auto ">
-                                                <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
+                                                <div class="col-md-4 col-6">
+                                                <img class="card-img-top shadow rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
                                                     alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="200" height="150">
                                                 
                                             </div>  
@@ -183,8 +183,8 @@
                                                         </div>
                                                     </li>
 
-                                    
-                                                    @if($sucursal->telefono_movil != "")
+
+                                                    @if($sucursal->telefono_movil !=null)
                                                     <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1">
@@ -192,16 +192,21 @@
                                                             </div>
                                                             <div class="col-10">
                                                                 <span class="font-weight-bold text-secondary">
-                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
+
+                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </li>
+                                                    @else
+                                                        <div class="row">
+                                                            <div class="col-1">   
+                                                                <p>&nbsp</p>  
+                                                            </div>
+                                                        </div>                                                                              
                                                     
                                                     <li class="list-group-item" ></li>
-
-                                                    @else
-                                                        <li class="list-group-item" style="height:78px"></li>
+                                                    
                                                     @endif   
                                                 </ul>
 
@@ -265,8 +270,8 @@
                                 </div>
                                 <div class="d-flex d-flex justify-content-center"> 
                                     <div class="col-6"> 
-                                        <img class="card-img-top shadow img-rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
-                                         alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="110" height="110">
+                                        <img class="card-img-top shadow rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
+                                         alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="110" height="120">
                                 </div>
                                </div>
                                 <div class="card-body">
@@ -292,26 +297,26 @@
                                                 <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
                                             </div>
                                         </li>
-
-                                        @if($sucursal->telefono_movil != "")
-                                            <li class="list-group-item">
+                                        @if($sucursal->telefono_movil !=null)
+                                        <li class="list-group-item">
                                             <div class="row">
-                                                    <div class="col-1">
-                                                        <i class="fab fa-whatsapp "  style="font-size:25px"></i>
-                                                    </div>
-                                                    <div class="col-10">
-                                                        <span class="font-weight-bold text-secondary">
-                                                            <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
-                                                        </span>
-                                                    </div>
+                                                <div class="col-1">
+                                                    <i class="fab fa-whatsapp"  style="font-size:25px"></i>
                                                 </div>
-                                            </li>
-                                            <li class="list-group-item" ></li>
-
+                                                <div class="col-10">
+                                                    <span class="font-weight-bold text-secondary">
+                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>   
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>                                      
                                         @else
-                                            <li class="list-group-item" style="height:78px"></li>
-                                        @endif
-
+                                            <div class="row">
+                                                <div class="col-1 m-2">   
+                                                    <p>&nbsp</p>  
+                                                </div>
+                                            </div>                                                                              
+                                         @endif
                                     </ul> 
 
                                     <!-- Link  "Ver sucursal" -->

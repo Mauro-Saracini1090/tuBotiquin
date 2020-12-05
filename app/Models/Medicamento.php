@@ -21,4 +21,8 @@ class Medicamento extends Model
     {
         return $this->belongsTo(MarcaMedicamento::class,'marca_id','id_marca');
     }
+    public function getSucursales()
+    {
+        return $this->belongsToMany(Sucursal::class,'sucursal_medicamento','medicamento_id','sucursal_id')->withPivot('cantidad','cantidadTotal');;
+    }
 }

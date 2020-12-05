@@ -136,7 +136,7 @@
                             <button type="submit" class="btn btn-primary mr-1">
                                 {{ __('Guardar Cambios') }}
                             </button>
-                            <a href="{{ route('farmacia.index') }}"
+                            <a href="{{ route('sucursal.index') }}"
                                 class="btn btn-primary">Cancelar</a>
                         </div>
                     </div>

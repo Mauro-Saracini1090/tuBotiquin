@@ -43,7 +43,7 @@ Route::post('register/farmaceutico', [RegisterController::class,'registroFarmace
 
 
 
-Route::resource('farmacia', FarmaciaController::class)->middleware('roles:es-farmaceutico,es-administrador');
+Route::resource('farmacia', FarmaciaController::class)->middleware('roles:es-administrador');
 Route::delete('borrarFarmacia/{farmacia}', [FarmaciaController::class,'borrarFarmacias'])->middleware('roles:es-administrador');
 Route::post('almacenarFarmacia', [FarmaciaController::class,'almacenarFarmaciasAdmin'])->name('almacenarFarmaciaAdmin')->middleware('roles:es-administrador');
 Route::post('solicitudFarmacia', [FarmaciaController::class,'solicitudFarmacia'])->name('solicitudFarmacia')->middleware('roles:es-administrador');
@@ -63,36 +63,42 @@ Route::resource('roles', RolesController::class)->middleware('roles:es-administr
 Route::resource('permisos', PermisosController::class)->middleware('roles:es-administrador');
 Route::resource('localidad', LocalidadController::class)->middleware('roles:es-administrador');
 Route::get('farmacias', [FarmaciaController::class,'listarFarmacias'])->name('farmacias');
+Route::post('solicitudUsuario', [UsuarioController::class,'solicitudUsuario'])->name('solicitudUsuario')->middleware('roles:es-administrador');
 
 
 Route::resource('turno', TurnoController::class)->middleware('roles:es-administrador');
 Route::resource('sucursal', SucursalController::class)->middleware('roles:es-farmaceutico,es-administrador');
 Route::delete('borrarSucursal/{sucursal}', [SucursalController::class,'borrarSucursal'])->middleware('roles:es-administrador');
 Route::post('solicitudSucursal', [SucursalController::class,'solicitudSucursal'])->name('solicitudSucursal')->middleware('roles:es-administrador');
+Route::get('panelFarmaceutico', [SucursalController::class,'panelFarmaceutico'])->name('panel.farmaceutico')->middleware('roles:es-farmaceutico');
 
 
 Route::resource('obrasocial', ObraSocialController::class)->middleware('roles:es-farmaceutico,es-administrador');
-Route::get('obrasocialfarmacia', [ObraSocialController::class, 'listarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('obrasocialfarmacia');
-Route::post('obrasocialfarmacia', [ObraSocialController::class, 'agregarObraSocialFarmacia'])->middleware('roles:es-farmaceutico')->name('agregarobrasocialfarmacia');
+Route::get('obrasocialfarmacia', [ObraSocialController::class, 'listarObraSocialFarmacia'])->middleware('roles:es-administrador')->name('obrasocialfarmacia');
+Route::post('obrasocialfarmacia', [ObraSocialController::class, 'agregarObraSocialFarmacia'])->middleware('roles:es-administrador')->name('agregarobrasocialfarmacia');
 
-Route::post('sucursalturnohoy', [homeController::class,'verSucursalTurnoHoy'])->name('verSucursalTurnoHoy');
-Route::get('turnossiguientes', [homeController::class,'verSucursalesProximasTurno'])->name('verTurnosSiguientes');
+Route::post('sucursalturnohoy', [HomeController::class,'verSucursalTurnoHoy'])->name('verSucursalTurnoHoy');
+Route::get('turnossiguientes', [HomeController::class,'verSucursalesProximasTurno'])->name('verTurnosSiguientes');
 
 //Mi perfil Farmacuetico
-Route::get('vermiperfil', [usuarioController::class, 'verMiPerfilFarmaceutico'])->middleware('roles:es-farmaceutico')->name('miPerfilFarmacuetico');
-Route::get('subirfotoperfil', [usuarioController::class, 'subirFotoPerfil'])->middleware('roles:es-farmaceutico')->name('subirFotoPerfil');
-Route::post('subirfotoperfil/cargada', [usuarioController::class, 'cargarFotoPerfil'])->middleware('roles:es-farmaceutico')->name('cargarFotoPerfil');
-Route::get('editarperfil', [usuarioController::class, 'editarPerfil'])->middleware('roles:es-farmaceutico')->name('editarPerfil');
-Route::post('editarperfil/actualizar', [usuarioController::class, 'actualizarPerfil'])->middleware('roles:es-farmaceutico')->name('actualizarPerfil');
+Route::get('vermiperfil', [UsuarioController::class, 'verMiPerfilFarmaceutico'])->middleware('roles:es-farmaceutico')->name('miPerfilFarmacuetico');
+Route::get('subirfotoperfil', [UsuarioController::class, 'subirFotoPerfil'])->middleware('roles:es-farmaceutico')->name('subirFotoPerfil');
+Route::post('subirfotoperfil/cargada', [UsuarioController::class, 'cargarFotoPerfil'])->middleware('roles:es-farmaceutico')->name('cargarFotoPerfil');
+Route::get('editarperfil', [UsuarioController::class, 'editarPerfil'])->middleware('roles:es-farmaceutico')->name('editarPerfil');
+Route::patch('editarperfil/actualizar/{usuario}', [UsuarioController::class, 'actualizarPerfil'])->middleware('roles:es-farmaceutico')->name('actualizarPerfil');
 
 //E-mail contacto
-Route::get('emailcontacto', [homeController::class,'emailContacto'])->name('emailcontacto'); 
-Route::post('enviarconsulta', [homeController::class,'enviarEmailContacto'])->name('enviarEmailContacto');
+Route::get('emailcontacto', [HomeController::class,'emailContacto'])->name('emailcontacto'); 
+Route::post('enviarconsulta', [HomeController::class,'enviarEmailContacto'])->name('enviarEmailContacto');
 
 Route::resource('tipoMedicamentos',TipoMedicamentoController::class)->middleware('roles:es-administrador');
 Route::resource('marcaMedicamentos',MarcaMedicamentoController::class)->middleware('roles:es-administrador');
 Route::resource('medicamentos',MedicamentoController::class)->middleware('roles:es-administrador');
-Route::get('cargarMedicamento',[SucursalController::class,'cargarStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.cargar');
-Route::post('almacenarStockMedicamento',[SucursalController::class,'almacenarStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.almacenar');
+Route::get('cargarMedicamento/{sucursal}/cargarStock',[SucursalController::class,'cargarStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.cargar');
+Route::patch('almacenarStockMedicamento/{sucursal}',[SucursalController::class,'almacenarStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.almacenar');
+Route::get('listado/{farmacia}/medicamentos',[SucursalController::class,'verMedicamentosFarmacia'])->middleware('roles:es-registrado')->name('listado.medicamentos');
+Route::delete('borrarStockSucursal/{sucursal}/{medicamento}',[SucursalController::class,'borrarStockSucursal'])->middleware('roles:es-farmaceutico')->name('stocksucursal.borrar');
 
-
+//Contactar Al Admin
+Route::get('contactaradministrador', [SucursalController::class,'contactarAdmin'])->middleware('roles:es-farmaceutico')->name('contactarAdmin');
+Route::post('enviarmailadministrador', [SucursalController::class,'enviarEmailAdministrador'])->middleware('roles:es-farmaceutico')->name('enviarEmailAdministrador');

@@ -65,9 +65,13 @@
                 <ul class="navbar-nav ml-auto" style="font-size: 1.0rem">
 
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                            href="{{ route('farmacias') }}">Farmacias</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                            href="{{ route('emailcontacto')}}">Contacto</a></li>
+                            href="{{ route('farmacias') }}">Farmacias</a>
+                    </li>
+                    @cannot('esFarmaceutico')
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                                href="{{ route('emailcontacto')}}">Contacto</a>
+                        </li>
+                    @endcannot    
 
                     @can('esFarmaceutico')
                         <li class="dropdown nav-item mx-0 mx-lg-1">
@@ -76,7 +80,7 @@
                                 aria-expanded="false">Farmaceutico</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}">Mi Perfil</a>
-                                <a class="dropdown-item" href="{{ route('farmacia.index') }}">Panel de opciones</a>
+                                <a class="dropdown-item" href="{{ route('panel.farmaceutico') }}">Panel de opciones</a>
                             </div>
                         </li>
                     @endcan
@@ -85,7 +89,7 @@
                     @auth
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded " href="#"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Cerrar Sesion
+                                SALIR
                             </a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                             class="d-none btn btn-success">
@@ -124,7 +128,7 @@
 
                     <p class="lead mb-0">
                         <ul class="list-unstyled">
-                            <li> <a href="#" class="text-white">HOME</a> </li>
+                        <li> <a href="{{route('home')}}" class="text-white">HOME</a> </li>
                             <li> <a href="{{ route('farmacias') }}" class="text-white">FARMACIAS</a>
                             </li>
                             <li><a href="{{ route('emailcontacto')}}" class="text-white">CONTACTO</a> </li>
@@ -132,7 +136,7 @@
                                 <li>
                                     <a href="#" class="text-white"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        CERRAR SESIÓN
+                                        SALIR
                                     </a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
