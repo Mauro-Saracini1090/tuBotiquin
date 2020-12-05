@@ -46,16 +46,18 @@ class FarmaciaController extends Controller
         return view('farmaceutico.verFarmacia', ['arrayFarmacias' => $arrayFarmacias]);
     }
 
-    public function listarFarmacias()
+    public function listarFarmacias(Request $request)
     {
         //Se obtienen todas las farmacias en estado habilitado = 1
         //Se paginan de a 6 elementos para ser mostrados en la vista
-        $farmaciasPaginate = Farmacia::where("habilitada", "=", "1")->where("borrado_logico_farmacia", "=", "0")->simplePaginate(6);
+
+        $nombreFarmacia = $request->get('busquedafarmacia');
+
+        $farmaciasPaginate = Farmacia::where("habilitada", "=", "1")->where("borrado_logico_farmacia", "=", "0")->NombreFarmacia($nombreFarmacia)->simplePaginate(6);
         $arrayFarmacias = Farmacia::where("habilitada", "=", "1")->where("borrado_logico_farmacia", "=", "0")->get();
 
         return view('publico.farmacias', [
             'arrayFarmaciasPaginate' => $farmaciasPaginate,
-            'arrayFarmacias' => $arrayFarmacias,
         ]);
     }
     /**
@@ -107,19 +109,18 @@ class FarmaciaController extends Controller
         $img_farmacia = Storage::url($img_logo);
 
         $farmacia->img_farmacia = $img_farmacia;
-        
-         if($request->descripcion_farmacia != null){
-            $farmacia->descripcion_farmacia = $request->descripcion_farmacia ;
-         }
-         else{
+
+        if ($request->descripcion_farmacia != null) {
+            $farmacia->descripcion_farmacia = $request->descripcion_farmacia;
+        } else {
             $farmacia->descripcion_farmacia = NULL;
-         }   
-     
+        }
+
         $farmacia->cuit = $request->cuit;
         $farmacia->habilitada = $habilitada;
         $farmacia->borrado_logico_farmacia = $borado_logico;
         $farmacia->save();
-        
+
         //Se busca el email del usuario administrador
         // $emailAdministrador = DB::table('usuario')
         // ->join('usuario_roles', 'usuario.id_usuario', '=', 'usuario_roles.usuario_id')
@@ -267,7 +268,7 @@ class FarmaciaController extends Controller
     }
 
     public function borrarFarmacias(Farmacia $farmacia)
-    {              
+    {
         Gate::authorize('esAdmin');
 
         $farmacia->delete();
@@ -292,8 +293,8 @@ class FarmaciaController extends Controller
     //         Mail::to($farmacia->usuarioFarmaceutico->email)->send(new solicitudFarmaciaAceptadaMailable($farmacia) );
 
     //     }
-        
-        
+
+
     //     return redirect(route('farmacia.show', [$farmacia->id_farmacia]));
     // }
 }
