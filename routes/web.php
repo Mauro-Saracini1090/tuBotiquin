@@ -77,8 +77,8 @@ Route::resource('obrasocial', ObraSocialController::class)->middleware('roles:es
 Route::get('obrasocialfarmacia', [ObraSocialController::class, 'listarObraSocialFarmacia'])->middleware('roles:es-administrador')->name('obrasocialfarmacia');
 Route::post('obrasocialfarmacia', [ObraSocialController::class, 'agregarObraSocialFarmacia'])->middleware('roles:es-administrador')->name('agregarobrasocialfarmacia');
 
-Route::post('sucursalturnohoy', [homeController::class,'verSucursalTurnoHoy'])->name('verSucursalTurnoHoy');
-Route::get('turnossiguientes', [homeController::class,'verSucursalesProximasTurno'])->name('verTurnosSiguientes');
+Route::post('sucursalturnohoy', [HomeController::class,'verSucursalTurnoHoy'])->name('verSucursalTurnoHoy');
+Route::get('turnossiguientes', [HomeController::class,'verSucursalesProximasTurno'])->name('verTurnosSiguientes');
 
 //Mi perfil Farmacuetico
 Route::get('vermiperfil', [UsuarioController::class, 'verMiPerfilFarmaceutico'])->middleware('roles:es-farmaceutico')->name('miPerfilFarmacuetico');
