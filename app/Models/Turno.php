@@ -19,4 +19,13 @@ class Turno extends Model
     {
         return $this->belongsToMany(Sucursal::class,'turno_sucursal','turno_id','sucursal_id');
     }
+
+    //Scope nombre farmacia
+    public function scopeFechaTurno($query, $fechaTurno)
+    {
+        if ($fechaTurno) {
+            # code...
+            return $query->where('fecha_turno', 'LIKE', "%$fechaTurno%");
+        }
+    }
 }
