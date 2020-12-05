@@ -27,6 +27,7 @@ class Usuario extends Authenticatable
         'email',
         'password',
         'cod_postal',
+        'telefono_movil',
         'cuil',
         'cuit',
         'dni',
@@ -62,6 +63,10 @@ class Usuario extends Authenticatable
     public function getFarmacias()
     {
         return $this->hasMany(Farmacia::class,'id_usuario');
+    }
+    public function getSucursales()
+    {
+        return $this->hasMany(Sucursal::class,'id_usuario','usuario_id');
     }
 
 

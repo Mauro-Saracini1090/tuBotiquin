@@ -135,7 +135,7 @@ class ObraSocialController extends Controller
 
         $arrayObraSocial = ObraSocial::orderBy('nombre_obra_social', 'asc')->get();
 
-        return view('obrasocial.cargarObraSocialFarmacia', [
+        return view('admin.obrasocial.agregarObraSocialFarmacia', [
             'arrayFarmacias' => $arrayFarmacias,
             'arrayObraSocial' => $arrayObraSocial,
         ]);
@@ -146,7 +146,6 @@ class ObraSocialController extends Controller
     {
 
         if ($request->ajax()){
-           
             $farmacia = Farmacia::where('id_farmacia',$request->farmacia_id)->first();
             $obs = $farmacia->obrasSociales;
             return $obs;
@@ -160,6 +159,6 @@ class ObraSocialController extends Controller
             $obraSocial = ObraSocial::find($idObraSocial);
             $farmacia->obrasSociales()->attach($obraSocial);
         }
-        return redirect(route('farmacia.index'));
+        return redirect(route('obrasocialfarmacia'));
     }
 }

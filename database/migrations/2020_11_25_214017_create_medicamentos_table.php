@@ -17,6 +17,7 @@ class CreateMedicamentosTable extends Migration
             $table->id('id_medicamento');
             $table->string('nombre_medicamento',250);
             $table->string('informacion',4000);
+            $table->string('img_medicamento', 250);
             $table->unsignedBigInteger('marca_id');
             $table->unsignedBigInteger('tipo_id');
             $table->timestamps();

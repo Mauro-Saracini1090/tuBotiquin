@@ -13,6 +13,7 @@ class Sucursal extends Model
     
     protected $fillable = [
         'id_farmacia',
+        'usuario_id',
         'descripcion_sucursal',
         'cufe_sucursal',
         'email_sucursal',
@@ -28,12 +29,26 @@ class Sucursal extends Model
         return $this->belongsTo(Farmacia::class,'id_farmacia','id_farmacia');
     }
 
+    public function getFarmaceutico()
+    {
+        return $this->belongsTo(Usuario::class,'usuario_id','id_usuario');
+    
+    }
+
      /**
      * The turnos that belong to the sucursal.
      */
     public function getTurnos()
     {
         return $this->belongsToMany(Turno::class,'turno_sucursal','sucursal_id','turno_id');
+    }
+
+    /**
+     * The Medicamentos that belong to the sucursal.
+     */
+    public function getMedicamentos()
+    {
+        return $this->belongsToMany(Medicamento::class,'sucursal_medicamento','sucursal_id','medicamento_id')->withPivot('cantidad','cantidadTotal');;
     }
 
  

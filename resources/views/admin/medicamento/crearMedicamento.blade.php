@@ -42,6 +42,19 @@
                         @enderror
                     </div>
 
+                      <!-- IMG Medicamento -->
+                    <div class="form-group">
+                        <strong><label for="img_medicamento">{{ __('Suba una imagen medicamento *') }}</label></strong>
+                        <input type="file" name="img_medicamento"  accept="image/*" class="form-control  @error('img_medicamento') is-invalid @enderror" required>
+                        <small  class="form-text text-muted">Tamaño máximo 4MB</small>
+
+                         @error('img_medicamento')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                        @enderror
+                    </div>
+
                     <!-- select Tipo -->
                     <div class="form-group">
                         <strong><label

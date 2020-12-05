@@ -41,6 +41,10 @@ class RolesController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nombre_rol' => 'required|string',
+            'slug_rol' => 'required|string',
+        ]);
         $role = new Role();
         $role->nombre_rol = $request->nombre_rol;
         $role->slug_rol = $request->slug_rol;
@@ -84,7 +88,10 @@ class RolesController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        
+        $request->validate([
+            'nombre_rol' => 'required|string',
+            'slug_rol' => 'required|string',
+        ]);
        
         if (!$request->nombre_rol) {
             $role->getPermisos()->detach();
