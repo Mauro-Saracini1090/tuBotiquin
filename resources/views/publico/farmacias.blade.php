@@ -34,9 +34,8 @@
                                     <div class="d-flex d-flex justify-content-center">
                                         <div class="col-6">
                                             <img class="card-img-top rounded shadow"
-                                                src="{{ asset($farmaciaPaginate->img_farmacia) }}" alt="Logotipo" width="110"
-                                                height="110">
-                                        </div>
+                                                src="{{ asset($farmaciaPaginate->img_farmacia) }}" alt="Logotipo" width="110" height="110">
+                                            </div>
                                     </div>
                                     <div class="card-body text-center">
                                         <h4 class="card-title"> <?php echo
