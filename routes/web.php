@@ -81,11 +81,11 @@ Route::post('sucursalturnohoy', [HomeController::class,'verSucursalTurnoHoy'])->
 Route::get('turnossiguientes', [HomeController::class,'verSucursalesProximasTurno'])->name('verTurnosSiguientes');
 
 //Mi perfil Farmacuetico
-Route::get('vermiperfil', [UsuarioController::class, 'verMiPerfilFarmaceutico'])->middleware('roles:es-farmaceutico')->name('miPerfilFarmacuetico');
-Route::get('subirfotoperfil', [UsuarioController::class, 'subirFotoPerfil'])->middleware('roles:es-farmaceutico')->name('subirFotoPerfil');
-Route::post('subirfotoperfil/cargada', [UsuarioController::class, 'cargarFotoPerfil'])->middleware('roles:es-farmaceutico')->name('cargarFotoPerfil');
-Route::get('editarperfil', [UsuarioController::class, 'editarPerfil'])->middleware('roles:es-farmaceutico')->name('editarPerfil');
-Route::patch('editarperfil/actualizar/{usuario}', [UsuarioController::class, 'actualizarPerfil'])->middleware('roles:es-farmaceutico')->name('actualizarPerfil');
+Route::get('vermiperfil', [UsuarioController::class, 'verMiPerfilFarmaceutico'])->middleware('roles:es-farmaceutico,es-registrado')->name('miPerfilFarmacuetico');
+Route::patch('subirfotoperfil/{usuario}', [UsuarioController::class, 'cargarFotoPerfil'])->middleware('roles:es-farmaceutico,es-registrado')->name('cargarFotoPerfil');
+Route::get('editarperfil', [UsuarioController::class, 'editarPerfil'])->middleware('roles:es-farmaceutico,es-registrado')->name('editarPerfil');
+Route::patch('editarperfil/actualizar/{usuario}', [UsuarioController::class, 'actualizarPerfil'])->middleware('roles:es-farmaceutico,es-registrado')->name('actualizarPerfil');
+Route::delete('darDeBajaCuenta/{usuario}',[UsuarioController::class,'darDeBajaCuenta'])->middleware('roles:es-farmaceutico,es-registrado')->name('perfil.bajaCuenta');
 
 //E-mail contacto
 Route::get('emailcontacto', [HomeController::class,'emailContacto'])->name('emailcontacto'); 
