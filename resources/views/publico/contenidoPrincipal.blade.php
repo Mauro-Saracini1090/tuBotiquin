@@ -32,7 +32,23 @@
             <div class="container">
                 <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">De turno hoy</h2>
                 <h4 class="text-secondary text-center my-2 "><ins><?php echo date('d-m-Y') ?> </ins></h4>
-                <p class="lead text-center my-2 pb-4">Farmacias que se encuentran de turno el día de hoy</p>
+                <p class="lead text-center my-2">Farmacias que se encuentran de turno el día de hoy</p>
+                <?php $hora = date('H'); ?>
+                <div class="row">
+                    <div class="col-4  rounded text-center mx-auto">
+                        <div class="d-flex d-flex justify-content-middle justify-content-center">
+                            @if( $hora >= 07 || $hora <= 20 )
+                                    <i class="material-icons px-1"> wb_sunny</i> 
+                            @else
+                                <i class="material-icons px-1"> brightness_2</i>
+                           @endif
+                             <span class="ml-2 px-1">Temperatura:</span>
+                             <span class="ml-2 px-1">{{ $maxt }}º máx</span>
+                             <span class="ml-2 px-1">{{ $mint }}º min</span>
+                        </div>
+                    </div>
+                </div> 
+                <br>
             </div>
 
             <!-- No hay sucursales cargadas -->
@@ -95,8 +111,15 @@
                                                         </div>
                                                     </li>
 
-                                    
-                                                    @if($sucursalesTurno[0]->telefono_fijo != NULL)
+                                                    <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-1"><i class="material-icons">local_phone</i></div>
+                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
+                                                        </div>
+                                                    </li>   
+
+
+                                                    @if($sucursal->telefono_movil != "")
                                                         <li class="list-group-item">
                                                             <div class="row">
                                                                 <div class="col-1">
@@ -104,7 +127,7 @@
                                                                 </div>
                                                                 <div class="col-10">
                                                                     <span class="font-weight-bold text-secondary">
-                                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursalesTurno[0]->telefono_fijo }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
+                                                                        <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursalesTurno[0]->telefono_movil }}&text=Hola,%20¿ puedo hacerte una consulta?">Consultanos!</a>   
                                                                     </span>
                                                                 </div>
                                                             </div>
