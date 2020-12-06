@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -91,6 +92,7 @@ trait RegistroFarmaceutico
             'dni' => $data['dni'],
             'numero_matricula' => $data['numero_matricula'],
             'habilitado' => false,
+            'img_perfil' => URL::to('/')."/storage/foto_perfil/logoPerfil.png",
 
         ]);
     }
