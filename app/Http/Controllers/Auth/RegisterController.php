@@ -9,6 +9,7 @@ use App\Models\Usuario;
 use App\Traits\RegistroFarmaceutico;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -56,11 +57,13 @@ class RegisterController extends Controller
             'nombre' => ['required', 'string', 'max:255'],
             'apellido' => ['required', 'string', 'max:255'],
             'localidad' => ['required'],
-            'telefono_movil' => ['required','numeric', 'digits_between:8,12'],
+            'telefono_movil' => ['required','numeric', 'digits_between:8,12','unique:usuario'],
             'nombre_usuario' => ['required','unique:usuario'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:usuario'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
 
+        ],[
+            'telefono_movil.unique' => 'El Telefono Movil ingresado ya ha sido registrado, verifique'
         ]);
     }
 
@@ -85,6 +88,7 @@ class RegisterController extends Controller
             'dni' => null,
             'numero_matricula' => null,
             'habilitado' => true,
+            'img_perfil' => URL::to('/')."/storage/foto_perfil/logoPerfil.png",
 
         ]);
     }
