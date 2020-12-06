@@ -43,7 +43,7 @@
                                 <i class="material-icons px-1"> brightness_2</i>
                            @endif
                              <span class="ml-2 px-1">Temperatura:</span>
-                             <span class="ml-2 px-1">{{ $hora }}º máx</span>
+                             <span class="ml-2 px-1">{{ $maxt }}º máx</span>
                              <span class="ml-2 px-1">{{ $mint }}º min</span>
                         </div>
                     </div>
