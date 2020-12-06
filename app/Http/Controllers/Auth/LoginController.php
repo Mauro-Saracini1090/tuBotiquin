@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -40,10 +41,14 @@ class LoginController extends Controller
 
     public function redirectPath()
     {
-        if (auth()->user()->getRoles->contains('slug_rol','es-administrador')) {
-            return '/administrador';
-        }
+        if (Auth::check()) {
+            if (auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
+                return '/administrador';
+            }
 
-        return '/';
+
+            return '/';
+        }
+        return redirect('/login');
     }
 }
