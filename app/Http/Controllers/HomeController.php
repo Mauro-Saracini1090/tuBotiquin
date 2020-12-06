@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Mail;
 use SoapClient;
 Use App\Mail\MensajeContacto;
+use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
@@ -282,7 +283,7 @@ class HomeController extends Controller
         
         
         } catch (Exception $e) {
-           echo $e->getMessage();
+        //    echo $e->getMessage();
             $maxt = '?';
             $mint = '?'; 
         }
