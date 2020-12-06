@@ -10,6 +10,7 @@ use App\Models\Localidad;
 use App\Models\Role;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -234,46 +235,30 @@ class UsuarioController extends Controller
     /**
      * Funcion que muestra el perfil con lso datos del usuario farmaceutico
      */
-    public function verMiPerfilFarmaceutico()
+    public function verMiPerfilFarmaceutico(Request $request)
     {
 
         $id_usuarioFarma = auth()->user()->id_usuario;
         $usuarioFarmaceutico = Usuario::find($id_usuarioFarma);
+
         return view('farmaceutico.miPerfilFarmaceutico', ["usuarioFarmaceutico" => $usuarioFarmaceutico]);
     }
 
-
-    /**
-     * 
-     */
-    public function subirFotoPerfil()
+    public function cargarFotoPerfil(Usuario $usuario, Request $request)
     {
-        $id_usuarioFarma = auth()->user()->id_usuario;
-        $usuarioFarmaceutico = Usuario::find($id_usuarioFarma);
-        return view('farmaceutico.cargarFotoPerfil', ["usuarioFarmaceutico" => $usuarioFarmaceutico]);
-        //return view ('farmaceutico.cargarFotoPerfil');
-    }
-
-
-    public function cargarFotoPerfil(Request $request)
-    {
-
-        $id_usuarioFarma = auth()->user()->id_usuario;
-        $usuarioFarmaceutico = Usuario::find($id_usuarioFarma)->first();
         $request->validate([
             'img_ferfil_form' => 'required|image|mimes:jpeg,jpe,png|max:4096',
         ]);
 
         $img_perfil_form = $request->file('img_ferfil_form')->store('public/foto_perfil');
         $img_perfil = Storage::url($img_perfil_form);
-        $usuarioFarmaceutico->img_perfil = $img_perfil;
-        $usuarioFarmaceutico->save();
-        return view('farmaceutico.miPerfilFarmaceutico', ["usuarioFarmaceutico" => $usuarioFarmaceutico]);
+        $usuario->img_perfil = $img_perfil;
+        $usuario->save();
+        return redirect(route('miPerfilFarmacuetico'));
     }
 
     public function editarPerfil()
     {
-
         $id_usuarioFarma = auth()->user()->id_usuario;
         $usuarioFarmaceutico = Usuario::find($id_usuarioFarma);
         $localidades = Localidad::all();
@@ -292,32 +277,31 @@ class UsuarioController extends Controller
     {
         //Valida los campos del formulario registro
         $request->validate([
-            //'id_farmacia' => 'required',
             'nombre' => ['required', 'string', 'max:255'],
             'apellido' => ['required', 'string', 'max:255'],
             'localidad' => ['required'],
             'nombre_usuario' => ['required', Rule::unique('usuario', 'nombre_usuario')->ignore($usuario->id_usuario, 'id_usuario')],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('usuario', 'email')->ignore($usuario->id_usuario, 'id_usuario')],
             'telefono_movil' => ['required', 'integer', 'digits_between:8,12', Rule::unique('usuario', 'telefono_movil')->ignore($usuario->id_usuario, 'id_usuario')],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'cuil' => ['required', 'string', 'min:8', Rule::unique('usuario', 'cuil')->ignore($usuario->id_usuario, 'id_usuario')],
-            'cuit' => ['required', 'string', 'min:8', Rule::unique('usuario', 'cuit')->ignore($usuario->id_usuario, 'id_usuario')],
-            'numero_matricula' => ['required', 'string', 'min:8', Rule::unique('usuario', 'numero_matricula')->ignore($usuario->id_usuario, 'id_usuario')],
+            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'cuil' => ['required', 'string', 'min:8', Rule::unique('usuario', 'cuil')->ignore($usuario->id_usuario, 'id_usuario')],
+            // 'cuit' => ['required', 'string', 'min:8', Rule::unique('usuario', 'cuit')->ignore($usuario->id_usuario, 'id_usuario')],
+            // 'numero_matricula' => ['required', 'string', 'min:8', Rule::unique('usuario', 'numero_matricula')->ignore($usuario->id_usuario, 'id_usuario')],
             'img_perfil' => ['string max:255'],
-            'dni' => ['required', 'string', 'min:8', Rule::unique('usuario','dni')->ignore($usuario->id_usuario, 'id_usuario')],
+            // 'dni' => ['required', 'string', 'min:8', Rule::unique('usuario','dni')->ignore($usuario->id_usuario, 'id_usuario')],
         ]);
 
         $usuario->nombre = $request->nombre;
         $usuario->apellido = $request->apellido;
         $usuario->nombre_usuario = $request->nombre_usuario;
         $usuario->email = $request->email;
-        $usuario->password = Hash::make($request->password);
+        $usuario->password = $usuario->password;
         $usuario->cod_postal = $request->localidad;
         $usuario->telefono_movil = $request->telefono_movil;
-        $usuario->cuil = $request->cuil;
-        $usuario->cuit = $request->cuit;
-        $usuario->dni = $request->dni;
-        $usuario->numero_matricula = $request->matricula;
+        $usuario->cuil = $usuario->cuil;
+        $usuario->cuit = $usuario->cuit;
+        $usuario->dni = $usuario->dni;
+        $usuario->numero_matricula = $usuario->matricula;
         $usuario->habilitado = "1";
 
         if ($usuario->img_perfil  == NULL) {
@@ -327,8 +311,17 @@ class UsuarioController extends Controller
         }
 
         $usuario->save();
-        return view('farmaceutico.miPerfilFarmaceutico', [ "usuarioFarmaceutico" => $usuario ]); 
+        return view('farmaceutico.miPerfilFarmaceutico', ["usuarioFarmaceutico" => $usuario]);
+    }
 
+    public function darDeBajaCuenta(Usuario $usuario)
+    {
+
+        $usuario->habilitado = 0;
+        $usuario->save();
+
+        Auth::logout();
+        return redirect(route('home'));
     }
 
     public function solicitudUsuario(Request $request)

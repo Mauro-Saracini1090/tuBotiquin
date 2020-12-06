@@ -24,7 +24,7 @@ trait UsuarioHabilitado
             $request->session()->invalidate();
         
             // redireccionamos a donde queremos
-            return redirect('/')->with('estado','Disculpe las Molestias pero su usuario aun se encuentra DESHABILITADO y en proceso de evaluacion. Saludos Equipo Tu Botiquin.');
+            return redirect('/')->with('estado','Disculpe las Molestias pero su usuario no se encuentra Registrado o Está en Proceso de Evaluacion. Saludos Equipo Tu Botiquin.');
         }
     }
 
