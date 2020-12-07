@@ -17,7 +17,7 @@
         type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/tuBotiquin/public/css/styles.css" rel="stylesheet">
+    <link href="/tubotiquin/tuBotiquin/public/css/styles.css" rel="stylesheet">
     <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
 
     {{-- Leaflet - map osm --}}
@@ -66,36 +66,29 @@
                     </li>
                     @endcannot
 
-                    @can('esFarmaceutico')
-                        <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                                href="{{ route('panel.farmaceutico') }}">Farmaceutico</a>
-                        </li>
-                    @endcan
-
-
                     @auth
                         <li class="nav-item my-auto mx-0 mx-lg-1">
                             <div class="dropdown">
 
                                 <a class="nav-link dropdown-toggle rounded js-scroll-trigger" data-toggle="dropdown"
                                     href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->email }}
-                                    <img class="shadow img-thumbnail rounded-circle"
+                                    {{ Auth::user()->nombre_usuario }}
+                                    <img class="rounded-circle"
                                         src="{{ url('/') . Auth::user()->img_perfil }}" alt="Imagen de perfil avatar"
                                         width="38px" height="38px">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-lg-right">
-                                    <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}">Mi Perfil</a>
+                                    @can('esFarmaceutico')
+                                        <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}"><i class="material-icons px-2 align-middle">account_box</i><span class="mb-4">Mi Perfil</span></a>
+                                        <a class="dropdown-item" href="{{ route('panel.farmaceutico') }}"><i class="material-icons px-2 align-middle">settings</i>Farmacuetico</a>     
+                                    @endcan   
+                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="material-icons px-2 align-middle">exit_to_app</i>SALIR</a>         
                                 </div>
-
+                                
                             </div>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded " href="#"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                SALIR
-                            </a>
                         </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none btn btn-success">
                             @csrf
