@@ -74,14 +74,18 @@
                                     href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->nombre_usuario }}
                                     <img class="rounded-circle"
-                                        src="{{ url('/') . Auth::user()->img_perfil }}" alt="Imagen de perfil avatar"
+                                        src="{{ url('/') . Auth::user()->img_perfil }}" alt=""
                                         width="38px" height="38px">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-lg-right">
                                     @can('esFarmaceutico')
                                         <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}"><i class="material-icons px-2 align-middle">account_box</i><span class="mb-4">Mi Perfil</span></a>
                                         <a class="dropdown-item" href="{{ route('panel.farmaceutico') }}"><i class="material-icons px-2 align-middle">settings</i>Farmacuetico</a>     
-                                    @endcan   
+                                    @endcan 
+                                    @can('esRegistrado')
+                                        <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}"><i class="material-icons px-2 align-middle">account_box</i><span class="mb-4">Mi Perfil</span></a> 
+                                        <a class="dropdown-item" href=""><i class="material-icons px-2 align-middle">shopping_cart</i><span class="mb-4">Mis Reservas</span></a>   
+                                    @endcan    
                                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="material-icons px-2 align-middle">exit_to_app</i>SALIR</a>         
                                 </div>
@@ -158,10 +162,10 @@
                         <!-- Footer Social Icons-->
                         <div class="col-lg-4 mb-5 mb-lg-0">
                             <h4 class="text-uppercase mb-4">Buscanos</h4>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
+                            <a target="_blank" class="btn btn-outline-light btn-social mx-1" title="Link a red social Facebook" href="https://www.facebook.com"><i
                                     class="fab fa-fw fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
+                            <a target="_blank" class="btn btn-outline-light btn-social mx-1" title="Link a red social Twitter" href="https://www.twitter.com"><i class="fab fa-fw fa-twitter"></i></a>
+                            <a target="_blank" class="btn btn-outline-light btn-social mx-1" title="Link a red social Instagram" href="https://www.instagram.com"><i
                                     class="fab fa-fw fa-instagram"></i></a>
                         </div>
                         <!-- Footer About Text-->
@@ -179,7 +183,7 @@
             </footer>
             <!-- Copyright Section-->
             <div class="copyright py-4 text-center text-white">
-                <div class="container">© TuBotiquín 2020</div>
+                <div class="container">© TuBotiquín <?php echo date('Y') ?></div>
             </div>
             <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
             <div class="scroll-to-top d-lg-none position-fixed">
