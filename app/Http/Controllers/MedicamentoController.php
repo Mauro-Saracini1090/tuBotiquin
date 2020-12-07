@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Medicamento;
 use App\Http\Controllers\Controller;
+use App\Models\Farmacia;
 use App\Models\MarcaMedicamento;
+use App\Models\Sucursal;
 use App\Models\TipoMedicamento;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -95,7 +98,7 @@ class MedicamentoController extends Controller
         //
         $tipos = TipoMedicamento::all();
         $marcas = MarcaMedicamento::all();
-        return view('admin.medicamento.editarMedicamento', compact('tipos', 'marcas','medicamento'));
+        return view('admin.medicamento.editarMedicamento', compact('tipos', 'marcas', 'medicamento'));
     }
 
     /**
@@ -137,5 +140,63 @@ class MedicamentoController extends Controller
         //
         $medicamento->delete();
         return redirect(route('medicamentos.index'));
+    }
+
+    public function listadoStockMedicamento(Request $request)
+    {
+        if (\auth()->user()->getRoles->contains('slug_rol', 'es-farmaceutico')) {
+
+            $farmacia = $request->get('farmacia_id');
+            $medica = $request->get('medicamento_id');
+            $tipo = $request->get('tipo_id');
+            $marca = $request->get('marca_id');
+
+            $sucursales = Sucursal::where('usuario_id', '=', \auth()->user()->id_usuario)->where('habilitado', '=', 1)->where('borrado_logico_sucursal', '=', 0)->Farmacia($farmacia)->get();
+            $medicamentos = [];
+            foreach ($sucursales as $sucursal) {
+                foreach ($sucursal->getMedicamentos as $medicamento) {
+                    array_push($medicamentos, $medicamento);
+                }
+            }
+            // dd($medicamentos);
+            return view('farmaceutico.listadoMedicamentos', compact('sucursales','medica','tipo','marca'));
+        }
+    }
+
+    public function autocompleteFarmacia(Request $request)
+    {
+        if ($request->has('term')) {
+            $arrfarmacia = [];
+            $sucursales = Sucursal::where('usuario_id', '=', \auth()->user()->id_usuario)->where('habilitado', '=', 1)->where('borrado_logico_sucursal', '=', 0)->get();
+            foreach ($sucursales as $sucursal) {
+                $farmacia = $sucursal->getFarmacia;
+                if (count($arrfarmacia) > 0) {
+                    foreach ($arrfarmacia as $unidad) {
+                        # code...
+                        if ($unidad->id_farmacia != $farmacia->id_farmacia) {
+                            array_push($arrfarmacia, $farmacia);
+                        }
+                    }
+                } else {
+                    array_push($arrfarmacia, $farmacia);
+                }
+            }
+            return $arrfarmacia;
+            // return Farmacia::where('nombre_farmacia', 'like', $request->input('term') . '%')->get();
+        }
+    }
+    public function autocompleteTipoMed(Request $request)
+    {
+        if ($request->has('term')) {
+            return TipoMedicamento::where('nombre_tipo', 'like', $request->input('term') . '%')->get();
+            // return Farmacia::where('nombre_farmacia', 'like', $request->input('term') . '%')->get();
+        }
+    }
+    public function autocompleteMarcaMed(Request $request)
+    {
+        if ($request->has('term')) {
+            return MarcaMedicamento::where('nombre_marca', 'like', $request->input('term') . '%')->get();
+            // return Farmacia::where('nombre_farmacia', 'like', $request->input('term') . '%')->get();
+        }
     }
 }
