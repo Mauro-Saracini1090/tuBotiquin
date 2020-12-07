@@ -27,14 +27,14 @@ class RolMiddleware
     {
         // se usa array_slice para quitar o no tomar del arreglo los dos primeros elementos
         //$roles = array_slice(func_get_args(),2);
-
-        foreach ($roles as $rol) {
-
-            if (auth()->user()->tieneRole($rol)){
-                return $next($request);
+        if (auth()->user() != null) {
+            foreach ($roles as $rol) {
+                if (auth()->user()->tieneRole($rol)) {
+                    return $next($request);
+                }
             }
         }
-
-        abort(404);
+        // abort(404);
+        return redirect(route('login'));
     }
 }
