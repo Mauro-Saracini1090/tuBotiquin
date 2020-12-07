@@ -145,7 +145,7 @@ class MedicamentoController extends Controller
     public function listadoStockMedicamento(Request $request)
     {
         if (\auth()->user()->getRoles->contains('slug_rol', 'es-farmaceutico')) {
-
+            
             $farmacia = $request->get('farmacia_id');
             $medica = $request->get('medicamento_id');
             $tipo = $request->get('tipo_id');
