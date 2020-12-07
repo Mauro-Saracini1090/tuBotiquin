@@ -17,7 +17,7 @@
         type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/tuBotiquin/public/css/styles.css" rel="stylesheet">
+    <link href="/tubotiquin/tuBotiquin/public/css/styles.css" rel="stylesheet">
     <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
 
     {{-- Leaflet - map osm --}}
@@ -71,35 +71,43 @@
                     </li>
                     @endcannot
 
-                    @can('esFarmaceutico')
-                        <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                                href="{{ route('panel.farmaceutico') }}">Farmaceutico</a>
-                        </li>
-                    @endcan
-
-
                     @auth
                         <li class="nav-item my-auto mx-0 mx-lg-1">
                             <div class="dropdown">
 
                                 <a class="nav-link dropdown-toggle rounded js-scroll-trigger" data-toggle="dropdown"
+
+
                                     href="#dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->email }}
                                     <img class="shadow rounded-circle" src="{{ url('/') . Auth::user()->img_perfil }}"
                                         alt="Imagen de perfil avatar" width="38px" height="38px">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-lg-right">
-                                    <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}">Mi Perfil</a>
+                                    <!-- MENU FARMACEUTICO -->
+                                    @can('esFarmaceutico')
+                                        <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}"><i class="material-icons px-2 align-middle">account_box</i><span class="mb-4">Mi Perfil</span></a>
+                                        <a class="dropdown-item" href="{{ route('panel.farmaceutico') }}"><i class="material-icons px-2 align-middle">settings</i>Farmacuetico</a>     
+                                    @endcan 
+                                     <!-- MENU REGISTRADO -->
+                                    @can('esRegistrado')
+                                        <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}"><i class="material-icons px-2 align-middle">account_box</i><span class="mb-4">Mi Perfil</span></a> 
+                                        <a class="dropdown-item" href=""><i class="material-icons px-2 align-middle">shopping_cart</i><span class="mb-4">Mis Reservas</span></a>   
+                                    @endcan 
+                                    <!-- FIN MENUS DROPDOWN -->   
+                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="material-icons px-2 align-middle">exit_to_app</i>SALIR</a>         
                                 </div>
-
+                                
                             </div>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
+
                             <a class="nav-link py-3 px-0 px-lg-3 rounded " href="#salir"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 SALIR
                             </a>
+
                         </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none btn btn-success">
                             @csrf
@@ -169,10 +177,10 @@
                         <!-- Footer Social Icons-->
                         <div class="col-lg-4 mb-5 mb-lg-0">
                             <h4 class="text-uppercase mb-4">Buscanos</h4>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
+                            <a target="_blank" class="btn btn-outline-light btn-social mx-1" title="Link a red social Facebook" href="https://www.facebook.com"><i
                                     class="fab fa-fw fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
+                            <a target="_blank" class="btn btn-outline-light btn-social mx-1" title="Link a red social Twitter" href="https://www.twitter.com"><i class="fab fa-fw fa-twitter"></i></a>
+                            <a target="_blank" class="btn btn-outline-light btn-social mx-1" title="Link a red social Instagram" href="https://www.instagram.com"><i
                                     class="fab fa-fw fa-instagram"></i></a>
                         </div>
                         <!-- Footer About Text-->
@@ -190,7 +198,7 @@
             </footer>
             <!-- Copyright Section-->
             <div class="copyright py-4 text-center text-white">
-                <div class="container">© TuBotiquín 2020</div>
+                <div class="container">© TuBotiquín <?php echo date('Y') ?></div>
             </div>
             <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
             <div class="scroll-to-top d-lg-none position-fixed">

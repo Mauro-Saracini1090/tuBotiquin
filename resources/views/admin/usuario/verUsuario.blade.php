@@ -2,9 +2,9 @@
 @section('datos')
 <h3>Informacion de Usuario {{ $usuario->nombre }} {{ $usuario->apellido }}</h3>
 <h5>El Usuario se encuentra: @if ($usuario->habilitado == 1)
-    Habilitado
+    <span class="text-success">Habilitado</span>
 @else
-    Deshabilitado
+    <span class="text-danger">Deshabilitado</span>
 @endif </h5>
 
 @if($usuario->habilitado == 0)
@@ -13,13 +13,13 @@
         Habilitar Usuario
     </a>
 </span>
-@endif
+@else
 <span class="align-bottom">
     <a class="btn btn-panel btn-danger bg-danger  my-1" href="#" data-toggle="modal" data-target="#habilitacion" data-habi="0">
         Dehabilitar Usuario
     </a>
 </span>
-           
+@endif           
 
 <table class="table table-dark">
     <tbody>
