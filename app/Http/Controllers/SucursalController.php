@@ -288,11 +288,12 @@ class SucursalController extends Controller
     public function almacenarStockMedicamento(Request $request, Sucursal $sucursal)
     {
         //
+        // dd($request);
         $request->validate([
-            'medicamento_id' => 'required',
+            'nombreMedicamento' => 'required',
             'cantidad' => 'required|min:1|max:50',
         ], [
-            'medicamento_id.required' => 'Seleccionar un Medicamento es obligatorio.'
+            'nombreMedicamento.required' => 'Seleccionar un Medicamento es obligatorio.'
         ]);
         $cantidadTotal = 0;
         $cantidadActualSucursal = 0;
@@ -323,6 +324,14 @@ class SucursalController extends Controller
 
         return redirect(route('medicamentos.cargar', [$sucursal]))->with('medicamento', 'Se a registrado exitosamente la nueva carga de stock.');
     }
+
+    public function getAutocompleteData(Request $request)
+    {
+        if($request->has('term')){
+            return Medicamento::where('nombre_medicamento','like','%'.$request->input('term').'%')->get();
+        }
+           
+    } 
 
     public function verMedicamentosFarmacia(Farmacia $farmacia)
     {
