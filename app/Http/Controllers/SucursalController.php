@@ -10,7 +10,7 @@ use App\Models\Farmacia;
 use App\Models\Medicamento;
 use App\Models\ObraSocial;
 use App\Models\Usuario;
-Use App\Mail\MensajeContactoFarmaceutico;
+use App\Mail\MensajeContactoFarmaceutico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -131,7 +131,6 @@ class SucursalController extends Controller
     {
         //
         Gate::authorize('esAdmin');
-
         return view('admin.sucursales.informacionSucursal', compact('sucursal'));
     }
 
@@ -327,11 +326,10 @@ class SucursalController extends Controller
 
     public function getAutocompleteData(Request $request)
     {
-        if($request->has('term')){
-            return Medicamento::where('nombre_medicamento','like','%'.$request->input('term').'%')->get();
+        if ($request->has('term')) {
+            return Medicamento::where('nombre_medicamento', 'like', $request->input('term') . '%')->get();
         }
-           
-    } 
+    }
 
     public function verMedicamentosFarmacia(Farmacia $farmacia)
     {
@@ -362,12 +360,12 @@ class SucursalController extends Controller
         return view('registrado.listadoMedicametosFarmacia', compact('arrayMedicamentos', 'farmacia'));
     }
 
-    public function borrarStockSucursal(Sucursal $sucursal,Medicamento $medicamento)
+    public function borrarStockSucursal(Sucursal $sucursal, Medicamento $medicamento)
     {
         // dd($sucursal);
         // dd($medicamento);
-        $cantidadActualSucursal = DB::table('sucursal_medicamento')->select('cantidad')->where('medicamento_id','=',$medicamento->id_medicamento)->where('sucursal_id','=',$sucursal->id_sucursal)->first();
-        $cantidadTotalFarmacia = DB::table('sucursal_medicamento')->select('cantidadTotal')->where('medicamento_id','=',$medicamento->id_medicamento)->where('sucursal_id','=',$sucursal->id_sucursal)->first();
+        $cantidadActualSucursal = DB::table('sucursal_medicamento')->select('cantidad')->where('medicamento_id', '=', $medicamento->id_medicamento)->where('sucursal_id', '=', $sucursal->id_sucursal)->first();
+        $cantidadTotalFarmacia = DB::table('sucursal_medicamento')->select('cantidadTotal')->where('medicamento_id', '=', $medicamento->id_medicamento)->where('sucursal_id', '=', $sucursal->id_sucursal)->first();
         // dd($cantidadActualSucursal);
         // dd($cantidadTotalFarmacia);
         $farmacia = $sucursal->getFarmacia;
@@ -382,15 +380,14 @@ class SucursalController extends Controller
                 }
             }
         }
-        DB::table('sucursal_medicamento')->where('medicamento_id','=',$medicamento->id_medicamento)->where('sucursal_id','=',$sucursal->id_sucursal)->delete();
+        DB::table('sucursal_medicamento')->where('medicamento_id', '=', $medicamento->id_medicamento)->where('sucursal_id', '=', $sucursal->id_sucursal)->delete();
         return redirect(route('medicamentos.cargar', [$sucursal]))->with('medicamento', 'El Stock de la Sucursal se ha borrado correctamente.');
-
     }
 
-     /**
+    /**
      * Funcion que retorna un formulario de vista.
      * Pertenece al user Farmaceutico y lo recibe el admin en su correo
-     */    
+     */
     public function contactarAdmin()
     {
         $id_usuario = auth()->user()->id_usuario;
@@ -406,16 +403,15 @@ class SucursalController extends Controller
     {
         //Valida los campos del formulario de contactar al Administrador
         $request->validate([
-           //'email' => 'email|max:255',
-            'motivo' =>'required',
+            //'email' => 'email|max:255',
+            'motivo' => 'required',
             'consulta' => 'required|max:900',
-         ]);
+        ]);
 
-         $variablesContacto = $request;
-         // Si la validacion es correcta se procede a enviar el mail al administrador de Tubotiquín
+        $variablesContacto = $request;
+        // Si la validacion es correcta se procede a enviar el mail al administrador de Tubotiquín
         Mail::to('tubotiquin2020@gmail.com')->send(new MensajeContactoFarmaceutico($variablesContacto));
         return redirect(route('panel.farmaceutico'))->with('mensajeEnviado', 'Su mensaje fue enviado con exito, a la brevedad le estaremos respondiendo. Gracias por su consulta');
-       //dd($variablesContacto);    
+        //dd($variablesContacto);    
     }
-
 }
