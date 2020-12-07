@@ -10286,3 +10286,8 @@ form .row:first-child .floating-label-form-group {
   background-color: #344557;
   color: #fff;
  }
+ #table-medicamentos {
+  max-height: 700px;
+  overflow: auto;
+  display:inline-block;
+}
