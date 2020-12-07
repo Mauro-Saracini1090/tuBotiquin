@@ -51,5 +51,13 @@ class Sucursal extends Model
         return $this->belongsToMany(Medicamento::class,'sucursal_medicamento','sucursal_id','medicamento_id')->withPivot('cantidad','cantidadTotal');;
     }
 
+    //Scope nombre farmacia
+    public function scopeFarmacia($query, $idFarmacia)
+    {
+        if ($idFarmacia) {
+            # code...
+            return $query->where('id_sucursal', '=', $idFarmacia);
+        }
+    }
  
 }
