@@ -38,7 +38,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <img class="card-img-top" src="{{ asset($sucursal->getFarmacia->img_farmacia) }}"
                             alt="Logotipo" width="100" height="150">
                     </div>
