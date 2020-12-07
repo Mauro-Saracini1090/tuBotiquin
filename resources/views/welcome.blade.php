@@ -24,6 +24,11 @@
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 
+    <script src="https://unpkg.com/jquery@2.2.4/dist/jquery.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
 </head>
 
 <body id="page-top">
@@ -71,11 +76,12 @@
                             <div class="dropdown">
 
                                 <a class="nav-link dropdown-toggle rounded js-scroll-trigger" data-toggle="dropdown"
-                                    href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->nombre_usuario }}
-                                    <img class="rounded-circle"
-                                        src="{{ url('/') . Auth::user()->img_perfil }}" alt=""
-                                        width="38px" height="38px">
+
+
+                                    href="#dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->email }}
+                                    <img class="shadow rounded-circle" src="{{ url('/') . Auth::user()->img_perfil }}"
+                                        alt="Imagen de perfil avatar" width="38px" height="38px">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-lg-right">
                                     <!-- MENU FARMACEUTICO -->
@@ -96,6 +102,12 @@
                             </div>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
+
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded " href="#salir"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                SALIR
+                            </a>
+
                         </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none btn btn-success">
                             @csrf
@@ -139,7 +151,7 @@
                             <li><a href="{{ route('emailcontacto') }}" class="text-white">CONTACTO</a> </li>
                             @auth
                                 <li>
-                                    <a href="#" class="text-white"
+                                    <a href="#salir" class="text-white"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         SALIR
                                     </a>
@@ -177,7 +189,7 @@
                             <p class="lead mb-0">
                                 Aquí podrás ver las farmacias que se encuentran de turno
                                 <hr>
-                                <a href="#" class="text-white">PREGUNTAS FRECUENTES</a></li>
+                                <a href="#PreguntasFrecuentes" class="text-white">PREGUNTAS FRECUENTES</a></li>
                             </p>
 
                         </div>
@@ -199,9 +211,9 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
             <!-- Third party plugin JS-->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-            <!-- Contact form JS-->
-            <script src="assets/mail/jqBootstrapValidation.js"></script>
-            <script src="assets/mail/contact_me.js"></script>
+
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.js"></script>
             <!-- Core theme JS-->
             <!-- <script src="js/scripts.js"></script> -->
             @yield('zona_js')

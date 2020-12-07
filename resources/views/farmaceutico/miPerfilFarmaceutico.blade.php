@@ -129,7 +129,7 @@
     <script>
         document.getElementById("file").onchange = function(e) {
             // Creamos el objeto de la clase FileReader
-            console.log("chau");
+            // console.log("chau");
             let reader = new FileReader();
 
             // Leemos el archivo subido y se lo pasamos a nuestro fileReader
@@ -146,7 +146,6 @@
 
             };
         }
-
     </script>
     <script>
         $('#deleteModal').on('show.bs.modal', function(event) {
