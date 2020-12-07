@@ -78,14 +78,17 @@
                                         width="38px" height="38px">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-lg-right">
+                                    <!-- MENU FARMACEUTICO -->
                                     @can('esFarmaceutico')
                                         <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}"><i class="material-icons px-2 align-middle">account_box</i><span class="mb-4">Mi Perfil</span></a>
                                         <a class="dropdown-item" href="{{ route('panel.farmaceutico') }}"><i class="material-icons px-2 align-middle">settings</i>Farmacuetico</a>     
                                     @endcan 
+                                     <!-- MENU REGISTRADO -->
                                     @can('esRegistrado')
                                         <a class="dropdown-item" href="{{ route('miPerfilFarmacuetico') }}"><i class="material-icons px-2 align-middle">account_box</i><span class="mb-4">Mi Perfil</span></a> 
                                         <a class="dropdown-item" href=""><i class="material-icons px-2 align-middle">shopping_cart</i><span class="mb-4">Mis Reservas</span></a>   
-                                    @endcan    
+                                    @endcan 
+                                    <!-- FIN MENUS DROPDOWN -->   
                                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="material-icons px-2 align-middle">exit_to_app</i>SALIR</a>         
                                 </div>
