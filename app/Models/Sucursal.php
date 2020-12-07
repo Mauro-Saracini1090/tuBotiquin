@@ -56,7 +56,7 @@ class Sucursal extends Model
     {
         if ($idFarmacia) {
             # code...
-            return $query->where('id_sucursal', '=', $idFarmacia);
+            return $query->where('id_farmacia', '=', $idFarmacia);
         }
     }
  
