@@ -25,4 +25,28 @@ class Medicamento extends Model
     {
         return $this->belongsToMany(Sucursal::class,'sucursal_medicamento','medicamento_id','sucursal_id')->withPivot('cantidad','cantidadTotal');;
     }
+    //Scope nombre farmacia
+    public function scopeNombreMedicamento($query, $nombreMedicamento)
+    {
+        if ($nombreMedicamento) {
+            # code...
+            return $query->where('id_medicamento', '=', "$nombreMedicamento");
+        }
+    }
+    //Scope nombre farmacia
+    public function scopeTipo($query, $tipo)
+    {
+        if ($tipo) {
+            # code...
+            return $query->where('tipo_id', '=', $tipo);
+        }
+    }
+    //Scope nombre farmacia
+    public function scopeMarca($query, $marca)
+    {
+        if ($marca) {
+            # code...
+            return $query->where('marca_id', '=', $marca);
+        }
+    }
 }

@@ -97,6 +97,10 @@ Route::resource('medicamentos',MedicamentoController::class)->middleware('roles:
 Route::get('cargarMedicamento/{sucursal}/cargarStock',[SucursalController::class,'cargarStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.cargar');
 Route::patch('almacenarStockMedicamento/{sucursal}',[SucursalController::class,'almacenarStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.almacenar');
 Route::get('autocomplete',[SucursalController::class,'getAutocompleteData'])->name('autocomplete');
+Route::get('listadoStock',[MedicamentoController::class,'listadoStockMedicamento'])->middleware('roles:es-farmaceutico')->name('medicamentos.listado');
+Route::get('autocompleteFarmacias',[MedicamentoController::class,'autocompleteFarmacia'])->name('autocomplete.farmacia');
+Route::get('autocompleteTipoMedicamento',[MedicamentoController::class,'autocompleteTipoMed'])->name('autocomplete.tipo');
+Route::get('autocompleteMarcaMedicamento',[MedicamentoController::class,'autocompleteMarcaMed'])->name('autocomplete.marca');
 
 
 Route::get('listado/{farmacia}/medicamentos',[SucursalController::class,'verMedicamentosFarmacia'])->middleware('roles:es-registrado')->name('listado.medicamentos');
