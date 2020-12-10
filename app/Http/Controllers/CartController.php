@@ -107,30 +107,30 @@ class CartController extends Controller
     {
         // dd($request);
         $sucursal = Sucursal::where('id_sucursal', '=', $request->id_sucursal)->first();
-        $farmacia = $sucursal->getFarmacia;
-        $arrSucursal = $farmacia->getSucursales;
-        // dd($farmacia->getSucursales);
+        // $farmacia = $sucursal->getFarmacia;
+        // $arrSucursal = $farmacia->getSucursales;
+        // // dd($farmacia->getSucursales);
 
-        foreach ($request->medicamentos as $unidadMed) {
-            // dd(count($farmacia->getSucursales));
-            foreach ($arrSucursal as $uniSucursal) {
-                // dd($arrSucursal);
-                if ((DB::table('sucursal_medicamento')->where('medicamento_id', '=', $unidadMed)->where('sucursal_id', '=', $uniSucursal->id_sucursal)->first()) != []) {
-                    $med = $uniSucursal->getMedicamentos()->where('medicamento_id', '=', $unidadMed)->first();
-                    // dd($med->pivot->cantidadTotal);
-                    // dd($request->cantidad[$unidadMed]);
-                    $cantidadTotal = $med->pivot->cantidadTotal;
-                    if ($cantidadTotal < $request->cantidad[$unidadMed]) {
-                        return redirect(route('cart.checkout'))->with('overflow', 'Alguno de los items ingresados supera lo que hay el Stock Total Disponible, Verifique y Elimine el item del Carro e ingrese una cantidad valida');
-                    }
-                    $uniSucursal->getMedicamentos()->updateExistingPivot($unidadMed, ['cantidadTotal' => ($cantidadTotal - $request->cantidad[$unidadMed])]);
-                    //  if($med->pivot->cantidadTotal == 0 )
-                    // {
-                    //     $uniSucursal->getMedicamentos()->detach();
-                    // }
-                }
-            }
-        }
+        // foreach ($request->medicamentos as $unidadMed) {
+        //     // dd(count($farmacia->getSucursales));
+        //     foreach ($arrSucursal as $uniSucursal) {
+        //         // dd($arrSucursal);
+        //         if ((DB::table('sucursal_medicamento')->where('medicamento_id', '=', $unidadMed)->where('sucursal_id', '=', $uniSucursal->id_sucursal)->first()) != []) {
+        //             $med = $uniSucursal->getMedicamentos()->where('medicamento_id', '=', $unidadMed)->first();
+        //             // dd($med->pivot->cantidadTotal);
+        //             // dd($request->cantidad[$unidadMed]);
+        //             $cantidadTotal = $med->pivot->cantidadTotal;
+        //             if ($cantidadTotal < $request->cantidad[$unidadMed]) {
+        //                 return redirect(route('cart.checkout'))->with('overflow', 'Alguno de los items ingresados supera lo que hay el Stock Total Disponible, Verifique y Elimine el item del Carro e ingrese una cantidad valida');
+        //             }
+        //             $uniSucursal->getMedicamentos()->updateExistingPivot($unidadMed, ['cantidadTotal' => ($cantidadTotal - $request->cantidad[$unidadMed])]);
+        //             //  if($med->pivot->cantidadTotal == 0 )
+        //             // {
+        //             //     $uniSucursal->getMedicamentos()->detach();
+        //             // }
+        //         }
+        //     }
+        // }
         $reserva = new Reserva();
         $reserva->numero_reserva = rand(1000, 9999999);
         $reserva->sucursal_id = $sucursal->id_sucursal;
@@ -142,8 +142,9 @@ class CartController extends Controller
         foreach ($request->medicamentos as $unidadMed) {
             $reserva->reservaMedicamentos()->attach($unidadMed, ['cantidad' => $request->cantidad[$unidadMed]]);
         }
-
+        
         Mail::to($sucursal->email_sucursal)->send(new reservaRealizadaMailable($reserva));
+
         \Cart::clear();
         return redirect(route('cart.checkout'))->with('reservaconfirmada', 'Su Reserva a ha sido registrada, recibira una notificacion cuando pueda retirar su pedido.');
         // dd($arrSucursal);
