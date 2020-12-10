@@ -15,12 +15,9 @@ class CreateEstadosTable extends Migration
     {
         Schema::create('estados', function (Blueprint $table) {
             $table->id('id_estados');
-            $table->bigInteger('tipo_estados_id')->unsigned();
-            $table->date('fecha_caducidad_estados');
-            $table->date('fecha_solicitud_estados');
+            $table->string('descripcion_tipo_estados', 255);
             $table->timestamps();
 
-            $table->foreign('tipo_estados_id')->references('id_tipo_estados')->on('tipo_estados')->onDelete('cascade');
         });
     }
 
