@@ -30,7 +30,7 @@ class Farmacia extends Model
     //Para obtener todas las sucursales
     public function getSucursales()
     {
-        return $this->hasMany(Sucursal::class, 'id_farmacia', 'id_farmacia');
+        return $this->hasMany(Sucursal::class,'id_farmacia','id_farmacia');
     }
 
 
