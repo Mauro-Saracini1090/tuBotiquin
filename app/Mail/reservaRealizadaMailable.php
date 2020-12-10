@@ -34,7 +34,7 @@ class reservaRealizadaMailable extends Mailable
      */
     public function build()
     {
-        $infoReserva=$this->reserva;
-        return $this->view('emails.Farmaceutico.farmaciaAprobada',compact('infoReserva'));
+        $reserva=$this->reserva;
+        return $this->view('emails.Farmaceutico.reservaSolicitada',compact('reserva'));
     }
 }
