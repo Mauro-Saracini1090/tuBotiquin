@@ -51,6 +51,11 @@ class Sucursal extends Model
         return $this->belongsToMany(Medicamento::class,'sucursal_medicamento','sucursal_id','medicamento_id')->withPivot('cantidad','cantidadTotal');;
     }
 
+    public function getReservas()
+    {
+        return $this->hasMany(Reserva::class,'sucursal_id','id_sucursal');
+    }
+
     //Scope nombre farmacia
     public function scopeFarmacia($query, $idFarmacia)
     {
