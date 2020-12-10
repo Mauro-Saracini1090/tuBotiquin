@@ -154,7 +154,7 @@ class Cart
      * @return $this
      * @throws InvalidItemException
      */
-    public function add($id, $name = null, $price = null, $quantity = null, $attributes = array(), $conditions = array(), $associatedModel = null)
+    public function add($id, $name = null, $price = null, $quantity = null, $farmacia, $attributes = array(), $cantidadtotal, $conditions = array(), $associatedModel = null)
     {
         // if the first argument is an array,
         // we will need to call add again
@@ -193,8 +193,10 @@ class Cart
             'name' => $name,
             'price' => Helpers::normalizePrice($price),
             'quantity' => $quantity,
+            'farmacia' => $farmacia,
             'attributes' => new ItemAttributeCollection($attributes),
-            'conditions' => $conditions
+            'conditions' => $conditions,
+            'total' => $cantidadtotal,
         );
 
         if (isset($associatedModel) && $associatedModel != '') {
@@ -698,16 +700,15 @@ class Cart
     {
         $rules = array(
             'id' => 'required',
-            'price' => 'required|numeric',
-            'quantity' => 'required|numeric|min:1',
+            'quantity' => 'required|numeric|min:1|max:5',
             'name' => 'required',
         );
 
         $validator = CartItemValidator::make($item, $rules);
 
-        if ($validator->fails()) {
-            throw new InvalidItemException($validator->messages()->first());
-        }
+        // if ($validator->fails()) {
+        //     throw new InvalidItemException($validator->messages()->first());
+        // }
 
         return $item;
     }
