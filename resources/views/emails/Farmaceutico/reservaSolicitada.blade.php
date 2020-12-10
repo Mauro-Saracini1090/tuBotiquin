@@ -11,7 +11,6 @@
     <p>Usuario Solicitante: {{ $reserva->reservaUsuario->nombre }} {{ $reserva->reservaUsuario->apellido }} - {{ $reserva->reservaUsuario->email }} - {{ $reserva->reservaUsuario->telefono_movil }}</p>
     <p>Numero Reserva: {{ $reserva->numero_reserva }}</p>
     <p>Sucursal de Retiro: {{ $reserva->getSucursal->getFarmacia->nombre_farmacia }} - {{ $reserva->getSucursal->direccion_sucursal }}</p>
-    <p>Sucursal de Retiro: {{ $reserva->getSucursal->getFarmacia->nombre_farmacia }} - {{ $reserva->getSucursal->direccion_sucursal }}</p>
     <p> Lisado Productos:
         <ul>
             @foreach($reserva->reservaMedicamentos as $medicamento)
@@ -21,7 +20,7 @@
             @endforeach
         </ul>
     </p>
-    <p>{{ $reserva->fecha_solicitud_estados }}</p>
-    <p>{{ $reserva->fecha_caducidad_estados }}</p>
+    <p>Fecha de Solicitud: {{ $reserva->fecha_solicitud_estados }}</p>
+    <p>Fecha Vencimiento Reserva:{{ $reserva->fecha_caducidad_estados }}</p>
 </body>
 </html>
