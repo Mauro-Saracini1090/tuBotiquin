@@ -18,13 +18,13 @@ class EstadosReservaSeeder extends Seeder
         DB::table('estados')->insert([
             'descripcion_tipo_estados' => 'Solicitado',
         ]);
-        DB::table('tipo_medicamentos')->insert([
+        DB::table('estados')->insert([
             'descripcion_tipo_estados' => 'Rechazada',
         ]);
-        DB::table('tipo_medicamentos')->insert([
+        DB::table('estados')->insert([
             'descripcion_tipo_estados' => 'Aceptada',
         ]);
-        DB::table('tipo_medicamentos')->insert([
+        DB::table('estados')->insert([
             'descripcion_tipo_estados' => 'Caducado',
         ]);
 

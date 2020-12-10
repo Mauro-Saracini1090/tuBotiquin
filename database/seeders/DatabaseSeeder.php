@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         ObraSocialSeeder::class,
         TipoMedicamentoSeeder::class,
         MarcaMedicamentoSeeder::class,
+        EstadosReservaSeeder::class,
         ]);
     }
 }
