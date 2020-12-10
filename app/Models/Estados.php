@@ -14,7 +14,11 @@ class Estados extends Model
     
     protected $fillable = [
         'tipo_estados_id',
-        'fecha_caducidad_estados',
-        'fecha_solicitud_estados',
+        
     ];
+
+    public function getReserva()
+    {
+        return $this->hasOne(Reserva::class,'estados_id','id_estados');
+    }
 }
