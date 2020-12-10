@@ -6,7 +6,9 @@ use App\Models\Usuario;
 use App\Http\Controllers\Controller;
 use App\Mail\SolicitudUsuarioAceptadaMailable;
 use App\Mail\SolicitudUsuarioRechazadaMailable;
+use App\Models\Estados;
 use App\Models\Localidad;
+use App\Models\Reserva;
 use App\Models\Role;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
@@ -338,5 +340,63 @@ class UsuarioController extends Controller
             Mail::to($usuario->email)->send(new SolicitudUsuarioAceptadaMailable);
         }
         return redirect(route('usuario.show', [$usuario->id_usuario]));
+    }
+
+    
+    public function historialReservaRegistrado(Request $request)
+    {
+        Gate::authorize('esRegistrado');
+        // if ($request->ajax()){
+        //     dd($request);
+        //     $farmacia = Farmacia::where('id_farmacia',$request->farmacia_id)->first();
+        //     $obs = $farmacia->obrasSociales;
+        //     return $obs;
+        // }
+        $usuario = Usuario::where('id_usuario','=',auth()->user()->id_usuario)->first();
+        $reservas = $usuario->usuarioReservas;
+
+        foreach ($reservas as $reserva) {
+            # code...
+            if($reserva->estados_id == 1 && date('Y-m-d') > $reserva->fecha_caducidad_estados){
+                $reserva->estados_id = 4;
+                $reserva->save();
+            }
+        }
+
+        return view('registrado.historialReservaRegistrado',compact('reservas'));
+    }
+
+    public function historialReservaFarmaceutico(Request $request)
+    {
+        // dd($request);
+        Gate::authorize('esFarmaceutico');
+        $usuario = Usuario::where('id_usuario','=',auth()->user()->id_usuario)->first();
+        $sucursales = $usuario->getSucursales;
+        // dd($sucursales);
+        $farmacia = [];
+        $reservas = [];
+        // dd($sucursales);
+        foreach ($sucursales as $sucursal) {
+            $farmacia = $sucursal->getFarmacia;
+            foreach ($farmacia->getSucursales()->Farmacia($request->farmacia_id)->get() as $sucursalesFarma){
+                # code...
+                foreach ($sucursalesFarma->getReservas()->Estado($request->estado_id)->FechaSolicitud($request->solicitud_id)->FechaVencimiento($request->vencimiento_id)->get() as $reservasFarmacia) {
+                    # code...
+                    array_push($reservas,$reservasFarmacia);
+                } 
+            }
+        }
+
+        foreach ($reservas as $reserva) {
+            # code...
+            if($reserva->estados_id == 1 && date('Y-m-d') > $reserva->fecha_caducidad_estados){
+                $reserva->estados_id = 4;
+                $reserva->save();
+            }
+        }  
+        
+        $estados = Estados::all();
+
+        return view('farmaceutico.historialReservaFarmaceutico',compact('reservas','estados'));
     }
 }

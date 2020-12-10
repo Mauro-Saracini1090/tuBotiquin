@@ -25,6 +25,10 @@ class Medicamento extends Model
     {
         return $this->belongsToMany(Sucursal::class,'sucursal_medicamento','medicamento_id','sucursal_id')->withPivot('cantidad','cantidadTotal');;
     }
+    public function medicamentosReserva()
+    {
+        return $this->belongsToMany(Reserva::class,'reserva_medicamento','medicamento_id','reserva_id')->withPivot('cantidad');
+    }
     //Scope nombre farmacia
     public function scopeNombreMedicamento($query, $nombreMedicamento)
     {

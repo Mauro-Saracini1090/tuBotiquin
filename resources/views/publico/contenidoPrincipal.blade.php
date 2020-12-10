@@ -19,7 +19,24 @@
                     </div>    
                 </div>        
             @endif
-                        <!-- para determinar el estado de la sesion -->
+            @can('esRegistrado')
+            <!-- Section of  Cancelar Reserva -->
+            @if(session()->has('cancelar'))
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 mx-auto">
+                            <div class="text-left alert alert-warning alert-dismissible fade show" role="alert">
+                                <p class="font-weight-bold">{{ session()->get('cancelar') }}</p> 
+                                <strong><p class="text-right">Equipo TuBotiquín</p></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>    
+                </div>        
+            @endif
+            @endcan            <!-- para determinar el estado de la sesion -->
             @if(session()->has('estado'))
             <div class="alert alert-success alert-dismissible fade show focus" role="alert">
                 <strong>{{ session()->get('estado') }}</strong>
@@ -114,12 +131,12 @@
                                                     <li class="list-group-item">
                                                         <div class="row">
                                                             <div class="col-1"><i class="material-icons">local_phone</i></div>
-                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursal->telefono_fijo }} </span></div>
+                                                            <div class="col-10"><span class="font-weight-bold text-secondary">{{ $sucursalesTurno[0]->telefono_fijo }} </span></div>
                                                         </div>
                                                     </li>   
 
 
-                                                    @if($sucursal->telefono_movil != "")
+                                                    @if($sucursalesTurno[0]->telefono_movil != "")
                                                         <li class="list-group-item">
                                                             <div class="row">
                                                                 <div class="col-1">

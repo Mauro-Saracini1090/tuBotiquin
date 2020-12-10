@@ -7,6 +7,7 @@ use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\FarmaciaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocalidadController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\MedicamentoController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\ObraSocialController;
+use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\TipoMedicamentoController;
 use App\Models\MarcaMedicamento;
 use App\Models\TipoMedicamento;
@@ -86,6 +88,12 @@ Route::patch('subirfotoperfil/{usuario}', [UsuarioController::class, 'cargarFoto
 Route::get('editarperfil', [UsuarioController::class, 'editarPerfil'])->middleware('roles:es-farmaceutico,es-registrado')->name('editarPerfil');
 Route::patch('editarperfil/actualizar/{usuario}', [UsuarioController::class, 'actualizarPerfil'])->middleware('roles:es-farmaceutico,es-registrado')->name('actualizarPerfil');
 Route::delete('darDeBajaCuenta/{usuario}',[UsuarioController::class,'darDeBajaCuenta'])->middleware('roles:es-farmaceutico,es-registrado')->name('perfil.bajaCuenta');
+Route::get('historialreservasFarmacia',[UsuarioController::class,'historialReservaFarmaceutico'])->middleware('roles:es-farmaceutico')->name('listado.reservas.farmaceutico');
+Route::get('autocompleteporfarmacia',[ReservaController::class,'autocompleteporfarmacia'])->name('autocomplete.reserva.farmacia');
+Route::get('autocompleteporestado',[ReservaController::class,'autocompleteporestado'])->name('autocomplete.reserva.estado');
+Route::get('autocompleteporfechasolicitud',[ReservaController::class,'autocompleteporfechasolicitud'])->name('autocomplete.reserva.fechasolicitud');
+Route::get('autocompleteporfechavencimiento',[ReservaController::class,'autocompleteporfechavencimiento'])->name('autocomplete.reserva.fechavencimiento');
+
 
 //E-mail contacto
 Route::get('emailcontacto', [HomeController::class,'emailContacto'])->name('emailcontacto'); 
@@ -103,9 +111,26 @@ Route::get('autocompleteTipoMedicamento',[MedicamentoController::class,'autocomp
 Route::get('autocompleteMarcaMedicamento',[MedicamentoController::class,'autocompleteMarcaMed'])->name('autocomplete.marca');
 
 
+Route::get('historialreservasregistrado',[UsuarioController::class,'historialReservaRegistrado'])->middleware('roles:es-registrado')->name('listado.reservas.registrado');
 Route::get('listado/{farmacia}/medicamentos',[SucursalController::class,'verMedicamentosFarmacia'])->middleware('roles:es-registrado')->name('listado.medicamentos');
 Route::delete('borrarStockSucursal/{sucursal}/{medicamento}',[SucursalController::class,'borrarStockSucursal'])->middleware('roles:es-farmaceutico')->name('stocksucursal.borrar');
 
 //Contactar Al Admin
 Route::get('contactaradministrador', [SucursalController::class,'contactarAdmin'])->middleware('roles:es-farmaceutico')->name('contactarAdmin');
 Route::post('enviarmailadministrador', [SucursalController::class,'enviarEmailAdministrador'])->middleware('roles:es-farmaceutico')->name('enviarEmailAdministrador');
+
+//cart
+Route::post('/cart-add', [CartController::class,'add'])->name('cart.add');
+
+Route::get('/cart-checkout',[CartController::class,'cart'])->name('cart.checkout');
+
+Route::post('/cart-clear',[CartController::class,'clear'])->name('cart.clear');
+
+Route::post('/cart-removeitem',[CartController::class,'removeitem'])->name('cart.removeitem');
+
+Route::post('/reserva-confirmada',[CartController::class,'confirmarReserva'])->name('cart.confirmar-reserva');
+
+Route::get('/cancelar-reserva',[CartController::class,'cancelarReserva'])->name('cart.cancelar-reserva');
+
+//reserva
+Route::post('solicitudReserva', [ReservaController::class,'solicitudReserva'])->name('solicitudReserva')->middleware('roles:es-farmaceutico');

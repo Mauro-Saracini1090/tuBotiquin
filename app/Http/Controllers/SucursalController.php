@@ -11,7 +11,9 @@ use App\Models\Medicamento;
 use App\Models\ObraSocial;
 use App\Models\Usuario;
 use App\Mail\MensajeContactoFarmaceutico;
+use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
@@ -331,8 +333,26 @@ class SucursalController extends Controller
         }
     }
 
-    public function verMedicamentosFarmacia(Farmacia $farmacia)
+    public function verMedicamentosFarmacia(Farmacia $farmacia,SessionManager $sessionManager)
     {
+        if (count(\Cart::getContent())) {
+            foreach (\Cart::getContent() as $item) {
+                $farmaciaEnCarrito = Farmacia::where('id_farmacia','=',$item->farmacia)->first();
+                if ($farmaciaEnCarrito->id_farmacia != $farmacia->id_farmacia) {
+                    foreach ($farmaciaEnCarrito->getSucursales as $sucursal) {
+                        if ((DB::table('sucursal_medicamento')->where('medicamento_id', '=', $item->id)->where('sucursal_id', '=', $sucursal->id_sucursal)->first()) != []) {
+                            $med = $sucursal->getMedicamentos()->where('medicamento_id', '=', $item->id)->first();
+                            // $medReserva = $reserva->getMedicamentos()->where('medicamento_id','=',$medicamentos->id_medicamento)->first();
+                            $cantidadTotal = $med->pivot->cantidadTotal;
+                            $sucursal->getMedicamentos()->updateExistingPivot($item->id, ['cantidadTotal' => ($cantidadTotal + $item->quantity)]);
+                        }
+                    }
+                    $sessionManager->flash('clear', "Su carrito de reservas a sido reseteado, recuerde que solo puede reservar en una farmacia a la vez.");
+                    \Cart::clear();
+                }
+            }
+        }
+        
         $arrayMedicamentos = [];
         if ($farmacia->getSucursales != null) {
             foreach ($farmacia->getSucursales as $sucursal) {
@@ -344,13 +364,15 @@ class SucursalController extends Controller
                             $bandera = true;
                             $a = 0;
                             while ($bandera && $a < count($arrayMedicamentos)) {
-                                if ($arrayMedicamentos[$a]->id_medicamento != $medicamento->id_medicamento) {
-                                    array_push($arrayMedicamentos, $medicamento);
-                                    $a++;
+                                if ($arrayMedicamentos[$a]->id_medicamento == $medicamento->id_medicamento) {
                                     $bandera = false;
                                 } else {
-                                    $bandera = false;
+                                    $a++;
                                 }
+                            }
+                            if($bandera == true){
+                                array_push($arrayMedicamentos, $medicamento);
+
                             }
                         }
                     }

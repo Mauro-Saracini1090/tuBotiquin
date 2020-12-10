@@ -29,32 +29,30 @@
                                     <a href={{ route('sucursal.create') }}><i class=" Medium material-icons "
                                             style="font-size: 40px" data-toggle="tooltip" data-placement="left"
                                             title="Agregar nueva Sucursal">add_box</i></a>
-                                    <a href="{{ route('sucursal.index') }}"><i class="material-icons"
-                                            style="font-size: 42px">pageview</i></a>
+                                    <a href="{{ route('sucursal.index') }}"><i class="material-icons" title="Ver Sucurgales Cargadas y Gestionar Stock" style="font-size: 42px">pageview</i></a>
                                     <div>
                             </li>
-                            {{-- <li class="list-group-item">
+                            <li class="list-group-item">
                                 <h6 class="masthead-subheading">PEDIDOS</h6>
                                 <div class="d-flex d-flex justify-content-left pb-2 ml-3">
-                                    <a href=""><i class="material-icons" style="font-size: 40px">pageview</i></a>
-                                    <a href=""><i class="material-icons" style="font-size: 40px">assignment</i></a>
+                                    {{-- <a href=""><i class="material-icons" style="font-size: 40px">pageview</i></a> --}}
+                                <a href="{{route('listado.reservas.farmaceutico')}}"><i class="material-icons" title="Historial de Pedidos" style="font-size: 40px">assignment</i></a>
 
                                 </div>
 
-                            </li> --}}
-                            <li class="list-group-item">
+                            </li>
+                            {{-- <li class="list-group-item">
                                 <h6 class="masthead-subheading">RESERVAS</h6>
                                 <div class="d-flex d-flex justify-content-left pb-2 ml-3">
                                     <a href=""><i class="material-icons" style="font-size: 40px">pageview</i></a>
                                     <a href=""><i class="material-icons" style="font-size: 40px">assignment</i></a>
                                 </div>
 
-                            </li>
+                            </li> --}}
                             <li class="list-group-item">
-                                <h6 class="masthead-subheading">Cargar Stock MEDICAMENTOS</h6>
+                                <h6 class="masthead-subheading">Historial Stock MEDICAMENTOS</h6>
                                 <div class="d-flex d-flex justify-content-left pb-2 ml-3">
-                                    <a href="{{ route('medicamentos.listado') }}"><i class="material-icons"
-                                            style="font-size: 40px">pageview</i></a>
+                                    <a href="{{ route('medicamentos.listado') }}"><i class="material-icons" title="Historial de Stock Cargado" style="font-size: 40px">pageview</i></a>
                                 </div>
                             </li>
                             {{-- <li class="list-group-item">
@@ -71,8 +69,7 @@
                             <li class="list-group-item">
                                 <h6 class="masthead-subheading">CONTACTAR AL ADMINISTRADOR</h6>
                                 <div class="d-flex d-flex justify-content-left pb-2 ml-3">
-                                    <a href="{{ route('contactarAdmin') }}"><i class="material-icons"
-                                            title="Enviar email al administrador" style="font-size: 40px">email</i></a>
+                                    <a href="{{ route('contactarAdmin') }}"><i class="material-icons" title="Enviar email al administrador" style="font-size: 40px">email</i></a>
                                 </div>
                             </li>
 
