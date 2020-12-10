@@ -9,7 +9,6 @@
     <thead>
         <tr>
             <th scope="col">Tipo Medicamento</th>
-            <th scope="col">Descripcion?</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -18,7 +17,6 @@
         @foreach($tiposMedicamentos as $medicamento)
             <tr>
                 <td>{{ $medicamento->nombre_tipo }}</td>
-                <td>Descripcion?</td>
                 <td>
                     <a class="btn btn-panel" href="{{ route('tipoMedicamentos.edit', [$medicamento->id_tipo]) }}">Editar</a>
                     <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-obraid="{{ $medicamento->id_tipo}}">
