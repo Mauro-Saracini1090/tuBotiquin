@@ -2,10 +2,12 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Models\Farmacia;
 use App\Traits\UsuarioHabilitado;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 trait AuthenticatesUsers
@@ -178,7 +180,23 @@ trait AuthenticatesUsers
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     public function logout(Request $request)
-    {
+    {   
+
+        if (count(\Cart::getContent())) {
+            foreach (\Cart::getContent() as $item) {
+                $farmaciaEnCarrito = Farmacia::where('id_farmacia','=',$item->farmacia)->first();
+                    foreach ($farmaciaEnCarrito->getSucursales as $sucursal) {
+                        if ((DB::table('sucursal_medicamento')->where('medicamento_id', '=', $item->id)->where('sucursal_id', '=', $sucursal->id_sucursal)->first()) != []) {
+                            $med = $sucursal->getMedicamentos()->where('medicamento_id', '=', $item->id)->first();
+                            // $medReserva = $reserva->getMedicamentos()->where('medicamento_id','=',$medicamentos->id_medicamento)->first();
+                            $cantidadTotal = $med->pivot->cantidadTotal;
+                            $sucursal->getMedicamentos()->updateExistingPivot($item->id, ['cantidadTotal' => ($cantidadTotal + $item->quantity)]);
+                        }
+                    }
+                    \Cart::clear();
+            }
+        }
+
         $this->guard()->logout();
 
         $request->session()->invalidate();
