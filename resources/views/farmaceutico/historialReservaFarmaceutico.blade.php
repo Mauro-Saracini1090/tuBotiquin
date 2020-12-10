@@ -1,7 +1,13 @@
-@extends('welcome')
-@section('titulo', 'Farmacias')
+@extends('farmaceutico.indexFarmaceutico')
+@section('titulo', 'Reservas a Farmacia')
 
-@section('contenido')
+@section('opcionesFarmaceutico')
+<div class="container">
+<div class="card-body">
+    <!-- Masthead Subheading-->
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Reservas</h2>
+    <p class="lead text-center my-3">Listado de Reservas Realizadas</p>
+</div>
 <!-- Section of  alert mail contac send -->
 @if(session()->has('borrado'))
     <div class="container">
@@ -58,95 +64,122 @@
         </div>
     @endif
 @endcan
-<div class="container">
     <div class="row">
         <div class="col-sm-12 bg-light">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Numero Reserva</th>
-                        <th>Sucursal</th>
-                        <th>Estado</th>
-                        <th>Informacion</th>
-                        <th>Fecha Solicitud</th>
-                        <th>Fecha Vencimiento</th>
-                        <th>Acciones</th>
-                    </tr>
-                    <tr>
-                        <form class="form-inline d-flex d-flex justify-content-center" method="GET" action="{{ route('listado.reservas.farmaceutico') }}">
-                            <th>
-                                <div class="row">
-                                    <button type="submit" class="btn btn-primary p-2 mx-auto mb-1"><i class="fas fa-search" aria-hidden="true" title="Buscar"></i></button>
-                                    <button id="resetbusqueda" type="reset" class="btn btn-primary p-2 mx-auto"><i class="fas fa-sync" title="Limpiar Busqueda"></i></button>
-                                </div>
-                            </th>
-                            <th>
-
-                            </th>
-                            <th>
-                                <input class="col-12 p-0" id="nombreFarmacia" type="text"
-                                    placeholder="Farmacia"><input id="farmacia_id" name="farmacia_id" hidden>
-                            </th>
-                            <th>
-                                <select class="form-select" aria-label="Default select example" name="estado_id" id="estado_id">
-                                    <option selected></option>
-                                    @foreach ($estados as $estado)
-                                    <option value="{{$estado->id_estados}}">{{$estado->descripcion_tipo_estados}}</option>
-
-                                    @endforeach    
-                                  </select>
-                            </th>
-                            <th></th>
-                            <th>
-                                <input class="col-10 p-0" id="fechasolicitud" name="solicitud_id" type="date" placeholder="Fecha Solicitud">
-
-                            </th>
-                            <th>
-                                <input class="col-10 p-0" id="fechavencimiento" name="vencimiento_id" type="date" placeholder="Fecha Vencimiento">
-                                </td>
-                            <th>
-                                </td>
-                        </form>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($reservas as $reserva)
+            @if(count($reservas) > 0)
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <td></td>
-                            <td>{{ $reserva->numero_reserva }}</td>
-                            <td>{{ $reserva->getSucursal->getFarmacia->nombre_farmacia }} -
-                                {{ $reserva->getSucursal->direccion_sucursal }}</td>
-                            <td>{{ $reserva->getEstado->descripcion_tipo_estados }}</td>
-                            <td>
-                                <ul>
-                                    @foreach($reserva->reservaMedicamentos as $medicamento)
-                                        <li>
-                                            {{ $medicamento->nombre_medicamento }} -
-                                            x{{ $medicamento->pivot->cantidad }}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </td>
-                            <td>{{ $reserva->fecha_solicitud_estados }}</td>
-                            <td>{{ $reserva->fecha_caducidad_estados }}</td>
-                            @if($reserva->estados_id == 1)
-                            <td>
-                                <div class="col">
-                                    <button class="btn btn-primary p-2 mx-auto mb-1" data-toggle="modal" data-target="#habilitacion" data-habi="3" data-res="{{ $reserva->id_reserva }}"><i class="fas fa-check-square" title="Aceptar Reserva"></i></button>
-                                    <button class="btn btn-primary p-2 mx-auto" data-toggle="modal" data-target="#habilitacion" data-habi="2" data-res="{{ $reserva->id_reserva }}"><i class="fas fa-times-circle" title="Rechazar Reserva"></i></button>
-                                </div>
-                            </td>
-                            @endif
+                            <th></th>
+                            <th>Numero Reserva</th>
+                            <th>Sucursal</th>
+                            <th>Estado</th>
+                            <th>Informacion</th>
+                            <th>Fecha Solicitud</th>
+                            <th>Fecha Vencimiento</th>
+                            <th>Acciones</th>
                         </tr>
-                    @endforeach
+                        <tr>
+                            <form class="form-inline d-flex d-flex justify-content-center" method="GET"
+                                action="{{ route('listado.reservas.farmaceutico') }}">
+                                <th>
+                                    <div class="row">
+                                        <button type="submit" class="btn btn-primary p-2 mx-auto mb-1"><i
+                                                class="fas fa-search" aria-hidden="true" title="Buscar"></i></button>
+                                        <button id="resetbusqueda" type="reset" class="btn btn-primary p-2 mx-auto"><i
+                                                class="fas fa-sync" title="Limpiar Busqueda"></i></button>
+                                    </div>
+                                </th>
+                                <th>
 
-                </tbody>
-            </table>
+                                </th>
+                                <th>
+                                    <input class="col-12 p-0" id="nombreFarmacia" type="text"
+                                        placeholder="Farmacia"><input id="farmacia_id" name="farmacia_id" hidden>
+                                </th>
+                                <th>
+                                    <select class="form-select" aria-label="Default select example" name="estado_id"
+                                        id="estado_id">
+                                        <option selected></option>
+                                        @foreach($estados as $estado)
+                                            <option value="{{ $estado->id_estados }}">
+                                                {{ $estado->descripcion_tipo_estados }}</option>
+
+                                        @endforeach
+                                    </select>
+                                </th>
+                                <th></th>
+                                <th>
+                                    <input class="col-10 p-0" id="fechasolicitud" name="solicitud_id" type="date"
+                                        placeholder="Fecha Solicitud">
+
+                                </th>
+                                <th>
+                                    <input class="col-10 p-0" id="fechavencimiento" name="vencimiento_id" type="date"
+                                        placeholder="Fecha Vencimiento">
+                                    </td>
+                                <th>
+                                    </td>
+                            </form>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($reservas as $reserva)
+                            <tr>
+                                <td></td>
+                                <td>{{ $reserva->numero_reserva }}</td>
+                                <td>{{ $reserva->getSucursal->getFarmacia->nombre_farmacia }} -
+                                    {{ $reserva->getSucursal->direccion_sucursal }}</td>
+                                <td>{{ $reserva->getEstado->descripcion_tipo_estados }}</td>
+                                <td>
+                                    <ul>
+                                        @foreach($reserva->reservaMedicamentos as $medicamento)
+                                            <li>
+                                                {{ $medicamento->nombre_medicamento }} -
+                                                x{{ $medicamento->pivot->cantidad }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                <td>{{ $reserva->fecha_solicitud_estados }}</td>
+                                <td>{{ $reserva->fecha_caducidad_estados }}</td>
+                                @if($reserva->estados_id == 1)
+                                    <td>
+                                        <div class="col">
+                                            <button class="btn btn-primary p-2 mx-auto mb-1" data-toggle="modal"
+                                                data-target="#habilitacion" data-habi="3"
+                                                data-res="{{ $reserva->id_reserva }}"><i class="fas fa-check-square"
+                                                    title="Aceptar Reserva"></i></button>
+                                            <button class="btn btn-primary p-2 mx-auto" data-toggle="modal"
+                                                data-target="#habilitacion" data-habi="2"
+                                                data-res="{{ $reserva->id_reserva }}"><i class="fas fa-times-circle"
+                                                    title="Rechazar Reserva"></i></button>
+                                        </div>
+                                    </td>
+                                @endif
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            @else
+            <div class="col-12">
+                <div class="p-3 mb-2 bg-warning rounded shadow text-dark text-center mx-auto">
+                    <h6 class="mb-2">
+                        No existen Reservas Registadas  en este momento.
+                    </h6>   
+                    <br>       
+                     <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
+                    
+                </div>        
+            </div>
+            @endif
+
         </div>
     </div>
 </div>
+@if(count($reservas) > 0)
 <div class="modal fade" id="habilitacion" tabindex="-1" aria-labelledby="habModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -168,20 +201,22 @@
         </div>
     </div>
 </div>
+@endif
 @endsection
 @section('zona_js')
 <script>
-    $('#resetbusqueda').click(function(){
+    $('#resetbusqueda').click(function () {
         history.pushState(null, "", "historialreservasFarmacia");
         location.reload();
     });
-    
+
 </script>
 <script>
     $(function () {
         $('#nombreFarmacia').autocomplete({
             source: function (request, response) {
-                $.getJSON('{{ route("autocomplete.reserva.farmacia") }}?term=' + request
+                $.getJSON('{{ route("autocomplete.reserva.farmacia") }}?term=' +
+                    request
                     .term,
                     function (data) {
                         var array = $.map(data, function (row) {
@@ -215,7 +250,7 @@
         if (habi == 3) {
             $('#habModalLabel').text('Esta seguro que desea Aceptar esta Reserva?')
         }
-        if(habi == 2){
+        if (habi == 2) {
             $('#habModalLabel').text('Esta seguro que desea Rechazar esta Reserva?')
         }
         var modal = $(this);
