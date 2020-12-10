@@ -66,7 +66,12 @@ class Usuario extends Authenticatable
     }
     public function getSucursales()
     {
-        return $this->hasMany(Sucursal::class,'id_usuario','usuario_id');
+        return $this->hasMany(Sucursal::class,'usuario_id','id_usuario');
+    }
+
+    public function usuarioReservas()
+    {
+        return $this->hasMany(Reserva::class,'usuario_id','id_usuario');
     }
 
 
