@@ -72,7 +72,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="p-3 mb-2 bg-warning text-dark">
-                    <p class="font-weight-bold text-center">Atención. Usted no posee sucurales cargadas</p>
+                    <p class="font-weight-bold text-center">Atención. Usted no posee Medicamentos cargados</p>
                 </div>
             </div>
         </div>
