@@ -189,8 +189,6 @@ class HomeController extends Controller
             $context = stream_context_create($opts);
         
             $wsdlUrl = 'https://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php?wsdl';
-            // $wsdlUrl = 'http://toolbox.webservice-energy.org/TOOLBOX/WSDL/AIP3_PV_Impact/AIP3_PV_Impact.wsdl';
-            // $wsdlUrl = 'http://toolbox.webservice-energy.org/TOOLBOX/WSDL/AIP3_PV_Impact/AIP3_PV_Impact.wsdl';
         
             $soapClientOptions = array('stream_context' => $context, 'cache_wsdl' => WSDL_CACHE_NONE);
         
