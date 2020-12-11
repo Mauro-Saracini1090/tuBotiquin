@@ -92,7 +92,7 @@ trait RegistroFarmaceutico
             'dni' => $data['dni'],
             'numero_matricula' => $data['numero_matricula'],
             'habilitado' => false,
-            'img_perfil' => URL::to('/')."/storage/foto_perfil/logoPerfil.png",
+            'img_perfil' => "/storage/foto_perfil/logoPerfil.png",
 
         ]);
     }

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use League\CommonMark\Inline\Element\Strong;
 
 class FarmaciaController extends Controller
@@ -228,9 +229,11 @@ class FarmaciaController extends Controller
         //Valida los campos del formulario editarFarmacia.blade 
         $request->validate(([
             'nombre_farmacia' => 'required|max:255|unique:farmacia',
+            'nombre_farmacia' =>   Rule::unique('farmacia', 'nombre_farmacia')->ignore($farmacium->id_farmacia, 'id_farmacia'),
             'descripcion_farmacia' => 'max:250',
             'img_farmacia' => 'image|mimes:jpeg,jpe,png|max:4096',
-            'cuit' => 'required|between:8,20',
+            'cuit' => 'required|unique:farmacia|digits:11',
+            'cuit' =>   Rule::unique('farmacia', 'cuit')->ignore($farmacium->id_farmacia, 'id_farmacia'),
         ]));
 
 

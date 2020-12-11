@@ -17,7 +17,6 @@
         @foreach($marcasMedicamentos as $marca)
             <tr>
                 <td>{{ $marca->nombre_marca }}</td>
-                <td>Descripcion?</td>
                 <td>
                     <a class="btn btn-panel" href="{{ route('marcaMedicamentos.edit', [$marca->id_marca]) }}">Editar</a>
                     <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-obraid="{{ $marca->id_marca}}">

@@ -88,7 +88,7 @@ class RegisterController extends Controller
             'dni' => null,
             'numero_matricula' => null,
             'habilitado' => true,
-            'img_perfil' => URL::to('/')."/storage/foto_perfil/logoPerfil.png",
+            'img_perfil' => "/storage/foto_perfil/logoPerfil.png",
 
         ]);
     }

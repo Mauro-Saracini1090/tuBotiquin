@@ -14,7 +14,19 @@
                         <form method="POST" action="{{ route('enviarEmailContacto')}}">
                         @csrf
                              <!-- Nombre -->
-                            <div class="form-group">
+                             @if (auth()->user())
+                             <div class="form-group">
+                                <strong><label  for="nombre">{{ __('Nombre *') }}</label></strong>
+                                <input type="text" name="nombre" value="{{auth()->user()->nombre ." ". auth()->user()->apellido}}" placeholder="Su nombre" class="form-control @error('nombre') is-invalid @enderror" required readonly>
+                                
+                                @error('nombre')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
+                            </div>
+                             @else
+                             <div class="form-group">
                                 <strong><label  for="nombre">{{ __('Nombre *') }}</label></strong>
                                 <input type="text" name="nombre" value="{{ old('nombre') }}" placeholder="Su nombre" class="form-control @error('nombre') is-invalid @enderror" required >
                                 
@@ -24,7 +36,7 @@
                                         </span>
                                 @enderror
                             </div>
-
+                             @endif
                              <!-- asunto -->
                             <div class="form-group">
                                 <strong><label  for="">{{ __('Asunto *') }}</label></strong>
@@ -37,6 +49,18 @@
                                 @enderror
                             </div>
 
+                            @if (auth()->user())
+                            <div class="form-group">
+                                <strong><label for="email">{{ __('E-mail *') }}</label></strong>
+                            <input type="email" id="email" value="{{auth()->user()->email}}"  placeholder="Ej: micorreo@mail.com" class="form-control @error('email') is-invalid @enderror" name="email" required readonly>
+                                <small class="form-text text-muted">Le vamos a responder a este e-mail</small>       
+                                @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
+                            </div> 
+                            @else
                             <!-- Email -->
                             <div class="form-group">
                                 <strong><label for="email">{{ __('E-mail *') }}</label></strong>
@@ -48,8 +72,9 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                 @enderror
-                            </div>
-
+                            </div>    
+                            @endif
+                            
                             <!-- Descripcion -->
                             <div class="form-group">
                                 <strong><label for="consulta">{{ __('Consulta *') }}</label></strong>
