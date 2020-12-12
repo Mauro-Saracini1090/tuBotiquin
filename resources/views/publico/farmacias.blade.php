@@ -52,10 +52,11 @@
                                         </form>
                                         @can('esRegistrado')
                                             <div class="p-2">
-                                                <a href="{{ route('listado.medicamentos', [$farmaciaPaginate->id_farmacia]) }}"><i
-                                                        class="material-icons" style="font-size: 40px" data-toggle="tooltip"
+                                                <a href="{{ route('listado.medicamentos', [$farmaciaPaginate->id_farmacia]) }}">
+                                                    <i class="fas fa-pills" style="font-size: 40px" data-toggle="tooltip"
                                                         data-placement="left"
-                                                        title="Listado Medicamentos de {{ $farmaciaPaginate->nombre_farmacia }}">event_note</i></a>
+                                                        title="Listado Medicamentos de {{ $farmaciaPaginate->nombre_farmacia }}"></i>
+                                                </a>
                                             </div>
                                         @endcan
                                     </div>
