@@ -80,8 +80,8 @@ class SucursalController extends Controller
             'descripcion_sucursal' => 'max:255',
             'cufe_sucursal' => 'required|unique:sucursal|max:255',
             'email_sucursal' => 'required|email|unique:sucursal|max:255',
-            'telefono_fijo' => 'required|unique:sucursal|numeric',
-            'telefono_movil' => 'numeric|unique:sucursal',
+            'telefono_fijo' => 'required|unique:sucursal|digits_between:7,11',
+            'telefono_movil' => 'numeric|unique:sucursal|digits_between:7,11',
             'direccion_sucursal' => 'required|unique:sucursal|max:255',
         ]));
 
@@ -356,6 +356,7 @@ class SucursalController extends Controller
         $arrayMedicamentos = [];
         if ($farmacia->getSucursales != null) {
             foreach ($farmacia->getSucursales as $sucursal) {
+                if($sucursal->habilitado == 1){
                 if ($sucursal->getMedicamentos != null) {
                     foreach ($sucursal->getMedicamentos as $medicamento) {
                         if ($arrayMedicamentos == null) {
@@ -377,6 +378,7 @@ class SucursalController extends Controller
                         }
                     }
                 }
+            }
             }
         }
         return view('registrado.listadoMedicametosFarmacia', compact('arrayMedicamentos', 'farmacia'));
