@@ -52,7 +52,7 @@
                 <p class="lead text-center my-2">Farmacias que se encuentran de turno el día de hoy</p>
                 <?php $hora = number_format(date('H') ); ?>
                 <div class="row">
-                    <div class="col-4  rounded text-center mx-auto">
+                    <div class="col-12  rounded text-center mx-auto">
                         <div class="d-flex d-flex justify-content-middle justify-content-center">
                             @if( $hora >= 7 and $hora <=20 )
                                 <i class="material-icons px-1"> wb_sunny</i> 
