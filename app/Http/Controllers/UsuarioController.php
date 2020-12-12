@@ -12,6 +12,7 @@ use App\Models\Reserva;
 use App\Models\Role;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
@@ -353,7 +354,7 @@ class UsuarioController extends Controller
         //     return $obs;
         // }
         $usuario = Usuario::where('id_usuario','=',auth()->user()->id_usuario)->first();
-        $reservas = $usuario->usuarioReservas;
+        $reservas = $usuario->usuarioReservas()->paginate(3);
 
         foreach ($reservas as $reserva) {
             # code...
@@ -362,8 +363,9 @@ class UsuarioController extends Controller
                 $reserva->save();
             }
         }
+        $estados = Estados::all();
 
-        return view('registrado.historialReservaRegistrado',compact('reservas'));
+        return view('registrado.historialReservaRegistrado',compact('reservas','estados'));
     }
 
     public function historialReservaFarmaceutico(Request $request)
@@ -393,7 +395,18 @@ class UsuarioController extends Controller
                 $reserva->estados_id = 4;
                 $reserva->save();
             }
-        }  
+        }
+        
+        $currentPage = $request->page;
+        if($request->page == null){
+            $currentPage = 1;
+        }
+        $perPage = 3;
+
+        $currentElements = array_slice($reservas, ($perPage * ($currentPage - 1)), $perPage);
+        // dd($currentElements);
+        $reservas = new LengthAwarePaginator($currentElements, count($reservas), $perPage, $currentPage);
+        $reservas->setPath('historialreservasFarmacia');
         
         $estados = Estados::all();
 
