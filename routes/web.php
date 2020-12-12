@@ -134,3 +134,6 @@ Route::get('/cancelar-reserva',[CartController::class,'cancelarReserva'])->name(
 
 //reserva
 Route::post('solicitudReserva', [ReservaController::class,'solicitudReserva'])->name('solicitudReserva')->middleware('roles:es-farmaceutico');
+
+//Preguntas Frecuentes
+Route::get('preguntasfrecuentes', [HomeController::class, 'preguntasFrecuentes'])->name('preguntasFrecuentes');
