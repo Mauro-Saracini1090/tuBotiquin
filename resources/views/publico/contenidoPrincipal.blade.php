@@ -76,7 +76,7 @@
                         <div class="col-12">
                             <div class="p-3 mb-2 bg-warning rounded shadow text-dark text-center mx-auto">
                                 <h6 class="mb-2">
-                                    No existen Farmacias de turnos para el día <ins><?php echo date('d-m-Y') ?> </ins> registradas en la plataforma.
+                                    <i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i> No existen Farmacias de turnos para el día <ins><?php echo date('d-m-Y') ?> </ins> registradas en la plataforma.
                                 </h6>   
                                 <br>        
                                 <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
@@ -284,8 +284,8 @@
                          
                         <div class="col-12">
                             <div class="p-3 mb-2 bg-warning rounded shadow text-dark text-center mx-auto">
-                                <h6 class="mb-2">
-                                    No existen Farmacias de turnos para los siguientes días registradas en la plataforma en este momento
+                                <h6 class="mb-2"> 
+                                    <i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i> No existen Farmacias de turnos para los siguientes días registradas en la plataforma en este momento
                                 </h6>   
                                 <br>       
                                  <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>

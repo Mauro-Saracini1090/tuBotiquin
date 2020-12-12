@@ -17,7 +17,7 @@
         type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/tuBotiquin/public/css/styles.css" rel="stylesheet">
+    <link href="/tubotiquin/tuBotiquin/public/css/styles.css" rel="stylesheet">
     <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
 
     {{-- Leaflet - map osm --}}
