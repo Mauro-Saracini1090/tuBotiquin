@@ -46,16 +46,19 @@
                                         <form method="POST" action="{{ route('farmaciaSucursal') }}">
                                             @csrf
                                             <input type="hidden" name="id_farmacia" value={{ $farmaciaPaginate->id_farmacia }}>
-                                            <button type="submit" class="btn btn-link mx-2">
-                                                {{ __('Ver Sucursales') }}
+                                          
+                                            <button type="submit" class="btn btn-link mx-2"><i class="fas fa-clinic-medical align-middle" style="font-size: 30px";></i>
+                                                <span class="align-middle pl-2">{{ __('Ver Sucursales') }}</span>
                                             </button>
+                                           
                                         </form>
                                         @can('esRegistrado')
                                             <div class="p-2">
                                                 <a href="{{ route('listado.medicamentos', [$farmaciaPaginate->id_farmacia]) }}">
-                                                    <i class="fas fa-pills" style="font-size: 40px" data-toggle="tooltip"
-                                                        data-placement="left"
-                                                        title="Listado Medicamentos de {{ $farmaciaPaginate->nombre_farmacia }}"></i>
+                                                    <i class="fas fa-pills align-middle" style="font-size: 30px"; data-toggle="tooltip" data-placement="left"
+                                                    title="Listado Medicamentos de {{ $farmaciaPaginate->nombre_farmacia }}"></i>
+                                                    <span class="align-middle pl-2">Medicamentos</span>
+                                                 
                                                 </a>
                                             </div>
                                         @endcan
