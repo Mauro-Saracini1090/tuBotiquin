@@ -292,4 +292,10 @@ class HomeController extends Controller
 
     }
 
+
+    public function preguntasFrecuentes()
+    {
+        return view('publico.preguntasFrecuentes');
+    }
+
 }
