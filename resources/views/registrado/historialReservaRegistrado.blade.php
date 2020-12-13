@@ -3,18 +3,23 @@
 
 @section('contenido')
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12 bg-light">
+    <div class="row shadow">
+            <div class="col-12 bg-encabezado mb-3 p-2">
+                <h2 class="text-center text-white"> MIS RESERVAS</h2>
+                <p class="text-white text-center">Historial de reservas realizadas</p>
+            </div>
+
+        <div class="col-12 bg-white table-responsive">
+            
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th></th>
-                    <th>Numero Reserva</th>
-                    <th>Sucursal</th>
-                    <th>Estado</th>
-                    <th>Informacion</th>
-                    <th>Fecha Solicitud</th>
-                    <th>Fecha Vencimiento</th>
+                        <th>Número Reserva</th>
+                        <th>Sucursal</th>
+                        <th>Estado</th>
+                        <th>Información</th>
+                        <th>Fecha Solicitud</th>
+                        <th>Fecha Vencimiento</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,9 +46,11 @@
 
                 </tbody>
             </table>
+       
             <div class="d-flex d-flex justify-content-center mt-4"> 
                 {{ $reservas->links() }}
             </div>
+
         </div>
     </div>
 </div>
