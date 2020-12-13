@@ -2,7 +2,7 @@
 @section('iconPestaña')
 @section('titulo',' Registrarse')
 @section('contenido')
-
+<div class="container">
  <div class="row justify-content-center">
         <div class="col-md-6 col-12">
              <div class="shadow bg-white"> 
@@ -126,5 +126,5 @@
             </div>
         </div>
     </div>
-
+</div>
 @endsection
