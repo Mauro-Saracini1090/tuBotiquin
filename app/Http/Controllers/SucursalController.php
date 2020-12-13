@@ -37,7 +37,7 @@ class SucursalController extends Controller
         //
         if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
             Gate::authorize('esAdmin');
-            $sucursales = Sucursal::simplePaginate(2);
+            $sucursales = Sucursal::Paginate(2);
             return view('admin.sucursales.indexSucursal', compact('sucursales'));
         }
         $id_usuario = auth()->user()->id_usuario;
@@ -78,10 +78,10 @@ class SucursalController extends Controller
         $request->validate(([
             'id_farmacia' => 'required',
             'descripcion_sucursal' => 'max:255',
-            'cufe_sucursal' => 'required|unique:sucursal|max:255',
+            'cufe_sucursal' => 'required|unique:sucursal|digits:11',
             'email_sucursal' => 'required|email|unique:sucursal|max:255',
-            'telefono_fijo' => 'required|unique:sucursal|digits_between:7,11',
-            'telefono_movil' => 'numeric|unique:sucursal|digits_between:7,11',
+            'telefono_fijo' => 'required|unique:sucursal|digits_between:6,11',
+            'telefono_movil' => 'numeric|unique:sucursal|digits_between:6,11',
             'direccion_sucursal' => 'required|unique:sucursal|max:255',
         ]));
 
@@ -147,7 +147,8 @@ class SucursalController extends Controller
         //
         if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
             Gate::authorize('esAdmin');
-            return view('admin.sucursales.editarSucursal', compact('sucursal'));
+            $arrayFarmacias = Farmacia::where('habilitada', "=", "1")->where("borrado_logico_farmacia", "=", "0")->get();
+            return view('admin.sucursales.editarSucursal', compact('sucursal','arrayFarmacias'));
         }
 
         return view('farmaceutico.editarSucursal', ['sucursal' => $sucursal]);
@@ -163,7 +164,7 @@ class SucursalController extends Controller
     public function update(Request $request, Sucursal $sucursal)
     {
         $request->validate(([
-            //'id_farmacia' => 'required',
+            'id_farmacia' => 'required',
             'descripcion_sucursal' => 'max:255',
             'cufe_sucursal' =>  'required|max:255',
             'cufe_sucursal' =>   Rule::unique('sucursal', 'cufe_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
@@ -266,13 +267,13 @@ class SucursalController extends Controller
     {
         Gate::authorize('esAdmin');
         $sucursal = Sucursal::find($request->sucursal);
-        $borado_logico = 1;
         if ($request->estado_habilitacion == 0) {
-            $sucursal->borrado_logico_sucursal = $borado_logico;
+            $sucursal->borrado_logico_sucursal = 1;
             $sucursal->habilitado = $request->estado_habilitacion;
             $sucursal->save();
             Mail::to($sucursal->getFarmaceutico->email)->send(new solicitudSucursalRechazadaMailable);
         } else {
+            $sucursal->borrado_logico_sucursal = 0;
             $sucursal->habilitado = $request->estado_habilitacion;
             $sucursal->save();
             Mail::to($sucursal->getFarmaceutico->email)->send(new solicitudSucursalAceptadaMailable);
