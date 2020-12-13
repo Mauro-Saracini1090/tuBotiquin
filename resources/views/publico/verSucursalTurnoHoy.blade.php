@@ -35,8 +35,14 @@
                             <div Class="col-lg-7 col-12 " >
                                 <div class="text ml-5 p-1"> 
                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><i class="material-icons">access_time</i> <span class="font-weight-bold text-secondary"> <?php echo $sucursal->descripcion_sucursal ?></li>
-                                        <li class="list-group-item">
+
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-1"><strong><i class="material-icons">today</i></strong></div> 
+                                                    <div class="col-10"><span class="font-weight-bold text-secondary"> <?php echo $sucursal->descripcion_sucursal ?></span></div>
+                                                </div>    
+                                            </li>        
+                                            <li class="list-group-item">
                                                 <div class="row">
                                                     <div class="col-1"><i class="material-icons">location_on</i></div>
                                                     <div class="col-10"><span class="font-weight-bold text-secondary">{{$sucursal->direccion_sucursal }}</span></div>
