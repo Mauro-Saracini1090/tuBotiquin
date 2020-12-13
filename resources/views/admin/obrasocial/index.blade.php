@@ -4,9 +4,13 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
     <h1 class="h2">Lista de Obras Sociales</h1>
 </div>
-<a href="{{ route('obrasocial.create') }}" class="btn btn-panel float-right my-2">Cargar nueva Obra Social</a>
-<table class="table table-dark">
-    <thead>
+<div class="row justify-content-between">
+    <a href="{{ route('obrasocial.create') }}" class="btn btn-panel col-12 col-lg-4 mx-lg-2 my-2">Cargar nueva Obra Social</a>
+    <a class="btn btn-panel col-12 col-lg-4 my-2 mx-lg-2 " href="{{ route('obrasocialfarmacia') }}">Asignar Obra Social a Farmacia</a>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
         <tr>
             <th scope="col">Nombre Obra Social</th>
             <th scope="col">Telefono obra Social</th>
@@ -20,9 +24,11 @@
                 <td>{{ $obraSocial->Nombre_obra_social }}</td>
                 <td>{{ $obraSocial->Telefono_obra_Social }}</td>
                 <td>
-                    <a class="btn btn-panel" href="{{ route('obrasocial.edit', [$obraSocial->id_obra_social ]) }}">Editar</a>
-                    <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-obraid="{{ $obraSocial->id_obra_social  }}">
-                        Borrar
+                    <a class="btn btn-panel p-1 m-1" href="{{ route('obrasocial.edit', [$obraSocial->id_obra_social ]) }}">
+                        <i class="material-icons" title="Editar">mode_edit</i>
+                    </a>
+                    <a class="btn btn-panel p-1 m-1" href="#" data-toggle="modal" data-target="#deleteModal" data-obraid="{{ $obraSocial->id_obra_social  }}">
+                        <i class="material-icons" title="Eliminar">delete_forever</i>
                     </a>
                 </td>
             </tr>
@@ -34,7 +40,7 @@
 <div class="d-flex d-flex justify-content-center mt-4"> 
     {{ $arrayObraSocial->links() }}
 </div>
-
+</div>
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
