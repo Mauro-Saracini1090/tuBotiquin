@@ -5,8 +5,8 @@
     <h1 class="h2">Lista de Medicamentos</h1>
 </div>
 <a href="{{ route('medicamentos.create') }}" class="btn btn-panel float-right my-2">Cargar nuevo Medicamento</a>
-<table class="table table-dark">
-    <thead>
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
             <th scope="col">Nombre Medicamento</th>
             <th scope="col">Tipo Medicamento</th>
@@ -15,17 +15,20 @@
         </tr>
     </thead>
     <tbody>
-
         @foreach($medicamentos as $medicamento)
             <tr>
                 <td>{{ $medicamento->nombre_medicamento }}</td>
                 <td>{{ $medicamento->getTipo->nombre_tipo }}</td>
                 <td>{{ $medicamento->getMarca->nombre_marca }}</td>
                 <td>
-                    <a class="btn btn-panel my-1" href="{{ route('medicamentos.show', [$medicamento->id_medicamento]) }}">ver</a><br>
-                    <a class="btn btn-panel" href="{{ route('medicamentos.edit', [$medicamento])}}">Editar</a>
-                    <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-medid="{{ $medicamento->id_medicamento }}">
-                        Borrar
+                    <a class="btn btn-panel p-1 m-1" href="{{ route('medicamentos.show', [$medicamento->id_medicamento]) }}">
+                        <i class="material-icons" title="Informacio">info</i>
+                    </a>
+                    <a class="btn btn-panel p-1 m-1" href="{{ route('medicamentos.edit', [$medicamento])}}">
+                        <i class="material-icons" title="Editar">mode_edit</i>
+                    </a>
+                    <a class="btn btn-panel p-1 m-1" href="#" data-toggle="modal" data-target="#deleteModal" data-medid="{{ $medicamento->id_medicamento }}">
+                        <i class="material-icons" title="Eliminar">delete_forever</i>
                     </a>
                 </td>
             </tr>
@@ -34,6 +37,9 @@
 
     </tbody>
 </table>
+<div class="d-flex d-flex justify-content-center mt-4">
+    {{ $medicamentos->links() }}
+</div>
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
