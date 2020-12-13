@@ -2,7 +2,7 @@
 @section('titulo', 'Reservas a Farmacia')
 
 @section('opcionesFarmaceutico')
-<div class="container">
+<div class="container-fluid p-0 mx-0">
     <div class="card-body">
         <!-- Masthead Subheading-->
         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Reservas</h2>
@@ -64,9 +64,9 @@
             </div>
         @endif
     @endcan
-    <div class="row">
-        <div class="bg-light px-3">
-            <table class="table table-striped p-0 m-0">
+    <div class="row p-0 mx-0 container-fluid">
+        <div class="bg-light px-3 table-responsive p-0 mx-0 container-fluid">
+            <table class="table table-striped p-0 m-0 container-fluid  p-0 mx-0">
                 <thead>
                     <tr>
                         <th></th>
@@ -125,7 +125,6 @@
                 </thead>
                 <tbody>
                     @if(count($reservas) > 0)
-
                         @foreach($reservas as $reserva)
                             <tr>
                                 <td></td>
@@ -176,35 +175,36 @@
                     @endif
                 </tbody>
             </table>
-            <div class="d-flex d-flex justify-content-center mt-4"> 
+            <div class="d-flex d-flex justify-content-center mt-4">
                 {{ $reservas->links() }}
             </div>
         </div>
     </div>
-</div>
-@if(count($reservas) > 0)
-    <div class="modal fade" id="habilitacion" tabindex="-1" aria-labelledby="habModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="habModalLabel">Esta seguro que desea borrar esta Farmacia?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-footer">
-                    <form method="POST" action="{{ route('solicitudReserva') }}">
-                        @csrf
-                        <input type="hidden" id="estado_habilitacion" name="estado_habilitacion" value="">
-                        <input type="hidden" id="reserva" name="reserva" value="{{ $reserva->id_farmacia }}">
-                        <button type="submit" class="btn btn-panel">Si</button>
-                    </form>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+    @if(count($reservas) > 0)
+        <div class="modal fade" id="habilitacion" tabindex="-1" aria-labelledby="habModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="habModalLabel">Esta seguro que desea borrar esta Farmacia?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <form method="POST" action="{{ route('solicitudReserva') }}">
+                            @csrf
+                            <input type="hidden" id="estado_habilitacion" name="estado_habilitacion" value="">
+                            <input type="hidden" id="reserva" name="reserva" value="{{ $reserva->id_farmacia }}">
+                            <button type="submit" class="btn btn-panel">Si</button>
+                        </form>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-@endif
+    @endif
+</div>
+
 @endsection
 @section('zona_js')
 <script>
