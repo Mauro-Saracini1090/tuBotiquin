@@ -105,7 +105,7 @@
                     <div class="form-group">
                         <div class="d-flex d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary mx-1">Guardar cambios</button>
-                            <a href="{{ url()->previous() }}" class="btn btn-primary mx-1">Volver Atrás</a>
+                            <a href="{{ route('medicamentos.index') }}" class="btn btn-primary mx-1">Volver Atrás</a>
                         </div>
                     </div>
                 </form>
@@ -114,3 +114,14 @@
     </div>
 </div>
 @endsection
+@section('zona_js')
+<script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('informacion',{
+        language: 'es',
+        uiColor: '#9AB8F3',
+        enterMode : CKEDITOR.ENTER_BR
+    });
+</script>    
+@endsection
+
