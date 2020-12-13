@@ -5,8 +5,9 @@
     <h1 class="h2">Lista de Sucursales</h1>
 </div>
 <a href="{{ route('sucursal.create') }}" class="btn btn-panel float-right my-2">Cargar nueva Sucursal</a>
-<table class="table table-dark">
-    <thead>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
         <tr>
             <th scope="col">Farmacia Acargo</th>
             <th scope="col">CUFE</th>
@@ -25,14 +26,28 @@
                 <td>{{ $sucursal->getFarmacia->nombre_farmacia}}</td>
                 <td>{{ $sucursal->cufe_sucursal }}</td>
                 <td>{{ $sucursal->email_sucursal }}</td>
-                <td>{{ $sucursal->telefono_sucursal }}</td>
-                <td>{{ $sucursal->habilitado }}</td>
-                <td>{{ $sucursal->borrado_logico_sucursal }}</td>
+                <td>{{ $sucursal->telefono_fijo }}</td>
                 <td>
-                    <a class="btn btn-panel my-1" href="{{ route('sucursal.show', [$sucursal->id_sucursal]) }}">ver</a><br>
-                    <a class="btn btn-panel my-1" href="{{ route('sucursal.edit', [$sucursal->id_sucursal]) }}">Editar</a><br>
-                    <a class="btn btn-panel my-1" href="#" data-toggle="modal" data-target="#deleteModal" data-sucuid="{{ $sucursal->id_sucursal }}">
-                        Borrar
+                    @if ($sucursal->habilitado == 0)
+                        Deshabilitada
+                    @else
+                        Habilitada
+                    @endif
+                <td>
+                    @if ($sucursal->borrado_logico_sucursal == 0)
+                        No se ha Eliminado
+                    @else
+                        Se ha Eliminado
+                    @endif
+                <td>
+                    <a class="btn btn-panel p-1 m-1" href="{{ route('sucursal.show', [$sucursal->id_sucursal]) }}">
+                        <i class="material-icons" title="Informacio">info</i>
+                    </a>
+                    <a class="btn btn-panel p-1 m-1" href="{{ route('sucursal.edit', [$sucursal->id_sucursal]) }}">
+                        <i class="material-icons" title="Editar">mode_edit</i>
+                    </a>
+                    <a class="btn btn-panel p-1 m-1" href="#" data-toggle="modal" data-target="#deleteModal" data-sucuid="{{ $sucursal->id_sucursal }}">
+                        <i class="material-icons" title="Eliminar">delete_forever</i>
                     </a>
                 </td>
             </tr>
@@ -41,8 +56,10 @@
 
     </tbody>
 </table>
+
 <div class="d-flex d-flex justify-content-center mt-4"> 
     {{ $sucursales->links() }}
+</div>
 </div>
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
