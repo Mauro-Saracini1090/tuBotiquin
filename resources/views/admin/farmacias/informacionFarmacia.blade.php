@@ -5,7 +5,7 @@
         <span class="align-bottom">
             <h3 class="">Informacion de Farmacia {{ $farmacium->nombre_farmacia }}</h3>
         </span>
-        @if($farmacium->borrado_logico_farmacia == 0 )
+        {{-- @if($farmacium->borrado_logico_farmacia == 0 )
             @if($farmacium->habilitada == 0)
                 <span class="align-bottom">
                     <a class="btn btn-panel my-1" href="#" data-toggle="modal" data-target="#habilitacion"
@@ -21,27 +21,27 @@
                     </a>
                 </span>
             
-        @endif
+        @endif --}}
     </div>
 </div>
-<table class="table table-dark">
+<table class="table table-dark table-striped">
     <tbody>
         <tr>
             <th scope="col" style="width: 27%">#ID</th>
             <th scope="row">{{ $farmacium->id_farmacia }}</th>
         </tr>
-        <tr>
+        {{-- <tr>
             <th scope="col">Farmaceutico Acargo</th>
             <td>{{ $farmacium->usuarioFarmaceutico->nombre }} {{ $farmacium->usuarioFarmaceutico->apellido }}
             </td>
-        </tr>
+        </tr> --}}
         <tr>
             <th scope="col">Nombre Farmacia</th>
             <td>{{ $farmacium->nombre_farmacia }}</td>
         </tr>
         <tr>
             <th scope="col">Descripcion de Farmacia</th>
-            <td>{{ $farmacium->descripcion_farmacia }}</td>
+            <td><?php echo $farmacium->descripcion_farmacia ?></td>
         </tr>
         <tr>
             <th scope="col">Cuit</th>
@@ -51,7 +51,7 @@
             <th scope="col">Logo Farmacia</th>
             <td><img class="img-thumbnail rounded float-left"
                     src="{{ URL::to('/') }}{{ $farmacium->img_farmacia }}"
-                    alt="{{ $farmacium->nombre_farmacia }}" width="200px"></td>
+                    alt="{{ $farmacium->nombre_farmacia }}" width="100px"></td>
         </tr>
         <tr>
             <th scope="col">Estado Farmacias</th>
@@ -87,7 +87,7 @@
         </tr>
     </tbody>
 </table>
-<a href="{{ route('farmacia.index') }}" class="btn btn-secondary">Volver Atras</a>
+<a href="{{ route('farmacia.index') }}" class="btn btn-secondary mb-2">Volver Atras</a>
 
 <div class="modal fade" id="habilitacion" tabindex="-1" aria-labelledby="habModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

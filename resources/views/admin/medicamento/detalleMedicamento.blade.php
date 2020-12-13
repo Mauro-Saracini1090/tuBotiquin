@@ -7,7 +7,7 @@
         </span>
     </div>
 </div>
-<table class="table table-dark">
+<table class="table table-dark table-striped">
     <tbody>
         <tr>
             <th scope="col" style="width: 27%">#ID</th>
@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <th scope="col">Informacion</th>
-            <td>{{ $medicamento->informacion}}</td>
+            <td><?php echo $medicamento->informacion ?></td>
         </tr>
         <tr>
             <th scope="col">Tipo</th>

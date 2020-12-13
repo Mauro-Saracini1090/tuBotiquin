@@ -2,8 +2,9 @@
 @section('datos')
 <h3>Lista de Roles</h3>
 <a href="{{ route('roles.create') }}" class="btn btn-panel float-right my-2">Crear Nuevo ROL</a>
-<table class="table table-dark">
-    <thead>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre de Rol</th>
@@ -19,8 +20,8 @@
                 <td>
                     {{-- <a class="btn btn-panel" href="{{ route('roles.show', [$rol->id_rol]) }}">Asignar Permisos</a> --}}
                    {{-- <a class="btn btn-panel" href="{{ route('roles.edit', [$rol->id_rol]) }}">Editar</a>  --}}
-                    <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $rol->id_rol }}">
-                        Borrar
+                    <a class="btn btn-panel p-1 m-1" href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $rol->id_rol }}">
+                        <i class="material-icons" title="Eliminar">delete_forever</i>
                     </a>
                 </td>
             </tr>
@@ -29,6 +30,7 @@
 
     </tbody>
 </table>
+</div>
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

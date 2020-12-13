@@ -2,8 +2,9 @@
 @section('datos')
 <h3 >Lista de Usuarios</h3>
 <a href="{{ route('usuario.create') }}" class="btn btn-panel float-right my-2">Crear Nuevo Usuario</a>
-<table class="table table-dark">
-    <thead>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
@@ -23,12 +24,19 @@
                 <td>{{ $usuario->nombre_usuario }}</td>
                 <td>{{ $usuario->email }}</td>
                 <td>
-                    <a class="btn btn-panel" href="{{ route('usuario.show', [ $usuario->id_usuario]) }}">Ver</a>
-                    <a class="btn btn-panel" href="{{ route('usuario.edit', [ $usuario->id_usuario]) }}">Editar</a>
-                    <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $usuario->id_usuario }}">
-                        Borrar
+                    <a class="btn btn-panel p-1 m-1" href="{{ route('usuario.show', [ $usuario->id_usuario]) }}">
+                        <i class="material-icons" title="Informacio">info</i>
                     </a>
-                    <a class="btn btn-panel" href="{{ route('usuario.rolpermisos', [ $usuario->id_usuario]) }}">Asignar Rol </a>
+                    <a class="btn btn-panel p-1 m-1" href="{{ route('usuario.edit', [ $usuario->id_usuario]) }}">
+                        <i class="material-icons" title="Editar">mode_edit</i>
+                    </a>
+                    <a class="btn btn-panel p-1 m-1" href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $usuario->id_usuario }}">
+                        <i class="material-icons" title="Eliminar">delete_forever</i>
+                        
+                    </a>
+                    <a class="btn btn-panel p-1 m-1" href="{{ route('usuario.rolpermisos', [ $usuario->id_usuario]) }}">
+                        <i class="material-icons" title="Asignar un Rol">work</i>
+                    </a>
                 </td>
             </tr>
         @endforeach
@@ -36,6 +44,10 @@
 
     </tbody>
 </table>
+<div class="d-flex d-flex justify-content-center mt-4">
+    {{ $usuarios->links() }}
+</div>
+</div>
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

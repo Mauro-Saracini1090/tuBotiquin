@@ -9,8 +9,8 @@
         <p class="lead text-center my-3">Listado de sus Medicamentos</p>
     </div>
     @if(count($sucursales) > 0)
-        <div class="shadow px-2 mb-5 bg-white">
-            <div class="card-body table-responsive">
+        <div class="shadow bg-white p-1">
+            <div class="card-body table-responsive p-1">
                 <table id="table-medicamentos" class="table table-striped">
                     <thead>
                         <tr>

@@ -16,7 +16,7 @@ class MarcaMedicamentoController extends Controller
     public function index()
     {
         //
-        $marcasMedicamentos = MarcaMedicamento::simplePaginate(7);
+        $marcasMedicamentos = MarcaMedicamento::Paginate(5);
         return view('admin.marcaMedicamento.listadoMarcas',compact('marcasMedicamentos'));
     }
 

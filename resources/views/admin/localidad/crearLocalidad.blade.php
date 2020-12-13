@@ -5,7 +5,6 @@
     <h1 class="h2">Cargar Localidad</h1>
 </div>
     <form class="form-signin" method="post" action="{{ route('localidad.store') }}">
-
         {!! csrf_field() !!}
         <div class="form-group">
             <label for="nombre_localidad">Nombre Localidad:</label>
@@ -27,7 +26,7 @@
 
         </div>
         <button type="submit" class="btn btn-panel mx-1">Cargar Localidad</button>
-        <a href="{{ url()->previous() }}" class="btn btn-secondary mx-1">Volver Atras</a>
+        <a href="{{ route('localidad.index') }}" class="btn btn-secondary mx-1">Volver Atras</a>
     </form>
 
 @endsection

@@ -3,27 +3,25 @@
 <div class="row mt-2">
     <div class="col align-bottom">
         <span class="align-bottom"><h3 class="">Informacion de Sucursal</h3></span>
-        @if($sucursal->borrado_logico_sucursal == 0 )
             @if($sucursal->habilitado == 0)
             <span class="align-bottom">
                 <a class="btn btn-panel my-1" href="#" data-toggle="modal" data-target="#habilitacion" data-habi="1">
                     Aceptar Sucursal
                 </a>
             </span>
-            @endif
+            @else
             <span class="align-bottom">
                 <a class="btn btn-panel btn-danger bg-danger  my-1" href="#" data-toggle="modal" data-target="#habilitacion" data-habi="0">
                     Rechazar Sucursal
                 </a>
             </span>
-           
-        @endif
+            @endif
     </div>
 </div>
-<table class="table table-dark">
+<table class="table table-dark table-striped">
     <tbody>
         <tr>
-            <th scope="col" style="width: 27%">#ID</th>
+            <th scope="col" style="width: 20%">#ID</th>
             <th scope="row">{{ $sucursal->id_sucursal  }}</th>
         </tr>
         <tr>
@@ -36,7 +34,7 @@
         </tr>
         <tr>
             <th scope="col">Descripcion de Sucursal</th>
-            <td>{{ $sucursal->descripcion_sucursal }}</td>
+            <td><?php echo $sucursal->descripcion_sucursal ?></td>
         </tr>
         <tr>
             <th scope="col">Email</th>
@@ -49,7 +47,6 @@
         <tr>
             <th scope="col">Direccion</th>
             <td>{{ $sucursal->direccion_sucursal }}</td>
-            <td>MAPA?</td>
         </tr>
         <tr>
             <th scope="col">Estado Sucursal</th>
@@ -85,7 +82,7 @@
         </tr>
     </tbody>
 </table>
-<a href="{{ url()->previous() }}" class="btn btn-secondary">Volver Atras</a>
+<a href="{{ route('sucursal.index') }}" class="btn btn-secondary mb-2">Volver Atras</a>
 <div class="modal fade" id="habilitacion" tabindex="-1" aria-labelledby="habModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

@@ -5,8 +5,8 @@
     <h1 class="h2">Lista de Localidades</h1>
 </div>
 <a href="{{ route('localidad.create') }}" class="btn btn-panel float-right my-2">Cargar nueva localidad</a>
-<table class="table table-dark">
-    <thead>
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
             <th scope="col">Nombre Localidad</th>
             <th scope="col">Código Postal</th>
@@ -20,9 +20,11 @@
                 <td>{{ $localidad->nombre_localidad }}</td>
                 <td>{{ $localidad->codigo_postal }}</td>
                 <td>
-                    <a class="btn btn-panel" href="{{ route('localidad.edit', [$localidad->codigo_postal]) }}">Editar</a>
-                    <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $localidad->codigo_postal }}">
-                        Borrar
+                    <a class="btn btn-panel p-1 m-1" href="{{ route('localidad.edit', [$localidad->codigo_postal]) }}">
+                        <i class="material-icons" title="Editar">mode_edit</i>
+                    </a>
+                    <a class="btn btn-panel p-1 m-1" href="#" data-toggle="modal" data-target="#deleteModal" data-roleid="{{ $localidad->codigo_postal }}">
+                        <i class="material-icons" title="Eliminar">delete_forever</i>
                     </a>
                 </td>
             </tr>

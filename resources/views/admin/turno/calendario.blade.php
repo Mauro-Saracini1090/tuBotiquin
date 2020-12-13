@@ -4,7 +4,7 @@
     <h1 class="h2">Asignar Turno</h1>
 </div>
 
-<div id='calendar' class="col-8 m-auto"></div>
+<div id='calendar' class="col-12 col-mb-9 col-lg-9 mb-3 mx-auto"></div>
 
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -41,20 +41,19 @@
             </div>
             <div class="modal-body" style="height: 350px;">
                 @isset($sucursales)
-                <form action="{{ route('turno.store') }}" method="post" id="formTurnos">
-                    @csrf
-                    @foreach($sucursales as $sucursal)
-                        <div class="form-check">
-                            <input name="arrSu[]" class="form-check-input" type="checkbox" value="{{ $sucursal->id_sucursal}}" id="{{$sucursal->id_sucursal}}">
-                            <label class="form-check-label" for="defaultCheck1">
-                                {{ $sucursal->getFarmacia->nombre_farmacia }} - 
-                                {{ $sucursal->descripcion_sucursal }} - Direccion
-                            </label>
-                        </div>
-                    @endforeach
-                    <input name="turnoFecha" id="turnoFecha" type="text" value="" hidden>
-                    <input name="usuario" id="usuario" type="text" value="{{auth()->user()->id_usuario}}" hidden>
-                </form>
+                    <form action="{{ route('turno.store') }}" method="post" id="formTurnos">
+                        @csrf
+                        @foreach($sucursales as $sucursal)
+                            <div class="form-check">
+                                <input name="arrSu[]" class="form-check-input" type="checkbox" value="{{ $sucursal->id_sucursal}}" id="{{$sucursal->id_sucursal}}">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    {{$sucursal->getFarmacia->nombre_farmacia }}- Direccion {{$sucursal->direccion_sucursal}}
+                                </label>
+                            </div>
+                        @endforeach
+                        <input name="turnoFecha" id="turnoFecha" type="text" value="" hidden>
+                        <input name="usuario" id="usuario" type="text" value="{{auth()->user()->id_usuario}}" hidden>
+                    </form>
                 @else
                       <p>No hay sucursales registradas</p> 
                 @endisset
@@ -93,6 +92,10 @@
                 left: 'today',
                 center: 'title',
                 right: 'prev,next',
+            },
+            mobileHeader: {
+                left: ' prev, today, next',
+                right: 'month, listMonth'  
             },
             views: {
             dayGridMonth: { // name of view

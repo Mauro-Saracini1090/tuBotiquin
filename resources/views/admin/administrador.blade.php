@@ -29,6 +29,9 @@
     <link href='fullcalendar/main.css' rel='stylesheet' />
     <script src='fullcalendar/main.js'></script>
     <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
+    
+    {{-- iconos materialize --}}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
 
@@ -41,11 +44,10 @@
             -ms-user-select: none;
             user-select: none;
         }
-    @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
+    #sidebarMenu{
+          position: relative;
       }
+
       .btn-panel{
           color: white;
           background-color:#1abc9c;
@@ -62,6 +64,8 @@
       #admfooter{
         color: white;
         background-color: #2c3e50;
+        padding-right: 0px !important;
+        padding-left: 0px !important;        
       }
       .fc-today-button{
           background-color: #1abc9c !important;
@@ -71,30 +75,28 @@
           background-color: #1abc9c !important;
           border-color: #1abc9c !important;
       }
-      #sidebarMenu{
-          height: 108vh;
+      #main{
+          position: relative;
       }
-      
+      #calendar{
 
+      }
     </style>
-    <!-- Custom styles for this template -->
-    {{-- <link href="dashboard.css" rel="stylesheet"> --}}
 </head>
 
 <body>
-    <nav id="navHeader" class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow px-3">
+    <nav id="navHeader" class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
        
         <a class="navbar-brand col-4 col-md-3 col-lg-2 mr-0 px-3" href="#">TuBotiquin</a>
+        @auth
+            <div class="badge badge-dark text-wrap mx-2 mb-0">
+                {{ Auth::user()->nombre_usuario }}
+                {{ Auth::user()->getRoles->isNotEmpty() ? Auth::user()->getRoles->first()->nombre_rol : "" }}
+            </div>
+        @endauth
         <button class="navbar-toggler col-4 d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        @auth
-
-                    <div class="badge badge-dark text-wrap mx-2 mb-0">
-                        {{ Auth::user()->nombre_usuario }}
-                        {{ Auth::user()->getRoles->isNotEmpty() ? Auth::user()->getRoles->first()->nombre_rol : "" }}
-                    </div>
-                @endauth
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
                 <a id="admlogout" class="nav-link btn btn-dark mb-1" href="#"
@@ -110,15 +112,14 @@
     </nav>
 
     <div class="container-fluid">
-        <div class="row" style="height: 100vh">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark bg-gradient sidebar collapse">
                 <div class="sidebar-sticky pt-3">
-                  
                     @auth
                         @can('esAdmin')
-                        <ul class="nav flex-column py-2">
+                            <ul class="nav flex-column">
                                 <li class="nav-item my-1">
-                                    <a class="nav-link btn-panel"
+                                    <a class="nav-link btn-panel btn btn-outline-default btn-rounded waves-effect"
                                         href="{{ route('homeAdministrador') }}">
                                         <span></span> Home
                                     </a>
@@ -128,74 +129,74 @@
                                 </li> --}}
                                 <li class="nav-item my-1">
                                     <a href="{{ route('roles.index') }}"
-                                        class="nav-link  btn-panel">Roles</a>
+                                        class="nav-link btn-panel btn btn-outline-default btn-rounded waves-effect">Roles</a>
                                 </li>
                                 <li class="nav-item my-1">
                                     <a href="{{ route('usuario.index') }}"
-                                        class="nav-link  btn-panel">Usuarios</a>
+                                        class="nav-link btn-panel btn btn-outline-default btn-rounded waves-effect">Usuarios</a>
                                 </li>
                                 <li class="nav-item my-1">
                                     <a href="{{ route('localidad.index') }}"
-                                        class="nav-link btn-panel">Localidades</a>
+                                        class="nav-link btn-panel btn btn-outline-default btn-rounded waves-effect">Localidades</a>
                                 </li>
                                 <li class="nav-item my-1">
-                                    <a href="{{ route('turno.index') }}"
-                                        class="nav-link btn-panel">Asignar Turno</a>
+                                    <a href="{{ route('turno.index') }}" class="nav-link btn-panel btn btn-outline-default btn-rounded waves-effect">Asignar Turno</a>
                                 </li>
                                 <li class="nav-item my-1">
                                     <a href="{{ route('obrasocial.index') }}"
-                                        class="nav-link btn-panel">Agregar Obra Social</a>
+                                        class="nav-link btn-panel btn btn-outline-default btn-rounded waves-effect">Obras Sociales</a>
                                 </li>
                                 <li class="nav-item my-1">
                                     <a href="{{ route('farmacia.index') }}"
-                                        class="nav-link btn-panel">Ver Farmacias</a>
+                                        class="nav-link btn-panel btn btn-outline-default btn-rounded waves-effect">Farmacias</a>
                                 </li>
                                 <li class="nav-item my-1">
                                     <a href="{{ route('sucursal.index') }}"
-                                        class="nav-link btn-panel">Sucursales</a>
+                                        class="nav-link btn-panel btn btn-outline-default btn-rounded waves-effect">Sucursales</a>
                                 </li>
                                 <li class="nav-item my-1">
                                     <a href="{{ route('tipoMedicamentos.index') }}"
-                                        class="nav-link btn-panel">Tipos de Medicamentos</a>
+                                        class="nav-link btn-panel btn btn-outline-default btn-rounded waves-effect">Tipos de Medicamentos</a>
                                 </li>
                                 <li class="nav-item my-1">
                                     <a href="{{ route('marcaMedicamentos.index') }}"
-                                        class="nav-link btn-panel">Marcas de Medicamento</a>
+                                        class="nav-link btn-panel btn btn-outline-default btn-rounded waves-effect">Marcas de Medicamento</a>
                                 </li>
                                 <li class="nav-item my-1">
                                     <a href="{{ route('medicamentos.index') }}"
-                                        class="nav-link btn-panel">Medicamentos</a>
+                                        class="nav-link btn-panel btn btn-outline-default btn-rounded waves-effect mb-2">Medicamentos</a>
                                 </li>
+                            </ul>
                         @endcan
                     @endauth
-                    </ul>
                 </div>
             </nav>
 
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                @section('datos')
-                <div
-                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
-                    <h1 class="h2">Home Administrador</h1>
 
-                </div>
-                <div class="container bg-light shadow-lg p-3 my-3  bg-white rounded">
-                   
+            <main id="main" role="main" class="col-md-9 col-lg-10">
+                @section('datos')
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
+                        <h1 class="h2">Home Administrador</h1>
+
+                    </div>
+                    <div class="container bg-light shadow-lg p-3 my-3 bg-white rounded">
                     
-                </div>
+                        
+                    </div>
                 @show
             </main>
-
-
-
-
-            <footer id="admfooter" class="footer mt-auto py-3 col-md-12">
-                <div class="container-fluid">
-                    <span class="text-muted">TuBotiquin - 2020</span>
-                </div>
-            </footer>
         </div>
     </div>
+    <div class="container-fluid">
+        <div class="row">
+    <footer id="admfooter" class="footer mt-auto py-3 col-md-12">
+        <div class="container-fluid">
+            <span class="text-muted">TuBotiquin - 2020</span>
+        </div>
+    </footer>
+        </div>
+    </div>
+    
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

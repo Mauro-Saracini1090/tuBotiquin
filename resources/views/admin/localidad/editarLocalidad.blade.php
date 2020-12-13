@@ -4,12 +4,6 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
     <h1 class="h2">Editar Localidad {{ $localidad->nombre_localidad }}</h1>
 </div>
-@if($errors->any())
-    <div class="alert alert-danger">
-        <p>Por favor corrija los siguientes errores de abajo: </p>
-    </div>
-@endif
-
     <form class="form-signin" method="post"
         action="{{ route('localidad.update', [$localidad->codigo_postal]) }}">
         @method('PATCH')
@@ -34,7 +28,7 @@
 
         </div>
         <button type="submit" class="btn btn-panel mx-1">Editar Localidad</button>
-        <a href="{{ url()->previous() }}" class="btn btn-secondary mx-1">Volver Atras</a>
+        <a href="{{ route('localidad.index') }}" class="btn btn-secondary mx-1">Volver Atras</a>
     </form>
 
 @endsection

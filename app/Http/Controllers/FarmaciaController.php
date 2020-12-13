@@ -27,10 +27,10 @@ class FarmaciaController extends Controller
     {
         if (\auth()->user()->getRoles->contains('slug_rol', 'es-administrador')) {
             Gate::authorize('esAdmin');
-            $arrayFarmacias = Farmacia::simplePaginate(2);
+            $arrayFarmacias = Farmacia::paginate(4);
             return view('admin.farmacias.indexFarmacias', compact('arrayFarmacias'));
         }
-        return view('farmaceutico.indexFarmaceutico');
+        // return view('farmaceutico.indexFarmaceutico');
     }
 
 
@@ -77,7 +77,7 @@ class FarmaciaController extends Controller
 
         // Retorna a la vista para cargar una nueva Farmacia a traves de  un formulario
         //return view('farmaceutico.cargarFarmacia');
-        return view('farmaceutico.cargarFarmacia');
+        // return view('farmaceutico.cargarFarmacia');
     }
 
     /**
@@ -88,13 +88,13 @@ class FarmaciaController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('esAdmin');
         //Valida los campos del formulario cargarFarmacia.blade
         $request->validate(([
             'nombre_farmacia' => 'required|max:255|unique:farmacia',
             'descripcion_farmacia' => 'max:250',
-            'cuit' => 'required|unique:farmacia|max:255',
+            'cuit' => 'required|unique:farmacia|digits:11',
             'img_farmacia' => 'required|image|mimes:jpeg,jpe,png|max:4096',
-            'cuit' => 'required|between:8,20',
         ]));
 
         // Crear una nueva instacia de Farmacia y la guarda en la DB
@@ -140,10 +140,10 @@ class FarmaciaController extends Controller
         Gate::authorize('esAdmin');
 
         Request()->validate(([
-            'nombre_farmacia' => 'required',
-            // 'farmaceutico' => 'required',
-            'img_farmacia' => 'required|image|mimes:jpeg,png|max:4096',
-            'cuit' => 'required|unique:farmacia|max:255',
+            'nombre_farmacia' => 'required|max:255|unique:farmacia',
+            'descripcion_farmacia' => 'max:250',
+            'cuit' => 'required|unique:farmacia|digits:11',
+            'img_farmacia' => 'required|image|mimes:jpeg,jpe,png|max:4096',
             'habilitada' => 'required',
         ]));
 
@@ -224,6 +224,7 @@ class FarmaciaController extends Controller
      */
     public function update(Request $request, Farmacia $farmacium)
     {
+        Gate::authorize('esAdmin');
         $farmacia = $farmacium;
 
         //Valida los campos del formulario editarFarmacia.blade 
@@ -263,6 +264,7 @@ class FarmaciaController extends Controller
      */
     public function destroy(Farmacia $farmacium)
     {
+        Gate::authorize('esAdmin');
         $farmacia = $farmacium;
         $farmacia->borrado_logico_farmacia = 1;
         $farmacia->save();
@@ -273,31 +275,7 @@ class FarmaciaController extends Controller
     public function borrarFarmacias(Farmacia $farmacia)
     {
         Gate::authorize('esAdmin');
-
         $farmacia->delete();
         return redirect(route('farmacia.index'))->with('estado_delete', 'Su Farmacia se ha borrado correctamente de la plataforma.  Contacte al Adminstardor para mas información');
     }
-
-    // public function solicitudFarmacia(Request $request)
-    // {
-    //     Gate::authorize('esAdmin');
-    //     $farmacia = Farmacia::find($request->farmacia);
-    //     $borado_logico = 1;
-    //     if($request->estado_habilitacion == 0)
-    //     {   
-    //         $farmacia->borrado_logico_farmacia=$borado_logico;
-    //         $farmacia->habilitada = $request->estado_habilitacion;
-    //         $farmacia->save();
-    //         Mail::to($farmacia->usuarioFarmaceutico->email)->send(new solicitudFarmaciaRechazadaMailable);
-
-    //     }else{
-    //         $farmacia->habilitada = $request->estado_habilitacion;
-    //         $farmacia->save();
-    //         Mail::to($farmacia->usuarioFarmaceutico->email)->send(new solicitudFarmaciaAceptadaMailable($farmacia) );
-
-    //     }
-
-
-    //     return redirect(route('farmacia.show', [$farmacia->id_farmacia]));
-    // }
 }

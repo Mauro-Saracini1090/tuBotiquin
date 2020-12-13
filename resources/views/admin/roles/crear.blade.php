@@ -25,7 +25,7 @@
         @endif
 
     </div>
-    <button type="submit" class="btn btn-panel mx-1">Crear Rol</button><a href="{{ url()->previous() }}"
+    <button type="submit" class="btn btn-panel mx-1">Crear Rol</button><a href="{{ route('roles.index') }}"
         class="btn btn-secondary mx-1">Volver Atras</a>
 </form>
 
