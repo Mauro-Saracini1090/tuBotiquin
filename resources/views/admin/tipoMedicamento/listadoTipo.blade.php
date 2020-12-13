@@ -5,8 +5,9 @@
     <h1 class="h2">Lista de Tipos de Medicamento</h1>
 </div>
 <a href="{{ route('tipoMedicamentos.create') }}" class="btn btn-panel float-right my-2">Cargar nuevo Tipo de Medicamento</a>
-<table class="table table-dark">
-    <thead>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
         <tr>
             <th scope="col">Tipo Medicamento</th>
             <th>Acciones</th>
@@ -18,9 +19,11 @@
             <tr>
                 <td>{{ $medicamento->nombre_tipo }}</td>
                 <td>
-                    <a class="btn btn-panel" href="{{ route('tipoMedicamentos.edit', [$medicamento->id_tipo]) }}">Editar</a>
-                    <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-obraid="{{ $medicamento->id_tipo}}">
-                        Borrar
+                    <a class="btn btn-panel p-1 m-1" href="{{ route('tipoMedicamentos.edit', [$medicamento->id_tipo]) }}">
+                        <i class="material-icons" title="Editar">mode_edit</i>
+                    </a>
+                    <a class="btn btn-panel p-1 m-1" href="#" data-toggle="modal" data-target="#deleteModal" data-obraid="{{ $medicamento->id_tipo}}">
+                        <i class="material-icons" title="Eliminar">delete_forever</i>
                     </a>
                 </td>
             </tr>
@@ -32,7 +35,7 @@
 <div class="d-flex d-flex justify-content-center mt-4"> 
     {{ $tiposMedicamentos->links() }}
 </div>
-
+</div>
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
