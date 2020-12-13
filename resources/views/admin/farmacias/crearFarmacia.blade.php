@@ -7,30 +7,9 @@
             <div class="shadow p-3 mb-5 backCard rounded">
                 <!-- Masthead Subheading-->
                 <h3 class="masthead-subheading text-center">Crear Farmacia</h3>
-                <p class="lead text-center">Edite los siguientes campos</p>
-
                 <form method="POST" action="{{ route('almacenarFarmaciaAdmin') }}"
                     enctype="multipart/form-data">
                     @csrf
-                    {{-- <!-- select Farmaceuticos -->
-                    <div class="form-group">
-                        <strong><label for="farmaceutico">{{ __('Seleccione su Farmaceutico') }}</label></strong>
-                        <select id="farmaceutico" class="form-control @error('farmaceutico') is-invalid @enderror"
-                            name="farmaceutico" value="{{ old('farmaceutico') }}" required>
-                            <option></option>
-                            @foreach($farmaceuticos as $farmaceutico)
-                                <option value="{{ $farmaceutico->id_usuario  }}">
-                                    {{ $farmaceutico->nombre }} {{ $farmaceutico->apellido }}-
-                                    {{ $farmaceutico->numero_matricula }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('farmaceutico')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div> --}}
                     <div class="form-group">
                         <strong><label
                                 for="nombre_farmacia">{{ __('Nombre de la Farmacia *') }}</label></strong>
@@ -69,9 +48,8 @@
                     </div>
                     <div class="form-group">
                         <strong><label for="cuit">{{ __('CUIT *') }}</label></strong>
-                        <input type="number" name="cuit"
-                            value="{{ old('cuit') }}" required class="form-control @error('cuit') is-invalid @enderror">
-                        <small class="form-text text-muted">Sin espacios ni guiones - 8 caracteres mínimo</small>
+                        <input type="number" name="cuit" value="{{ old('cuit') }}" required class="form-control @error('cuit') is-invalid @enderror">
+                        <small class="form-text text-muted">Sin espacios ni guiones - 11 digitos</small>
                         @error('cuit')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -109,4 +87,14 @@
         </div>
     </div>
 </div>
+@endsection
+@section('zona_js')
+<script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('descripcion_farmacia',{
+        language: 'es',
+        uiColor: '#9AB8F3',
+        enterMode : CKEDITOR.ENTER_BR
+    });
+</script>
 @endsection
