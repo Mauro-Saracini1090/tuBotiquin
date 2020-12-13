@@ -32,7 +32,7 @@ class UsuarioController extends Controller
         // if (Gate::denies('esAdmin')) {
         //     abort(403);
         // }
-        $usuarios = Usuario::all();
+        $usuarios = Usuario::Paginate(5);
         return view('admin.usuario.listaUsuarios', compact('usuarios'));
     }
 
