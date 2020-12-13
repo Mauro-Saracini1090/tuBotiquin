@@ -23,7 +23,7 @@ class MedicamentoController extends Controller
     public function index()
     {
         //
-        $medicamentos = Medicamento::all();
+        $medicamentos = Medicamento::paginate(4);
         return view('admin.medicamento.index', compact('medicamentos'));
     }
 
