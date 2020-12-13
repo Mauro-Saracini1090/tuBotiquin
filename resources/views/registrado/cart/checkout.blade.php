@@ -2,7 +2,6 @@
 @section('titulo', 'Farmacias')
 
 @section('contenido')
-@can('esRegistrado')
 <!-- Section of  alert mail contac send -->
 @if(session()->has('borrado'))
     <div class="container">
@@ -79,7 +78,7 @@
 @endcan
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 bg-white shadow">
+        <div class="col-sm-12 bg-light">
             @if(count(Cart::getContent()))
                     <table class="table table-striped">
                         <thead>
@@ -152,19 +151,11 @@
                 </form>
 
             @else
-            <div class="p-3 mb-2 text-center">
-                <h4 class="masthead-subheading align-middle">CARRITO VACIO <i class=" Medium material-icons align-middle" style="font-size: 30px" data-toggle="tooltip" data-placement="left"
-                    title="Carrito vacio">remove_shopping_cart </i> 
-                </h4>
-                <br>
-                <a href="{{ route('farmacias') }}" class="btn btn-primary">Volver a Farmacias</a>
-                <a href="{{ route('listado.reservas.registrado') }}" class="btn btn-primary ml-2">Ir a mis reservas</a>
-            </div>
+                <p>Carrito vacio</p>
             @endif
 
         </div>
 
     </div>
 </div>
-@endcan
 @endsection
