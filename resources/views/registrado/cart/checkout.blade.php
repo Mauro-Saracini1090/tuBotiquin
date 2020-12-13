@@ -2,17 +2,16 @@
 @section('titulo', 'Farmacias')
 
 @section('contenido')
-<div class="container">
-    <div class="card-body">
-        <!-- Masthead Subheading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Reservas</h2>
-        <p class="lead text-center my-3">Listado de Reservas Realizadas</p>
-    </div>
+<div class="container ">
+    <div class="row shadow">
+        <div class="col-12 bg-encabezado mb-3 p-2">
+            <h2 class="text-center text-white"> MIS RESERVAS</h2>
+        </div>
+    
     <!-- Section of  alert mail contac send -->
     @if(session()->has('borrado'))
-        <div class="container">
-            <div class="row">
-                <div class="col-12 mx-auto">
+      
+                <div class="col-12 mx-auto bg-white">
                     <div class="text-left alert alert-success alert-dismissible fade show" role="alert">
                         <p class="font-weight-bold">{{ session()->get('borrado') }}</p>
                         <strong>
@@ -23,14 +22,12 @@
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
+         
     @endif
     <!-- Section of  alert mail contac send -->
     @if(session()->has('reservaconfirmada'))
-        <div class="container">
-            <div class="row">
-                <div class="col-12 mx-auto">
+     
+                <div class="col-12 mx-auto bg-white">
                     <div class="text-left alert alert-success alert-dismissible fade show" role="alert">
                         <p class="font-weight-bold">{{ session()->get('reservaconfirmada') }}</p>
                         <strong>
@@ -41,14 +38,12 @@
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
+        
     @endif
     <!-- Section of  alert mail contac send -->
     @if(session()->has('overflow'))
-        <div class="container">
-            <div class="row">
-                <div class="col-12 mx-auto">
+       
+                <div class="col-12 mx-auto bg-white">
                     <div class="text-left alert alert-warning alert-dismissible fade show" role="alert">
                         <p class="font-weight-bold">{{ session()->get('overflow') }}</p>
                         <strong>
@@ -58,16 +53,14 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                </div>
-            </div>
+            
         </div>
     @endif
     @can('esRegistrado')
         <!-- Section of  Cancelar Reserva -->
         @if(session()->has('cancelar'))
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 mx-auto">
+           
+                    <div class="col-12 mx-auto bg-white">
                         <div class="text-left alert alert-warning alert-dismissible fade show" role="alert">
                             <p class="font-weight-bold">{{ session()->get('cancelar') }}</p>
                             <strong>
@@ -78,49 +71,50 @@
                             </button>
                         </div>
                     </div>
-                </div>
-            </div>
+              
         @endif
     @endcan
-    <div class="row">
-        <div class="col-sm-12 bg-light">
+  
+        <div class="col-12 bg-white">
             @if(count(Cart::getContent()))
-                <table class="table table-striped">
-                    <thead>
-                        <th>FARMACIA</th>
-                        <th>NOMBRE</th>
-                        <th>CANTIDAD</th>
-                        <th>STOCK TOTAL DISPONIBLE</th>
-                    </thead>
-                    <tbody>
-                        @foreach(Cart::getContent() as $item)
+                <div class="table table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <th>FARMACIA</th>
+                            <th>NOMBRE</th>
+                            <th>CANTIDAD</th>
+                            <th>STOCK TOTAL DISPONIBLE</th>
+                        </thead>
+                        <tbody>
+                            @foreach(Cart::getContent() as $item)
 
-                            <tr>
-                                <td>{{ $farmacia->nombre_farmacia }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->quantity }}</td>
-                                <td>{{ $item->total }}</td>
-                                <td>
-                                    <form action="{{ route('cart.removeitem') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->id }}">
-                                        <input type="hidden" name="total" value="{{ $item->quantity }}">
-                                        <input type="hidden" name="farmacia" value="{{ $farmacia }}">
-                                        <button type="submit" class="btn btn-link btn-sm text-danger">X</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
+                                <tr>
+                                    <td>{{ $farmacia->nombre_farmacia }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->quantity }}</td>
+                                    <td>{{ $item->total }}</td>
+                                    <td>
+                                        <form action="{{ route('cart.removeitem') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $item->id }}">
+                                            <input type="hidden" name="total" value="{{ $item->quantity }}">
+                                            <input type="hidden" name="farmacia" value="{{ $farmacia }}">
+                                            <button type="submit" class="btn btn-link btn-sm text-danger">X</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div> 
+                   
                 <form method="POST" action="{{ route('cart.confirmar-reserva') }}">
                     @csrf
                     @foreach(Cart::getContent() as $item)
 
                         <input type="hidden" name="id" value="{{ $item->id }}">
                         <input name="medicamentos[]" type="hidden" name="id" value="{{ $item->id }}">
-                        <input name="cantidad[{{ $item->id }}]" type="hidden" name="id"
+                        <input text-whitename="cantidad[{{ $item->id }}]" type="hidden" name="id"
                             value="{{ $item->quantity }}">
 
                     @endforeach
@@ -159,13 +153,22 @@
                         </div>
                     </div>
                 </form>
-
+            </div>
             @else
-                <p>Carrito vacio</p>
+                <div class="row mt-4">
+                <div class="col-12 bg-white">
+                    
+                    <h5 class="text-center my-auto align-middle mt-3">CARRITO VACIO<i class="material-icons align-middle ml-2">remove_shopping_cart</i></h5>
+                    <p class=" text-center">No posee articulos en su carrito</p>
+                    <div class="d-flex d-flex justify-content-center m-3"> 
+                      <a href=" {{ route('farmacias') }}" type="button" class="btn btn-primary" >Volver a Farmacias</a>
+                    </div>    
+                </div>    
+            </div>
             @endif
 
         </div>
-
+    </div>
     </div>
 </div>
 @endsection
