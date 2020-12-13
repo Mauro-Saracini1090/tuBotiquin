@@ -1,7 +1,7 @@
 @extends('admin.administrador')
 @section('datos')
 <h3>Informacion de Rol {{ $role->nombre_rol }}</h3>
-<table class="table table-dark">
+<table class="table table-dark table-striped">
     <thead>
         <tr>
             <th scope="col">#ID</th>
