@@ -5,8 +5,8 @@
     <h1 class="h2">Lista de Marcas de Medicamento</h1>
 </div>
 <a href="{{ route('marcaMedicamentos.create') }}" class="btn btn-panel float-right my-2">Cargar nueva Marca de Medicamento</a>
-<table class="table table-dark">
-    <thead>
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
             <th scope="col">Nombre Marca Medicamento</th>
             <th>Acciones</th>
@@ -18,9 +18,11 @@
             <tr>
                 <td>{{ $marca->nombre_marca }}</td>
                 <td>
-                    <a class="btn btn-panel" href="{{ route('marcaMedicamentos.edit', [$marca->id_marca]) }}">Editar</a>
-                    <a class="btn btn-panel" href="#" data-toggle="modal" data-target="#deleteModal" data-obraid="{{ $marca->id_marca}}">
-                        Borrar
+                    <a class="btn btn-panel p-1 m-1" href="{{ route('marcaMedicamentos.edit', [$marca->id_marca]) }}">
+                        <i class="material-icons" title="Editar">mode_edit</i>
+                    </a>
+                    <a class="btn btn-panel p-1 m-1" href="#" data-toggle="modal" data-target="#deleteModal" data-obraid="{{ $marca->id_marca}}">
+                        <i class="material-icons" title="Eliminar">delete_forever</i>
                     </a>
                 </td>
             </tr>
