@@ -2,16 +2,16 @@
 @section('titulo', 'Cargar Sucursal')
 
 @section('opcionesFarmaceutico')
-<div class="container-fluid">
+<div class="container-fluid  p-0 mx-0">
     <div class="card-body">
         <!-- Masthead Subheading-->
         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Medicamentos</h2>
         <p class="lead text-center my-3">Listado de sus Medicamentos</p>
     </div>
     @if(count($sucursales) > 0)
-        <div class="shadow bg-white p-1">
-            <div class="card-body table-responsive p-1">
-                <table id="table-medicamentos" class="table table-striped">
+        <div class="shadow bg-white p-0 mx-0 container-fluid">
+            <div class="card-body table-responsive p-0 mx-0 container-fluid">
+                <table id="table-medicamentos" class="table table-striped container-fluid p-2 mx-0">
                     <thead>
                         <tr>
                             <th></th>
