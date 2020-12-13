@@ -43,8 +43,8 @@
                                 <button type="submit" class="btn btn-primary mr-1">
                                     {{ __('Cargar') }}
                                 </button>
-                                <a href="{{ route('farmacia.index') }}"
-                                    class="btn btn-primary">Cancelar</a>
+                                <a href="{{ route('obrasocial.index') }}"
+                                    class="btn btn-primary">Volver Atras</a>
                             </div>
                         </div>
                     @endcan    
