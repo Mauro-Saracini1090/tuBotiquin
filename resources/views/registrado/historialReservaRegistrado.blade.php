@@ -25,7 +25,6 @@
                 <tbody>
                     @foreach($reservas as $reserva)
                         <tr>
-                            <td></td>
                             <td>{{ $reserva->numero_reserva }}</td>
                             <td>{{ $reserva->getSucursal->getFarmacia->nombre_farmacia }} -
                                 {{ $reserva->getSucursal->direccion_sucursal }}</td>
