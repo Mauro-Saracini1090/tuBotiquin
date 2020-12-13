@@ -3,55 +3,18 @@
 
 @section('opcionesFarmaceutico')
 <div class="container">
-<div class="card-body">
-    <!-- Masthead Subheading-->
-    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Reservas</h2>
-    <p class="lead text-center my-3">Listado de Reservas Realizadas</p>
-</div>
-<!-- Section of  alert mail contac send -->
-@if(session()->has('borrado'))
-    <div class="container">
-        <div class="row">
-            <div class="col-12 mx-auto">
-                <div class="text-left alert alert-success alert-dismissible fade show" role="alert">
-                    <p class="font-weight-bold">{{ session()->get('borrado') }}</p>
-                    <strong>
-                        <p class="text-right">Equipo TuBotiquín</p>
-                    </strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
-        </div>
+    <div class="card-body">
+        <!-- Masthead Subheading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Reservas</h2>
+        <p class="lead text-center my-3">Listado de Reservas Realizadas</p>
     </div>
-@endif
-<!-- Section of  alert mail contac send -->
-@if(session()->has('solicitudReserva'))
-    <div class="container">
-        <div class="row">
-            <div class="col-12 mx-auto">
-                <div class="text-left alert alert-success alert-dismissible fade show" role="alert">
-                    <p class="font-weight-bold">{{ session()->get('solicitudReserva') }}</p>
-                    <strong>
-                        <p class="text-right">Equipo TuBotiquín</p>
-                    </strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
-@can('esRegistrado')
-    <!-- Section of  Cancelar Reserva -->
-    @if(session()->has('cancelar'))
+    <!-- Section of  alert mail contac send -->
+    @if(session()->has('borrado'))
         <div class="container">
             <div class="row">
                 <div class="col-12 mx-auto">
-                    <div class="text-left alert alert-warning alert-dismissible fade show" role="alert">
-                        <p class="font-weight-bold">{{ session()->get('cancelar') }}</p>
+                    <div class="text-left alert alert-success alert-dismissible fade show" role="alert">
+                        <p class="font-weight-bold">{{ session()->get('borrado') }}</p>
                         <strong>
                             <p class="text-right">Equipo TuBotiquín</p>
                         </strong>
@@ -63,73 +26,106 @@
             </div>
         </div>
     @endif
-@endcan
+    <!-- Section of  alert mail contac send -->
+    @if(session()->has('solicitudReserva'))
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <div class="text-left alert alert-success alert-dismissible fade show" role="alert">
+                        <p class="font-weight-bold">{{ session()->get('solicitudReserva') }}</p>
+                        <strong>
+                            <p class="text-right">Equipo TuBotiquín</p>
+                        </strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    @can('esRegistrado')
+        <!-- Section of  Cancelar Reserva -->
+        @if(session()->has('cancelar'))
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <div class="text-left alert alert-warning alert-dismissible fade show" role="alert">
+                            <p class="font-weight-bold">{{ session()->get('cancelar') }}</p>
+                            <strong>
+                                <p class="text-right">Equipo TuBotiquín</p>
+                            </strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endcan
     <div class="row">
-        <div class="col-sm-12 bg-light">
-            @if(count($reservas) > 0)
-            <div class="col-12 mb-3 p-3">
-                <h3 class="text-secondary mb-0 text-center">PEDIDOS REALIZADOS</h3>      
-             </div>
-            <div class="col-lg-12 col-12 bg-light shadow">
-                <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
+        <div class="bg-light px-3">
+            <table class="table table-striped p-0 m-0">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Numero Reserva</th>
+                        <th>Sucursal</th>
+                        <th>Estado</th>
+                        <th>Informacion</th>
+                        <th>Fecha Solicitud</th>
+                        <th>Fecha Vencimiento</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <tr>
+                        <form class="form-inline d-flex d-flex justify-content-center" method="GET"
+                            action="{{ route('listado.reservas.farmaceutico') }}">
+                            <th>
+                                <div class="row">
+                                    <button type="submit" class="btn btn-primary p-2 mx-auto mb-1"><i
+                                            class="fas fa-search" aria-hidden="true" title="Buscar"></i></button>
+                                    <button id="resetbusqueda" type="reset" class="btn btn-primary p-2 mx-auto"><i
+                                            class="fas fa-sync" title="Limpiar Busqueda"></i></button>
+                                </div>
+                            </th>
+                            <th>
+
+                            </th>
+                            <th>
+                                <input class="col-12 p-0" id="nombreFarmacia" type="text" placeholder="Farmacia"><input
+                                    id="farmacia_id" name="farmacia_id" hidden>
+                            </th>
+                            <th>
+                                <select class="form-select" aria-label="Default select example" name="estado_id"
+                                    id="estado_id">
+                                    <option selected></option>
+                                    @foreach($estados as $estado)
+                                        <option value="{{ $estado->id_estados }}">
+                                            {{ $estado->descripcion_tipo_estados }}</option>
+
+                                    @endforeach
+                                </select>
+                            </th>
                             <th></th>
-                            <th>Número Reserva</th>
-                            <th>Sucursal</th>
-                            <th>Estado</th>
-                            <th>Información</th>
-                            <th>Fecha Solicitud</th>
-                            <th>Fecha Vencimiento</th>
-                            <th>Acciones</th>
-                        </tr>
-                        <tr>
-                            <form class="form-inline d-flex d-flex justify-content-center" method="GET"
-                                action="{{ route('listado.reservas.farmaceutico') }}">
-                                <th>
-                                    <div class="row">
-                                        <button type="submit" class="btn btn-primary p-2 mx-auto mb-1"><i
-                                                class="fas fa-search" aria-hidden="true" title="Buscar"></i></button>
-                                        <button id="resetbusqueda" type="reset" class="btn btn-primary p-2 mx-auto"><i
-                                                class="fas fa-sync" title="Limpiar Busqueda"></i></button>
-                                    </div>
-                                </th>
-                                <th>
+                            <th>
+                                <input class="col-10 p-0" id="fechasolicitud" name="solicitud_id" type="date"
+                                    placeholder="Fecha Solicitud">
 
-                                </th>
-                                <th>
-                                    <input class="col-12 p-0" id="nombreFarmacia" type="text"
-                                        placeholder="Farmacia"><input id="farmacia_id" name="farmacia_id" hidden>
-                                </th>
-                                <th>
-                                    <select class="form-select" aria-label="Default select example" name="estado_id"
-                                        id="estado_id">
-                                        <option selected></option>
-                                        @foreach($estados as $estado)
-                                            <option value="{{ $estado->id_estados }}">
-                                                {{ $estado->descripcion_tipo_estados }}</option>
+                            </th>
+                            <th>
+                                <input class="col-10 p-0" id="fechavencimiento" name="vencimiento_id" type="date"
+                                    placeholder="Fecha Vencimiento">
+                                </td>
+                            <th>
+                                </td>
+                        </form>
 
-                                        @endforeach
-                                    </select>
-                                </th>
-                                <th></th>
-                                <th>
-                                    <input class="col-10 p-0" id="fechasolicitud" name="solicitud_id" type="date"
-                                        placeholder="Fecha Solicitud">
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(count($reservas) > 0)
 
-                                </th>
-                                <th>
-                                    <input class="col-10 p-0" id="fechavencimiento" name="vencimiento_id" type="date"
-                                        placeholder="Fecha Vencimiento">
-                                    </td>
-                                <th>
-                                    </td>
-                            </form>
-
-                        </tr>
-                    </thead>
-                    <tbody>
                         @foreach($reservas as $reserva)
                             <tr>
                                 <td></td>
@@ -165,48 +161,49 @@
                                 @endif
                             </tr>
                         @endforeach
-
-                    </tbody>
-                </table>
-                </div>
-            @else
-            <div class="col-12">
-                <div class="p-3 mb-2 bg-warning rounded shadow text-dark text-center mx-auto">
-                    <h6 class="mb-2">
-                        No existen Reservas Registadas  en este momento.
-                    </h6>   
-                    <br>       
-                     <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
-                    
-                </div>        
+                    @else
+                        <div class="col-12">
+                            <div class="text-left alert alert-warning alert-dismissible fade show" role="alert">
+                                <p class="font-weight-bold">No existen Reservas Registadas en este momento.</p>
+                                <strong>
+                                    <p class="text-right">Equipo TuBotiquín</p>
+                                </strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    @endif
+                </tbody>
+            </table>
+            <div class="d-flex d-flex justify-content-center mt-4"> 
+                {{ $reservas->links() }}
             </div>
-            @endif
-
         </div>
     </div>
 </div>
 @if(count($reservas) > 0)
-<div class="modal fade" id="habilitacion" tabindex="-1" aria-labelledby="habModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="habModalLabel">Esta seguro que desea borrar esta Farmacia?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-footer">
-                <form method="POST" action="{{ route('solicitudReserva') }}">
-                    @csrf
-                    <input type="hidden" id="estado_habilitacion" name="estado_habilitacion" value="">
-                    <input type="hidden" id="reserva" name="reserva" value="{{ $reserva->id_farmacia }}">
-                    <button type="submit" class="btn btn-panel">Si</button>
-                </form>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+    <div class="modal fade" id="habilitacion" tabindex="-1" aria-labelledby="habModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="habModalLabel">Esta seguro que desea borrar esta Farmacia?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <form method="POST" action="{{ route('solicitudReserva') }}">
+                        @csrf
+                        <input type="hidden" id="estado_habilitacion" name="estado_habilitacion" value="">
+                        <input type="hidden" id="reserva" name="reserva" value="{{ $reserva->id_farmacia }}">
+                        <button type="submit" class="btn btn-panel">Si</button>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endif
 @endsection
 @section('zona_js')
