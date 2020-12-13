@@ -67,19 +67,14 @@
     <div class="row">
         <div class="col-sm-12 bg-light">
             @if(count($reservas) > 0)
-            <div class="col-12 mb-3 p-3">
-                <h3 class="text-secondary mb-0 text-center">PEDIDOS REALIZADOS</h3>      
-             </div>
-            <div class="col-lg-12 col-12 bg-light shadow">
-                <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Número Reserva</th>
+                            <th>Numero Reserva</th>
                             <th>Sucursal</th>
                             <th>Estado</th>
-                            <th>Información</th>
+                            <th>Informacion</th>
                             <th>Fecha Solicitud</th>
                             <th>Fecha Vencimiento</th>
                             <th>Acciones</th>
@@ -168,7 +163,6 @@
 
                     </tbody>
                 </table>
-                </div>
             @else
             <div class="col-12">
                 <div class="p-3 mb-2 bg-warning rounded shadow text-dark text-center mx-auto">
