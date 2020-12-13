@@ -13,12 +13,14 @@
                 <form class="form-inline d-flex d-flex justify-content-center" method="GET" action="{{ route('farmacias') }}">
                     <i class="fas fa-search" aria-hidden="true"></i>
                     <input class="form-control form-control-sm ml-3 w-75" name="busquedafarmacia" type="text" placeholder="Search" aria-label="Search">
-                    <button type="submit" class="btn btn-primary mx-2">
-                        {{ __('Buscar') }}
-                    </button>
-                    <button id="resetbusqueda" type="reset" class="btn btn-primary">
-                        {{ __('Limpiar') }}
-                    </button>
+                    <span class="float-sm-center mt-1">
+                        <button type="submit" class="btn btn-primary mx-2">
+                            {{ __('Buscar') }}
+                        </button>
+                        <button id="resetbusqueda" type="reset" class="btn btn-primary">
+                            {{ __('Limpiar') }}
+                        </button>
+                    </span>
                 </form>
             </div>
 
