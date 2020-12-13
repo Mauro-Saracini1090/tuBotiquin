@@ -20,7 +20,8 @@ class ObraSocialController extends Controller
         //
         //Obtengo todas las localidades cargadas en la DB
         if(\auth()->user()->getRoles->contains('slug_rol','es-administrador')){
-            $arrayObraSocial = ObraSocial::simplePaginate(5);
+            Gate::authorize('esAdmin');
+            $arrayObraSocial = ObraSocial::Paginate(5);
             return view('admin.obrasocial.index', ['arrayObraSocial' => $arrayObraSocial]);
         }
 
@@ -52,7 +53,7 @@ class ObraSocialController extends Controller
         Gate::authorize('esAdmin');
         Request()->validate(([
             'Nombre_obra_social' => 'required',
-            'Telefono_obra_Social' => 'required|numeric',
+            'Telefono_obra_Social' => 'required|digits_between:6,11',
 
         ]));
             $obrasocial = new ObraSocial;
@@ -99,7 +100,7 @@ class ObraSocialController extends Controller
         Gate::authorize('esAdmin');
         Request()->validate(([
             'Nombre_obra_social' => 'required',
-            'Telefono_obra_Social' => 'required|numeric',
+            'Telefono_obra_Social' => 'required|digits_between:6,11',
 
         ]));
             // Recibe una instanacia $localidad y procede a guardar los valores
@@ -130,6 +131,7 @@ class ObraSocialController extends Controller
      */
     public function listarObraSocialFarmacia()
     {
+        Gate::authorize('esAdmin');
         $id_usuario = Auth()->user()->id_usuario;
         $arrayFarmacias = Farmacia::where("id_usuario", "=", $id_usuario)->where("borrado_logico_farmacia", "=", "0")->get();
 
@@ -143,8 +145,8 @@ class ObraSocialController extends Controller
 
 
     public function agregarObrasocialFarmacia(Request $request)
-    {
-
+    {   
+        Gate::authorize('esAdmin');
         if ($request->ajax()){
             $farmacia = Farmacia::where('id_farmacia',$request->farmacia_id)->first();
             $obs = $farmacia->obrasSociales;
