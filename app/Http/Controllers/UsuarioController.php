@@ -354,7 +354,7 @@ class UsuarioController extends Controller
         //     return $obs;
         // }
         $usuario = Usuario::where('id_usuario','=',auth()->user()->id_usuario)->first();
-        $reservas = $usuario->usuarioReservas()->paginate(3);
+        $reservas = $usuario->usuarioReservas()->orderByDesc('fecha_solicitud_estados')->paginate(3);
 
         foreach ($reservas as $reserva) {
             # code...
@@ -382,7 +382,7 @@ class UsuarioController extends Controller
             $farmacia = $sucursal->getFarmacia;
             foreach ($farmacia->getSucursales()->Farmacia($request->farmacia_id)->get() as $sucursalesFarma){
                 # code...
-                foreach ($sucursalesFarma->getReservas()->Estado($request->estado_id)->FechaSolicitud($request->solicitud_id)->FechaVencimiento($request->vencimiento_id)->get() as $reservasFarmacia) {
+                foreach ($sucursalesFarma->getReservas()->Estado($request->estado_id)->FechaSolicitud($request->solicitud_id)->FechaVencimiento($request->vencimiento_id)->orderBy('fecha_solicitud_estados', 'desc')->orderBy('estados_id', 'asc')->get() as $reservasFarmacia) {
                     # code...
                     array_push($reservas,$reservasFarmacia);
                 } 
