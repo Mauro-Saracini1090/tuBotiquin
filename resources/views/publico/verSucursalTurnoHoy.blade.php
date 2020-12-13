@@ -33,7 +33,7 @@
                                
                         <div class="row">
                             <div Class="col-lg-7 col-12 " >
-                                <div class="text ml-5 p-1"> 
+                                <div class="text ml-lg-5 p-1"> 
                                    <ul class="list-group list-group-flush">
 
                                             <li class="list-group-item">
