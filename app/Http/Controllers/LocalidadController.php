@@ -17,7 +17,7 @@ class LocalidadController extends Controller
     {
         //Obtengo todas las localidades cargadas en la DB
 
-        $localidades = Localidad::orderBy('nombre_localidad', 'asc')->simplePaginate(4);
+        $localidades = Localidad::orderBy('nombre_localidad', 'asc')->Paginate(5);
         return view('admin.localidad.indexLocalidad', ['localidades' => $localidades]);
     }
 
@@ -41,7 +41,7 @@ class LocalidadController extends Controller
     public function store(Request $request)
     {
         Request()->validate(([
-            'codigo_postal' => 'required|numeric',
+            'codigo_postal' => 'required|digits_between:4,5',
             'nombre_localidad' => 'required',
 
         ]));
