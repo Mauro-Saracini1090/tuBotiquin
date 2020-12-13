@@ -13,6 +13,17 @@
                 <form method="POST" action="{{ route('sucursal.update', [$sucursal]) }}">
                     @method('PATCH')
                     @csrf
+                    <!-- select Farmacias -->
+                <div class="form-group">
+                    <strong><label for="id_farmacia">{{ __('Seleccione su Farmacia') }}</label></strong>
+                    <select id="id_farmacia" class="form-control @error('Farmacia') is-invalid @enderror"
+                            name="id_farmacia" value="{{ old('id_farmacia') }}" required>
+                            <option></option> 
+                            @foreach($arrayFarmacias as $farmacia)
+                            <option value="{{ $farmacia->id_farmacia }}" @if($farmacia->id_farmacia == $sucursal->getFarmacia->id_farmacia) selected @endif> {{ $farmacia->nombre_farmacia }}</option>
+                            @endforeach
+                    </select>
+            </div>
                     <!-- Descripcion -->
                     <div class="form-group">
                         <strong><label
@@ -24,6 +35,7 @@
                             rows="3">
                             {{$sucursal->descripcion_sucursal}}
                         </textarea>
+                        <small class="form-text text-muted">Aca puede colocar los diás y horarios de atención</small>
 
                         @error('descripcion_sucursal')
                             <span class="invalid-feedback" role="alert">
@@ -37,7 +49,7 @@
                                 for="cufe_sucursal">{{ __('Cufe sucursal *') }}</label></strong>
                         <input type="text" name="cufe_sucursal"
                             value={{ old('cufe_sucursal', $sucursal->cufe_sucursal ) }} required class="form-control @error('cufe_sucursal') is-invalid @enderror">
-                        <small class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo</small>
+                            <small  class="form-text text-muted">Sin espacios ni guiones, 11 dígitos</small>
 
                         @error('cufe_sucursal')
                             <span class="invalid-feedback" role="alert">
@@ -66,8 +78,8 @@
                         <input type="text" name="telefono_fijo"
                             value={{ old('telefono_fijo', $sucursal->telefono_fijo) }}
                             @error('telefono_sucursal') is-invalid @enderror required class="form-control">
-                        <small class="form-text text-muted">Sin espacios ni guiones</small>
-                        @error('telefono_fijo')
+                            <small  class="form-text text-muted">Sin espacios ni guiones,(Cod.Area sin 0), Numero de telefono sin 15. Entre 6 digitos minimo</small>
+                            @error('telefono_fijo')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -81,8 +93,8 @@
                         <input type="text" name="telefono_movil"
                             value={{ old('telefono_movil', $sucursal->telefono_movil) }}
                             @error('telefono_movill') is-invalid @enderror required class="form-control">
-                        <small class="form-text text-muted">Sin espacios ni guiones</small>
-                        @error('telefono_movil')
+                            <small  class="form-text text-muted">Sin espacios ni guiones,(Cod.Area sin 0), Numero de telefono sin 15. Entre 6 digitos minimo</small>
+                            @error('telefono_movil')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -124,4 +136,14 @@
         </div>
     </div>
 </div>
+@endsection
+@section('zona_js')
+<script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('descripcion_sucursal',{
+        language: 'es',
+        uiColor: '#9AB8F3',
+        enterMode : CKEDITOR.ENTER_BR
+    });
+</script>
 @endsection
