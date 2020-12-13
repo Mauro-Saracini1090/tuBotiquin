@@ -270,7 +270,7 @@
                     </div>
                     <div class="col-12 text-center">
                         <a href="{{ route('verTurnosSiguientes') }}" class="btn btn-link">
-                            <span class="align-middle  text-center"><strong>[ Ver más ]</strong></span>
+                            <span class="align-middle  text-center"><strong>[ VER MÁS ]</strong></span>
                             <i class="fas fa-arrow-circle-right align-middle  pl-2" style="font-size: 30px"; data-toggle="tooltip" data-placement="left" title="Ver vas sucursales de turno"></i>    
                         </a>  
                     </div>    
