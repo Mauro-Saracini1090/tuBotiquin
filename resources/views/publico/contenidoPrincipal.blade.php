@@ -2,7 +2,7 @@
 @section('titulo','Home')
 
 @section('contenido')
-
+        <div class="container">
             <!-- Section of  alert mail contac send -->
             @if(session()->has('mensajeEnviado'))
                 <div class="container">
@@ -371,7 +371,7 @@
                 </div>
                 <hr class="pt-4">
             </div><!-- Cierre container proximas de turno -->
-      
+        </div>    
  </div> <!--Cierre Container principal -->
  
 @endsection
