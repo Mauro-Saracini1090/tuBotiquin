@@ -20,6 +20,6 @@
             @endif
         </div>
         <button type="submit" class="btn btn-panel mx-1">Cargar Tipo Medicamento</button>
-        <a href="{{ url()->previous() }}" class="btn btn-secondary mx-1">Volver Atras</a>
+        <a href="{{ route('tipoMedicamentos.index') }}" class="btn btn-secondary mx-1">Volver Atras</a>
     </form>
 @endsection
