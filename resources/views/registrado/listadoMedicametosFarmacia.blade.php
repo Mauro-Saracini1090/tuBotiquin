@@ -96,9 +96,10 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="p-3 mb-2 bg-warning rounded shadow text-dark ">
-                    <h6 class="font-weight-bold text-center mb-2">Atención. Ocurrio un error en la búsqueda,
-                        intentelo
-                        nuevamente mas tarde</h6>
+                    <h6 class="font-weight-bold text-center mb-2">
+                        <i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i>
+                         Atención. Ocurrio un error en la búsqueda, intentelo nuevamente mas tarde.
+                    </h6>
                     <br>
                     <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
                 </div>
