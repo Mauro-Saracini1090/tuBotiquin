@@ -186,7 +186,7 @@
                                                     @endif
                                                 </div>     
                                          
-                                                <div class="col-md-4 col-6">
+                                                <div class="col-md-4 col-6 mx-auto">
                                                 <img class="card-img-top shadow rounded" src="{{URL::to('/')}}{{$sucursal->getFarmacia->img_farmacia }}"
                                                     alt="{{ $sucursal->getFarmacia->nombre_farmacia }}"  width="200" height="150">
                                                 
@@ -226,7 +226,7 @@
                                                             <div class="col-10">
                                                                 <span class="font-weight-bold text-secondary">
 
-                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacerte una consulta?">Consultanos!</a>
+                                                                    <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacer una consulta?">Consultanos!</a>
                                                                 </span>
                                                             </div>
                                                         </div>
