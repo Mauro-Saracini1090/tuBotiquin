@@ -32,7 +32,7 @@
                         Una vez aprobado, le llegará un correo con la confirmación y prodrá comenzar a utilizar la plataforma.  
                     </p>    
                 </div>
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                <div class="tab-pane fade shadow px-3 py-3"" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     <p class="lead text-left"> 
                         Para poder reservar uno o mas medicamentos, primero deberá estar regristrado. 
                         Luego en el botón Farmacias del menú, podrá elegir su farmacia preferida y verá el otro botón con el logotipo de pildoras, haciendo clic en el
@@ -46,12 +46,12 @@
                         Finalemente le llegará un correo electrónico notificandole si su pedido fue aceptado y cuando esta disponible para su retiro. 
                     </p>   
                 </div>
-                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                <div class="tab-pane fade shadow px-3 py-3"" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <p class="lead text-left">    
                         Si, podrá eliminar su cuenta de usuario yendo a  "Mi perfil" desde el botón con el logotipo de "tacho de basurra".
                     </p>    
                 </div>
-                <div class="tab-pane fade" id="v-pills-settings2" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                <div class="tab-pane fade shadow px-3 py-3"" id="v-pills-settings2" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <p class="lead text-left">    
                        Por supuesto que si, en el menú principal esta el botón "Contacto" y desde ahi podrá evacuar todas sus inquietudes.
                     </p>    
