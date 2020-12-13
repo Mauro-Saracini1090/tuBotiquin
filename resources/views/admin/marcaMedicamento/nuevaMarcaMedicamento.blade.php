@@ -19,6 +19,6 @@
             @endif
         </div>
         <button type="submit" class="btn btn-panel mx-1">Cargar Marca de Medicamento</button>
-        <a href="{{ url()->previous() }}" class="btn btn-secondary mx-1">Volver Atras</a>
+        <a href="{{ route('marcaMedicamentos.index') }}" class="btn btn-secondary mx-1">Volver Atras</a>
     </form>
 @endsection
