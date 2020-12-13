@@ -16,7 +16,7 @@ class TipoMedicamentoController extends Controller
     public function index()
     {
         //
-        $tiposMedicamentos = TipoMedicamento::simplePaginate(7);
+        $tiposMedicamentos = TipoMedicamento::Paginate(5);
         return view('admin.tipoMedicamento.listadoTipo',compact('tiposMedicamentos'));
     }
 
