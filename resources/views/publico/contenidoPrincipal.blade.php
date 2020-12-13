@@ -162,7 +162,7 @@
                                                         @csrf  
                                                         <input type="hidden" name="id_sucursal" value= {{ $sucursalesTurno[0]->id_sucursal}}>
                                                         <button type="submit" class="btn btn-link mx-2">
-                                                                {{ __('Ver sucursal') }}
+                                                            <strong>{{ __('Ver sucursal') }}</strong>
                                                         </button>    
                                                     </form>
                                                 </div>
@@ -225,20 +225,17 @@
                                                             </div>
                                                             <div class="col-10">
                                                                 <span class="font-weight-bold text-secondary">
-
                                                                     <a target="_blank"  href="https://api.whatsapp.com/send?phone={{ $sucursal->telefono_movil }}&text=Hola,%20¿te puedo hacer una consulta?">Consultanos!</a>
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </li>
                                                     @else
-                                                        <div class="row">
-                                                            <div class="col-1">   
-                                                                <p>&nbsp</p>  
-                                                            </div>
-                                                        </div>                                                                              
-                                                    
-                                                    <li class="list-group-item" ></li>
+                                                    <div class="row">
+                                                        <div class="col-1 m-2">   
+                                                            <p>&nbsp</p>  
+                                                        </div>
+                                                    </div>                                                                                
                                                     
                                                     @endif   
                                                 </ul>
@@ -249,7 +246,7 @@
                                                         @csrf  
                                                         <input type="hidden" name="id_sucursal" value= {{ $sucursal->id_sucursal}}>
                                                         <button type="submit" class="btn btn-link mx-2">
-                                                                {{ __('Ver sucursal') }}
+                                                                <strong>{{ __('Ver sucursal') }}</strong>
                                                         </button>    
                                                     </form>
                                                 </div>
