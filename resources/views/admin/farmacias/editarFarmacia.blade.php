@@ -6,9 +6,7 @@
          <div class=" col-12">
             <div class="shadow p-3 mb-5 backCard rounded">  
                     <!-- Masthead Subheading-->
-                    <h3 class="masthead-subheading text-center">Editar Farmacia</h3>
-                    <p class="lead text-center">Edite los siguientes campos</p>
-                    
+                    <h3 class="masthead-subheading text-center">Editar Farmacia</h3>                    
                     <form  method="POST" action="{{ route('farmacia.update',[$farmacia]) }}" enctype="multipart/form-data">
                      @method('PATCH')
                      @csrf  
@@ -69,4 +67,10 @@
         </div>   
     </div>                
 </div>
+@endsection
+@section('zona_js')
+<script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script> 
+<script>
+    CKEDITOR.replace( 'descripcion_farmacia' );
+</script>
 @endsection
