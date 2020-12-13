@@ -88,7 +88,7 @@
                                                 @csrf  
                                                 <input type="hidden" name="id_sucursal" value= {{ $sucursalDia["sucursal"]->id_sucursal}}>
                                                 <button type="submit" class="btn btn-link mx-2">
-                                                    {{ __('Ver sucursal') }}
+                                                    <strong>{{ __('Ver sucursal') }}</strong>
                                                 </button>    
                                             </form>
                                         </div>   
