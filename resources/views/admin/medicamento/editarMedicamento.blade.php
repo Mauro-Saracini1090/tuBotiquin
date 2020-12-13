@@ -102,3 +102,13 @@
     </div>
 </div>
 @endsection
+@section('zona_js')
+<script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('informacion',{
+        language: 'es',
+        uiColor: '#9AB8F3',
+        enterMode : CKEDITOR.ENTER_BR
+    });
+</script>    
+@endsection
