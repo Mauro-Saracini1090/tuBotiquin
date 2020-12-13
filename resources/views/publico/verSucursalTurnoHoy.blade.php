@@ -105,7 +105,7 @@
                                 <div class="col-12">
                                  <h4 class="text-secondary  m-3">Obras sociales</h4>
                                     <div class="p-3 mb-2 bg-warning text-dark">
-                                        <h6 class="font-weight-bold text-center">Esta Sucursal Farmacuetica no posee Obras Sosciales cargadas</h6>
+                                        <h6 class="font-weight-bold text-center"><i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i> Esta Sucursal Farmacuetica no posee Obras Sosciales cargadas</h6>
                                     </div>
                                 </div>
                         </div>
@@ -117,7 +117,7 @@
                                 <div class="col-12">
                                
                                     <div class="p-3 mb-2 bg-warning text-dark ">
-                                        <h6 class="font-weight-bold text-center">Atención. Ocurrio un error en la búsqueda, intentelo nuevamente mas tarde</h6>
+                                        <h6 class="font-weight-bold text-center"><i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i>Atención. Ocurrio un error en la búsqueda, intentelo nuevamente mas tarde</h6>
                                     </div>
                                 </div>
                         </div>

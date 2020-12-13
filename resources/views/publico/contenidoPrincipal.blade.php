@@ -52,7 +52,7 @@
                 <p class="lead text-center my-2">Farmacias que se encuentran de turno el día de hoy</p>
                 <?php $hora = number_format(date('H') ); ?>
                 <div class="row">
-                    <div class="col-4  rounded text-center mx-auto">
+                    <div class="col-12  rounded text-center mx-auto">
                         <div class="d-flex d-flex justify-content-middle justify-content-center">
                             @if( $hora >= 7 and $hora <=20 )
                                 <i class="material-icons px-1"> wb_sunny</i> 
@@ -76,7 +76,7 @@
                         <div class="col-12">
                             <div class="p-3 mb-2 bg-warning rounded shadow text-dark text-center mx-auto">
                                 <h6 class="mb-2">
-                                    No existen Farmacias de turnos para el día <ins><?php echo date('d-m-Y') ?> </ins> registradas en la plataforma.
+                                    <i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i> No existen Farmacias de turnos para el día <ins><?php echo date('d-m-Y') ?> </ins> registradas en la plataforma.
                                 </h6>   
                                 <br>        
                                 <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
@@ -267,12 +267,16 @@
             <hr>
                 <div class="row pt-4">
                  
-                    <div class="col-md-12 mt-4">
-                    
+                    <div class="col-md-12">
                         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Próximas de turno</h2>
-                        <p class="lead text-center my-2 ">Farmacias que se encontrarán de turnos los próximos días
-                        <a href="{{ route('verTurnosSiguientes') }}" class="btn btn-link">[ Ver más ]</a> 
+                        <p class="lead text-center my-2 align-middle">Farmacias que se encontrarán de turnos los próximos días</p>
                     </div>
+                    <div class="col-12 text-center">
+                        <a href="{{ route('verTurnosSiguientes') }}" class="btn btn-link">
+                            <span class="align-middle  text-center"><strong>[ Ver más ]</strong></span>
+                            <i class="fas fa-arrow-circle-right align-middle  pl-2" style="font-size: 30px"; data-toggle="tooltip" data-placement="left" title="Ver vas sucursales de turno"></i>    
+                        </a>  
+                    </div>    
                 </div>
             </div>
 
@@ -284,8 +288,8 @@
                          
                         <div class="col-12">
                             <div class="p-3 mb-2 bg-warning rounded shadow text-dark text-center mx-auto">
-                                <h6 class="mb-2">
-                                    No existen Farmacias de turnos para los siguientes días registradas en la plataforma en este momento
+                                <h6 class="mb-2"> 
+                                    <i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i> No existen Farmacias de turnos para los siguientes días registradas en la plataforma en este momento
                                 </h6>   
                                 <br>       
                                  <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
@@ -368,7 +372,7 @@
                         </div>    
                     @endforeach    
                 </div>
-                <hr>
+                <hr class="pt-4">
             </div><!-- Cierre container proximas de turno -->
       
  </div> <!--Cierre Container principal -->

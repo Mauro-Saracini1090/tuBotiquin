@@ -17,7 +17,7 @@
         type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/tuBotiquin/public/css/styles.css" rel="stylesheet">
+    <link href="/tubotiquin/tuBotiquin/public/css/styles.css" rel="stylesheet">
     <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
 
     {{-- Leaflet - map osm --}}
@@ -103,8 +103,8 @@
                                             href="{{ route('miPerfilFarmacuetico') }}"><i
                                                 class="material-icons px-2 align-middle">account_box</i><span
                                                 class="mb-4">Mi Perfil</span></a>
-                                <a class="dropdown-item" href="{{route('listado.reservas.registrado')}}">
-                                        <i class="material-icons mx-0 pr-2 align-middle">shopping_cart</i>
+                                        <a class="dropdown-item" href="{{route('listado.reservas.registrado')}}">
+                                        <i class="material-icons px-2 align-middle">shopping_cart</i>
                                         <span class="mb-4">Mis Reservas</span>
                                         </a>
                                     @endcan
@@ -200,7 +200,7 @@
                     <p class="lead mb-0">
                         Aquí podrás ver las farmacias que se encuentran de turno
                         <hr>
-                        <a href="#PreguntasFrecuentes" class="text-white">PREGUNTAS FRECUENTES</a></li>
+                        <a href="{{route('preguntasFrecuentes')}}" class="text-white"><strong>PREGUNTAS FRECUENTES</strong></a></li>
                     </p>
 
                 </div>

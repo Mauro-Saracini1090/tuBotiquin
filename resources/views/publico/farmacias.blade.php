@@ -46,16 +46,20 @@
                                         <form method="POST" action="{{ route('farmaciaSucursal') }}">
                                             @csrf
                                             <input type="hidden" name="id_farmacia" value={{ $farmaciaPaginate->id_farmacia }}>
-                                            <button type="submit" class="btn btn-link mx-2">
-                                                {{ __('Ver Sucursales') }}
+                                          
+                                            <button type="submit" class="btn btn-link mx-2"><i class="fas fa-clinic-medical align-middle" style="font-size: 30px";></i>
+                                                <span class="align-middle pl-2">{{ __('Ver Sucursales') }}</span>
                                             </button>
+                                           
                                         </form>
                                         @can('esRegistrado')
                                             <div class="p-2">
-                                                <a href="{{ route('listado.medicamentos', [$farmaciaPaginate->id_farmacia]) }}"><i
-                                                        class="material-icons" style="font-size: 40px" data-toggle="tooltip"
-                                                        data-placement="left"
-                                                        title="Listado Medicamentos de {{ $farmaciaPaginate->nombre_farmacia }}">event_note</i></a>
+                                                <a href="{{ route('listado.medicamentos', [$farmaciaPaginate->id_farmacia]) }}">
+                                                    <i class="fas fa-pills align-middle" style="font-size: 30px"; data-toggle="tooltip" data-placement="left"
+                                                    title="Listado Medicamentos de {{ $farmaciaPaginate->nombre_farmacia }}"></i>
+                                                    <span class="align-middle pl-2">Medicamentos</span>
+                                                 
+                                                </a>
                                             </div>
                                         @endcan
                                     </div>
@@ -74,7 +78,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="p-3 mb-2 bg-warning rounded shadow text-dark ">
-                        <h6 class="font-weight-bold text-center mb-2">Atención. Ocurrio un error en la búsqueda, intentelo
+                        <h6 class="font-weight-bold text-center mb-2"><i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i>Atención. Ocurrio un error en la búsqueda, intentelo
                             nuevamente mas tarde</h6>
                         <br>
                         <p>Disculpe las Molestias. <strong>Equipo tuBotiquín</strong></p>
