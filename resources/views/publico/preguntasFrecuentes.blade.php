@@ -19,7 +19,7 @@
                 <div class="tab-pane fade show active shadow px-3 py-3" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                     <p class="lead text-left">
                      La plataforma tiene dos funciones principales, mostrar las farmacias que se encuentran de turno el día de hoy como también de los próximos
-                     días de la semana y hacer la resevara de uno o mas medicamentos.  
+                     días de la semana y hacer la resevar de uno o más medicamentos.  
                     </p>
                 </div>
                 <div class="tab-pane fade shadow px-3 py-3" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
@@ -35,8 +35,8 @@
                 <div class="tab-pane fade shadow px-3 py-3" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     <p class="lead text-left"> 
                         Para poder reservar uno o mas medicamentos, primero deberá estar regristrado. 
-                        Luego en el botón Farmacias del menú, podrá elegir su farmacia preferida y verá el otro botón con el logotipo de pildoras, haciendo clic en el
-                        mismo vera todo un listado de medicamentos.   
+                        Luego en el botón Farmacias del menú, podrá elegir su farmacia preferida y verá el botón con el logotipo de pildoras, haciendo clic en el
+                        mismo verá todo un listado de medicamentos.   
                     </p>
                     <p class="lead text-left">
                         Podrá reservar un máximo de 5 unidades de cada medicamento y para finalizar la reserva deberá ir al icono de "carrito" que aparecerá en la parte superior 

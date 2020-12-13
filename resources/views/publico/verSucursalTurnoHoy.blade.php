@@ -29,7 +29,7 @@
                       </div>
                     <hr> 
                         <!-- Sucursal -->
-                        <h4 class="text-secondary  m-3">Sucursal</h4>
+                        <h4 class="text-secondary  m-3">SUCURSAL</h4>
                                
                         <div class="row">
                             <div Class="col-lg-7 col-12 " >
@@ -96,7 +96,7 @@
                             <!-- Obra Sociales -->
                             <div class="row">
                                 <div class="col-12">
-                                    <h4 class="text-secondary  m-3">Obras sociales</h4>
+                                    <h4 class="text-secondary  m-3">OBRAS SOCIALES</h4>
                                         <div class="p-4">
                                         <ul class="list-inline">
                                         @foreach($arrayObraSociales as $obraSocial)
@@ -109,7 +109,7 @@
                         @else  
                              <div class="row">
                                 <div class="col-12">
-                                 <h4 class="text-secondary  m-3">Obras sociales</h4>
+                                 <h4 class="text-secondary  m-3">OBRAS SOCIALES</h4>
                                     <div class="p-3 mb-2 bg-warning text-dark">
                                         <h6 class="font-weight-bold text-center"><i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i> Esta Sucursal Farmacuetica no posee Obras Sosciales cargadas</h6>
                                     </div>

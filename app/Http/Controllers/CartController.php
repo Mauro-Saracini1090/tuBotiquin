@@ -42,10 +42,10 @@ class CartController extends Controller
             $request->cantidad,
             $farmacia->id_farmacia,
             $sucursal,
-            $cantidadT,
+            $cantidadT
         );
 
-        return back()->with('success', "$producto->nombre ¡se ha agregado con éxito al carrito!");
+        return back()->with('success', "$producto->nombre ¡Se ha agregado con éxito al carrito!");
     }
 
     public function cart()
@@ -100,7 +100,7 @@ class CartController extends Controller
     {
        
         \Cart::clear();
-        return back()->with('clear', "Su carrito de reservas a sido reseteado, recuerde que solo puede reservar en una farmacia a la vez.");
+        return back()->with('clear', "Su carrito de reservas fue reseteado, recuerde que solo puede reservar en una farmacia a la vez.");
     }
 
     public function confirmarReserva(Request $request)
@@ -146,7 +146,7 @@ class CartController extends Controller
         Mail::to($sucursal->email_sucursal)->send(new reservaRealizadaMailable($reserva));
 
         \Cart::clear();
-        return redirect(route('cart.checkout'))->with('reservaconfirmada', 'Su Reserva a ha sido registrada, recibira una notificacion cuando pueda retirar su pedido.');
+        return redirect(route('cart.checkout'))->with('reservaconfirmada', 'Su Reserva a fue registrada, recibirá una notificación cuando pueda retirar su pedido.');
         // dd($arrSucursal);
     }
 
@@ -166,6 +166,6 @@ class CartController extends Controller
             }
         }
         \Cart::clear();
-        return back()->with('cancelar', "Su carrito de reservas a sido Vaciado. Recuerde que solo puede reservar en una farmacia a la vez.");
+        return back()->with('cancelar', "Su carrito de reservas fue vaciado. Recuerde que solo puede reservar en una farmacia a la vez.");
     }
 }

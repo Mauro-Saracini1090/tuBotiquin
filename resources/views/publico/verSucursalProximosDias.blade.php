@@ -13,12 +13,14 @@
         <form class="form-inline d-flex d-flex justify-content-center" method="GET" action="{{ route('verTurnosSiguientes') }}">
             <i class="fas fa-search" aria-hidden="true"></i>
             <input class="form-control form-control-sm ml-3 w-75" name="busquedaTurno" type="date" placeholder="Search" aria-label="Search">
-            <button type="submit" class="btn btn-primary mx-2">
-                {{ __('Buscar') }}
-            </button>
-            <button id="resetbusqueda" type="reset" class="btn btn-primary">
-                {{ __('Limpiar') }}
-            </button>
+            <span class="float-sm-center mt-1">     
+                <button type="submit" class="btn btn-primary mx-2">
+                    {{ __('Buscar') }}
+                </button>
+                <button id="resetbusqueda" type="reset" class="btn btn-primary">
+                    {{ __('Limpiar') }}
+                </button>
+            </span>    
         </form>   
         @if( !(count($arregloSucursalTurnodia)) < 1 ) 
         <div class="row mt-2">
@@ -86,7 +88,7 @@
                                                 @csrf  
                                                 <input type="hidden" name="id_sucursal" value= {{ $sucursalDia["sucursal"]->id_sucursal}}>
                                                 <button type="submit" class="btn btn-link mx-2">
-                                                    {{ __('Ver sucursal') }}
+                                                    <strong>{{ __('Ver sucursal') }}</strong>
                                                 </button>    
                                             </form>
                                         </div>   

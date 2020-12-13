@@ -31,10 +31,10 @@
                         <!-- Sucursales -->
                         <!-- Mostrar primero la sede central -->
                         @if(count($arraySucursales) > 1 )
-                            <h4 class="text-secondary  m-3">Nuestras sucursales</h4>
+                            <h4 class="text-secondary  m-3">SUCURSALES</h4>
                             <hr>
                         @elseif(count($arraySucursales) == 1 )
-                            <h4 class="text-secondary  m-3">Nuestra sucursal</h4>
+                            <h4 class="text-secondary  m-3">SUCURSAL</h4>
                             <hr>    
                         @endif       
                         @foreach ($arraySucursales as  $sucursal)
@@ -125,7 +125,7 @@
                             <!-- Obra Sociales -->
                             <div class="row">
                                 <div class="col-12">
-                                    <h4 class="text-secondary m-3">Obras sociales</h4>
+                                    <h4 class="text-secondary m-3">OBRAS SOCIALES</h4>
                                         <div class="p-4">
                                         <ul class="list-inline">
                                         @foreach($arrayObraSociales as $obraSocial)
@@ -138,7 +138,7 @@
                         @else  
                              <div class="row">
                                 <div class="col-12">
-                                <h4 class="text-secondary  m-3">Obras sociales</h4>
+                                <h4 class="text-secondary  m-3">OBRAS SOCIALES</h4>
                                     <div class="p-3 mb-2 bg-warning text-dark">
                                         <h6 class="font-weight-bold text-center"> <i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i>Esta Sucursal Farmaceutica no posee Obras Sosciales cargadas</h6>
                                     </div>
