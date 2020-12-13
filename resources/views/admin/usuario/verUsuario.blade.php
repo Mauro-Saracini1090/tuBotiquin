@@ -21,7 +21,7 @@
 </span>
 @endif           
 
-<table class="table table-dark">
+<table class="table table-dark table-striped">
     <tbody>
         <tr>
             <th scope="col" style="width: 27%">#ID</th>
@@ -118,7 +118,7 @@
 
     </tbody>
 </table>
-<a href="{{ route('usuario.index') }}" class="btn btn-secondary">Volver Atras</a>
+<a href="{{ route('usuario.index') }}" class="btn btn-secondary mb-2">Volver Atras</a>
 <div class="modal fade" id="habilitacion" tabindex="-1" aria-labelledby="habModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
