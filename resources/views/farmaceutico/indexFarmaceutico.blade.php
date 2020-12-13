@@ -6,9 +6,6 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-12">
-
-                </div>
                 @can('esFarmaceutico')
 
                     <div class=" col-lg-2 col-12 mx-0 my-5">
@@ -50,7 +47,7 @@
 
                             </li> --}}
                             <li class="list-group-item">
-                                <h6 class="masthead-subheading">Historial Stock MEDICAMENTOS</h6>
+                                <h6 class="masthead-subheading">HISTORIAL STOCK MEDICAMENTOS</h6>
                                 <div class="d-flex d-flex justify-content-left pb-2 ml-3">
                                     <a href="{{ route('medicamentos.listado') }}"><i class="material-icons" title="Historial de Stock Cargado" style="font-size: 40px">pageview</i></a>
                                 </div>
@@ -74,8 +71,6 @@
                             </li>
 
                         </ul>
-
-
                     </div>
                     <div class="col-lg-9 col-12 mx-0">
                         <!-- para mostrar los alert -->
