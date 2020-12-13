@@ -267,12 +267,16 @@
             <hr>
                 <div class="row pt-4">
                  
-                    <div class="col-md-12 mt-4">
-                    
+                    <div class="col-md-12">
                         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Próximas de turno</h2>
-                        <p class="lead text-center my-2 ">Farmacias que se encontrarán de turnos los próximos días
-                        <a href="{{ route('verTurnosSiguientes') }}" class="btn btn-link">[ Ver más ]</a> 
+                        <p class="lead text-center my-2 align-middle">Farmacias que se encontrarán de turnos los próximos días</p>
                     </div>
+                    <div class="col-12 text-center">
+                        <a href="{{ route('verTurnosSiguientes') }}" class="btn btn-link">
+                            <span class="align-middle  text-center"><strong>[ Ver más ]</strong></span>
+                            <i class="fas fa-arrow-circle-right align-middle  pl-2" style="font-size: 30px"; data-toggle="tooltip" data-placement="left" title="Ver vas sucursales de turno"></i>    
+                        </a>  
+                    </div>    
                 </div>
             </div>
 
@@ -368,7 +372,7 @@
                         </div>    
                     @endforeach    
                 </div>
-                <hr>
+                <hr class="pt-4">
             </div><!-- Cierre container proximas de turno -->
       
  </div> <!--Cierre Container principal -->
