@@ -50,7 +50,7 @@
                                             <input type="hidden" name="id_farmacia" value={{ $farmaciaPaginate->id_farmacia }}>
                                           
                                             <button type="submit" class="btn btn-link mx-2"><i class="fas fa-clinic-medical align-middle" style="font-size: 30px";></i>
-                                                <span class="align-middle pl-2">{{ __('Ver Sucursales') }}</span>
+                                                <span class="align-middle pl-2">{{ __('Ver sucursales') }}</span>
                                             </button>
                                            
                                         </form>
