@@ -199,4 +199,14 @@ class MedicamentoController extends Controller
             // return Farmacia::where('nombre_farmacia', 'like', $request->input('term') . '%')->get();
         }
     }
+
+    public function informacionMedicamento(Medicamento $medicamento,Request $request){
+       
+        if ($request->ajax()){
+            $medicamento = Medicamento::where('id_medicamento',$request->medicamentos_id)->first(); 
+            $medicamento->getTipo->nombre_tipo;
+            $medicamento->getMarca->nombre_marca;
+            return $medicamento;
+        }
+    }
 }
