@@ -53,4 +53,13 @@ class Medicamento extends Model
             return $query->where('marca_id', '=', $marca);
         }
     }
+
+     //Scope nombre farmacia
+     public function scopeNomMedicamento($query, $nombreMedicamento)
+     {
+         if ($nombreMedicamento) {
+             # code...
+             return $query->where('nombre_medicamento','LIKE',"$nombreMedicamento%");
+         }
+     }
 }

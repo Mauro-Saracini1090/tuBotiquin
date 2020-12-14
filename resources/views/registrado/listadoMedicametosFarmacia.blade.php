@@ -3,6 +3,34 @@
 
 @section('contenido')
 <div class="container">
+    <div class="card-body mb-2">
+        <!-- Masthead Subheading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Farmacia</h2>
+        <p class="lead text-center my-3">Listado de Medicamentos en la Farmacia {{ $farmacia->nombre_farmacia }}
+        </p>
+    </div>
+    <div class="row my-2 mx-auto d-flex justify-content-center">
+        <form class="form-inline d-flex d-flex justify-content-center" method="GET" action="{{ route('listado.medicamentos',[$farmacia->id_farmacia]) }}">
+            <span class="float-sm-center m-0 p-0">
+                <button type="submit" class="btn btn-primary p-1">
+                    {{ __('Buscar') }}
+                </button>
+                <button id="resetbusqueda" type="reset" class="btn btn-primary p-1">
+                    {{ __('Limpiar') }}
+                </button>
+            </span>
+            <div class="col-4 p-0 mx-1">
+                    <input class="form-control form-control-sm w-100" name="busquedamedicamento" type="text" placeholder="Nombre Medicamento" aria-label="Search">
+            </div>
+            <div class="col-2 p-0 mx-1">
+                <input  class="form-control form-control-sm w-100" id="tipoMedicamento" type="text" placeholder="Tipo Medicamento"><input id="tipo_id" name="tipo_id" hidden>
+            </div>
+            <div class="col-2 p-0 mx-1">
+                <input  class="form-control form-control-sm w-100" id="marcaMedicamento" type="text" placeholder="Marca Medicamento"><input id="marca_id" name="marca_id" hidden>
+            </div>
+            <i class="fas fa-search mx-2" aria-hidden="true"></i>
+        </form>
+    </div>
     @if(session()->has('clear'))
         <div class="container">
             <div class="row">
@@ -39,28 +67,21 @@
         </div>
     @endif
     @if(!count($arrayMedicamentos) < 1)
-        <div class="card-body mb-2">
-            <!-- Masthead Subheading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Farmacia</h2>
-            <p class="lead text-center my-3">Listado de Medicamentos en la Farmacia {{ $farmacia->nombre_farmacia }}
-            </p>
-        </div>
         <div class="row">
             @foreach($arrayMedicamentos as $medicamentos)
                 @if($medicamentos->pivot->cantidadTotal > 0)
-                    <div class="col-lg-3 col-md-6 col-12 mt-4">
+                    <div class="col-lg-3 col-md-6 col-12">
                         <div class="bg-encabezado p-3"></div>
-                        <div class="shadow bg-white">
+                        <div class="shadow bg-white rounded">
 
                             <div class="d-flex d-flex justify-content-center">
                                 <div class="col-7">
                                     <img class="card-img-top shadow" src="{{ asset($medicamentos->img_medicamento) }}"
-                                        alt="Logotipo {{ $medicamentos->nombre_medicamento }}" width="110"
-                                        height="110">
+                                        alt="Logotipo {{ $medicamentos->nombre_medicamento }}" width="110">
                                 </div>
                             </div>
 
-                            <div class="card-body text-center">
+                            <div class="card-body text-center p-0">
                                 <h4 class="card-title"> <?php echo strtoupper($medicamentos->nombre_medicamento); ?>
                                 </h4>
 
@@ -69,7 +90,7 @@
                                         
                                         <button type="button" class="infomedicamento btn btn-light" data-toggle="modal" data-target="#infomodal" data-medid="{{ $medicamentos->id_medicamento }}">
                                             <!--<i class="fas fa-info-circle"></i>--> <i class="material-icons text-primary" style="font-size: 40px" data-toggle="tooltip" data-placement="left"
-                                            title="Ver mas información">pageview</i>
+                                            title="Ver mas información">info</i>
                                         </button>
                                    
                                 <div class="border border-ligth rounded p-2">
@@ -104,7 +125,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="p-3 mb-2 bg-warning shadow text-dark ">
-                    <h6 class="font-weight-bold text-center mb-2">
+                    <h6 class="font-weight-bold text-center">
                         <i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i>
                         Atención. Ocurrio un error en la búsqueda, intentelo nuevamente mas tarde.
                     </h6>
@@ -164,4 +185,65 @@
                 });
         });
     </script>
+    <script>
+        $('#resetbusqueda').click(function(){
+            history.pushState(null, "","medicamentos");
+            location.reload();
+        });
+        
+    </script>
+    <script>
+        $(function () {
+            $('#tipoMedicamento').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('{{ route("autocomplete.tipo") }}?term=' + request.term,
+                        function (data) {
+                            var array = $.map(data, function (row) {
+                                return {
+                                    value: row.nombre_tipo,
+                                    label: row.nombre_tipo,
+                                    name: row.id_tipo,
+    
+                                }
+                            })
+                            response($.ui.autocomplete.filter(array, request.term));
+                        })
+                },
+                minLength: 1,
+                delay: 400,
+                select: function (event, ui) {
+                    $('#tipo_id').val(ui.item.name)
+                }
+            })
+        })
+    
+    </script>
+    <script>
+        $(function () {
+            $('#marcaMedicamento').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('{{ route("autocomplete.marca") }}?term=' + request
+                        .term,
+                        function (data) {
+                            var array = $.map(data, function (row) {
+                                return {
+                                    value: row.nombre_marca,
+                                    label: row.nombre_marca,
+                                    name: row.id_marca,
+    
+                                }
+                            })
+                            response($.ui.autocomplete.filter(array, request.term));
+                        })
+                },
+                minLength: 1,
+                delay: 400,
+                select: function (event, ui) {
+                    $('#marca_id').val(ui.item.name)
+                }
+            })
+        })
+    
+    </script>
+
 @endsection
