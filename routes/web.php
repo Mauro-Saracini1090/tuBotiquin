@@ -109,6 +109,7 @@ Route::get('listadoStock',[MedicamentoController::class,'listadoStockMedicamento
 Route::get('autocompleteFarmacias',[MedicamentoController::class,'autocompleteFarmacia'])->name('autocomplete.farmacia');
 Route::get('autocompleteTipoMedicamento',[MedicamentoController::class,'autocompleteTipoMed'])->name('autocomplete.tipo');
 Route::get('autocompleteMarcaMedicamento',[MedicamentoController::class,'autocompleteMarcaMed'])->name('autocomplete.marca');
+Route::get('informacionmedicamento',[MedicamentoController::class,'informacionMedicamento'])->middleware('roles:es-registrado')->name('informacion.medicamento');
 
 
 Route::get('historialreservasregistrado',[UsuarioController::class,'historialReservaRegistrado'])->middleware('roles:es-registrado')->name('listado.reservas.registrado');
