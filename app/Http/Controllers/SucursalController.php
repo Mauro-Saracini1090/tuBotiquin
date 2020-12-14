@@ -334,7 +334,7 @@ class SucursalController extends Controller
         }
     }
 
-    public function verMedicamentosFarmacia(Farmacia $farmacia,SessionManager $sessionManager)
+    public function verMedicamentosFarmacia(Farmacia $farmacia,SessionManager $sessionManager,Request $request)
     {
         if (count(\Cart::getContent())) {
             foreach (\Cart::getContent() as $item) {
@@ -353,13 +353,16 @@ class SucursalController extends Controller
                 }
             }
         }
-        
+        $nombreFarmacia = $request->get('busquedamedicamento');
+        $tipo = $request->get('tipo_id');
+        $marca = $request->get('marca_id');
+
         $arrayMedicamentos = [];
         if ($farmacia->getSucursales != null) {
             foreach ($farmacia->getSucursales as $sucursal) {
                 if($sucursal->habilitado == 1){
                 if ($sucursal->getMedicamentos != null) {
-                    foreach ($sucursal->getMedicamentos as $medicamento) {
+                    foreach ($sucursal->getMedicamentos()->NomMedicamento($nombreFarmacia)->Tipo($tipo)->Marca($marca)->get() as $medicamento) {
                         if ($arrayMedicamentos == null) {
                             array_push($arrayMedicamentos, $medicamento);
                         } else {
