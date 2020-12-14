@@ -64,15 +64,14 @@
                                 <h4 class="card-title"> <?php echo strtoupper($medicamentos->nombre_medicamento); ?>
                                 </h4>
 
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
+                              
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="infomedicamento btn btn-primary" data-toggle="modal" data-target="#infomodal" data-medid="{{ $medicamentos->id_medicamento }}">
-                                            <i class="fas fa-info-circle"></i>
+                                        
+                                        <button type="button" class="infomedicamento btn btn-light" data-toggle="modal" data-target="#infomodal" data-medid="{{ $medicamentos->id_medicamento }}">
+                                            <!--<i class="fas fa-info-circle"></i>--> <i class="material-icons text-primary" style="font-size: 40px" data-toggle="tooltip" data-placement="left"
+                                            title="Ver mas información">pageview</i>
                                         </button>
-                                    </li>
-
-                                </ul>
+                                   
                                 <div class="border border-ligth rounded p-2">
                                     <span class="font-italic">Disponible:
                                         <strong><?php echo $medicamentos->pivot->cantidadTotal;?></strong>
@@ -91,7 +90,7 @@
                                             max="@if($medicamentos->pivot->cantidadTotal >= 5){{ 5 }}@else{{ $medicamentos->pivot->cantidadTotal }}@endif"
                                             required>
                                         <small class="form-text text-muted">Reserva máxima cinco unidades</small>
-                                        <input type="submit" name="btn" class="btn btn-success mt-2" value="Reservar">
+                                        <input type="submit" name="btn" class="btn btn-primary mt-2" value="Reservar">
                                     </form>
                                 </div>
 
@@ -104,7 +103,7 @@
     @else
         <div class="row">
             <div class="col-12 text-center">
-                <div class="p-3 mb-2 bg-warning rounded shadow text-dark ">
+                <div class="p-3 mb-2 bg-warning shadow text-dark ">
                     <h6 class="font-weight-bold text-center mb-2">
                         <i class="large material-icons align-middle mx-1" style="font-size: 40px">warning</i>
                         Atención. Ocurrio un error en la búsqueda, intentelo nuevamente mas tarde.
@@ -123,10 +122,9 @@
           <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
         </div>
         <div class="modal-body" id="modal-body">
-          ...
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="modal-footer p-2">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
@@ -155,9 +153,9 @@
                     }).done(function(data) {
                         // console.log(data);          
                         // console.log(data.get_marca);
-                        titulo = "<h4>Informacion sobre " + data.nombre_medicamento +"</h4>";
+                        titulo = "<h4>" + data.nombre_medicamento +"</h4>";
                         body = "<p><strong>Detalles:</strong> "+ data.informacion +"</p>";
-                        body += "<p><strong>Nombre Generico:</strong> "+ data.get_marca.nombre_marca +"</p>";
+                        body += "<p><strong>Nombre Genérico:</strong> "+ data.get_marca.nombre_marca +"</p>";
                         body += "<p><strong>Tipo:</strong> "+ data.get_tipo.nombre_tipo +"</p>";
 
                         $('#modal-header').html(titulo);
