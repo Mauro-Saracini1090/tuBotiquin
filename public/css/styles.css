@@ -10291,3 +10291,11 @@ form .row:first-child .floating-label-form-group {
   overflow: auto;
   display:inline-block;
 }
+
+
+.texto-titulo2{
+  text-align:center;
+  text-shadow: 6px 6px 1px #1abc9c;
+  font-size:  5.5rem;
+}
+

@@ -39,10 +39,9 @@
             <!-- Masthead Avatar Image-->
 
             <!-- Masthead Heading-->
-            <h1 class="masthead-heading text-uppercase mb-0  text-dark">TU BOTIQUÍN</h1>
-
-            <!-- Masthead Subheading-->
-            <h3 class="masthead-subheading  mb-0 text-dark ">Tu farmacia de turno</h3>
+            <h1 class="text-uppercase mb-0  texto-titulo2 text-dark">TU BOTIQUÍN</h1>
+            <!-- Masthead Subheading
+            <h2 class="masthead-subheading mt-3 mb-0 text-dark  texto-titulo">Tu farmacia de turno</h2>-->
         </div>
 
     </header>
