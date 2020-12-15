@@ -17,7 +17,7 @@
         type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/tubotiquin/tuBotiquin/public/css/styles.css" rel="stylesheet">
+    <link href="/tuBotiquin/public/css/styles.css" rel="stylesheet">
     <!--<link href="../public/css/styles.css" rel="stylesheet" /-->
 
     {{-- Leaflet - map osm --}}
@@ -39,7 +39,8 @@
             <!-- Masthead Avatar Image-->
 
             <!-- Masthead Heading-->
-            <h1 class="text-uppercase mb-0  texto-titulo2 text-dark">TU BOTIQUÍN</h1>
+            <h1 class="text-uppercase mb-0 texto-titulo2 text-dark">TU BOTIQUÍN</h1>
+            <img src="assets\img\logo2png.png" class="my-auto" alt="logo" width="120">
             <!-- Masthead Subheading
             <h2 class="masthead-subheading mt-3 mb-0 text-dark  texto-titulo">Tu farmacia de turno</h2>-->
         </div>
