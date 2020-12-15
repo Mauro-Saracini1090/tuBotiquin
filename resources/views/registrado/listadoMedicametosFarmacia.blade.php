@@ -9,7 +9,7 @@
         <p class="lead text-center my-3">Listado de Medicamentos en la Farmacia {{ $farmacia->nombre_farmacia }}
         </p>
     </div>
-    <div class="row my-2 mx-auto d-flex justify-content-center">
+    <div class="row my-2 mx-auto d-flex justify-content-center mb-3">
         <form class="form-inline d-flex d-flex justify-content-center" method="GET" action="{{ route('listado.medicamentos',[$farmacia->id_farmacia]) }}">
             <span class="float-sm-center m-0 p-0">
                 <button type="submit" class="btn btn-primary p-1">
@@ -67,33 +67,32 @@
         </div>
     @endif
     @if(!count($arrayMedicamentos) < 1)
-        <div class="row">
+        <div class="row mt-3">
             @foreach($arrayMedicamentos as $medicamentos)
                 @if($medicamentos->pivot->cantidadTotal > 0)
-                    <div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-3 col-md-6 col-12 mt-3">
                         <div class="bg-encabezado p-3"></div>
-                        <div class="shadow bg-white rounded">
+                        <div class="shadow bg-white">
 
                             <div class="d-flex d-flex justify-content-center">
-                                <div class="col-7">
+                                <div class="col-6">
                                     <img class="card-img-top shadow" src="{{ asset($medicamentos->img_medicamento) }}"
-                                        alt="Logotipo {{ $medicamentos->nombre_medicamento }}" width="110">
+                                        alt="Logotipo {{ $medicamentos->nombre_medicamento }}"   width="100" height="90">
                                 </div>
                             </div>
 
-                            <div class="card-body text-center p-0">
+                            <div class="card-body text-center p-2">
                                 <h4 class="card-title"> <?php echo strtoupper($medicamentos->nombre_medicamento); ?>
                                 </h4>
-
-                              
                                         <!-- Button trigger modal -->
-                                        
                                         <button type="button" class="infomedicamento btn btn-light" data-toggle="modal" data-target="#infomodal" data-medid="{{ $medicamentos->id_medicamento }}">
                                             <!--<i class="fas fa-info-circle"></i>--> <i class="material-icons text-primary" style="font-size: 40px" data-toggle="tooltip" data-placement="left"
                                             title="Ver mas información">info</i>
                                         </button>
                                    
-                                <div class="border border-ligth rounded p-2">
+                                    <div class="container">    
+                                    <hr class="m-1 p-1">
+                                    </div>
                                     <span class="font-italic">Disponible:
                                         <strong><?php echo $medicamentos->pivot->cantidadTotal;?></strong>
                                     </span>
@@ -113,7 +112,6 @@
                                         <small class="form-text text-muted">Reserva máxima cinco unidades</small>
                                         <input type="submit" name="btn" class="btn btn-primary mt-2" value="Reservar">
                                     </form>
-                                </div>
 
                             </div>
                         </div>
