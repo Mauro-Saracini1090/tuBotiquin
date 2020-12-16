@@ -40,7 +40,7 @@
 
             <!-- Masthead Heading-->
             <h1 class="text-uppercase mb-0 texto-titulo2 text-dark">TU BOTIQUÍN</h1>
-            <img src="assets\img\logo2png.png" class="my-auto" alt="logo" width="120">
+            <img src="{{url('/')}}/assets\img\logo2png.png" class="my-auto" alt="logo" width="120">
             <!-- Masthead Subheading
             <h2 class="masthead-subheading mt-3 mb-0 text-dark  texto-titulo">Tu farmacia de turno</h2>-->
         </div>
