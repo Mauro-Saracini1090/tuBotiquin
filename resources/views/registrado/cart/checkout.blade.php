@@ -113,9 +113,8 @@
                     @foreach(Cart::getContent() as $item)
 
                         <input type="hidden" name="id" value="{{ $item->id }}">
-                        <input name="medicamentos[]" type="hidden" name="id" value="{{ $item->id }}">
-                        <input text-whitename="cantidad[{{ $item->id }}]" type="hidden" name="id"
-                            value="{{ $item->quantity }}">
+                        <input name="medicamentos[]" type="hidden" value="{{ $item->id }}">
+                        <input text-white name="cantidad[{{$item->id}}]" type="hidden" value="{{ $item->quantity }}">
 
                     @endforeach
 
