@@ -9,8 +9,10 @@
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
-            <th scope="col">Nombre de Usuario</th>
+            {{-- <th scope="col">Nombre de Usuario</th> --}}
             <th scope="col">Email</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Estado</th>
             <th scope="col">Acciones</th>
         </tr>
     </thead>
@@ -21,8 +23,23 @@
                 <th scope="row">{{ $usuario->id_usuario }}</th>
                 <td>{{ $usuario->nombre }}</td>
                 <td>{{ $usuario->apellido }}</td>
-                <td>{{ $usuario->nombre_usuario }}</td>
+                {{-- <td>{{ $usuario->nombre_usuario }}</td> --}}
                 <td>{{ $usuario->email }}</td>
+                <td>
+                    @if($usuario->getRoles->isNotEmpty())
+                        @foreach($usuario->getRoles as $rol)
+                            <span class="badge badge-pill badge-success">{{ $rol->nombre_rol }}</span>
+                        @endforeach
+
+                    @endif
+                </td>
+                <td>
+                    @if($usuario->habilitado == 0)
+                        Deshabilitado
+                    @else
+                        Habilitado
+                    @endif
+                </td>
                 <td>
                     <a class="btn btn-panel p-1 m-1" href="{{ route('usuario.show', [ $usuario->id_usuario]) }}">
                         <i class="material-icons" title="Informacio">info</i>
