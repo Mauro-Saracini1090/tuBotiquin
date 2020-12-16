@@ -41,8 +41,12 @@
             <td>{{ $sucursal->email_sucursal }}</td>
         </tr>
         <tr>
-            <th scope="col">Telefono</th>
-            <td>{{ $sucursal->telefono_sucursal }}</td>
+            <th scope="col">Telefono Fijo:</th>
+            <td>{{ $sucursal->telefono_fijo }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Telefono Movil</th>
+            <td>{{ $sucursal->telefono_movil }}</td>
         </tr>
         <tr>
             <th scope="col">Direccion</th>
