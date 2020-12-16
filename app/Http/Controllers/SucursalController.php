@@ -77,8 +77,8 @@ class SucursalController extends Controller
         //Valida los campos del formulario cargarSucursal.blade
         $request->validate(([
             'id_farmacia' => 'required',
-            'descripcion_sucursal' => 'max:255',
-            'cufe_sucursal' => 'required|unique:sucursal|digits:11',
+            'descripcion_sucursal' => 'max:500',
+            'cufe_sucursal' => 'required|unique:sucursal|digits:13',
             'email_sucursal' => 'required|email|unique:sucursal|max:255',
             'telefono_fijo' => 'required|unique:sucursal|digits_between:6,11',
             'telefono_movil' => 'numeric|unique:sucursal|digits_between:6,11',
@@ -165,8 +165,8 @@ class SucursalController extends Controller
     {
         $request->validate(([
             'id_farmacia' => 'required',
-            'descripcion_sucursal' => 'max:255',
-            'cufe_sucursal' =>  'required|max:255',
+            'descripcion_sucursal' => 'max:500',
+            'cufe_sucursal' =>  'required|digits:13',
             'cufe_sucursal' =>   Rule::unique('sucursal', 'cufe_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
             'email_sucursal' =>  Rule::unique('sucursal', 'email_sucursal')->ignore($sucursal->id_sucursal, 'id_sucursal'),
             'email_sucursal' => 'required|email|max:255',
