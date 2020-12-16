@@ -147,8 +147,10 @@
 </div>
 <script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('descripcion_sucursal');
-
+    CKEDITOR.replace('descripcion_sucursal',{
+        language: 'es',
+        enterMode : CKEDITOR.ENTER_BR
+    });
 </script>
 @endsection
 @section('zona_js')
