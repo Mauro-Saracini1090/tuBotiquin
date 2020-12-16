@@ -53,7 +53,7 @@
                                 for="cufe_sucursal">{{ __('Cufe sucursal *') }}</label></strong>
                         <input type="text" name="cufe_sucursal" value="{{ old('cufe_sucursal') }}"
                             class="form-control @error('cufe_sucursal') is-invalid @enderror" required>
-                        <small class="form-text text-muted">Sin espacios ni guiones, 8 dígitos mínimo</small>
+                        <small class="form-text text-muted">Sin espacios ni guiones, 13 dígitos</small>
 
                         @error('cufe_sucursal')
                             <span class="invalid-feedback" role="alert">
@@ -164,7 +164,10 @@
 </div>
 <script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('descripcion_sucursal');
+    CKEDITOR.replace('descripcion_sucursal',{
+        language: 'es',
+        enterMode : CKEDITOR.ENTER_BR
+    });
 </script>
 @endsection
 @section('zona_js')
